@@ -1,0 +1,58 @@
+# =============================================================================
+#  Painel Novo — package de apoio
+# =============================================================================
+#  Instalacao (uma vez so):
+#
+#  1. Em configuration.yaml, garanta que packages esteja habilitado:
+#
+#         homeassistant:
+#           packages: !include_dir_named packages
+#
+#  2. Copie este arquivo para  <config>/packages/painel_novo.yaml
+#  3. Reinicie o Home Assistant.
+#
+#  Opcional: se voce nao quiser usar packages, defina
+#  `usar_script_inteligente: false` em config/comodos.yaml e regere o painel.
+#  O painel passa a usar light.toggle direto (comportamento um pouco pior:
+#  com metade das luzes acesas, ele inverte cada uma em vez de apagar tudo).
+# =============================================================================
+
+script:
+  alternar_luzes_da_area:
+    alias: Alternar luzes da area
+    description: >-
+      Se houver qualquer luz acesa na area, apaga todas. Se estiver tudo
+      apagado, acende todas. Usado pelo card principal de cada comodo.
+    icon: mdi:lightbulb-group
+    mode: parallel
+    max: 25
+    fields:
+      area:
+        name: Area
+        description: Nome ou id da area no Home Assistant.
+        required: true
+        example: Sala de Estar
+        selector:
+          area:
+    sequence:
+      # Sem luzes na area: nada a fazer (evita chamar o servico com lista vazia).
+      - condition: template
+        value_template: >-
+          {{ area_entities(area) | select('match', 'light\\.') | list | count > 0 }}
+
+      - choose:
+          - conditions:
+              - condition: template
+                value_template: >-
+                  {{ area_entities(area) | select('match', 'light\\.')
+                     | select('is_state', 'on') | list | count > 0 }}
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id: >-
+                    {{ area_entities(area) | select('match', 'light\\.') | list }}
+        default:
+          - action: light.turn_on
+            target:
+              entity_id: >-
+                {{ area_entities(area) | select('match', 'light\\.') | list }}

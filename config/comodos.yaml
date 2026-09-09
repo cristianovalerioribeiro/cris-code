@@ -1,0 +1,79 @@
+# =============================================================================
+#  Painel Novo — arquivo de configuracao
+# =============================================================================
+#  Este e o UNICO arquivo que voce precisa editar.
+#  Depois de mexer aqui, rode:
+#
+#      python3 tools/gerar_painel.py
+#
+#  e o arquivo dashboards/painel-novo.yaml e regerado do zero.
+#
+#  As luminarias NAO sao listadas aqui: o painel descobre sozinho todas as
+#  luzes de cada area do Home Assistant. Se voce adicionar uma lampada nova
+#  na Cozinha, ela aparece no painel sem editar nada.
+# =============================================================================
+
+painel:
+  titulo: Casa                 # titulo da aba principal
+  url: painel-novo             # precisa bater com o url_path do configuration.yaml
+  colunas_max: 4               # maximo de colunas em telas grandes (o HA reduz sozinho no celular)
+  colunas_luzes: 2             # quantas luminarias por linha dentro do card do comodo
+  densidade: true              # true = encaixa secoes curtas nos buracos (layout mais compacto)
+  view_luzes: true             # gera a aba "Luzes" (linha de botoes redondos por comodo)
+  subviews: true               # gera uma pagina de detalhe para cada comodo
+  usar_script_inteligente: true  # ver packages/painel_novo.yaml (recomendado)
+
+globais:
+  # Padroes de entity_id ignorados em TODOS os comodos.
+  # Util para nao duplicar grupos de luz que voce mesmo criou.
+  excluir_luzes:
+    - light.*_grupo
+    - light.grupo_*
+    - light.todas_as_luzes
+
+# -----------------------------------------------------------------------------
+#  COMODOS
+# -----------------------------------------------------------------------------
+#  area      -> nome EXATO da area no Home Assistant (Configuracoes > Areas)
+#  area_id   -> opcional. Se o id da area nao for o nome "slugificado", informe.
+#               Confira em Ferramentas de Desenvolvedor > Modelo:
+#                   {{ areas() }}
+#  icone     -> qualquer icone mdi:
+#  temperatura / umidade -> opcionais, viram etiquetas no titulo do comodo
+#  extras    -> entidades avulsas que aparecem no rodape do comodo
+#               (ar-condicionado, ventilador, cortina, TV, ...)
+#  excluir   -> padroes de entity_id de luz ignorados so neste comodo
+# -----------------------------------------------------------------------------
+
+comodos:
+  - area: Sala de Estar
+    icone: mdi:sofa
+    # Exemplo de como preencher os opcionais:
+    # temperatura: sensor.sala_temperatura
+    # umidade: sensor.sala_umidade
+    # extras:
+    #   - climate.sala_ar_condicionado
+    #   - fan.sala_ventilador
+    # excluir:
+    #   - light.sala_fita_led_teste
+
+  - area: Cozinha
+    icone: mdi:countertop
+
+  - area: Corredor
+    icone: mdi:wall-sconce-flat
+
+  - area: Quarto
+    icone: mdi:bed-double
+
+  - area: Quarto de Hospedes
+    icone: mdi:bed-single
+
+  - area: Escritorio
+    icone: mdi:desk
+
+  - area: Banheiro
+    icone: mdi:shower
+
+  - area: Area Externa
+    icone: mdi:tree
