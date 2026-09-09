@@ -30,6 +30,7 @@ CARDS_CONHECIDOS = {
     "custom:mushroom-light-card",
     "custom:mushroom-template-card",
     "custom:mushroom-chips-card",
+    "custom:mushroom-cover-card",
 }
 
 # Filtros/funcoes do Home Assistant que o Jinja puro nao conhece.

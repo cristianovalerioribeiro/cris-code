@@ -19,7 +19,15 @@ painel:
   colunas_max: 4               # maximo de colunas em telas grandes (o HA reduz sozinho no celular)
   colunas_luzes: 2             # quantas luminarias por linha dentro do card do comodo
   densidade: true              # true = encaixa secoes curtas nos buracos (layout mais compacto)
-  view_luzes: true             # gera a aba "Luzes" (linha de botoes redondos por comodo)
+  view_luzes: true             # gera a aba "Luzes" (brilho de todas as luminarias)
+  estilo_luzes: botoes         # botoes = 1 botao redondo por luminaria (compacto)
+                               # cards  = 1 card com slider por luminaria (ocupa muito mais)
+  mostrar_persianas: true      # persianas/cortinas no bloco do comodo
+  mostrar_sensores: true       # sensores do comodo no rodape do bloco
+  cor_na_tela_inicial: true    # controle de cor/temperatura no mestre da tela Casa.
+                               # false deixa a tela Casa mais baixa; a cor continua
+                               # disponivel na pagina do comodo. So tem efeito nos
+                               # comodos que definem 'grupo'.
   subviews: true               # gera uma pagina de detalhe para cada comodo
   usar_script_inteligente: true  # ver packages/painel_novo.yaml (recomendado)
 
@@ -39,6 +47,12 @@ globais:
 #               Confira em Ferramentas de Desenvolvedor > Modelo:
 #                   {{ areas() }}
 #  icone     -> qualquer icone mdi:
+#  cor       -> cor de destaque do comodo. Se omitir, o gerador distribui uma
+#               automaticamente. Valores: amber, blue, green, purple, teal,
+#               pink, indigo, cyan, orange, light-green, deep-purple, red
+#  grupo     -> OPCIONAL, mas muito recomendado: uma entidade de grupo de luz
+#               (Configuracoes > Dispositivos e servicos > Ajudantes > Grupo).
+#               Com ela, o card mestre ganha slider de brilho do comodo inteiro.
 #  temperatura / umidade -> opcionais, viram etiquetas no titulo do comodo
 #  extras    -> entidades avulsas que aparecem no rodape do comodo
 #               (ar-condicionado, ventilador, cortina, TV, ...)
@@ -48,32 +62,48 @@ globais:
 comodos:
   - area: Sala de Estar
     icone: mdi:sofa
-    # Exemplo de como preencher os opcionais:
-    # temperatura: sensor.sala_temperatura
-    # umidade: sensor.sala_umidade
-    # extras:
-    #   - climate.sala_ar_condicionado
-    #   - fan.sala_ventilador
-    # excluir:
-    #   - light.sala_fita_led_teste
+    cor: amber
+    grupo: light.sala_luzes
+    temperatura: sensor.sala_temperatura
+    umidade: sensor.sala_umidade
+    extras:
+      - climate.sala_ar
+      - media_player.sala_tv
 
   - area: Cozinha
     icone: mdi:countertop
+    cor: orange
+    temperatura: sensor.cozinha_temperatura
 
   - area: Corredor
     icone: mdi:wall-sconce-flat
+    cor: teal
+    temperatura: sensor.corredor_temperatura
 
   - area: Quarto
     icone: mdi:bed-double
+    cor: indigo
+    temperatura: sensor.quarto_temperatura
+    umidade: sensor.quarto_umidade
+    extras:
+      - climate.quarto_ar
 
-  - area: Quarto de Hospedes
+  - area: Quarto de Hóspedes
     icone: mdi:bed-single
+    cor: purple
+    temperatura: sensor.hospedes_temperatura
 
-  - area: Escritorio
+  - area: Escritório
     icone: mdi:desk
+    cor: blue
+    temperatura: sensor.escritorio_temperatura
 
   - area: Banheiro
     icone: mdi:shower
+    cor: cyan
+    umidade: sensor.banheiro_umidade
 
-  - area: Area Externa
+  - area: Área Externa
     icone: mdi:tree
+    cor: green
+    temperatura: sensor.externa_temperatura

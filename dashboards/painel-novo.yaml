@@ -26,7 +26,8 @@ views:
             alignment: center
             chips:
               - type: template
-                icon: mdi:lightbulb-group
+                icon: |-
+                  {% if states.light | selectattr('state', 'eq', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
                 icon_color: |-
                   {% if states.light | selectattr('state', 'eq', 'on') | list | count > 0 %}amber{% else %}grey{% endif %}
                 content: |-
@@ -34,6 +35,14 @@ views:
                 tap_action:
                   action: navigate
                   navigation_path: /painel-novo/luzes
+              - type: template
+                icon: mdi:window-shutter-open
+                icon_color: |-
+                  {% if states.cover | rejectattr('state', 'eq', 'closed') | rejectattr('state', 'eq', 'unavailable') | list | count > 0 %}blue{% else %}grey{% endif %}
+                content: |-
+                  {% set n = states.cover | rejectattr('state', 'eq', 'closed') | rejectattr('state', 'eq', 'unavailable') | list | count %}{% if n == 0 %}Tudo fechado{% elif n == 1 %}1 aberta{% else %}{{ n }} abertas{% endif %}
+                tap_action:
+                  action: none
               - type: template
                 icon: mdi:lightbulb-off-outline
                 icon_color: red
@@ -53,17 +62,24 @@ views:
             heading: Sala de Estar
             heading_style: title
             icon: mdi:sofa
+            badges:
+              - type: entity
+                entity: sensor.sala_temperatura
+              - type: entity
+                entity: sensor.sala_umidade
             tap_action:
               action: navigate
               navigation_path: /painel-novo/sala-de-estar
-          - type: custom:mushroom-template-card
-            primary: Sala de Estar
-            secondary: |-
-              {% set luzes = area_entities('Sala de Estar') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:sofa
-            icon_color: |-
-              {% if area_entities('Sala de Estar') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
-            multiline_secondary: false
+          - type: custom:mushroom-light-card
+            entity: light.sala_luzes
+            name: Luzes do comodo
+            icon: mdi:lightbulb-group
+            show_brightness_control: true
+            show_color_temp_control: true
+            show_color_control: true
+            use_light_color: true
+            collapsible_controls: false
+            layout: horizontal
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
@@ -72,39 +88,107 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/sala-de-estar
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/sala-de-estar
             grid_options:
               columns: full
           - type: custom:auto-entities
             card:
-              type: grid
-              columns: 2
-              square: false
-            card_param: cards
+              type: custom:mushroom-chips-card
+              alignment: start
+            card_param: chips
             show_empty: false
             filter:
               include:
                 - domain: light
                   area: Sala de Estar
                   options:
-                    type: custom:mushroom-light-card
-                    layout: vertical
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    type: entity
+                    content_info: name
                     use_light_color: true
-                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
+                - entity_id: light.sala_luzes
+            grid_options:
+              columns: full
             sort:
               method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Sala de Estar
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: false
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: sensor
+                  area: Sala de Estar
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+                - domain: binary_sensor
+                  area: Sala de Estar
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+              exclude:
+                - entity_id: sensor.sala_temperatura
+                - entity_id: sensor.sala_umidade
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+              - type: tile
+                entity: climate.sala_ar
+                hold_action:
+                  action: more-info
+              - type: tile
+                entity: media_player.sala_tv
+                hold_action:
+                  action: more-info
             grid_options:
               columns: full
       - type: grid
@@ -113,16 +197,20 @@ views:
             heading: Cozinha
             heading_style: title
             icon: mdi:countertop
+            badges:
+              - type: entity
+                entity: sensor.cozinha_temperatura
             tap_action:
               action: navigate
               navigation_path: /painel-novo/cozinha
           - type: custom:mushroom-template-card
-            primary: Cozinha
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Cozinha') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:countertop
+              {% set l = area_entities('Cozinha') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Cozinha') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Cozinha') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Cozinha') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}orange{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -132,57 +220,113 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/cozinha
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/cozinha
             grid_options:
               columns: full
           - type: custom:auto-entities
             card:
-              type: grid
-              columns: 2
-              square: false
-            card_param: cards
+              type: custom:mushroom-chips-card
+              alignment: start
+            card_param: chips
             show_empty: false
             filter:
               include:
                 - domain: light
                   area: Cozinha
                   options:
-                    type: custom:mushroom-light-card
-                    layout: vertical
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    type: entity
+                    content_info: name
                     use_light_color: true
-                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Cozinha
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: false
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: sensor
+                  area: Cozinha
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+                - domain: binary_sensor
+                  area: Cozinha
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+              exclude:
+                - entity_id: sensor.cozinha_temperatura
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
             heading: Corredor
             heading_style: title
             icon: mdi:wall-sconce-flat
+            badges:
+              - type: entity
+                entity: sensor.corredor_temperatura
             tap_action:
               action: navigate
               navigation_path: /painel-novo/corredor
           - type: custom:mushroom-template-card
-            primary: Corredor
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Corredor') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:wall-sconce-flat
+              {% set l = area_entities('Corredor') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Corredor') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Corredor') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Corredor') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}teal{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -192,57 +336,115 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/corredor
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/corredor
             grid_options:
               columns: full
           - type: custom:auto-entities
             card:
-              type: grid
-              columns: 2
-              square: false
-            card_param: cards
+              type: custom:mushroom-chips-card
+              alignment: start
+            card_param: chips
             show_empty: false
             filter:
               include:
                 - domain: light
                   area: Corredor
                   options:
-                    type: custom:mushroom-light-card
-                    layout: vertical
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    type: entity
+                    content_info: name
                     use_light_color: true
-                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Corredor
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: false
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: sensor
+                  area: Corredor
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+                - domain: binary_sensor
+                  area: Corredor
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+              exclude:
+                - entity_id: sensor.corredor_temperatura
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
             heading: Quarto
             heading_style: title
             icon: mdi:bed-double
+            badges:
+              - type: entity
+                entity: sensor.quarto_temperatura
+              - type: entity
+                entity: sensor.quarto_umidade
             tap_action:
               action: navigate
               navigation_path: /painel-novo/quarto
           - type: custom:mushroom-template-card
-            primary: Quarto
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Quarto') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:bed-double
+              {% set l = area_entities('Quarto') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Quarto') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Quarto') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Quarto') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}indigo{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -252,177 +454,356 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/quarto
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/quarto
             grid_options:
               columns: full
           - type: custom:auto-entities
             card:
-              type: grid
-              columns: 2
-              square: false
-            card_param: cards
+              type: custom:mushroom-chips-card
+              alignment: start
+            card_param: chips
             show_empty: false
             filter:
               include:
                 - domain: light
                   area: Quarto
                   options:
-                    type: custom:mushroom-light-card
-                    layout: vertical
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    type: entity
+                    content_info: name
                     use_light_color: true
-                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
+            grid_options:
+              columns: full
             sort:
               method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Quarto
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: false
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: sensor
+                  area: Quarto
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+                - domain: binary_sensor
+                  area: Quarto
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+              exclude:
+                - entity_id: sensor.quarto_temperatura
+                - entity_id: sensor.quarto_umidade
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+              - type: tile
+                entity: climate.quarto_ar
+                hold_action:
+                  action: more-info
             grid_options:
               columns: full
       - type: grid
         cards:
           - type: heading
-            heading: Quarto de Hospedes
+            heading: Quarto de Hóspedes
             heading_style: title
             icon: mdi:bed-single
+            badges:
+              - type: entity
+                entity: sensor.hospedes_temperatura
             tap_action:
               action: navigate
               navigation_path: /painel-novo/quarto-de-hospedes
           - type: custom:mushroom-template-card
-            primary: Quarto de Hospedes
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Quarto de Hospedes') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:bed-single
+              {% set l = area_entities('Quarto de Hóspedes') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Quarto de Hóspedes') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Quarto de Hospedes') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Quarto de Hóspedes') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}purple{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
-                area: Quarto de Hospedes
+                area: Quarto de Hóspedes
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/quarto-de-hospedes
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/quarto-de-hospedes
             grid_options:
               columns: full
           - type: custom:auto-entities
             card:
-              type: grid
-              columns: 2
-              square: false
-            card_param: cards
+              type: custom:mushroom-chips-card
+              alignment: start
+            card_param: chips
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Quarto de Hospedes
+                  area: Quarto de Hóspedes
                   options:
-                    type: custom:mushroom-light-card
-                    layout: vertical
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    type: entity
+                    content_info: name
                     use_light_color: true
-                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Quarto de Hóspedes
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: false
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: sensor
+                  area: Quarto de Hóspedes
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+                - domain: binary_sensor
+                  area: Quarto de Hóspedes
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+              exclude:
+                - entity_id: sensor.hospedes_temperatura
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Escritorio
+            heading: Escritório
             heading_style: title
             icon: mdi:desk
+            badges:
+              - type: entity
+                entity: sensor.escritorio_temperatura
             tap_action:
               action: navigate
               navigation_path: /painel-novo/escritorio
           - type: custom:mushroom-template-card
-            primary: Escritorio
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Escritorio') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:desk
+              {% set l = area_entities('Escritório') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Escritório') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Escritorio') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Escritório') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}blue{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
-                area: Escritorio
+                area: Escritório
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/escritorio
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/escritorio
             grid_options:
               columns: full
           - type: custom:auto-entities
             card:
-              type: grid
-              columns: 2
-              square: false
-            card_param: cards
+              type: custom:mushroom-chips-card
+              alignment: start
+            card_param: chips
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Escritorio
+                  area: Escritório
                   options:
-                    type: custom:mushroom-light-card
-                    layout: vertical
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    type: entity
+                    content_info: name
                     use_light_color: true
-                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Escritório
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: false
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: sensor
+                  area: Escritório
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+                - domain: binary_sensor
+                  area: Escritório
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+              exclude:
+                - entity_id: sensor.escritorio_temperatura
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
             heading: Banheiro
             heading_style: title
             icon: mdi:shower
+            badges:
+              - type: entity
+                entity: sensor.banheiro_umidade
             tap_action:
               action: navigate
               navigation_path: /painel-novo/banheiro
           - type: custom:mushroom-template-card
-            primary: Banheiro
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Banheiro') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:shower
+              {% set l = area_entities('Banheiro') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Banheiro') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Banheiro') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Banheiro') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}cyan{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -432,101 +813,209 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/banheiro
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/banheiro
             grid_options:
               columns: full
           - type: custom:auto-entities
             card:
-              type: grid
-              columns: 2
-              square: false
-            card_param: cards
+              type: custom:mushroom-chips-card
+              alignment: start
+            card_param: chips
             show_empty: false
             filter:
               include:
                 - domain: light
                   area: Banheiro
                   options:
-                    type: custom:mushroom-light-card
-                    layout: vertical
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    type: entity
+                    content_info: name
                     use_light_color: true
-                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Banheiro
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: false
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: sensor
+                  area: Banheiro
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+                - domain: binary_sensor
+                  area: Banheiro
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+              exclude:
+                - entity_id: sensor.banheiro_umidade
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Area Externa
+            heading: Área Externa
             heading_style: title
             icon: mdi:tree
+            badges:
+              - type: entity
+                entity: sensor.externa_temperatura
             tap_action:
               action: navigate
               navigation_path: /painel-novo/area-externa
           - type: custom:mushroom-template-card
-            primary: Area Externa
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Area Externa') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:tree
+              {% set l = area_entities('Área Externa') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Área Externa') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Area Externa') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Área Externa') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}green{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
-                area: Area Externa
+                area: Área Externa
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/area-externa
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/area-externa
             grid_options:
               columns: full
           - type: custom:auto-entities
             card:
-              type: grid
-              columns: 2
-              square: false
-            card_param: cards
+              type: custom:mushroom-chips-card
+              alignment: start
+            card_param: chips
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Area Externa
+                  area: Área Externa
                   options:
-                    type: custom:mushroom-light-card
-                    layout: vertical
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    type: entity
+                    content_info: name
                     use_light_color: true
-                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Área Externa
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: false
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: sensor
+                  area: Área Externa
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+                - domain: binary_sensor
+                  area: Área Externa
+                  options:
+                    type: tile
+                    vertical: false
+                    hide_state: false
+                    tap_action:
+                      action: more-info
+              exclude:
+                - entity_id: sensor.externa_temperatura
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
   - title: Luzes
     path: luzes
     icon: mdi:lightbulb-group
@@ -538,42 +1027,21 @@ views:
         cards:
           - type: heading
             heading: Sala de Estar
-            heading_style: subtitle
+            heading_style: title
             icon: mdi:sofa
-          - type: custom:auto-entities
-            card:
-              type: custom:mushroom-chips-card
-              alignment: start
-            card_param: chips
-            show_empty: false
-            filter:
-              include:
-                - domain: light
-                  area: Sala de Estar
-                  options:
-                    type: entity
-                    content_info: none
-                    use_light_color: true
-                    tap_action:
-                      action: toggle
-                    hold_action:
-                      action: more-info
-              exclude:
-                - entity_id: light.*_grupo
-                - entity_id: light.grupo_*
-                - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
-            grid_options:
-              columns: full
-          - type: custom:mushroom-template-card
-            primary: Sala de Estar
-            secondary: |-
-              {% set luzes = area_entities('Sala de Estar') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:sofa
-            icon_color: |-
-              {% if area_entities('Sala de Estar') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
-            multiline_secondary: false
+            tap_action:
+              action: navigate
+              navigation_path: /painel-novo/sala-de-estar
+          - type: custom:mushroom-light-card
+            entity: light.sala_luzes
+            name: Luzes do comodo
+            icon: mdi:lightbulb-group
+            show_brightness_control: true
+            show_color_temp_control: true
+            show_color_control: true
+            use_light_color: true
+            collapsible_controls: false
+            layout: horizontal
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
@@ -582,28 +1050,30 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/sala-de-estar
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/sala-de-estar
             grid_options:
               columns: full
-      - type: grid
-        cards:
-          - type: heading
-            heading: Cozinha
-            heading_style: subtitle
-            icon: mdi:countertop
           - type: custom:auto-entities
             card:
-              type: custom:mushroom-chips-card
-              alignment: start
-            card_param: chips
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Cozinha
+                  area: Sala de Estar
                   options:
-                    type: entity
-                    content_info: none
+                    type: custom:mushroom-light-card
+                    layout: horizontal
+                    show_brightness_control: true
+                    show_color_temp_control: true
+                    show_color_control: true
                     use_light_color: true
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
@@ -612,17 +1082,28 @@ views:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
+                - entity_id: light.sala_luzes
             grid_options:
               columns: full
-          - type: custom:mushroom-template-card
-            primary: Cozinha
-            secondary: |-
-              {% set luzes = area_entities('Cozinha') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Cozinha
+            heading_style: title
             icon: mdi:countertop
+            tap_action:
+              action: navigate
+              navigation_path: /painel-novo/cozinha
+          - type: custom:mushroom-template-card
+            primary: Luzes
+            secondary: |-
+              {% set l = area_entities('Cozinha') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Cozinha') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Cozinha') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Cozinha') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}orange{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -632,28 +1113,30 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/cozinha
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/cozinha
             grid_options:
               columns: full
-      - type: grid
-        cards:
-          - type: heading
-            heading: Corredor
-            heading_style: subtitle
-            icon: mdi:wall-sconce-flat
           - type: custom:auto-entities
             card:
-              type: custom:mushroom-chips-card
-              alignment: start
-            card_param: chips
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Corredor
+                  area: Cozinha
                   options:
-                    type: entity
-                    content_info: none
+                    type: custom:mushroom-light-card
+                    layout: horizontal
+                    show_brightness_control: true
+                    show_color_temp_control: true
+                    show_color_control: true
                     use_light_color: true
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
@@ -662,17 +1145,27 @@ views:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
-          - type: custom:mushroom-template-card
-            primary: Corredor
-            secondary: |-
-              {% set luzes = area_entities('Corredor') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Corredor
+            heading_style: title
             icon: mdi:wall-sconce-flat
+            tap_action:
+              action: navigate
+              navigation_path: /painel-novo/corredor
+          - type: custom:mushroom-template-card
+            primary: Luzes
+            secondary: |-
+              {% set l = area_entities('Corredor') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Corredor') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Corredor') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Corredor') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}teal{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -682,28 +1175,30 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/corredor
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/corredor
             grid_options:
               columns: full
-      - type: grid
-        cards:
-          - type: heading
-            heading: Quarto
-            heading_style: subtitle
-            icon: mdi:bed-double
           - type: custom:auto-entities
             card:
-              type: custom:mushroom-chips-card
-              alignment: start
-            card_param: chips
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Quarto
+                  area: Corredor
                   options:
-                    type: entity
-                    content_info: none
+                    type: custom:mushroom-light-card
+                    layout: horizontal
+                    show_brightness_control: true
+                    show_color_temp_control: true
+                    show_color_control: true
                     use_light_color: true
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
@@ -712,17 +1207,27 @@ views:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
-          - type: custom:mushroom-template-card
-            primary: Quarto
-            secondary: |-
-              {% set luzes = area_entities('Quarto') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Quarto
+            heading_style: title
             icon: mdi:bed-double
+            tap_action:
+              action: navigate
+              navigation_path: /painel-novo/quarto
+          - type: custom:mushroom-template-card
+            primary: Luzes
+            secondary: |-
+              {% set l = area_entities('Quarto') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Quarto') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Quarto') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Quarto') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}indigo{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -732,28 +1237,30 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/quarto
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/quarto
             grid_options:
               columns: full
-      - type: grid
-        cards:
-          - type: heading
-            heading: Quarto de Hospedes
-            heading_style: subtitle
-            icon: mdi:bed-single
           - type: custom:auto-entities
             card:
-              type: custom:mushroom-chips-card
-              alignment: start
-            card_param: chips
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Quarto de Hospedes
+                  area: Quarto
                   options:
-                    type: entity
-                    content_info: none
+                    type: custom:mushroom-light-card
+                    layout: horizontal
+                    show_brightness_control: true
+                    show_color_temp_control: true
+                    show_color_control: true
                     use_light_color: true
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
@@ -762,48 +1269,60 @@ views:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
-          - type: custom:mushroom-template-card
-            primary: Quarto de Hospedes
-            secondary: |-
-              {% set luzes = area_entities('Quarto de Hospedes') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Quarto de Hóspedes
+            heading_style: title
             icon: mdi:bed-single
+            tap_action:
+              action: navigate
+              navigation_path: /painel-novo/quarto-de-hospedes
+          - type: custom:mushroom-template-card
+            primary: Luzes
+            secondary: |-
+              {% set l = area_entities('Quarto de Hóspedes') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Quarto de Hóspedes') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Quarto de Hospedes') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Quarto de Hóspedes') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}purple{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
-                area: Quarto de Hospedes
+                area: Quarto de Hóspedes
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/quarto-de-hospedes
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/quarto-de-hospedes
             grid_options:
               columns: full
-      - type: grid
-        cards:
-          - type: heading
-            heading: Escritorio
-            heading_style: subtitle
-            icon: mdi:desk
           - type: custom:auto-entities
             card:
-              type: custom:mushroom-chips-card
-              alignment: start
-            card_param: chips
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Escritorio
+                  area: Quarto de Hóspedes
                   options:
-                    type: entity
-                    content_info: none
+                    type: custom:mushroom-light-card
+                    layout: horizontal
+                    show_brightness_control: true
+                    show_color_temp_control: true
+                    show_color_control: true
                     use_light_color: true
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
@@ -812,48 +1331,60 @@ views:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
-          - type: custom:mushroom-template-card
-            primary: Escritorio
-            secondary: |-
-              {% set luzes = area_entities('Escritorio') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Escritório
+            heading_style: title
             icon: mdi:desk
+            tap_action:
+              action: navigate
+              navigation_path: /painel-novo/escritorio
+          - type: custom:mushroom-template-card
+            primary: Luzes
+            secondary: |-
+              {% set l = area_entities('Escritório') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Escritório') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Escritorio') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Escritório') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}blue{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
-                area: Escritorio
+                area: Escritório
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/escritorio
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/escritorio
             grid_options:
               columns: full
-      - type: grid
-        cards:
-          - type: heading
-            heading: Banheiro
-            heading_style: subtitle
-            icon: mdi:shower
           - type: custom:auto-entities
             card:
-              type: custom:mushroom-chips-card
-              alignment: start
-            card_param: chips
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Banheiro
+                  area: Escritório
                   options:
-                    type: entity
-                    content_info: none
+                    type: custom:mushroom-light-card
+                    layout: horizontal
+                    show_brightness_control: true
+                    show_color_temp_control: true
+                    show_color_control: true
                     use_light_color: true
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
@@ -862,17 +1393,27 @@ views:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
-          - type: custom:mushroom-template-card
-            primary: Banheiro
-            secondary: |-
-              {% set luzes = area_entities('Banheiro') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Banheiro
+            heading_style: title
             icon: mdi:shower
+            tap_action:
+              action: navigate
+              navigation_path: /painel-novo/banheiro
+          - type: custom:mushroom-template-card
+            primary: Luzes
+            secondary: |-
+              {% set l = area_entities('Banheiro') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Banheiro') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Banheiro') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Banheiro') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}cyan{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -882,28 +1423,30 @@ views:
             hold_action:
               action: navigate
               navigation_path: /painel-novo/banheiro
+            double_tap_action:
+              action: navigate
+              navigation_path: /painel-novo/banheiro
             grid_options:
               columns: full
-      - type: grid
-        cards:
-          - type: heading
-            heading: Area Externa
-            heading_style: subtitle
-            icon: mdi:tree
           - type: custom:auto-entities
             card:
-              type: custom:mushroom-chips-card
-              alignment: start
-            card_param: chips
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
             show_empty: false
             filter:
               include:
                 - domain: light
-                  area: Area Externa
+                  area: Banheiro
                   options:
-                    type: entity
-                    content_info: none
+                    type: custom:mushroom-light-card
+                    layout: horizontal
+                    show_brightness_control: true
+                    show_color_temp_control: true
+                    show_color_control: true
                     use_light_color: true
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
@@ -912,28 +1455,72 @@ views:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
-          - type: custom:mushroom-template-card
-            primary: Area Externa
-            secondary: |-
-              {% set luzes = area_entities('Area Externa') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Área Externa
+            heading_style: title
             icon: mdi:tree
+            tap_action:
+              action: navigate
+              navigation_path: /painel-novo/area-externa
+          - type: custom:mushroom-template-card
+            primary: Luzes
+            secondary: |-
+              {% set l = area_entities('Área Externa') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Área Externa') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Area Externa') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Área Externa') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}green{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
-                area: Area Externa
+                area: Área Externa
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/area-externa
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/area-externa
             grid_options:
               columns: full
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: light
+                  area: Área Externa
+                  options:
+                    type: custom:mushroom-light-card
+                    layout: horizontal
+                    show_brightness_control: true
+                    show_color_temp_control: true
+                    show_color_control: true
+                    use_light_color: true
+                    collapsible_controls: true
+                    tap_action:
+                      action: toggle
+                    hold_action:
+                      action: more-info
+              exclude:
+                - entity_id: light.*_grupo
+                - entity_id: light.grupo_*
+                - entity_id: light.todas_as_luzes
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
   - title: Sala de Estar
     path: sala-de-estar
     icon: mdi:sofa
@@ -945,23 +1532,28 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Iluminacao
+            heading: Iluminação
             heading_style: title
             icon: mdi:lightbulb-group
-          - type: custom:mushroom-template-card
-            primary: Sala de Estar
-            secondary: |-
-              {% set luzes = area_entities('Sala de Estar') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:sofa
-            icon_color: |-
-              {% if area_entities('Sala de Estar') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
-            multiline_secondary: false
+          - type: custom:mushroom-light-card
+            entity: light.sala_luzes
+            name: Luzes do comodo
+            icon: mdi:lightbulb-group
+            show_brightness_control: true
+            show_color_temp_control: true
+            show_color_control: true
+            use_light_color: true
+            collapsible_controls: false
+            layout: horizontal
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
                 area: Sala de Estar
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/sala-de-estar
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/sala-de-estar
             grid_options:
@@ -984,21 +1576,51 @@ views:
                     show_color_temp_control: true
                     show_color_control: true
                     use_light_color: true
-                    collapsible_controls: false
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
+                - entity_id: light.sala_luzes
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Persianas e cortinas
+            heading_style: title
+            icon: mdi:window-shutter
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Sala de Estar
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: true
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1016,21 +1638,30 @@ views:
               include:
                 - domain: climate
                   area: Sala de Estar
-                  options: &id001
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: &id002
+                    hold_action:
                       action: more-info
                 - domain: fan
                   area: Sala de Estar
-                  options: *id001
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: humidifier
                   area: Sala de Estar
-                  options: *id001
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1048,21 +1679,27 @@ views:
               include:
                 - domain: sensor
                   area: Sala de Estar
-                  options: &id003
+                  options:
                     type: tile
-                    vertical: false
-                    hold_action: *id002
+                    vertical: true
+                    hold_action:
+                      action: more-info
                 - domain: binary_sensor
                   area: Sala de Estar
-                  options: *id003
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: true
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Outros
+            heading: Mídia e outros
             heading_style: title
             icon: mdi:dots-horizontal
           - type: custom:auto-entities
@@ -1074,28 +1711,46 @@ views:
             show_empty: false
             filter:
               include:
-                - domain: switch
-                  area: Sala de Estar
-                  options: &id004
-                    type: tile
-                    vertical: false
-                    hold_action: *id002
-                - domain: cover
-                  area: Sala de Estar
-                  options: *id004
                 - domain: media_player
                   area: Sala de Estar
-                  options: *id004
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: switch
+                  area: Sala de Estar
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: vacuum
                   area: Sala de Estar
-                  options: *id004
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: lock
                   area: Sala de Estar
-                  options: *id004
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: input_boolean
+                  area: Sala de Estar
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
   - title: Cozinha
     path: cozinha
     icon: mdi:countertop
@@ -1107,16 +1762,17 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Iluminacao
+            heading: Iluminação
             heading_style: title
             icon: mdi:lightbulb-group
           - type: custom:mushroom-template-card
-            primary: Cozinha
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Cozinha') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:countertop
+              {% set l = area_entities('Cozinha') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Cozinha') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Cozinha') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Cozinha') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}orange{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -1124,6 +1780,9 @@ views:
               data:
                 area: Cozinha
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/cozinha
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/cozinha
             grid_options:
@@ -1146,21 +1805,50 @@ views:
                     show_color_temp_control: true
                     show_color_control: true
                     use_light_color: true
-                    collapsible_controls: false
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Persianas e cortinas
+            heading_style: title
+            icon: mdi:window-shutter
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Cozinha
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: true
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1178,21 +1866,30 @@ views:
               include:
                 - domain: climate
                   area: Cozinha
-                  options: &id005
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: &id006
+                    hold_action:
                       action: more-info
                 - domain: fan
                   area: Cozinha
-                  options: *id005
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: humidifier
                   area: Cozinha
-                  options: *id005
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1210,21 +1907,27 @@ views:
               include:
                 - domain: sensor
                   area: Cozinha
-                  options: &id007
+                  options:
                     type: tile
-                    vertical: false
-                    hold_action: *id006
+                    vertical: true
+                    hold_action:
+                      action: more-info
                 - domain: binary_sensor
                   area: Cozinha
-                  options: *id007
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: true
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Outros
+            heading: Mídia e outros
             heading_style: title
             icon: mdi:dots-horizontal
           - type: custom:auto-entities
@@ -1236,28 +1939,46 @@ views:
             show_empty: false
             filter:
               include:
-                - domain: switch
-                  area: Cozinha
-                  options: &id008
-                    type: tile
-                    vertical: false
-                    hold_action: *id006
-                - domain: cover
-                  area: Cozinha
-                  options: *id008
                 - domain: media_player
                   area: Cozinha
-                  options: *id008
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: switch
+                  area: Cozinha
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: vacuum
                   area: Cozinha
-                  options: *id008
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: lock
                   area: Cozinha
-                  options: *id008
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: input_boolean
+                  area: Cozinha
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
   - title: Corredor
     path: corredor
     icon: mdi:wall-sconce-flat
@@ -1269,16 +1990,17 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Iluminacao
+            heading: Iluminação
             heading_style: title
             icon: mdi:lightbulb-group
           - type: custom:mushroom-template-card
-            primary: Corredor
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Corredor') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:wall-sconce-flat
+              {% set l = area_entities('Corredor') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Corredor') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Corredor') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Corredor') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}teal{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -1286,6 +2008,9 @@ views:
               data:
                 area: Corredor
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/corredor
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/corredor
             grid_options:
@@ -1308,21 +2033,50 @@ views:
                     show_color_temp_control: true
                     show_color_control: true
                     use_light_color: true
-                    collapsible_controls: false
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Persianas e cortinas
+            heading_style: title
+            icon: mdi:window-shutter
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Corredor
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: true
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1340,21 +2094,30 @@ views:
               include:
                 - domain: climate
                   area: Corredor
-                  options: &id009
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: &id010
+                    hold_action:
                       action: more-info
                 - domain: fan
                   area: Corredor
-                  options: *id009
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: humidifier
                   area: Corredor
-                  options: *id009
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1372,21 +2135,27 @@ views:
               include:
                 - domain: sensor
                   area: Corredor
-                  options: &id011
+                  options:
                     type: tile
-                    vertical: false
-                    hold_action: *id010
+                    vertical: true
+                    hold_action:
+                      action: more-info
                 - domain: binary_sensor
                   area: Corredor
-                  options: *id011
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: true
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Outros
+            heading: Mídia e outros
             heading_style: title
             icon: mdi:dots-horizontal
           - type: custom:auto-entities
@@ -1398,28 +2167,46 @@ views:
             show_empty: false
             filter:
               include:
-                - domain: switch
-                  area: Corredor
-                  options: &id012
-                    type: tile
-                    vertical: false
-                    hold_action: *id010
-                - domain: cover
-                  area: Corredor
-                  options: *id012
                 - domain: media_player
                   area: Corredor
-                  options: *id012
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: switch
+                  area: Corredor
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: vacuum
                   area: Corredor
-                  options: *id012
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: lock
                   area: Corredor
-                  options: *id012
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: input_boolean
+                  area: Corredor
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
   - title: Quarto
     path: quarto
     icon: mdi:bed-double
@@ -1431,16 +2218,17 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Iluminacao
+            heading: Iluminação
             heading_style: title
             icon: mdi:lightbulb-group
           - type: custom:mushroom-template-card
-            primary: Quarto
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Quarto') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:bed-double
+              {% set l = area_entities('Quarto') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Quarto') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Quarto') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Quarto') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}indigo{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -1448,6 +2236,9 @@ views:
               data:
                 area: Quarto
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/quarto
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/quarto
             grid_options:
@@ -1470,21 +2261,50 @@ views:
                     show_color_temp_control: true
                     show_color_control: true
                     use_light_color: true
-                    collapsible_controls: false
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Persianas e cortinas
+            heading_style: title
+            icon: mdi:window-shutter
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Quarto
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: true
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1502,21 +2322,30 @@ views:
               include:
                 - domain: climate
                   area: Quarto
-                  options: &id013
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: &id014
+                    hold_action:
                       action: more-info
                 - domain: fan
                   area: Quarto
-                  options: *id013
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: humidifier
                   area: Quarto
-                  options: *id013
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1534,21 +2363,27 @@ views:
               include:
                 - domain: sensor
                   area: Quarto
-                  options: &id015
+                  options:
                     type: tile
-                    vertical: false
-                    hold_action: *id014
+                    vertical: true
+                    hold_action:
+                      action: more-info
                 - domain: binary_sensor
                   area: Quarto
-                  options: *id015
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: true
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Outros
+            heading: Mídia e outros
             heading_style: title
             icon: mdi:dots-horizontal
           - type: custom:auto-entities
@@ -1560,29 +2395,47 @@ views:
             show_empty: false
             filter:
               include:
-                - domain: switch
-                  area: Quarto
-                  options: &id016
-                    type: tile
-                    vertical: false
-                    hold_action: *id014
-                - domain: cover
-                  area: Quarto
-                  options: *id016
                 - domain: media_player
                   area: Quarto
-                  options: *id016
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: switch
+                  area: Quarto
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: vacuum
                   area: Quarto
-                  options: *id016
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: lock
                   area: Quarto
-                  options: *id016
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: input_boolean
+                  area: Quarto
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
-  - title: Quarto de Hospedes
+            sort:
+              method: friendly_name
+  - title: Quarto de Hóspedes
     path: quarto-de-hospedes
     icon: mdi:bed-single
     type: sections
@@ -1593,23 +2446,27 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Iluminacao
+            heading: Iluminação
             heading_style: title
             icon: mdi:lightbulb-group
           - type: custom:mushroom-template-card
-            primary: Quarto de Hospedes
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Quarto de Hospedes') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:bed-single
+              {% set l = area_entities('Quarto de Hóspedes') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Quarto de Hóspedes') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Quarto de Hospedes') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Quarto de Hóspedes') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}purple{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
-                area: Quarto de Hospedes
+                area: Quarto de Hóspedes
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/quarto-de-hospedes
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/quarto-de-hospedes
             grid_options:
@@ -1624,7 +2481,7 @@ views:
             filter:
               include:
                 - domain: light
-                  area: Quarto de Hospedes
+                  area: Quarto de Hóspedes
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
@@ -1632,21 +2489,50 @@ views:
                     show_color_temp_control: true
                     show_color_control: true
                     use_light_color: true
-                    collapsible_controls: false
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Persianas e cortinas
+            heading_style: title
+            icon: mdi:window-shutter
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Quarto de Hóspedes
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: true
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1663,22 +2549,31 @@ views:
             filter:
               include:
                 - domain: climate
-                  area: Quarto de Hospedes
-                  options: &id017
+                  area: Quarto de Hóspedes
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: &id018
+                    hold_action:
                       action: more-info
                 - domain: fan
-                  area: Quarto de Hospedes
-                  options: *id017
+                  area: Quarto de Hóspedes
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: humidifier
-                  area: Quarto de Hospedes
-                  options: *id017
-            sort:
-              method: friendly_name
+                  area: Quarto de Hóspedes
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1695,22 +2590,28 @@ views:
             filter:
               include:
                 - domain: sensor
-                  area: Quarto de Hospedes
-                  options: &id019
+                  area: Quarto de Hóspedes
+                  options:
                     type: tile
-                    vertical: false
-                    hold_action: *id018
+                    vertical: true
+                    hold_action:
+                      action: more-info
                 - domain: binary_sensor
-                  area: Quarto de Hospedes
-                  options: *id019
-            sort:
-              method: friendly_name
+                  area: Quarto de Hóspedes
+                  options:
+                    type: tile
+                    vertical: true
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Outros
+            heading: Mídia e outros
             heading_style: title
             icon: mdi:dots-horizontal
           - type: custom:auto-entities
@@ -1722,29 +2623,47 @@ views:
             show_empty: false
             filter:
               include:
-                - domain: switch
-                  area: Quarto de Hospedes
-                  options: &id020
+                - domain: media_player
+                  area: Quarto de Hóspedes
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: *id018
-                - domain: cover
-                  area: Quarto de Hospedes
-                  options: *id020
-                - domain: media_player
-                  area: Quarto de Hospedes
-                  options: *id020
+                    hold_action:
+                      action: more-info
+                - domain: switch
+                  area: Quarto de Hóspedes
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: vacuum
-                  area: Quarto de Hospedes
-                  options: *id020
+                  area: Quarto de Hóspedes
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: lock
-                  area: Quarto de Hospedes
-                  options: *id020
-            sort:
-              method: friendly_name
+                  area: Quarto de Hóspedes
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: input_boolean
+                  area: Quarto de Hóspedes
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
-  - title: Escritorio
+            sort:
+              method: friendly_name
+  - title: Escritório
     path: escritorio
     icon: mdi:desk
     type: sections
@@ -1755,23 +2674,27 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Iluminacao
+            heading: Iluminação
             heading_style: title
             icon: mdi:lightbulb-group
           - type: custom:mushroom-template-card
-            primary: Escritorio
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Escritorio') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:desk
+              {% set l = area_entities('Escritório') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Escritório') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Escritorio') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Escritório') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}blue{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
-                area: Escritorio
+                area: Escritório
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/escritorio
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/escritorio
             grid_options:
@@ -1786,7 +2709,7 @@ views:
             filter:
               include:
                 - domain: light
-                  area: Escritorio
+                  area: Escritório
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
@@ -1794,21 +2717,50 @@ views:
                     show_color_temp_control: true
                     show_color_control: true
                     use_light_color: true
-                    collapsible_controls: false
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Persianas e cortinas
+            heading_style: title
+            icon: mdi:window-shutter
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Escritório
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: true
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1825,22 +2777,31 @@ views:
             filter:
               include:
                 - domain: climate
-                  area: Escritorio
-                  options: &id021
+                  area: Escritório
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: &id022
+                    hold_action:
                       action: more-info
                 - domain: fan
-                  area: Escritorio
-                  options: *id021
+                  area: Escritório
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: humidifier
-                  area: Escritorio
-                  options: *id021
-            sort:
-              method: friendly_name
+                  area: Escritório
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1857,22 +2818,28 @@ views:
             filter:
               include:
                 - domain: sensor
-                  area: Escritorio
-                  options: &id023
+                  area: Escritório
+                  options:
                     type: tile
-                    vertical: false
-                    hold_action: *id022
+                    vertical: true
+                    hold_action:
+                      action: more-info
                 - domain: binary_sensor
-                  area: Escritorio
-                  options: *id023
-            sort:
-              method: friendly_name
+                  area: Escritório
+                  options:
+                    type: tile
+                    vertical: true
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Outros
+            heading: Mídia e outros
             heading_style: title
             icon: mdi:dots-horizontal
           - type: custom:auto-entities
@@ -1884,28 +2851,46 @@ views:
             show_empty: false
             filter:
               include:
-                - domain: switch
-                  area: Escritorio
-                  options: &id024
+                - domain: media_player
+                  area: Escritório
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: *id022
-                - domain: cover
-                  area: Escritorio
-                  options: *id024
-                - domain: media_player
-                  area: Escritorio
-                  options: *id024
+                    hold_action:
+                      action: more-info
+                - domain: switch
+                  area: Escritório
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: vacuum
-                  area: Escritorio
-                  options: *id024
+                  area: Escritório
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: lock
-                  area: Escritorio
-                  options: *id024
-            sort:
-              method: friendly_name
+                  area: Escritório
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: input_boolean
+                  area: Escritório
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
   - title: Banheiro
     path: banheiro
     icon: mdi:shower
@@ -1917,16 +2902,17 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Iluminacao
+            heading: Iluminação
             heading_style: title
             icon: mdi:lightbulb-group
           - type: custom:mushroom-template-card
-            primary: Banheiro
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Banheiro') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:shower
+              {% set l = area_entities('Banheiro') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Banheiro') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Banheiro') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Banheiro') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}cyan{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
@@ -1934,6 +2920,9 @@ views:
               data:
                 area: Banheiro
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/banheiro
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/banheiro
             grid_options:
@@ -1956,21 +2945,50 @@ views:
                     show_color_temp_control: true
                     show_color_control: true
                     use_light_color: true
-                    collapsible_controls: false
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Persianas e cortinas
+            heading_style: title
+            icon: mdi:window-shutter
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Banheiro
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: true
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -1988,21 +3006,30 @@ views:
               include:
                 - domain: climate
                   area: Banheiro
-                  options: &id025
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: &id026
+                    hold_action:
                       action: more-info
                 - domain: fan
                   area: Banheiro
-                  options: *id025
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: humidifier
                   area: Banheiro
-                  options: *id025
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -2020,21 +3047,27 @@ views:
               include:
                 - domain: sensor
                   area: Banheiro
-                  options: &id027
+                  options:
                     type: tile
-                    vertical: false
-                    hold_action: *id026
+                    vertical: true
+                    hold_action:
+                      action: more-info
                 - domain: binary_sensor
                   area: Banheiro
-                  options: *id027
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: true
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Outros
+            heading: Mídia e outros
             heading_style: title
             icon: mdi:dots-horizontal
           - type: custom:auto-entities
@@ -2046,29 +3079,47 @@ views:
             show_empty: false
             filter:
               include:
-                - domain: switch
-                  area: Banheiro
-                  options: &id028
-                    type: tile
-                    vertical: false
-                    hold_action: *id026
-                - domain: cover
-                  area: Banheiro
-                  options: *id028
                 - domain: media_player
                   area: Banheiro
-                  options: *id028
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: switch
+                  area: Banheiro
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: vacuum
                   area: Banheiro
-                  options: *id028
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: lock
                   area: Banheiro
-                  options: *id028
-            sort:
-              method: friendly_name
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: input_boolean
+                  area: Banheiro
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
-  - title: Area Externa
+            sort:
+              method: friendly_name
+  - title: Área Externa
     path: area-externa
     icon: mdi:tree
     type: sections
@@ -2079,23 +3130,27 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Iluminacao
+            heading: Iluminação
             heading_style: title
             icon: mdi:lightbulb-group
           - type: custom:mushroom-template-card
-            primary: Area Externa
+            primary: Luzes
             secondary: |-
-              {% set luzes = area_entities('Area Externa') | select('match', 'light\\.') | list %}{% set acesas = luzes | select('is_state', 'on') | list %}{% if luzes | count == 0 %}Nenhuma luz nesta area{% elif acesas | count == 0 %}Tudo apagado{% else %}{{ acesas | count }} de {{ luzes | count }} acesa(s){% endif %}
-            icon: mdi:tree
+              {% set l = area_entities('Área Externa') | select('match', 'light\\.') | list %}{% set on = l | select('is_state', 'on') | list %}{% if l | count == 0 %}Nenhuma luz nesta area{% elif on | count == 0 %}Tudo apagado{% elif on | count == l | count %}Todas acesas ({{ l | count }}){% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
+            icon: |-
+              {% if area_entities('Área Externa') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}mdi:lightbulb-group{% else %}mdi:lightbulb-group-off{% endif %}
             icon_color: |-
-              {% if area_entities('Area Externa') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}amber{% else %}disabled{% endif %}
+              {% if area_entities('Área Externa') | select('match', 'light\\.') | list | select('is_state', 'on') | list | count > 0 %}green{% else %}disabled{% endif %}
             multiline_secondary: false
             tap_action:
               action: perform-action
               perform_action: script.alternar_luzes_da_area
               data:
-                area: Area Externa
+                area: Área Externa
             hold_action:
+              action: navigate
+              navigation_path: /painel-novo/area-externa
+            double_tap_action:
               action: navigate
               navigation_path: /painel-novo/area-externa
             grid_options:
@@ -2110,7 +3165,7 @@ views:
             filter:
               include:
                 - domain: light
-                  area: Area Externa
+                  area: Área Externa
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
@@ -2118,21 +3173,50 @@ views:
                     show_color_temp_control: true
                     show_color_control: true
                     use_light_color: true
-                    collapsible_controls: false
+                    collapsible_controls: true
                     tap_action:
                       action: toggle
                     hold_action:
-                      action: more-info
-                    double_tap_action:
                       action: more-info
               exclude:
                 - entity_id: light.*_grupo
                 - entity_id: light.grupo_*
                 - entity_id: light.todas_as_luzes
-            sort:
-              method: friendly_name
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
+      - type: grid
+        cards:
+          - type: heading
+            heading: Persianas e cortinas
+            heading_style: title
+            icon: mdi:window-shutter
+          - type: custom:auto-entities
+            card:
+              type: grid
+              columns: 1
+              square: false
+            card_param: cards
+            show_empty: false
+            filter:
+              include:
+                - domain: cover
+                  area: Área Externa
+                  options:
+                    type: custom:mushroom-cover-card
+                    layout: horizontal
+                    show_buttons_control: true
+                    show_position_control: true
+                    tap_action:
+                      action: more-info
+                    hold_action:
+                      action: more-info
+              exclude: []
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -2149,22 +3233,31 @@ views:
             filter:
               include:
                 - domain: climate
-                  area: Area Externa
-                  options: &id029
+                  area: Área Externa
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: &id030
+                    hold_action:
                       action: more-info
                 - domain: fan
-                  area: Area Externa
-                  options: *id029
+                  area: Área Externa
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: humidifier
-                  area: Area Externa
-                  options: *id029
-            sort:
-              method: friendly_name
+                  area: Área Externa
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
@@ -2181,22 +3274,28 @@ views:
             filter:
               include:
                 - domain: sensor
-                  area: Area Externa
-                  options: &id031
+                  area: Área Externa
+                  options:
                     type: tile
-                    vertical: false
-                    hold_action: *id030
+                    vertical: true
+                    hold_action:
+                      action: more-info
                 - domain: binary_sensor
-                  area: Area Externa
-                  options: *id031
-            sort:
-              method: friendly_name
+                  area: Área Externa
+                  options:
+                    type: tile
+                    vertical: true
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name
       - type: grid
         cards:
           - type: heading
-            heading: Outros
+            heading: Mídia e outros
             heading_style: title
             icon: mdi:dots-horizontal
           - type: custom:auto-entities
@@ -2208,25 +3307,43 @@ views:
             show_empty: false
             filter:
               include:
-                - domain: switch
-                  area: Area Externa
-                  options: &id032
+                - domain: media_player
+                  area: Área Externa
+                  options:
                     type: tile
                     vertical: false
-                    hold_action: *id030
-                - domain: cover
-                  area: Area Externa
-                  options: *id032
-                - domain: media_player
-                  area: Area Externa
-                  options: *id032
+                    hold_action:
+                      action: more-info
+                - domain: switch
+                  area: Área Externa
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: vacuum
-                  area: Area Externa
-                  options: *id032
+                  area: Área Externa
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
                 - domain: lock
-                  area: Area Externa
-                  options: *id032
-            sort:
-              method: friendly_name
+                  area: Área Externa
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+                - domain: input_boolean
+                  area: Área Externa
+                  options:
+                    type: tile
+                    vertical: false
+                    hold_action:
+                      action: more-info
+              exclude: []
             grid_options:
               columns: full
+            sort:
+              method: friendly_name

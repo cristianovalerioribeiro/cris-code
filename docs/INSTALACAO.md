@@ -64,17 +64,43 @@ Copie `packages/painel_novo.yaml` para `<config>/packages/painel_novo.yaml` e
 
 ---
 
-## 4. Ajuste os cômodos e gere o painel
+## 4. Crie um grupo de luz por cômodo (opcional, recomendado)
+
+**Configurações → Dispositivos e serviços → Ajudantes → Criar ajudante → Grupo
+→ Grupo de luzes.** Selecione as luminárias do cômodo e dê um nome
+(ex.: `Luzes da sala`).
+
+Informe a entidade resultante em `grupo:` no config. O card mestre daquele
+cômodo deixa de ser só um contador e vira um controle de verdade, com **slider
+de brilho, temperatura de cor e roda de cores do cômodo inteiro**.
+
+Sem `grupo:`, o mestre ainda funciona — mostra "3 de 5 acesas" e alterna tudo no
+toque — mas sem os controles de brilho e cor.
+
+> Não precisa listar as luminárias no painel por causa disso: o grupo é só para
+> o controle mestre. As luminárias individuais continuam sendo descobertas
+> sozinhas pela área.
+
+---
+
+## 5. Ajuste os cômodos e gere o painel
 
 ```bash
 $EDITOR config/comodos.yaml     # um bloco por cômodo
 python3 tools/gerar_painel.py   # gera dashboards/painel-novo.yaml
-python3 tools/validar.py        # confere antes de colar
+python3 tools/validar.py        # confere o YAML
+python3 tools/preview.py        # veja como ficou antes de instalar
 ```
+
+`tools/preview.py` abre nada e instala nada: ele grava HTML e PNG em `preview/`.
+Abra `preview/casa-1440.html` no navegador para navegar, ou olhe os PNGs.
+
+Para a pré-visualização refletir a **sua** casa, edite
+`config/casa_exemplo.yaml` com as suas áreas e entidades.
 
 ---
 
-## 5. Registre o painel novo no Home Assistant
+## 6. Registre o painel novo no Home Assistant
 
 Escolha **uma** das duas formas.
 
@@ -123,5 +149,8 @@ A Forma B é a que permite versionar o painel neste repositório.
 | Retângulo vermelho "Custom element doesn't exist" | Card do HACS faltando ou navegador com cache — Ctrl+Shift+R |
 | Card mestre não faz nada ao tocar | Package não instalado; use `usar_script_inteligente: false` |
 | Tocar no cômodo dá 404 | `painel.url` diferente da URL real do painel |
-| Uma luz aparece duplicada | É um grupo de luz; adicione o `entity_id` em `globais.excluir_luzes` |
-| Título "Sensores"/"Outros" vazio na página do cômodo | Normal: o título é fixo, a lista some quando a área não tem nada daquele tipo |
+| Uma luz aparece duplicada | É um grupo de luz; adicione o `entity_id` em `globais.excluir_luzes` (o grupo indicado em `grupo:` já é excluído sozinho) |
+| Título "Sensores"/"Clima"/"Mídia" vazio na página do cômodo | Normal: o título é fixo, a lista some quando a área não tem nada daquele tipo |
+| Cômodos fora de ordem no desktop | É o empacotamento denso preenchendo os vãos. Use `densidade: false` para a ordem exata do config |
+| Tela principal muito alta | Ponha `cor_na_tela_inicial: false`, ou `estilo_luzes: botoes` se você tinha mudado para `cards` |
+| Mestre do cômodo sem slider de brilho | Falta o `grupo:` daquele cômodo — ver passo 4 |
