@@ -29,6 +29,14 @@ from ha_mock import Entidade  # noqa: E402
 from ha_mock import expandir_auto_entities  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parent.parent
+
+
+def curto(caminho: Path) -> str:
+    """Caminho relativo a raiz do projeto quando possivel; absoluto quando nao."""
+    try:
+        return str(caminho.resolve().relative_to(RAIZ))
+    except ValueError:
+        return str(caminho)
 ICONES = json.loads((RAIZ / "tools" / "icones.json").read_text(encoding="utf-8"))
 
 CORES = {
@@ -179,7 +187,9 @@ def cor_de(ent: Entidade) -> str:
 def texto_estado(ent: Entidade) -> str:
     d = ent.dominio
     if d == "light":
-        return f"{ent.brilho}%" if ent.ligada and ent.brilho else ("Acesa" if ent.ligada else "Apagada")
+        if ent.ligada and ent.dimeriza and ent.brilho:
+            return f"{ent.brilho}%"
+        return "Acesa" if ent.ligada else "Apagada"
     if d == "cover":
         if ent.posicao >= 100:
             return "Aberta"
@@ -265,8 +275,10 @@ class Desenho:
         vertical = c.get("layout") == "vertical"
         cor = "amber" if ent.ligada else "disabled"
         slider = ""
-        mostrar = c.get("show_brightness_control") and (
-            ent.ligada or not c.get("collapsible_controls", True))
+        # O mushroom-light-card so desenha o slider se a lampada aceitar brilho.
+        # Lampada comum de liga/desliga fica com o card de uma linha so.
+        mostrar = (c.get("show_brightness_control") and ent.dimeriza
+                   and (ent.ligada or not c.get("collapsible_controls", True)))
         if mostrar:
             r = rgb("amber")
             largura = ent.brilho if ent.ligada else 0
@@ -435,6 +447,42 @@ def fotografar(htmls: dict[Path, int], destino: Path) -> list[Path]:
 ALVOS_PADRAO = [("casa", 1440), ("casa", 820), ("casa", 390),
                 ("luzes", 390), ("sala-de-estar", 390)]
 
+# Mede quanto de cada coluna fica vazio. Blocos de comodo nao se dividem entre
+# colunas, entao comodos de tamanhos muito diferentes deixam sobra no pe das
+# colunas mais curtas. Menos colunas costuma equilibrar melhor.
+MEDIR_JS = """() => {
+  const secs = [...document.querySelectorAll('.secoes>.secao:not(.larga)')];
+  if (!secs.length) return null;
+  const cols = {};
+  secs.forEach(s => { const r = s.getBoundingClientRect();
+    const k = Math.round(r.left); (cols[k] = cols[k] || []).push(r); });
+  const grupos = Object.values(cols);
+  const alturas = grupos.map(rs => Math.max(...rs.map(r => r.bottom))
+                                 - Math.min(...rs.map(r => r.top)));
+  const usado = grupos.reduce((a, rs) => a + rs.reduce((b, r) => b + r.height, 0), 0);
+  const maior = Math.max(...alturas);
+  return { colunas: alturas.length, pagina: Math.round(document.body.scrollHeight),
+           vazio: Math.round(100 * (1 - usado / (maior * alturas.length))) };
+}"""
+
+
+def medir(htmls: dict[Path, int]) -> None:
+    from playwright.sync_api import sync_playwright
+
+    binario = achar_chromium()
+    print("\nespaco vazio nas colunas (quanto menor, melhor):")
+    with sync_playwright() as pw:
+        nav = pw.chromium.launch(executable_path=binario) if binario else pw.chromium.launch()
+        for arq, largura in htmls.items():
+            pg = nav.new_page(viewport={"width": largura, "height": 900})
+            pg.goto(arq.as_uri())
+            m = pg.evaluate(MEDIR_JS)
+            if m:
+                print(f"  {arq.stem:22} {m['colunas']} coluna(s), "
+                      f"pagina {m['pagina']}px, {m['vazio']}% vazio")
+            pg.close()
+        nav.close()
+
 
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(description="Pre-visualiza o painel.")
@@ -444,6 +492,8 @@ def main(argv=None) -> int:
     p.add_argument("--view", action="append", help="path da view (pode repetir)")
     p.add_argument("--larguras", type=int, nargs="*", help="larguras em px")
     p.add_argument("--so-html", action="store_true", help="nao tira screenshots")
+    p.add_argument("--metricas", action="store_true",
+                   help="mede quanto de espaco vazio sobra nas colunas")
     args = p.parse_args(argv)
 
     dash = yaml.safe_load(args.painel.read_text(encoding="utf-8"))
@@ -462,11 +512,13 @@ def main(argv=None) -> int:
         arq = args.saida / f"{path}-{largura}.html"
         arq.write_text(pagina(dash, casa, path, largura), encoding="utf-8")
         htmls[arq] = largura
-        print(f"html: {arq.relative_to(RAIZ)}")
+        print(f"html: {curto(arq)}")
 
     if not args.so_html:
         for png in fotografar(htmls, args.saida):
-            print(f"png : {png.relative_to(RAIZ)}")
+            print(f"png : {curto(png)}")
+    if args.metricas:
+        medir(htmls)
     return 0
 
 

@@ -45,6 +45,11 @@ class Entidade:
         return self.state in ("on", "open", "playing", "home", "cool", "heat", "cooling")
 
     @property
+    def dimeriza(self) -> bool:
+        """Lampada que aceita brilho. A maioria das casas tem poucas."""
+        return bool(self.attributes.get("dimeriza", False))
+
+    @property
     def brilho(self) -> int:
         return int(self.attributes.get("brilho", 0))
 

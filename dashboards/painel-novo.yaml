@@ -12,11 +12,11 @@ views:
     path: casa
     icon: mdi:home
     type: sections
-    max_columns: 4
+    max_columns: 3
     dense_section_placement: true
     sections:
       - type: grid
-        column_span: 4
+        column_span: 3
         cards:
           - type: heading
             heading: Casa
@@ -74,9 +74,9 @@ views:
             entity: light.sala_luzes
             name: Luzes do comodo
             icon: mdi:lightbulb-group
-            show_brightness_control: true
-            show_color_temp_control: true
-            show_color_control: true
+            show_brightness_control: false
+            show_color_temp_control: false
+            show_color_control: false
             use_light_color: true
             collapsible_controls: false
             layout: horizontal
@@ -1020,7 +1020,7 @@ views:
     path: luzes
     icon: mdi:lightbulb-group
     type: sections
-    max_columns: 4
+    max_columns: 3
     dense_section_placement: true
     sections:
       - type: grid
@@ -1036,9 +1036,9 @@ views:
             entity: light.sala_luzes
             name: Luzes do comodo
             icon: mdi:lightbulb-group
-            show_brightness_control: true
-            show_color_temp_control: true
-            show_color_control: true
+            show_brightness_control: false
+            show_color_temp_control: false
+            show_color_control: false
             use_light_color: true
             collapsible_controls: false
             layout: horizontal
@@ -1058,7 +1058,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1069,9 +1069,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -1121,7 +1121,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1132,9 +1132,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -1183,7 +1183,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1194,9 +1194,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -1245,7 +1245,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1256,9 +1256,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -1307,7 +1307,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1318,9 +1318,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -1369,7 +1369,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1380,9 +1380,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -1431,7 +1431,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1442,9 +1442,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -1493,7 +1493,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1504,9 +1504,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -1539,9 +1539,9 @@ views:
             entity: light.sala_luzes
             name: Luzes do comodo
             icon: mdi:lightbulb-group
-            show_brightness_control: true
-            show_color_temp_control: true
-            show_color_control: true
+            show_brightness_control: false
+            show_color_temp_control: false
+            show_color_control: false
             use_light_color: true
             collapsible_controls: false
             layout: horizontal
@@ -1561,7 +1561,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1572,9 +1572,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -1790,7 +1790,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -1801,9 +1801,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -2018,7 +2018,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -2029,9 +2029,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -2246,7 +2246,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -2257,9 +2257,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -2474,7 +2474,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -2485,9 +2485,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -2702,7 +2702,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -2713,9 +2713,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -2930,7 +2930,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -2941,9 +2941,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:
@@ -3158,7 +3158,7 @@ views:
           - type: custom:auto-entities
             card:
               type: grid
-              columns: 1
+              columns: 2
               square: false
             card_param: cards
             show_empty: false
@@ -3169,9 +3169,9 @@ views:
                   options:
                     type: custom:mushroom-light-card
                     layout: horizontal
-                    show_brightness_control: true
-                    show_color_temp_control: true
-                    show_color_control: true
+                    show_brightness_control: false
+                    show_color_temp_control: false
+                    show_color_control: false
                     use_light_color: true
                     collapsible_controls: true
                     tap_action:

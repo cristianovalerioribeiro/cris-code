@@ -103,6 +103,18 @@ def luzes_da_area(area: str) -> str:
     return f"area_entities('{area}') | select('match', 'light\\\\.') | list"
 
 
+def tem_brilho(cfg: dict) -> bool:
+    """Se o painel deve oferecer controle de brilho e cor.
+
+    Casa com lampadas comuns de liga/desliga ganha em desligar isso: sem slider,
+    todo card de luz fica com a altura de uma linha e duas colunas encaixam sem
+    sobra. Com slider em algumas luzes e nao em outras, a grade iguala as alturas
+    da linha e a luz sem slider vira uma caixa grande e vazia ao lado da que tem.
+    """
+    return cfg["painel"].get("brilho", "auto") != "nunca"
+
+
+
 def cor_do_comodo(comodo: dict, indice: int) -> str:
     return comodo.get("cor") or PALETA[indice % len(PALETA)]
 
@@ -162,9 +174,9 @@ def mestre_de_luz(comodo: dict, cfg: dict, cor: str, com_cor: bool = True) -> di
             "entity": comodo["grupo"],
             "name": "Luzes do comodo",
             "icon": "mdi:lightbulb-group",
-            "show_brightness_control": True,
-            "show_color_temp_control": com_cor,
-            "show_color_control": com_cor,
+            "show_brightness_control": tem_brilho(cfg),
+            "show_color_temp_control": com_cor and tem_brilho(cfg),
+            "show_color_control": com_cor and tem_brilho(cfg),
             "use_light_color": True,
             "collapsible_controls": False,
             "layout": "horizontal",
@@ -247,15 +259,18 @@ def cards_de_luz(comodo: dict, cfg: dict, colunas: int, com_cor: bool = True) ->
     ``collapsible_controls`` mantem os sliders escondidos enquanto a luz esta
     apagada: uma barra de brilho em 0% nao controla nada e so gera ruido.
     """
+    brilho = tem_brilho(cfg)
     return _auto(
         {"type": "grid", "columns": colunas, "square": False},
         "cards",
         [{"domain": "light", "area": comodo["area"], "options": {
             "type": "custom:mushroom-light-card",
-            "layout": "vertical" if colunas > 1 else "horizontal",
-            "show_brightness_control": True,
-            "show_color_temp_control": com_cor,
-            "show_color_control": com_cor,
+            # Sem slider o card cabe numa linha, entao segue horizontal mesmo em
+            # varias colunas: assim todos tem a mesma altura e nao sobra caixa.
+            "layout": "vertical" if (colunas > 1 and brilho) else "horizontal",
+            "show_brightness_control": brilho,
+            "show_color_temp_control": com_cor and brilho,
+            "show_color_control": com_cor and brilho,
             "use_light_color": True,
             "collapsible_controls": True,
             "tap_action": {"action": "toggle"},
@@ -440,7 +455,7 @@ def view_luzes(cfg: dict) -> dict:
             titulo(comodo["area"], comodo.get("icone", "mdi:home"),
                    tap_action=_acao_abrir(comodo, cfg)),
             mestre_de_luz(comodo, cfg, cor),
-            cards_de_luz(comodo, cfg, colunas=1, com_cor=True),
+            cards_de_luz(comodo, cfg, cfg["painel"].get("colunas_luzes", 2), com_cor=True),
         ]})
     return {
         "title": "Luzes",
@@ -462,7 +477,7 @@ def view_comodo(comodo: dict, cfg: dict, indice: int) -> dict:
         {"type": "grid", "cards": [
             titulo("Iluminação", "mdi:lightbulb-group"),
             mestre_de_luz(comodo, cfg, cor),
-            cards_de_luz(comodo, cfg, colunas=1, com_cor=True),
+            cards_de_luz(comodo, cfg, cfg["painel"].get("colunas_luzes", 2), com_cor=True),
         ]},
         {"type": "grid", "cards": [
             titulo("Persianas e cortinas", "mdi:window-shutter"),
@@ -507,6 +522,10 @@ def validar(cfg: dict) -> list[str]:
         erros.append("config: bloco 'painel' ausente ou invalido")
     elif not cfg["painel"].get("url"):
         erros.append("config: 'painel.url' e obrigatorio")
+
+    modo = (cfg.get("painel") or {}).get("brilho", "auto")
+    if modo not in ("auto", "nunca"):
+        erros.append(f"config: 'painel.brilho' deve ser 'auto' ou 'nunca' (veio '{modo}')")
 
     estilo = (cfg.get("painel") or {}).get("estilo_luzes", "botoes")
     if estilo not in ("botoes", "cards"):

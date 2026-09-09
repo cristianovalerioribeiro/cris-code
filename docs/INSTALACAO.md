@@ -64,7 +64,13 @@ Copie `packages/painel_novo.yaml` para `<config>/packages/painel_novo.yaml` e
 
 ---
 
-## 4. Crie um grupo de luz por cômodo (opcional, recomendado)
+## 4. Crie um grupo de luz por cômodo (só se as lâmpadas forem dimerizáveis)
+
+> **Pule este passo** se as suas lâmpadas são comuns de liga/desliga, que é o
+> padrão deste repositório (`brilho: nunca`). O card mestre já acende e apaga o
+> cômodo inteiro sem grupo nenhum; o grupo só acrescentaria um slider de brilho
+> que as suas lâmpadas não usam.
+
 
 **Configurações → Dispositivos e serviços → Ajudantes → Criar ajudante → Grupo
 → Grupo de luzes.** Selecione as luminárias do cômodo e dê um nome
@@ -153,4 +159,6 @@ A Forma B é a que permite versionar o painel neste repositório.
 | Título "Sensores"/"Clima"/"Mídia" vazio na página do cômodo | Normal: o título é fixo, a lista some quando a área não tem nada daquele tipo |
 | Cômodos fora de ordem no desktop | É o empacotamento denso preenchendo os vãos. Use `densidade: false` para a ordem exata do config |
 | Tela principal muito alta | Ponha `cor_na_tela_inicial: false`, ou `estilo_luzes: botoes` se você tinha mudado para `cards` |
-| Mestre do cômodo sem slider de brilho | Falta o `grupo:` daquele cômodo — ver passo 4 |
+| Mestre do cômodo sem slider de brilho | Esperado com `brilho: nunca`. Com `brilho: auto`, falta o `grupo:` daquele cômodo — ver passo 4 |
+| Porcentagem aparecendo numa lâmpada que não dimeriza | O Home Assistant mostra o estado que a lâmpada reporta. Se ela reporta brilho mas você não usa, `brilho: nunca` tira os controles |
+| Caixas grandes e vazias ao lado dos cards de luz | `brilho: auto` com `colunas_luzes: 2`. Use `colunas_luzes: 1`, ou `brilho: nunca` |

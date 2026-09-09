@@ -42,20 +42,57 @@ você saber o que é o quê sem ler:
 Cada cômodo tem uma **cor de destaque** própria (`cor:` no config, ou distribuída
 automaticamente), usada no mestre e nos ícones ativos.
 
-## Por que a tela principal não mostra um slider por lâmpada
+## Lâmpadas comuns de liga/desliga
+
+Se as suas lâmpadas **não são dimerizáveis**, ponha `brilho: nunca` em
+`config/comodos.yaml`. É o padrão deste repositório.
+
+Não é só cosmético. Slider e porcentagem somem, e aí **todo card de luz passa a
+ter a altura de uma linha** — o que deixa duas colunas encaixarem sem sobra:
+
+| `brilho` | `colunas_luzes` | Aba Luzes no desktop |
+|---|---|---|
+| `nunca` | 2 | **945 px** |
+| `auto` | 1 | 1371 px |
+| `auto` | 2 | 1377 px, com caixas vazias |
+
+![Aba Luzes no desktop](docs/imagens/luzes-desktop.png)
+
+*Aba Luzes com `brilho: nunca` e `colunas_luzes: 2`: 24 luminárias e 8 mestres
+em 945 px, todos os cards com a mesma altura.*
+
+A última linha é a armadilha: misturar cards com e sem slider na mesma linha faz
+a grade igualar as alturas, e a luz **sem** slider vira uma caixa grande e vazia
+ao lado da que tem. Se você usa `brilho: auto`, use `colunas_luzes: 1`.
+
+> Com `brilho: nunca`, **não vale a pena criar os grupos de luz** (passo 4 da
+> instalação): o mestre já acende e apaga o cômodo inteiro sozinho, e o grupo só
+> acrescentaria um slider que as suas lâmpadas não usam.
+
+## Por que a tela principal não mostra um card por luminária
 
 Foi a primeira versão, e ela media 1900 px de altura no desktop — o Escritório
 sozinho ocupava 800 px. A tela principal virou um **resumo**: mestre do cômodo
-mais um botão por luminária, o que cabe a casa inteira em cerca de 1000 px. O
-controle fino de brilho e cor fica a um toque de distância, na página do cômodo.
+mais um botão por luminária, o que cabe a casa inteira em cerca de 1100 px. O
+detalhe fica a um toque de distância, na página do cômodo.
 
-| | Altura no desktop |
-|---|---|
-| Um card com slider por luminária | ~1900 px |
-| Resumo com botões (atual) | ~1020 px |
-
-Se você preferir a versão com sliders na tela principal, é uma linha:
+Se você preferir cards em vez de botões na tela principal, é uma linha:
 `estilo_luzes: cards` em `config/comodos.yaml`.
+
+## Quantas colunas usar
+
+Blocos de cômodo **não se dividem** entre colunas. Com cômodos de tamanhos bem
+diferentes, mais colunas costuma deixar *mais* sobra no pé das mais curtas, não
+menos. Medido nesta casa de exemplo, a 1440 px:
+
+| `colunas_max` | Altura da página | Espaço vazio |
+|---|---|---|
+| 2 | 1671 px | 17 % |
+| **3** | **1113 px** | **9 %** |
+| 4 | 1071 px | 24 % |
+
+Por isso o padrão é 3. O número certo depende dos **seus** cômodos — meça com
+`python3 tools/preview.py --metricas`.
 
 ## No celular
 
@@ -91,10 +128,10 @@ docs/INSTALACAO.md          <- passo a passo de instalação
 ## Uso
 
 ```bash
-$EDITOR config/comodos.yaml     # 1. edite os cômodos
-python3 tools/gerar_painel.py   # 2. gere o painel
-python3 tools/validar.py        # 3. confira o YAML
-python3 tools/preview.py        # 4. veja como ficou, sem instalar nada
+$EDITOR config/comodos.yaml               # 1. edite os cômodos
+python3 tools/gerar_painel.py             # 2. gere o painel
+python3 tools/validar.py                  # 3. confira o YAML
+python3 tools/preview.py --metricas       # 4. veja e meça, sem instalar nada
 ```
 
 `config/comodos.yaml` só pede, por cômodo, o **nome exato da área** e um ícone.
@@ -107,6 +144,13 @@ Assistant e tira screenshots em 1440, 820 e 390 px, usando a casa fictícia de
 `config/casa_exemplo.yaml` — que tem de propósito cômodos de 1 a 6 luminárias,
 para você ver se o layout aguenta os seus extremos. Edite esse arquivo para
 descrever a sua casa e a pré-visualização passa a ser a sua.
+
+`--metricas` mede quanto de cada coluna fica vazio, para você comparar
+configurações em vez de chutar.
+
+A casa de exemplo tem de propósito só 4 lâmpadas dimerizáveis em 24 — se as suas
+forem todas dimerizáveis, marque `dimeriza: true` nelas e a pré-visualização
+passa a mostrar os sliders.
 
 Não é o Home Assistant: fontes e espaçamentos são próximos, não idênticos.
 

@@ -1,6 +1,8 @@
 # =============================================================================
 #  Casa de exemplo — usada SOMENTE pelo tools/preview.py
 # =============================================================================
+#  'dimeriza: true' marca as poucas lampadas que aceitam brilho — o resto
+#  e lampada comum de liga/desliga, que e o caso da maioria das casas.
 #  Nao vai para o Home Assistant. Serve para desenhar o painel numa pagina e
 #  conferir a usabilidade antes de instalar, com comodos de tamanhos bem
 #  diferentes (de 1 ate 6 luminarias) para testar se o layout se adapta.
@@ -9,11 +11,11 @@
 areas:
   Sala de Estar:
     # grupo de luz do comodo (Ajudantes > Grupo) — vira o card mestre com slider
-    - {id: light.sala_luzes,         nome: Luzes da sala,    estado: "on",  brilho: 51}
-    - {id: light.sala_lustre,        nome: Lustre,           estado: "on",  brilho: 78}
-    - {id: light.sala_spots,         nome: Spots do teto,    estado: "on",  brilho: 45}
+    - {id: light.sala_luzes,         nome: Luzes da sala,    estado: "on",  brilho: 51, dimeriza: true}
+    - {id: light.sala_lustre,        nome: Lustre,           estado: "on"}
+    - {id: light.sala_spots,         nome: Spots do teto,    estado: "on"}
     - {id: light.sala_abajur,        nome: Abajur,           estado: "off"}
-    - {id: light.sala_fita_led,      nome: Fita LED,         estado: "on",  brilho: 30}
+    - {id: light.sala_fita_led,      nome: Fita LED,         estado: "on",  brilho: 30, dimeriza: true}
     - {id: cover.sala_persiana,      nome: Persiana,         estado: open,  posicao: 100}
     - {id: cover.sala_cortina,       nome: Cortina,          estado: closed, posicao: 0}
     - {id: sensor.sala_temperatura,  nome: Temperatura,      estado: "23.4", unidade: "°C"}
@@ -24,20 +26,20 @@ areas:
 
   Cozinha:
     - {id: light.cozinha_teto,       nome: Teto,             estado: "off"}
-    - {id: light.cozinha_bancada,    nome: Bancada,          estado: "on",  brilho: 90}
+    - {id: light.cozinha_bancada,    nome: Bancada,          estado: "on"}
     - {id: cover.cozinha_persiana,   nome: Persiana,         estado: open,  posicao: 60}
     - {id: sensor.cozinha_temperatura, nome: Temperatura,    estado: "25.1", unidade: "°C"}
     - {id: binary_sensor.cozinha_gas,  nome: Vazamento de gas, estado: "off", classe: gas}
     - {id: switch.cozinha_cafeteira, nome: Cafeteira,        estado: "off"}
 
   Corredor:
-    - {id: light.corredor_arandela,  nome: Arandela,         estado: "on",  brilho: 20}
+    - {id: light.corredor_arandela,  nome: Arandela,         estado: "on"}
     - {id: binary_sensor.corredor_movimento, nome: Movimento, estado: "on", classe: motion}
     - {id: sensor.corredor_temperatura, nome: Temperatura,   estado: "22.0", unidade: "°C"}
 
   Quarto:
     - {id: light.quarto_plafon,      nome: Plafon,           estado: "off"}
-    - {id: light.quarto_cabeceira_e, nome: Cabeceira esquerda, estado: "on", brilho: 15}
+    - {id: light.quarto_cabeceira_e, nome: Cabeceira esquerda, estado: "on", brilho: 15, dimeriza: true}
     - {id: light.quarto_cabeceira_d, nome: Cabeceira direita, estado: "off"}
     - {id: cover.quarto_blackout,    nome: Blackout,         estado: closed, posicao: 0}
     - {id: cover.quarto_persiana,    nome: Persiana,         estado: open,   posicao: 35}
@@ -51,10 +53,10 @@ areas:
     - {id: sensor.hospedes_temperatura, nome: Temperatura,   estado: "22.6", unidade: "°C"}
 
   Escritório:
-    - {id: light.escritorio_teto,    nome: Teto,             estado: "on",  brilho: 100}
-    - {id: light.escritorio_luminaria, nome: Luminaria de mesa, estado: "on", brilho: 65}
+    - {id: light.escritorio_teto,    nome: Teto,             estado: "on"}
+    - {id: light.escritorio_luminaria, nome: Luminaria de mesa, estado: "on"}
     - {id: light.escritorio_ring,    nome: Ring light,       estado: "off"}
-    - {id: light.escritorio_backlight, nome: Backlight monitor, estado: "on", brilho: 55}
+    - {id: light.escritorio_backlight, nome: Backlight monitor, estado: "on", brilho: 55, dimeriza: true}
     - {id: light.escritorio_estante, nome: Estante,          estado: "off"}
     - {id: cover.escritorio_persiana, nome: Persiana,        estado: open,  posicao: 80}
     - {id: sensor.escritorio_temperatura, nome: Temperatura, estado: "24.2", unidade: "°C"}
@@ -66,11 +68,11 @@ areas:
     - {id: sensor.banheiro_umidade,  nome: Umidade,          estado: "71",   unidade: "%"}
 
   Área Externa:
-    - {id: light.externa_garagem,    nome: Garagem,          estado: "on",  brilho: 100}
-    - {id: light.externa_jardim,     nome: Jardim,           estado: "on",  brilho: 60}
+    - {id: light.externa_garagem,    nome: Garagem,          estado: "on"}
+    - {id: light.externa_jardim,     nome: Jardim,           estado: "on"}
     - {id: light.externa_piscina,    nome: Piscina,          estado: "off"}
     - {id: light.externa_churrasq,   nome: Churrasqueira,    estado: "off"}
-    - {id: light.externa_portao,     nome: Portao,           estado: "on",  brilho: 100}
+    - {id: light.externa_portao,     nome: Portao,           estado: "on"}
     - {id: light.externa_corredor,   nome: Corredor lateral, estado: "off"}
     - {id: cover.externa_portao,     nome: Portao basculante, estado: closed, posicao: 0}
     - {id: binary_sensor.externa_movimento, nome: Movimento, estado: "off", classe: motion}

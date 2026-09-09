@@ -16,8 +16,20 @@
 painel:
   titulo: Casa                 # titulo da aba principal
   url: painel-novo             # precisa bater com o url_path do configuration.yaml
-  colunas_max: 4               # maximo de colunas em telas grandes (o HA reduz sozinho no celular)
-  colunas_luzes: 2             # quantas luminarias por linha dentro do card do comodo
+  colunas_max: 3               # maximo de colunas em telas grandes (o HA reduz sozinho
+                               # no celular). Blocos de comodo nao se dividem entre
+                               # colunas, entao MAIS colunas costuma deixar MAIS sobra
+                               # no pe das mais curtas. Medido nesta casa de exemplo,
+                               # a 1440px: 2 col = 17% vazio, 3 col = 9%, 4 col = 24%.
+                               # Meca a sua: python3 tools/preview.py --metricas
+  brilho: nunca                # 'nunca' se as suas lampadas sao comuns de liga/desliga:
+                               # tira slider e porcentagem, todo card de luz fica com a
+                               # altura de uma linha e as colunas encaixam sem sobra.
+                               # 'auto' devolve brilho e cor onde a lampada aceitar (o
+                               # Mushroom ja esconde onde nao aceita), mas ai use
+                               # colunas_luzes: 1, senao a luz sem slider vira uma caixa
+                               # vazia ao lado da que tem.
+  colunas_luzes: 2             # luminarias por linha na aba Luzes e na pagina do comodo
   densidade: true              # true = encaixa secoes curtas nos buracos (layout mais compacto)
   view_luzes: true             # gera a aba "Luzes" (brilho de todas as luminarias)
   estilo_luzes: botoes         # botoes = 1 botao redondo por luminaria (compacto)
