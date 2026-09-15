@@ -1107,8 +1107,8 @@ views:
               columns: full
             sort:
               method: friendly_name
-  - title: 2º Pav · Escritório
-    path: 2o-pav-escritorio
+  - title: 2º Escritório
+    path: 2o-escritorio
     icon: mdi:home-floor-2
     type: sections
     max_columns: 3
@@ -1410,8 +1410,8 @@ views:
               columns: full
             sort:
               method: friendly_name
-  - title: 2º Pav · Íntimo
-    path: 2o-pav-intimo
+  - title: 2º Íntimo
+    path: 2o-intimo
     icon: mdi:home-floor-2
     type: sections
     max_columns: 3
@@ -2125,7 +2125,7 @@ views:
                 grid_options:
                   columns: full
               - type: custom:mushroom-template-card
-                primary: 2º Pav · Escritório
+                primary: 2º Escritório
                 secondary: |-
                   {% set l = ((area_entities('Escritório') + area_entities('Quarto de Visitas')) | unique | select('match', 'light\\.') | list) %}{% set on = l | select('is_state', 'on') | list %}{% if on | count == 0 %}Tudo apagado{% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
                 icon: mdi:home-floor-2
@@ -2134,11 +2134,11 @@ views:
                 multiline_secondary: false
                 tap_action:
                   action: navigate
-                  navigation_path: /painel-novo/2o-pav-escritorio
+                  navigation_path: /painel-novo/2o-escritorio
                 grid_options:
                   columns: full
               - type: custom:mushroom-template-card
-                primary: 2º Pav · Íntimo
+                primary: 2º Íntimo
                 secondary: |-
                   {% set l = ((area_entities('Hall e Rouparia') + area_entities('Estar Íntimo') + area_entities('Suíte') + area_entities('Quarto Guto') + area_entities('Quarto Bia')) | unique | select('match', 'light\\.') | list) %}{% set on = l | select('is_state', 'on') | list %}{% if on | count == 0 %}Tudo apagado{% else %}{{ on | count }} de {{ l | count }} acesas{% endif %}
                 icon: mdi:home-floor-2
@@ -2147,7 +2147,7 @@ views:
                 multiline_secondary: false
                 tap_action:
                   action: navigate
-                  navigation_path: /painel-novo/2o-pav-intimo
+                  navigation_path: /painel-novo/2o-intimo
                 grid_options:
                   columns: full
             grid_options:

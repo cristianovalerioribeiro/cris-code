@@ -444,9 +444,22 @@ def fotografar(htmls: dict[Path, int], destino: Path) -> list[Path]:
     return feitas
 
 
-ALVOS_PADRAO = [("terreo", 1440), ("terreo", 820), ("terreo", 390),
-                ("2o-pav-intimo", 1440), ("2o-pav-escritorio", 1440),
-                ("casa", 1440), ("suite", 390)]
+def alvos_padrao(dash: dict) -> list[tuple[str, int]]:
+    """Telas a fotografar, derivadas do proprio painel.
+
+    Uma lista fixa de caminhos quebraria toda vez que um pavimento ou bloco
+    fosse renomeado no config, que e justamente quando se quer ver o resultado.
+    """
+    abas = [v["path"] for v in dash.get("views") or []
+            if v.get("path") and not v.get("subview")]
+    subs = [v["path"] for v in dash.get("views") or [] if v.get("subview")]
+
+    alvos = [(p, 1440) for p in abas]
+    if abas:
+        alvos += [(abas[0], 820), (abas[0], 390)]   # a primeira aba e a do dia a dia
+    if subs:
+        alvos.append((subs[0], 390))                # uma pagina de comodo
+    return alvos
 
 # Mede quanto de cada coluna fica vazio. Blocos de comodo nao se dividem entre
 # colunas, entao comodos de tamanhos muito diferentes deixam sobra no pe das
@@ -505,9 +518,13 @@ def main(argv=None) -> int:
         larguras = args.larguras or [1440]
         alvos = [(v, w) for v in vistas for w in larguras]
     else:
-        alvos = ALVOS_PADRAO
+        alvos = alvos_padrao(dash)
 
     args.saida.mkdir(parents=True, exist_ok=True)
+    esperados = {f"{path}-{largura}" for path, largura in alvos}
+    for velho in list(args.saida.glob("*.html")) + list(args.saida.glob("*.png")):
+        if velho.stem not in esperados:
+            velho.unlink()
     htmls: dict[Path, int] = {}
     for path, largura in alvos:
         arq = args.saida / f"{path}-{largura}.html"

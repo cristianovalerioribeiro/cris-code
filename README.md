@@ -72,9 +72,20 @@ isso — por isso ele é **obrigatório** quando você usa esses campos.
 python3 tools/conferir_blocos.py
 ```
 
-Lista, bloco por bloco, as luminárias que caíram nele, e avisa quando um bloco
+Lista, bloco por bloco, as luminárias que caíram nele. Avisa quando um bloco
 ficou vazio, quando uma luz aparece em dois blocos, ou quando uma luz da casa
 não aparece em nenhum.
+
+E faz a conferência que mais importa: pega os templates Jinja direto de
+`packages/painel_novo.yaml`, calcula em quais luzes o toque no mestre agiria, e
+compara com as que o bloco mostra. Se o script e o painel saírem de sincronia,
+ele acusa antes de você descobrir apagando a cozinha inteira:
+
+```
+Lavanderia e Dispensa  2x  Dispensa, Lavanderia   <-- MESTRE DIVERGE
+ERRO: Lavanderia e Dispensa: o mestre pegaria a mais
+      [light.cozinha_bancada, light.cozinha_ilha, light.cozinha_teto]
+```
 
 ```
 === Térreo ===
@@ -97,6 +108,12 @@ Ele imprime um template Jinja. Cole em **Ferramentas de Desenvolvedor →
 Modelo** no Home Assistant, e o resultado já sai no formato de
 `config/casa_exemplo.yaml` — salve por cima do arquivo e a pré-visualização
 passa a ser a sua casa de verdade, com os seus nomes e os seus relés.
+
+Feito isso, `tools/conferir_blocos.py` passa a sugerir os `temperatura:` e
+`umidade:` que faltam em cada bloco. Vale seguir a sugestão: declarado, o sensor
+vira etiqueta no título em vez de card de largura inteira. Medido na casa de
+exemplo, declarar todos encurtou a aba Térreo de **1175 px para 929 px** no
+desktop e de 2989 px para 2483 px no celular.
 
 ## A gramática visual
 
@@ -164,7 +181,7 @@ Por isso o padrão é 3. O número certo depende dos **seus** cômodos — meça
 
 <img src="docs/imagens/terreo-celular.png" width="330"> <img src="docs/imagens/comodo-celular.png" width="330">
 
-*Aba Térreo e página da Suíte, ambas em 390 px.*
+*Aba Térreo e página de um cômodo, ambas em 390 px.*
 
 O layout usa a view `sections` nativa do Home Assistant: as colunas se
 reorganizam sozinhas conforme a largura — 4 no desktop, 1 no celular, sem media
@@ -183,6 +200,7 @@ config/comodos.yaml         <- o ÚNICO arquivo que você edita
 config/casa_exemplo.yaml    <- sua casa, para a pré-visualização (tools/descobrir.py)
 tools/gerar_painel.py       <- gera o dashboard a partir do config
 tools/validar.py            <- confere o YAML gerado antes de colar no HA
+tools/testar.py             <- roda todas as conferências de uma vez
 tools/conferir_blocos.py    <- mostra que luminárias caíram em cada bloco
 tools/descobrir.py          <- levanta os entity_id reais da sua casa
 tools/preview.py            <- desenha o painel e tira fotos dele
@@ -198,11 +216,14 @@ docs/INSTALACAO.md          <- passo a passo de instalação
 ```bash
 python3 tools/descobrir.py                # 0. levante seus entity_id (uma vez)
 $EDITOR config/comodos.yaml               # 1. edite pavimentos e blocos
-python3 tools/gerar_painel.py             # 2. gere o painel
-python3 tools/validar.py                  # 3. confira o YAML
-python3 tools/conferir_blocos.py          # 4. confira as separações
-python3 tools/preview.py --metricas       # 5. veja e meça, sem instalar nada
+python3 tools/testar.py                   # 2. gera e roda todas as conferências
+python3 tools/preview.py --metricas       # 3. veja e meça, sem instalar nada
 ```
+
+`tools/testar.py` é o comando do dia a dia: gera o painel, confere se ele está
+em dia com o config, valida o YAML, confere as separações de luz, testa o
+template de descoberta e o package. Sai com código 1 se algo falhar, então
+serve em gancho de commit.
 
 `config/comodos.yaml` pede, por bloco, um **nome** e a **área** do Home
 Assistant. Cor, ícone, temperatura, umidade, filtros de luz e entidades extras

@@ -165,7 +165,8 @@ pavimentos:
     comodos: []
 
   # --------------------------------------- 2o PAVIMENTO - lado escritorio --
-  - nome: 2º Pav · Escritório
+  # Nome curto de proposito: a barra de abas do celular corta nomes longos.
+  - nome: 2º Escritório
     icone: mdi:home-floor-2
     comodos:
       - nome: Escritório
@@ -195,7 +196,7 @@ pavimentos:
         sensores: false
 
   # ------------------------------------------ 2o PAVIMENTO - lado intimo --
-  - nome: 2º Pav · Íntimo
+  - nome: 2º Íntimo
     icone: mdi:home-floor-2
     comodos:
       # primeira coisa ao entrar no pavimento
