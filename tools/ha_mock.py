@@ -129,6 +129,10 @@ class Casa:
             eid = alvo.entity_id if isinstance(alvo, Entidade) else str(alvo)
             return re.match(padrao, eid) is not None
 
+        def procura(alvo, padrao) -> bool:
+            texto = alvo.entity_id if isinstance(alvo, Entidade) else str(alvo)
+            return re.search(padrao, texto) is not None
+
         def state_attr(eid, atributo):
             ent = self.por_id.get(eid)
             if ent is None:
@@ -149,7 +153,8 @@ class Casa:
         env.globals["state_attr"] = state_attr
         env.globals["areas"] = lambda: sorted({e.area for e in self.entidades})
         env.globals["area_name"] = lambda a: a
-        for nome, fn in (("is_state", is_state), ("match", combina)):
+        for nome, fn in (("is_state", is_state), ("match", combina),
+                         ("search", procura)):
             env.tests[nome] = fn
             env.filters[nome] = fn
         return env
@@ -169,6 +174,10 @@ def _bate(ent: Entidade, regra: dict) -> bool:
     if "area" in regra and ent.area.lower() != str(regra["area"]).lower():
         return False
     if "entity_id" in regra and not fnmatch.fnmatch(ent.entity_id, regra["entity_id"]):
+        return False
+    # fnmatchcase e nao fnmatch: o filtro do auto-entities distingue maiusculas,
+    # e fnmatch delega a normalizacao ao sistema, o que esconderia o problema.
+    if "name" in regra and not fnmatch.fnmatchcase(ent.name, regra["name"]):
         return False
     if "state" in regra and ent.state != regra["state"]:
         return False

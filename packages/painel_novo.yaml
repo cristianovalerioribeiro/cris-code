@@ -37,39 +37,39 @@ script:
       padrao:
         name: Padrao
         description: >-
-          Regex de entity_id. Mantem so as luzes da area que casam.
-          Ex.: light\..*lavanderia.*|light\..*dispensa.*
+          Regex comparado com o entity_id E com o nome amigavel, em minusculas.
+          Ex.: .*lavanderia.*|.*dispensa.*
         required: false
         selector:
           text:
       de_fora:
         name: Luzes de fora
         description: >-
-          Regex de entity_id de luzes de OUTRAS areas que tambem pertencem a
-          este bloco.
+          Regex de luzes de OUTRAS areas que tambem pertencem a este bloco.
         required: false
         selector:
           text:
       excluir:
         name: Excluir
-        description: Regex de entity_id que este bloco ignora.
+        description: Regex de luzes que este bloco ignora.
         required: false
         selector:
           text:
     sequence:
-      # Reproduz, em Jinja, os mesmos filtros do auto-entities. Cada variavel
-      # pode usar as anteriores, por isso a ordem importa.
+      # Reproduz, em Jinja, os mesmos filtros do auto-entities: cada padrao e
+      # comparado com o entity_id E com o nome amigavel, sem distinguir
+      # maiusculas. Cada variavel pode usar as anteriores, entao a ordem importa.
       - variables:
           todas: "{{ states.light | map(attribute='entity_id') | list }}"
           base: >-
             {{ (area_entities(area) if area is defined and area else todas) | select('match', 'light\.') | list }}
           escolhidas: >-
-            {{ base | select('match', padrao) | list if padrao is defined and padrao else base }}
+            {% if padrao is defined and padrao %}{% set ns = namespace(r=[]) %}{% for e in base %}{% set nm = (state_attr(e, 'friendly_name') or '') | lower %}{% if ((e | lower) is search(padrao) or nm is search(padrao)) %}{% set ns.r = ns.r + [e] %}{% endif %}{% endfor %}{{ ns.r }}{% else %}{{ base }}{% endif %}
           extras: >-
-            {{ todas | select('match', de_fora) | list if de_fora is defined and de_fora else [] }}
+            {% if de_fora is defined and de_fora %}{% set ns = namespace(r=[]) %}{% for e in todas %}{% set nm = (state_attr(e, 'friendly_name') or '') | lower %}{% if ((e | lower) is search(de_fora) or nm is search(de_fora)) %}{% set ns.r = ns.r + [e] %}{% endif %}{% endfor %}{{ ns.r }}{% else %}{{ [] }}{% endif %}
           juntas: "{{ (escolhidas + extras) | unique | list }}"
           alvos: >-
-            {{ juntas | reject('match', excluir) | list if excluir is defined and excluir else juntas }}
+            {% if excluir is defined and excluir %}{% set ns = namespace(r=[]) %}{% for e in juntas %}{% set nm = (state_attr(e, 'friendly_name') or '') | lower %}{% if not ((e | lower) is search(excluir) or nm is search(excluir)) %}{% set ns.r = ns.r + [e] %}{% endif %}{% endfor %}{{ ns.r }}{% else %}{{ juntas }}{% endif %}
 
       # Bloco sem nenhuma luz: nada a fazer. Evita chamar o servico com lista
       # vazia, o que acontece enquanto um rele ainda nao foi identificado.

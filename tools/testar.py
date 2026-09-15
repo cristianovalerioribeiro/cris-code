@@ -10,8 +10,10 @@ Use depois de mexer em config/comodos.yaml. Em ordem:
   2. gerar_painel -c   o dashboard versionado esta em dia com o config
   3. validar           o YAML gerado esta consistente
   4. conferir_blocos   as separacoes de luz fazem o que deviam
-  5. descobrir -t      o template de descoberta nao perde entidades
-  6. package           o YAML do script de apoio e valido
+  5. conferir --reles  as separacoes se sustentam so pelo nome amigavel,
+                       mesmo com entity_id sem sentido (light.rele_07)
+  6. descobrir -t      o template de descoberta nao perde entidades
+  7. package           o YAML do script de apoio e valido
 
 Sai com codigo 1 se qualquer etapa falhar, entao serve em gancho de commit.
 """
@@ -30,6 +32,7 @@ ETAPAS = [
     ("painel em dia com o config", [PY, "tools/gerar_painel.py", "--check"]),
     ("YAML gerado consistente", [PY, "tools/validar.py"]),
     ("separacoes de luz", [PY, "tools/conferir_blocos.py"]),
+    ("separacoes com entity_id opaco", [PY, "tools/conferir_blocos.py", "--reles"]),
     ("template de descoberta", [PY, "tools/descobrir.py", "--testar"]),
 ]
 

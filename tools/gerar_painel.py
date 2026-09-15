@@ -99,17 +99,52 @@ def slug(texto: str, sep: str = "_") -> str:
 
 
 def glob_regex(padrao: str) -> str:
-    """Converte um padrao de entity_id ('light.*lavabo*') em expressao regular.
+    """Converte um padrao ('*arandela fundo*') em expressao regular, em minusculas.
 
-    O auto-entities casa os padroes com fnmatch; o Jinja do Home Assistant usa
-    regex. Os dois precisam concordar, entao a conversao fica num lugar so.
+    Espaco e underscore viram a mesma coisa: o entity_id costuma usar underscore
+    (light.externa_arandela_fundo) e o nome amigavel usa espaco ("Arandela
+    fundo"). Sem isso, um padrao so nunca casaria com os dois.
     """
-    return "".join(".*" if c == "*" else "." if c == "?" else re.escape(c)
-                   for c in padrao)
+    def parte(c: str) -> str:
+        if c == "*":
+            return ".*"
+        if c == "?":
+            return "."
+        if c in " _":
+            return "[ _]"
+        return re.escape(c)
+
+    return "".join(parte(c) for c in padrao.lower())
 
 
 def regex_de(padroes) -> str:
     return "|".join(glob_regex(p) for p in (padroes or []))
+
+
+def glob_id(padrao: str) -> str:
+    """Forma do padrao que casa com entity_id: minusculas e underscore."""
+    return padrao.lower().replace(" ", "_")
+
+
+def variantes_de_nome(padrao: str) -> list[str]:
+    """Formas do padrao para casar o nome amigavel.
+
+    O filtro do auto-entities distingue maiusculas, e nome amigavel no Home
+    Assistant aparece nas quatro formas: "arandela fundo", "Arandela fundo",
+    "Arandela Fundo" e "ARANDELA FUNDO".
+    """
+    base = padrao.lower().replace("_", " ")
+
+    def primeira_maiuscula(t: str) -> str:
+        # A primeira LETRA, nao o primeiro caractere: em "*lateral fundo*" o
+        # primeiro caractere e o asterisco, e capitaliza-lo nao muda nada.
+        for i, c in enumerate(t):
+            if c.isalpha():
+                return t[:i] + c.upper() + t[i + 1:]
+        return t
+
+    formas = [base, primeira_maiuscula(base), base.title(), base.upper()]
+    return list(dict.fromkeys(formas))
 
 
 def jinja_str(texto: str) -> str:
@@ -125,30 +160,52 @@ def padroes_excluidos(bloco: dict, cfg: dict) -> list[str]:
     return padroes
 
 
-def luzes_do_bloco(bloco: dict, cfg: dict) -> str:
-    """Expressao Jinja com as entidades light.* que pertencem a este bloco.
+def filtro_jinja(entrada: str, regex: str, manter: bool, saida: str | None = None) -> str:
+    """Statements Jinja que filtram uma lista de entity_id.
+
+    Casa o padrao contra o entity_id E contra o nome amigavel, sem distinguir
+    maiusculas. E o que faz 'lavanderia' encontrar tanto light.cozinha_lavanderia
+    quanto um rele chamado light.rele_03 cujo nome na interface e "Lavanderia".
+    """
+    saida = saida or entrada
+    nega = "" if manter else "not "
+    r = jinja_str(regex)
+    return (
+        "{% set ns = namespace(r=[]) %}"
+        f"{{% for e in {entrada} %}}"
+        "{% set nm = (state_attr(e, 'friendly_name') or '') | lower %}"
+        f"{{% if {nega}((e | lower) is search('{r}') or nm is search('{r}')) %}}"
+        "{% set ns.r = ns.r + [e] %}{% endif %}{% endfor %}"
+        f"{{% set {saida} = ns.r %}}"
+    )
+
+
+def preludio_luzes(bloco: dict, cfg: dict) -> str:
+    """Statements Jinja que deixam a variavel `l` com as luzes do bloco.
 
     Reproduz em Jinja exatamente o que o auto-entities faz com os filtros, para
     a contagem do card mestre bater com a lista de luminarias mostrada.
     """
     area = bloco.get("area")
     todas = "states.light | map(attribute='entity_id') | list"
-    base = f"area_entities('{jinja_str(area)}')" if area else todas
-    expr = f"({base} | select('match', 'light\\\\.') | list)"
+    base = (f"area_entities('{jinja_str(area)}') | select('match', 'light\\\\.') | list"
+            if area else todas)
+    partes = [f"{{% set l = {base} %}}"]
 
     pad = regex_de(bloco.get("luzes"))
     if pad:
-        expr = f"({expr} | select('match', '{jinja_str(pad)}') | list)"
+        partes.append(filtro_jinja("l", pad, manter=True))
 
     fora = regex_de(bloco.get("luzes_de_fora"))
     if fora:
-        expr = (f"({expr} + ({todas} | select('match', "
-                f"'{jinja_str(fora)}') | list))")
+        partes.append(f"{{% set fora = {todas} %}}")
+        partes.append(filtro_jinja("fora", fora, manter=True))
+        partes.append("{% set l = (l + fora) | unique | list %}")
 
     exc = regex_de(padroes_excluidos(bloco, cfg))
     if exc:
-        expr = f"({expr} | reject('match', '{jinja_str(exc)}') | list)"
-    return f"({expr} | unique | list)"
+        partes.append(filtro_jinja("l", exc, manter=False))
+    return "".join(partes)
 
 
 def rotulo(bloco: dict) -> str:
@@ -245,24 +302,24 @@ def mestre_de_luz(bloco: dict, cfg: dict, cor: str, com_cor: bool = True) -> dic
             **comum,
         }
 
-    luzes = luzes_do_bloco(bloco, cfg)
+    pre = preludio_luzes(bloco, cfg)
+    acesas = "{% set on = l | select('is_state', 'on') | list %}"
     return {
         "type": "custom:mushroom-template-card",
         "primary": "Luzes",
         "secondary": Bloco(
-            f"{{% set l = {luzes} %}}"
-            f"{{% set on = l | select('is_state', 'on') | list %}}"
+            f"{pre}{acesas}"
             f"{{% if l | count == 0 %}}Nenhuma luz encontrada"
             f"{{% elif on | count == 0 %}}Tudo apagado"
             f"{{% elif on | count == l | count %}}Todas acesas ({{{{ l | count }}}})"
             f"{{% else %}}{{{{ on | count }}}} de {{{{ l | count }}}} acesas{{% endif %}}"
         ),
         "icon": Bloco(
-            f"{{% if {luzes} | select('is_state', 'on') | list | count > 0 %}}"
+            f"{pre}{acesas}{{% if on | count > 0 %}}"
             f"mdi:lightbulb-group{{% else %}}mdi:lightbulb-group-off{{% endif %}}"
         ),
         "icon_color": Bloco(
-            f"{{% if {luzes} | select('is_state', 'on') | list | count > 0 %}}"
+            f"{pre}{acesas}{{% if on | count > 0 %}}"
             f"{cor}{{% else %}}disabled{{% endif %}}"
         ),
         "multiline_secondary": False,
@@ -275,25 +332,43 @@ def _regras_de_luz(bloco: dict, opcoes: dict) -> list[dict]:
     area = bloco.get("area")
     regras: list[dict] = []
 
+    def por_padrao(p: str, com_area: bool) -> list[dict]:
+        """Um padrao vira varios filtros: por entity_id e por nome amigavel.
+
+        O auto-entities junta os filtros com OU e nao repete entidade, entao o
+        padrao encontra a luz tanto pelo id quanto pelo nome que aparece na
+        interface — que e o que salva um rele chamado light.rele_03.
+        """
+        saida = []
+        for chave, valores in (("entity_id", [glob_id(p)]),
+                               ("name", variantes_de_nome(p))):
+            for v in valores:
+                regra = {"domain": "light", chave: v}
+                if com_area and area:
+                    regra["area"] = area
+                regra["options"] = dict(opcoes)
+                saida.append(regra)
+        return saida
+
     padroes = bloco.get("luzes") or []
     if padroes:
         for p in padroes:
-            regra = {"domain": "light", "entity_id": p}
-            if area:
-                regra["area"] = area
-            regra["options"] = dict(opcoes)
-            regras.append(regra)
+            regras += por_padrao(p, com_area=True)
     elif area:
         regras.append({"domain": "light", "area": area, "options": dict(opcoes)})
 
     # luzes de outra area que pertencem visualmente a este bloco
     for p in bloco.get("luzes_de_fora") or []:
-        regras.append({"domain": "light", "entity_id": p, "options": dict(opcoes)})
+        regras += por_padrao(p, com_area=False)
     return regras
 
 
 def _excluir_luzes(bloco: dict, cfg: dict) -> list[dict]:
-    return [{"entity_id": p} for p in padroes_excluidos(bloco, cfg)]
+    saida = []
+    for p in padroes_excluidos(bloco, cfg):
+        saida.append({"entity_id": glob_id(p)})
+        saida += [{"name": v} for v in variantes_de_nome(p)]
+    return saida
 
 
 def _auto(card_interno: dict, param: str, regras: list[dict],

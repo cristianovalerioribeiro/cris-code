@@ -112,10 +112,25 @@ def main(argv=None) -> int:
     p.add_argument("--casa", type=Path, default=RAIZ / "config" / "casa_exemplo.yaml")
     p.add_argument("--config", type=Path, default=RAIZ / "config" / "comodos.yaml")
     p.add_argument("--package", type=Path, default=RAIZ / "packages" / "painel_novo.yaml")
+    p.add_argument("--reles", action="store_true",
+                   help="troca todo entity_id de luz por light.rele_NN antes de conferir, "
+                        "para testar se os padroes se sustentam so pelo nome amigavel")
     args = p.parse_args(argv)
 
     dash = yaml.safe_load(args.painel.read_text(encoding="utf-8"))
-    casa = Casa.carregar(args.casa)
+    bruto = yaml.safe_load(args.casa.read_text(encoding="utf-8")) or {}
+    if args.reles:
+        # Instalacao com reles costuma dar entity_id sem sentido (light.rele_07)
+        # e deixar a informacao so no nome. Se os padroes sobrevivem a isso,
+        # sobrevivem a qualquer nomenclatura.
+        n = 0
+        for itens in (bruto.get("areas") or {}).values():
+            for it in itens or []:
+                if str(it.get("id", "")).startswith("light."):
+                    n += 1
+                    it["id"] = f"light.rele_{n:02d}"
+        print(f"(modo reles: {n} luzes com entity_id opaco)\n")
+    casa = Casa(bruto)
 
     todas = {e.entity_id for e in casa.entidades if e.dominio == "light"}
     usadas: dict[str, list[str]] = {}
@@ -182,6 +197,21 @@ def main(argv=None) -> int:
 
     if args.config.exists():
         cfg = yaml.safe_load(args.config.read_text(encoding="utf-8")) or {}
+
+        declaradas = {b.get("area") for pav in (cfg.get("pavimentos")
+                                                or [{"comodos": cfg.get("comodos") or []}])
+                      for b in (pav.get("comodos") or []) if b.get("area")}
+        de_fora = sorted({e.area for e in casa.entidades} - declaradas)
+        if de_fora:
+            print("\nsugestao: estas areas existem na casa mas nao estao em nenhum")
+            print("pavimento. Cole os blocos abaixo no pavimento certo do config:\n")
+            for area in de_fora:
+                luzes = [casa.por_id[i] for i in casa.area_entities(area)
+                         if casa.por_id[i].dominio == "light"]
+                print(f"      - nome: {area}")
+                print(f"        area: {area}")
+                print(f"        icone: mdi:home        # {len(luzes)} luz(es): "
+                      f"{', '.join(e.name for e in luzes) or 'nenhuma'}")
         sugestoes = sugerir_etiquetas(cfg, casa)
         if sugestoes:
             print("\nsugestao: estes blocos tem sensor de temperatura ou umidade na area,")

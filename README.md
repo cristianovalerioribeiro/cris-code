@@ -33,6 +33,12 @@ segure o mestre) abre a página do ambiente.
 Cada pavimento é um item de `pavimentos:` no config, e a ordem dos blocos na
 tela é a ordem em que você os escreve. Um pavimento sem blocos não vira aba.
 
+> O 1º pavimento está como molde comentado no config, não como aba vazia.
+> Declarar um bloco com uma área que não existe produz um bloco permanentemente
+> vazio no painel, o que é pior do que não ter o bloco. Assim que você carregar
+> a sua casa de verdade, `tools/conferir_blocos.py` aponta as áreas que ficaram
+> de fora e imprime os blocos prontos.
+
 ## Partir um cômodo em dois blocos
 
 Às vezes um cômodo do Home Assistant é uma coisa só, mas no uso são duas: a
@@ -62,6 +68,23 @@ Sala de Estar.
 | `luzes_de_fora` | Luzes de outra área que aparecem aqui |
 | `persianas` / `sensores` | `false` no bloco separado, para não duplicar |
 
+### Como os padrões casam
+
+Um padrão é comparado com o **entity_id** e com o **nome amigável**, sem
+distinguir maiúsculas, e **espaço vale por underscore**. Então `*arandela fundo*`
+encontra as três formas abaixo:
+
+```
+light.externa_arandela_fundo   "Arandela do quintal"   <- pelo entity_id
+light.rele_03                  "Arandela fundo"        <- pelo nome
+light.SHELLY_1                 "ARANDELA FUNDO"        <- pelo nome, em caixa alta
+```
+
+Isso importa numa instalação com relés, onde o `entity_id` costuma ser
+`light.rele_07` e a única informação legível está no nome. Há um teste
+permanente para isso: `python3 tools/conferir_blocos.py --reles` troca todo
+entity_id por `light.rele_NN` e confere se as separações continuam corretas.
+
 O toque no mestre respeita esses filtros: apagar a "Lavanderia e Dispensa" não
 apaga a cozinha. É o `script.alternar_luzes_do_bloco` do package que garante
 isso — por isso ele é **obrigatório** quando você usa esses campos.
@@ -75,6 +98,16 @@ python3 tools/conferir_blocos.py
 Lista, bloco por bloco, as luminárias que caíram nele. Avisa quando um bloco
 ficou vazio, quando uma luz aparece em dois blocos, ou quando uma luz da casa
 não aparece em nenhum.
+
+Quando uma área da casa não está em nenhum pavimento, ele imprime o bloco
+pronto para colar — é assim que os cômodos que faltam aparecem sozinhos:
+
+```
+sugestao: estas areas existem na casa mas nao estao em nenhum pavimento.
+      - nome: Sala de Jogos
+        area: Sala de Jogos
+        icone: mdi:home        # 2 luz(es): Teto, Sanca
+```
 
 E faz a conferência que mais importa: pega os templates Jinja direto de
 `packages/painel_novo.yaml`, calcula em quais luzes o toque no mestre agiria, e
@@ -220,10 +253,18 @@ python3 tools/testar.py                   # 2. gera e roda todas as conferência
 python3 tools/preview.py --metricas       # 3. veja e meça, sem instalar nada
 ```
 
-`tools/testar.py` é o comando do dia a dia: gera o painel, confere se ele está
-em dia com o config, valida o YAML, confere as separações de luz, testa o
-template de descoberta e o package. Sai com código 1 se algo falhar, então
-serve em gancho de commit.
+`tools/testar.py` é o comando do dia a dia. Sai com código 1 se algo falhar,
+então serve em gancho de commit:
+
+```
+ok   1. gera o painel
+ok   2. painel em dia com o config
+ok   3. YAML gerado consistente
+ok   4. separacoes de luz
+ok   5. separacoes com entity_id opaco
+ok   6. template de descoberta
+ok   7. package de apoio
+```
 
 `config/comodos.yaml` pede, por bloco, um **nome** e a **área** do Home
 Assistant. Cor, ícone, temperatura, umidade, filtros de luz e entidades extras

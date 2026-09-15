@@ -38,9 +38,9 @@ painel:
 
 globais:
   excluir_luzes:
-    - light.*_grupo
-    - light.grupo_*
-    - light.todas_as_luzes
+    - "*_grupo"
+    - "grupo_*"
+    - "todas as luzes"
 
 # =============================================================================
 #  COMO PARTIR UM COMODO
@@ -64,8 +64,12 @@ globais:
 #   umidade
 #   extras          OPCIONAL. Entidades avulsas (ar, ventilador, TV...).
 #
-#  ATENCAO aos padroes de 'luzes': eles sao CHUTES a partir dos nomes que voce
-#  falou. Confira os entity_id reais com:
+#  Os padroes casam com o entity_id E com o nome amigavel, sem distinguir
+#  maiusculas, e espaco vale por underscore. Entao "*arandela fundo*" encontra
+#  tanto light.externa_arandela_fundo quanto um rele light.rele_03 cujo nome na
+#  interface e "Arandela fundo".
+#
+#  Ainda assim sao CHUTES a partir dos nomes que voce falou. Confira com:
 #
 #      python3 tools/descobrir.py
 #
@@ -83,16 +87,16 @@ pavimentos:
         cor: orange
         # tira do bloco da cozinha o que foi para a lavanderia/dispensa
         excluir:
-          - light.*lavanderia*
-          - light.*dispensa*
+          - "*lavanderia*"
+          - "*dispensa*"
 
       - nome: Lavanderia e Dispensa
         area: Cozinha
         icone: mdi:washing-machine
         cor: teal
         luzes:
-          - light.*lavanderia*
-          - light.*dispensa*
+          - "*lavanderia*"
+          - "*dispensa*"
         persianas: false
         sensores: false
 
@@ -102,18 +106,18 @@ pavimentos:
         cor: amber
         # o lavabo (pendente, LED e ducha) tem bloco proprio
         excluir:
-          - light.*lavabo*
-          - light.*pendente*
-          - light.*ducha*
+          - "*lavabo*"
+          - "*pendente*"
+          - "*ducha*"
 
       - nome: Lavabo
         area: Gourmet
         icone: mdi:toilet
         cor: cyan
         luzes:
-          - light.*pendente*
-          - light.*lavabo*
-          - light.*ducha*
+          - "*pendente*"
+          - "*lavabo*"
+          - "*ducha*"
         persianas: false
         sensores: false
 
@@ -123,9 +127,9 @@ pavimentos:
         cor: blue
         # as tres laterais sao da Area Externa mas pertencem a sala
         luzes_de_fora:
-          - light.*lateral_fundo*
-          - light.*lateral_frente*
-          - light.*lateral_passarela*
+          - "*lateral fundo*"
+          - "*lateral frente*"
+          - "*lateral passarela*"
 
       - nome: Espaço Kids e Home
         area: Espaço Kids e Home
@@ -149,8 +153,8 @@ pavimentos:
         # fica so com a arandela do fundo e a lateral direita;
         # as outras laterais foram para a Sala de Estar
         luzes:
-          - light.*arandela_fundo*
-          - light.*lateral_direita*
+          - "*arandela fundo*"
+          - "*lateral direita*"
 
       - nome: Pé Direito Duplo
         area: Pé Direito Duplo
@@ -158,11 +162,21 @@ pavimentos:
         cor: pink
 
   # -------------------------------------------------------- 1o PAVIMENTO --
-  # Voce falou que usa o 1o pavimento, mas nao detalhou o que tem nele.
-  # Preencha os blocos aqui e ele ganha uma aba; vazio, a aba nao e gerada.
-  - nome: 1º Pavimento
-    icone: mdi:home-floor-1
-    comodos: []
+  # Voce citou o 1o pavimento mas descreveu os comodos so do terreo e do 2o.
+  # Nao inventamos comodos aqui: bloco com area que nao existe aparece vazio no
+  # painel. Descomente o molde abaixo e troque pelos seus comodos.
+  #
+  # Depois de rodar tools/descobrir.py, o tools/conferir_blocos.py aponta
+  # sozinho as areas da sua casa que nao estao em nenhum bloco, e ja imprime o
+  # YAML pronto para colar aqui.
+  #
+  # - nome: 1º Pavimento
+  #   icone: mdi:home-floor-1
+  #   comodos:
+  #     - nome: Nome do comodo
+  #       area: Nome exato da area no Home Assistant
+  #       icone: mdi:sofa
+  #       cor: blue
 
   # --------------------------------------- 2o PAVIMENTO - lado escritorio --
   # Nome curto de proposito: a barra de abas do celular corta nomes longos.
@@ -176,7 +190,7 @@ pavimentos:
         # o banheiro do escritorio ainda nao tem rele identificado;
         # quando identificar, mova os padroes para o bloco de baixo
         excluir:
-          - light.*banheiro*
+          - "*banheiro*"
 
       - nome: Quarto de Visitas
         area: Quarto de Visitas
@@ -190,8 +204,7 @@ pavimentos:
         # PENDENTE: rele ainda nao identificado. Ajuste o padrao quando souber
         # o entity_id real, senao este bloco aparece vazio.
         luzes:
-          - light.*escritorio_banheiro*
-          - light.*banheiro_escritorio*
+          - "*banheiro*"
         persianas: false
         sensores: false
 
@@ -215,16 +228,15 @@ pavimentos:
         icone: mdi:bed-king
         cor: indigo
         excluir:
-          - light.*banheiro*
-          - light.*banho*
+          - "*banheiro*"
+          - "*banho*"
 
       - nome: Banheiro da Suíte
         area: Suíte
         icone: mdi:bathtub
         cor: cyan
         luzes:
-          - light.*suite_banheiro*
-          - light.*banheiro_suite*
+          - "*banheiro*"
         persianas: false
         sensores: false
 
