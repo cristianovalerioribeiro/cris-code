@@ -152,7 +152,19 @@ class Casa:
         env.globals["states"] = self.states
         env.globals["state_attr"] = state_attr
         env.globals["areas"] = lambda: sorted({e.area for e in self.entidades})
-        env.globals["area_name"] = lambda a: a
+        def area_name(alvo):
+            """Como no Home Assistant: aceita entity_id, id de area ou nome."""
+            eid = alvo.entity_id if isinstance(alvo, Entidade) else str(alvo)
+            ent = self.por_id.get(eid)
+            if ent is not None:
+                return ent.area
+            for e in self.entidades:
+                if e.area.lower().replace(" ", "_") == eid.lower():
+                    return e.area
+            return eid
+
+        env.globals["area_name"] = area_name
+        env.filters["area_name"] = area_name
         for nome, fn in (("is_state", is_state), ("match", combina),
                          ("search", procura)):
             env.tests[nome] = fn

@@ -554,6 +554,72 @@ def view_pavimento(pav: dict, cfg: dict, deslocamento: int) -> dict:
     }
 
 
+def secao_nao_classificados(cfg: dict) -> dict:
+    """Luzes que nao caem em nenhum bloco de nenhum pavimento.
+
+    Existe para o painel nao esconder nada: um comodo que ainda nao foi
+    declarado — um pavimento inteiro, inclusive — aparece aqui em vez de sumir.
+    A lista se esvazia sozinha conforme os blocos vao sendo criados.
+    """
+    areas = sorted({b["area"] for b in todos_os_blocos(cfg) if b.get("area")})
+    lista = ", ".join(f"'{jinja_str(a)}'" for a in areas)
+
+    contagem = (
+        f"{{% set conhecidas = [{lista}] %}}"
+        "{% set ns = namespace(r=[], a=[]) %}"
+        "{% for e in states.light | map(attribute='entity_id') | list %}"
+        "{% set ar = area_name(e) %}"
+        "{% if ar not in conhecidas %}{% set ns.r = ns.r + [e] %}"
+        "{% if ar and ar not in ns.a %}{% set ns.a = ns.a + [ar] %}{% endif %}"
+        "{% endif %}{% endfor %}"
+    )
+
+    excluir = [{"area": a} for a in areas]
+    excluir += [{"entity_id": glob_id(p)} for p in (cfg.get("globais", {})
+                                                    .get("excluir_luzes") or [])]
+
+    return {
+        "type": "grid",
+        "column_span": cfg["painel"].get("colunas_max", 3),
+        "cards": [
+            titulo("Fora dos pavimentos", "mdi:help-circle-outline"),
+            {
+                "type": "custom:mushroom-template-card",
+                "primary": Bloco(
+                    f"{contagem}"
+                    "{% if ns.r | count == 0 %}Tudo classificado"
+                    "{% elif ns.r | count == 1 %}1 luz fora dos pavimentos"
+                    "{% else %}{{ ns.r | count }} luzes fora dos pavimentos{% endif %}"),
+                "secondary": Bloco(
+                    f"{contagem}"
+                    "{% if ns.r | count == 0 %}Toda luz da casa esta em algum bloco"
+                    "{% elif ns.a %}Areas: {{ ns.a | join(', ') }}"
+                    "{% else %}Sem area atribuida{% endif %}"),
+                "icon": Bloco(
+                    f"{contagem}"
+                    "{% if ns.r | count == 0 %}mdi:check-circle-outline"
+                    "{% else %}mdi:help-circle-outline{% endif %}"),
+                "icon_color": Bloco(
+                    f"{contagem}"
+                    "{% if ns.r | count == 0 %}green{% else %}orange{% endif %}"),
+                "multiline_secondary": True,
+                "tap_action": {"action": "none"},
+                "grid_options": {"columns": "full"},
+            },
+            _auto(
+                {"type": "custom:mushroom-chips-card", "alignment": "start"},
+                "chips",
+                [{"domain": "light", "options": {
+                    "type": "entity", "content_info": "name",
+                    "use_light_color": True,
+                    "tap_action": {"action": "toggle"},
+                    "hold_action": {"action": "more-info"}}}],
+                excluir,
+            ),
+        ],
+    }
+
+
 def view_resumo(cfg: dict) -> dict:
     """O "painel geral": estado da casa toda e um atalho por pavimento.
 
@@ -639,6 +705,8 @@ def view_resumo(cfg: dict) -> dict:
                  "cards": cards, "grid_options": {"columns": "full"}},
             ],
         })
+
+    secoes.append(secao_nao_classificados(cfg))
 
     return {
         "title": cfg["painel"].get("titulo", "Casa"),

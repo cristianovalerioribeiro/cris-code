@@ -35,9 +35,23 @@ tela é a ordem em que você os escreve. Um pavimento sem blocos não vira aba.
 
 > O 1º pavimento está como molde comentado no config, não como aba vazia.
 > Declarar um bloco com uma área que não existe produz um bloco permanentemente
-> vazio no painel, o que é pior do que não ter o bloco. Assim que você carregar
-> a sua casa de verdade, `tools/conferir_blocos.py` aponta as áreas que ficaram
-> de fora e imprime os blocos prontos.
+> vazio, o que é pior do que não ter o bloco. Nada se perde por isso: as luzes
+> dele aparecem em **Fora dos pavimentos** (abaixo) até serem classificadas.
+
+## Nada some do painel
+
+A última aba termina com a seção **Fora dos pavimentos**: todas as luzes da casa
+que não caem em nenhum bloco de nenhum pavimento. Elas continuam acendendo e
+apagando dali, e a seção nomeia as áreas que faltam.
+
+| Estado | O que aparece |
+|---|---|
+| Tudo declarado | "Tudo classificado", em verde |
+| Falta um cômodo | "3 luzes fora dos pavimentos — Areas: Sala de Jogos, Academia", em laranja, com um botão por luminária |
+
+É a rede de segurança para um pavimento inteiro não sumir por esquecimento —
+inclusive o 1º. A lista se esvazia sozinha conforme os blocos vão sendo criados,
+e há teste automático para os dois estados (`tools/testar.py`, etapa 7).
 
 ## Partir um cômodo em dois blocos
 
@@ -263,7 +277,8 @@ ok   3. YAML gerado consistente
 ok   4. separacoes de luz
 ok   5. separacoes com entity_id opaco
 ok   6. template de descoberta
-ok   7. package de apoio
+ok   7. secao fora dos pavimentos
+ok   8. package de apoio
 ```
 
 `config/comodos.yaml` pede, por bloco, um **nome** e a **área** do Home

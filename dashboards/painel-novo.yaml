@@ -2705,6 +2705,67 @@ views:
                   columns: full
             grid_options:
               columns: full
+      - type: grid
+        column_span: 3
+        cards:
+          - type: heading
+            heading: Fora dos pavimentos
+            heading_style: title
+            icon: mdi:help-circle-outline
+          - type: custom:mushroom-template-card
+            primary: |-
+              {% set conhecidas = ['Banho Social', 'Cozinha', 'Escritório', 'Espaço Kids e Home', 'Estar Íntimo', 'Garagem', 'Gourmet', 'Hall e Rouparia', 'Pé Direito Duplo', 'Quarto Bia', 'Quarto Guto', 'Quarto de Visitas', 'Sala de Estar', 'Suíte', 'Área Externa'] %}{% set ns = namespace(r=[], a=[]) %}{% for e in states.light | map(attribute='entity_id') | list %}{% set ar = area_name(e) %}{% if ar not in conhecidas %}{% set ns.r = ns.r + [e] %}{% if ar and ar not in ns.a %}{% set ns.a = ns.a + [ar] %}{% endif %}{% endif %}{% endfor %}{% if ns.r | count == 0 %}Tudo classificado{% elif ns.r | count == 1 %}1 luz fora dos pavimentos{% else %}{{ ns.r | count }} luzes fora dos pavimentos{% endif %}
+            secondary: |-
+              {% set conhecidas = ['Banho Social', 'Cozinha', 'Escritório', 'Espaço Kids e Home', 'Estar Íntimo', 'Garagem', 'Gourmet', 'Hall e Rouparia', 'Pé Direito Duplo', 'Quarto Bia', 'Quarto Guto', 'Quarto de Visitas', 'Sala de Estar', 'Suíte', 'Área Externa'] %}{% set ns = namespace(r=[], a=[]) %}{% for e in states.light | map(attribute='entity_id') | list %}{% set ar = area_name(e) %}{% if ar not in conhecidas %}{% set ns.r = ns.r + [e] %}{% if ar and ar not in ns.a %}{% set ns.a = ns.a + [ar] %}{% endif %}{% endif %}{% endfor %}{% if ns.r | count == 0 %}Toda luz da casa esta em algum bloco{% elif ns.a %}Areas: {{ ns.a | join(', ') }}{% else %}Sem area atribuida{% endif %}
+            icon: |-
+              {% set conhecidas = ['Banho Social', 'Cozinha', 'Escritório', 'Espaço Kids e Home', 'Estar Íntimo', 'Garagem', 'Gourmet', 'Hall e Rouparia', 'Pé Direito Duplo', 'Quarto Bia', 'Quarto Guto', 'Quarto de Visitas', 'Sala de Estar', 'Suíte', 'Área Externa'] %}{% set ns = namespace(r=[], a=[]) %}{% for e in states.light | map(attribute='entity_id') | list %}{% set ar = area_name(e) %}{% if ar not in conhecidas %}{% set ns.r = ns.r + [e] %}{% if ar and ar not in ns.a %}{% set ns.a = ns.a + [ar] %}{% endif %}{% endif %}{% endfor %}{% if ns.r | count == 0 %}mdi:check-circle-outline{% else %}mdi:help-circle-outline{% endif %}
+            icon_color: |-
+              {% set conhecidas = ['Banho Social', 'Cozinha', 'Escritório', 'Espaço Kids e Home', 'Estar Íntimo', 'Garagem', 'Gourmet', 'Hall e Rouparia', 'Pé Direito Duplo', 'Quarto Bia', 'Quarto Guto', 'Quarto de Visitas', 'Sala de Estar', 'Suíte', 'Área Externa'] %}{% set ns = namespace(r=[], a=[]) %}{% for e in states.light | map(attribute='entity_id') | list %}{% set ar = area_name(e) %}{% if ar not in conhecidas %}{% set ns.r = ns.r + [e] %}{% if ar and ar not in ns.a %}{% set ns.a = ns.a + [ar] %}{% endif %}{% endif %}{% endfor %}{% if ns.r | count == 0 %}green{% else %}orange{% endif %}
+            multiline_secondary: true
+            tap_action:
+              action: none
+            grid_options:
+              columns: full
+          - type: custom:auto-entities
+            card:
+              type: custom:mushroom-chips-card
+              alignment: start
+            card_param: chips
+            show_empty: false
+            filter:
+              include:
+                - domain: light
+                  options:
+                    type: entity
+                    content_info: name
+                    use_light_color: true
+                    tap_action:
+                      action: toggle
+                    hold_action:
+                      action: more-info
+              exclude:
+                - area: Banho Social
+                - area: Cozinha
+                - area: Escritório
+                - area: Espaço Kids e Home
+                - area: Estar Íntimo
+                - area: Garagem
+                - area: Gourmet
+                - area: Hall e Rouparia
+                - area: Pé Direito Duplo
+                - area: Quarto Bia
+                - area: Quarto Guto
+                - area: Quarto de Visitas
+                - area: Sala de Estar
+                - area: Suíte
+                - area: Área Externa
+                - entity_id: '*_grupo'
+                - entity_id: grupo_*
+                - entity_id: todas_as_luzes
+            grid_options:
+              columns: full
+            sort:
+              method: friendly_name
   - title: Cozinha
     path: cozinha
     icon: mdi:countertop

@@ -13,7 +13,8 @@ Use depois de mexer em config/comodos.yaml. Em ordem:
   5. conferir --reles  as separacoes se sustentam so pelo nome amigavel,
                        mesmo com entity_id sem sentido (light.rele_07)
   6. descobrir -t      o template de descoberta nao perde entidades
-  7. package           o YAML do script de apoio e valido
+  7. fora dos pav.     um comodo nao declarado aparece no painel em vez de sumir
+  8. package           o YAML do script de apoio e valido
 
 Sai com codigo 1 se qualquer etapa falhar, entao serve em gancho de commit.
 """
@@ -35,6 +36,57 @@ ETAPAS = [
     ("separacoes com entity_id opaco", [PY, "tools/conferir_blocos.py", "--reles"]),
     ("template de descoberta", [PY, "tools/descobrir.py", "--testar"]),
 ]
+
+
+def fora_dos_pavimentos() -> tuple[bool, str]:
+    """A secao 'Fora dos pavimentos' acusa comodo que o config ainda nao conhece.
+
+    Testa os dois estados: casa toda classificada (deve dizer que esta tudo
+    certo) e casa com uma area a mais (deve acusar, nomear a area e mostrar as
+    luzes). E a rede de seguranca para um pavimento inteiro nao sumir do painel.
+    """
+    import copy
+    import sys
+
+    import yaml
+
+    sys.path.insert(0, str(RAIZ / "tools"))
+    from ha_mock import Casa, expandir_auto_entities
+
+    dash = yaml.safe_load((RAIZ / "dashboards" / "painel-novo.yaml").read_text("utf-8"))
+    try:
+        secao = next(s for v in dash["views"] if v.get("path") == "casa"
+                     for s in v.get("sections") or []
+                     if any(c.get("heading") == "Fora dos pavimentos"
+                            for c in s.get("cards") or []))
+    except StopIteration:
+        return False, "a secao nao existe no painel"
+
+    card = next(c for c in secao["cards"] if c.get("type") == "custom:mushroom-template-card")
+    auto = next(c for c in secao["cards"] if c.get("type") == "custom:auto-entities")
+    bruto = yaml.safe_load((RAIZ / "config" / "casa_exemplo.yaml").read_text("utf-8"))
+
+    limpa = Casa(copy.deepcopy(bruto))
+    if "Tudo classificado" not in limpa.render(card["primary"]):
+        return False, f"casa completa deveria dizer 'Tudo classificado', "\
+                      f"disse '{limpa.render(card['primary'])}'"
+
+    com_extra = copy.deepcopy(bruto)
+    com_extra["areas"]["Area Nao Declarada"] = [
+        {"id": "light.teste_fora_1", "nome": "Teto", "estado": "off"},
+        {"id": "light.teste_fora_2", "nome": "Sanca", "estado": "on"},
+    ]
+    suja = Casa(com_extra)
+    texto = suja.render(card["primary"])
+    if "2 luzes fora" not in texto:
+        return False, f"deveria acusar 2 luzes fora, disse '{texto}'"
+    if "Area Nao Declarada" not in suja.render(card["secondary"]):
+        return False, "nao nomeou a area nao declarada"
+    interno = expandir_auto_entities(auto, suja)
+    ids = {c["entity"] for c in (interno or {}).get("chips", [])}
+    if ids != {"light.teste_fora_1", "light.teste_fora_2"}:
+        return False, f"os botoes mostrados nao batem: {sorted(ids)}"
+    return True, "acusa comodo nao declarado e some quando tudo esta classificado"
 
 
 def package_valido() -> tuple[bool, str]:
@@ -65,10 +117,13 @@ def main() -> int:
             for linha in (r.stderr or r.stdout or "").strip().split("\n")[-8:]:
                 print(f"        {linha}")
 
-    ok, detalhe = package_valido()
-    print(f"{'ok  ' if ok else 'FALHA'} {len(ETAPAS) + 1}. package de apoio — {detalhe}")
-    if not ok:
-        falhas.append("package de apoio")
+    for n, (nome, fn) in enumerate([("secao fora dos pavimentos", fora_dos_pavimentos),
+                                    ("package de apoio", package_valido)],
+                                   start=len(ETAPAS) + 1):
+        ok, detalhe = fn()
+        print(f"{'ok  ' if ok else 'FALHA'} {n}. {nome} — {detalhe}")
+        if not ok:
+            falhas.append(nome)
 
     print()
     if falhas:
