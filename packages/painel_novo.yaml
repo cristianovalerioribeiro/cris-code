@@ -11,48 +11,80 @@
 #  2. Copie este arquivo para  <config>/packages/painel_novo.yaml
 #  3. Reinicie o Home Assistant.
 #
-#  Opcional: se voce nao quiser usar packages, defina
-#  `usar_script_inteligente: false` em config/comodos.yaml e regere o painel.
-#  O painel passa a usar light.toggle direto (comportamento um pouco pior:
-#  com metade das luzes acesas, ele inverte cada uma em vez de apagar tudo).
+#  Este script e OBRIGATORIO quando algum bloco do painel usa 'luzes:',
+#  'luzes_de_fora:' ou 'excluir:'. Sem ele, o toque no mestre agiria na area
+#  inteira — apagar a "Lavanderia e Dispensa" apagaria a cozinha toda.
 # =============================================================================
 
 script:
-  alternar_luzes_da_area:
-    alias: Alternar luzes da area
+  alternar_luzes_do_bloco:
+    alias: Alternar luzes do bloco
     description: >-
-      Se houver qualquer luz acesa na area, apaga todas. Se estiver tudo
-      apagado, acende todas. Usado pelo card principal de cada comodo.
+      Se houver qualquer luz acesa no bloco, apaga todas; se estiver tudo
+      apagado, acende todas. Recebe os mesmos filtros que o painel usa para
+      montar a lista de luminarias do bloco, para agir exatamente nelas.
     icon: mdi:lightbulb-group
     mode: parallel
     max: 25
     fields:
       area:
         name: Area
-        description: Nome ou id da area no Home Assistant.
-        required: true
-        example: Sala de Estar
+        description: Nome ou id da area no Home Assistant. Vazio = toda a casa.
+        required: false
+        example: Cozinha
         selector:
           area:
+      padrao:
+        name: Padrao
+        description: >-
+          Regex de entity_id. Mantem so as luzes da area que casam.
+          Ex.: light\..*lavanderia.*|light\..*dispensa.*
+        required: false
+        selector:
+          text:
+      de_fora:
+        name: Luzes de fora
+        description: >-
+          Regex de entity_id de luzes de OUTRAS areas que tambem pertencem a
+          este bloco.
+        required: false
+        selector:
+          text:
+      excluir:
+        name: Excluir
+        description: Regex de entity_id que este bloco ignora.
+        required: false
+        selector:
+          text:
     sequence:
-      # Sem luzes na area: nada a fazer (evita chamar o servico com lista vazia).
+      # Reproduz, em Jinja, os mesmos filtros do auto-entities. Cada variavel
+      # pode usar as anteriores, por isso a ordem importa.
+      - variables:
+          todas: "{{ states.light | map(attribute='entity_id') | list }}"
+          base: >-
+            {{ (area_entities(area) if area is defined and area else todas) | select('match', 'light\.') | list }}
+          escolhidas: >-
+            {{ base | select('match', padrao) | list if padrao is defined and padrao else base }}
+          extras: >-
+            {{ todas | select('match', de_fora) | list if de_fora is defined and de_fora else [] }}
+          juntas: "{{ (escolhidas + extras) | unique | list }}"
+          alvos: >-
+            {{ juntas | reject('match', excluir) | list if excluir is defined and excluir else juntas }}
+
+      # Bloco sem nenhuma luz: nada a fazer. Evita chamar o servico com lista
+      # vazia, o que acontece enquanto um rele ainda nao foi identificado.
       - condition: template
-        value_template: >-
-          {{ area_entities(area) | select('match', 'light\\.') | list | count > 0 }}
+        value_template: "{{ alvos | count > 0 }}"
 
       - choose:
           - conditions:
               - condition: template
-                value_template: >-
-                  {{ area_entities(area) | select('match', 'light\\.')
-                     | select('is_state', 'on') | list | count > 0 }}
+                value_template: "{{ alvos | select('is_state', 'on') | list | count > 0 }}"
             sequence:
               - action: light.turn_off
                 target:
-                  entity_id: >-
-                    {{ area_entities(area) | select('match', 'light\\.') | list }}
+                  entity_id: "{{ alvos }}"
         default:
           - action: light.turn_on
             target:
-              entity_id: >-
-                {{ area_entities(area) | select('match', 'light\\.') | list }}
+              entity_id: "{{ alvos }}"

@@ -23,15 +23,19 @@ dele — o resto continua funcionando.
 
 O painel liga cada cômodo a uma **área** do Home Assistant, pelo nome exato.
 
-Vá em **Ferramentas de Desenvolvedor → Modelo** e cole:
+Rode:
 
-```jinja
-{% for a in areas() %}
-{{ area_name(a) }}  ->  {{ a }}  ->  {{ area_entities(a) | select('match', 'light\.') | list | count }} luz(es)
-{% endfor %}
+```bash
+python3 tools/descobrir.py --resumo
 ```
 
-O resultado mostra, para cada área: **nome**, **id** e **quantas luzes** ela tem.
+e cole o template em **Ferramentas de Desenvolvedor → Modelo**. O resultado
+mostra, para cada área: **nome**, **id** e **quantas luzes** ela tem.
+
+Para levantar os **entity_id de cada luminária** — necessário para os padrões
+de `luzes:` e para identificar relés — use `python3 tools/descobrir.py` (sem
+`--resumo`): o resultado já sai pronto para salvar em
+`config/casa_exemplo.yaml`.
 
 - A coluna do **nome** é o que vai em `area:` no `config/comodos.yaml`.
 - Se alguma área mostrar **0 luzes** mas você sabe que tem, as lâmpadas não
@@ -159,6 +163,9 @@ A Forma B é a que permite versionar o painel neste repositório.
 | Título "Sensores"/"Clima"/"Mídia" vazio na página do cômodo | Normal: o título é fixo, a lista some quando a área não tem nada daquele tipo |
 | Cômodos fora de ordem no desktop | É o empacotamento denso preenchendo os vãos. Use `densidade: false` para a ordem exata do config |
 | Tela principal muito alta | Ponha `cor_na_tela_inicial: false`, ou `estilo_luzes: botoes` se você tinha mudado para `cards` |
+| Bloco separado aparece vazio | O padrão de `luzes:` não casou com nenhum entity_id. Rode `tools/descobrir.py`, veja o nome real e ajuste. É o caso do Banheiro do Escritório enquanto o relé não for identificado |
+| Apagar um bloco apaga o cômodo todo | Falta o package `script.alternar_luzes_do_bloco`, ou ele está desatualizado — reinstale o passo 3 |
+| Uma luz aparece em dois blocos | Falta `excluir:` no bloco principal. `tools/conferir_blocos.py` aponta quais |
 | Mestre do cômodo sem slider de brilho | Esperado com `brilho: nunca`. Com `brilho: auto`, falta o `grupo:` daquele cômodo — ver passo 4 |
 | Porcentagem aparecendo numa lâmpada que não dimeriza | O Home Assistant mostra o estado que a lâmpada reporta. Se ela reporta brilho mas você não usa, `brilho: nunca` tira os controles |
 | Caixas grandes e vazias ao lado dos cards de luz | `brilho: auto` com `colunas_luzes: 2`. Use `colunas_luzes: 1`, ou `brilho: nunca` |

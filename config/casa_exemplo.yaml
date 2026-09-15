@@ -1,79 +1,132 @@
 # =============================================================================
 #  Casa de exemplo — usada SOMENTE pelo tools/preview.py
 # =============================================================================
-#  'dimeriza: true' marca as poucas lampadas que aceitam brilho — o resto
-#  e lampada comum de liga/desliga, que e o caso da maioria das casas.
-#  Nao vai para o Home Assistant. Serve para desenhar o painel numa pagina e
-#  conferir a usabilidade antes de instalar, com comodos de tamanhos bem
-#  diferentes (de 1 ate 6 luminarias) para testar se o layout se adapta.
+#  Espelha os comodos reais do config/comodos.yaml, com entity_id PLAUSIVEIS
+#  (nao os seus de verdade). Serve para ver o painel montado antes de instalar
+#  e para conferir se os padroes de 'luzes:' separam o que deveriam.
+#
+#  Troque os entity_id pelos reais (use tools/descobrir.py) e a
+#  pre-visualizacao passa a ser a sua casa.
+#
+#  Lampadas comuns de liga/desliga. 'dimeriza: true' marca as que aceitam
+#  brilho, se voce tiver alguma.
+#  Nao vai para o Home Assistant.
 # =============================================================================
 
 areas:
-  Sala de Estar:
-    # grupo de luz do comodo (Ajudantes > Grupo) — vira o card mestre com slider
-    - {id: light.sala_luzes,         nome: Luzes da sala,    estado: "on",  brilho: 51, dimeriza: true}
-    - {id: light.sala_lustre,        nome: Lustre,           estado: "on"}
-    - {id: light.sala_spots,         nome: Spots do teto,    estado: "on"}
-    - {id: light.sala_abajur,        nome: Abajur,           estado: "off"}
-    - {id: light.sala_fita_led,      nome: Fita LED,         estado: "on",  brilho: 30, dimeriza: true}
-    - {id: cover.sala_persiana,      nome: Persiana,         estado: open,  posicao: 100}
-    - {id: cover.sala_cortina,       nome: Cortina,          estado: closed, posicao: 0}
-    - {id: sensor.sala_temperatura,  nome: Temperatura,      estado: "23.4", unidade: "°C"}
-    - {id: sensor.sala_umidade,      nome: Umidade,          estado: "54",   unidade: "%"}
-    - {id: climate.sala_ar,          nome: Ar-condicionado,  estado: cool}
-    - {id: fan.sala_ventilador,      nome: Ventilador,       estado: "off"}
-    - {id: media_player.sala_tv,     nome: TV,               estado: playing}
-
+  # ------------------------------------------------------------- TERREO ----
   Cozinha:
-    - {id: light.cozinha_teto,       nome: Teto,             estado: "off"}
-    - {id: light.cozinha_bancada,    nome: Bancada,          estado: "on"}
-    - {id: cover.cozinha_persiana,   nome: Persiana,         estado: open,  posicao: 60}
-    - {id: sensor.cozinha_temperatura, nome: Temperatura,    estado: "25.1", unidade: "°C"}
-    - {id: binary_sensor.cozinha_gas,  nome: Vazamento de gas, estado: "off", classe: gas}
-    - {id: switch.cozinha_cafeteira, nome: Cafeteira,        estado: "off"}
+    - {id: light.cozinha_teto,          nome: Teto,            estado: "on"}
+    - {id: light.cozinha_bancada,       nome: Bancada,         estado: "on"}
+    - {id: light.cozinha_ilha,          nome: Ilha,            estado: "off"}
+    - {id: light.cozinha_lavanderia,    nome: Lavanderia,      estado: "off"}
+    - {id: light.cozinha_dispensa,      nome: Dispensa,        estado: "off"}
+    - {id: cover.cozinha_persiana,      nome: Persiana,        estado: open, posicao: 60}
+    - {id: sensor.cozinha_temperatura,  nome: Temperatura,     estado: "25.1", unidade: "°C"}
+    - {id: binary_sensor.cozinha_gas,   nome: Vazamento de gas, estado: "off", classe: gas}
 
-  Corredor:
-    - {id: light.corredor_arandela,  nome: Arandela,         estado: "on"}
-    - {id: binary_sensor.corredor_movimento, nome: Movimento, estado: "on", classe: motion}
-    - {id: sensor.corredor_temperatura, nome: Temperatura,   estado: "22.0", unidade: "°C"}
+  Gourmet:
+    - {id: light.gourmet_teto,          nome: Teto,            estado: "on"}
+    - {id: light.gourmet_churrasqueira, nome: Churrasqueira,   estado: "off"}
+    - {id: light.gourmet_bancada,       nome: Bancada,         estado: "on"}
+    - {id: light.gourmet_pendente,      nome: Pendente,        estado: "on"}
+    - {id: light.gourmet_lavabo_led,    nome: LED lavabo,      estado: "off"}
+    - {id: light.gourmet_ducha,         nome: Ducha,           estado: "off"}
+    - {id: cover.gourmet_persiana,      nome: Persiana,        estado: open, posicao: 100}
+    - {id: sensor.gourmet_temperatura,  nome: Temperatura,     estado: "24.8", unidade: "°C"}
 
-  Quarto:
-    - {id: light.quarto_plafon,      nome: Plafon,           estado: "off"}
-    - {id: light.quarto_cabeceira_e, nome: Cabeceira esquerda, estado: "on", brilho: 15, dimeriza: true}
-    - {id: light.quarto_cabeceira_d, nome: Cabeceira direita, estado: "off"}
-    - {id: cover.quarto_blackout,    nome: Blackout,         estado: closed, posicao: 0}
-    - {id: cover.quarto_persiana,    nome: Persiana,         estado: open,   posicao: 35}
-    - {id: sensor.quarto_temperatura, nome: Temperatura,     estado: "21.8", unidade: "°C"}
-    - {id: sensor.quarto_umidade,    nome: Umidade,          estado: "58",   unidade: "%"}
-    - {id: climate.quarto_ar,        nome: Ar-condicionado,  estado: "off"}
+  Sala de Estar:
+    - {id: light.sala_lustre,           nome: Lustre,          estado: "on"}
+    - {id: light.sala_spots,            nome: Spots do teto,   estado: "on"}
+    - {id: light.sala_sanca,            nome: Sanca,           estado: "off"}
+    - {id: cover.sala_cortina,          nome: Cortina,         estado: closed, posicao: 0}
+    - {id: sensor.sala_temperatura,     nome: Temperatura,     estado: "23.4", unidade: "°C"}
+    - {id: sensor.sala_umidade,         nome: Umidade,         estado: "54", unidade: "%"}
+    - {id: media_player.sala_tv,        nome: TV,              estado: playing}
 
-  Quarto de Hóspedes:
-    - {id: light.hospedes_plafon,    nome: Plafon,           estado: "off"}
-    - {id: cover.hospedes_persiana,  nome: Persiana,         estado: closed, posicao: 0}
-    - {id: sensor.hospedes_temperatura, nome: Temperatura,   estado: "22.6", unidade: "°C"}
+  Espaço Kids e Home:
+    - {id: light.kids_teto,             nome: Teto kids,       estado: "off"}
+    - {id: light.home_teto,             nome: Teto home,       estado: "on"}
+    - {id: light.home_sanca,            nome: Sanca home,      estado: "off"}
+    - {id: sensor.kids_temperatura,     nome: Temperatura,     estado: "23.9", unidade: "°C"}
 
-  Escritório:
-    - {id: light.escritorio_teto,    nome: Teto,             estado: "on"}
-    - {id: light.escritorio_luminaria, nome: Luminaria de mesa, estado: "on"}
-    - {id: light.escritorio_ring,    nome: Ring light,       estado: "off"}
-    - {id: light.escritorio_backlight, nome: Backlight monitor, estado: "on", brilho: 55, dimeriza: true}
-    - {id: light.escritorio_estante, nome: Estante,          estado: "off"}
-    - {id: cover.escritorio_persiana, nome: Persiana,        estado: open,  posicao: 80}
-    - {id: sensor.escritorio_temperatura, nome: Temperatura, estado: "24.2", unidade: "°C"}
-    - {id: binary_sensor.escritorio_janela, nome: Janela,    estado: "off", classe: window}
+  Banho Social:
+    - {id: light.banho_social_teto,     nome: Teto,            estado: "off"}
+    - {id: light.banho_social_espelho,  nome: Espelho,         estado: "off"}
+    - {id: sensor.banho_social_umidade, nome: Umidade,         estado: "68", unidade: "%"}
 
-  Banheiro:
-    - {id: light.banheiro_teto,      nome: Teto,             estado: "off"}
-    - {id: light.banheiro_espelho,   nome: Espelho,          estado: "off"}
-    - {id: sensor.banheiro_umidade,  nome: Umidade,          estado: "71",   unidade: "%"}
+  Garagem:
+    - {id: light.garagem_teto,          nome: Teto,            estado: "on"}
+    - {id: light.garagem_externa,       nome: Entrada,         estado: "off"}
+    - {id: cover.garagem_portao,        nome: Portao,          estado: closed, posicao: 0}
+    - {id: binary_sensor.garagem_porta, nome: Porta de servico, estado: "off", classe: door}
 
   Área Externa:
-    - {id: light.externa_garagem,    nome: Garagem,          estado: "on"}
-    - {id: light.externa_jardim,     nome: Jardim,           estado: "on"}
-    - {id: light.externa_piscina,    nome: Piscina,          estado: "off"}
-    - {id: light.externa_churrasq,   nome: Churrasqueira,    estado: "off"}
-    - {id: light.externa_portao,     nome: Portao,           estado: "on"}
-    - {id: light.externa_corredor,   nome: Corredor lateral, estado: "off"}
-    - {id: cover.externa_portao,     nome: Portao basculante, estado: closed, posicao: 0}
-    - {id: binary_sensor.externa_movimento, nome: Movimento, estado: "off", classe: motion}
-    - {id: sensor.externa_temperatura, nome: Temperatura,    estado: "19.3", unidade: "°C"}
+    - {id: light.externa_arandela_fundo,    nome: Arandela fundo,    estado: "on"}
+    - {id: light.externa_lateral_direita,   nome: Lateral direita,   estado: "off"}
+    # estas tres aparecem no bloco da Sala de Estar (luzes_de_fora)
+    - {id: light.externa_lateral_fundo,     nome: Lateral fundo,     estado: "on"}
+    - {id: light.externa_lateral_frente,    nome: Lateral frente,    estado: "off"}
+    - {id: light.externa_lateral_passarela, nome: Lateral passarela, estado: "on"}
+    - {id: binary_sensor.externa_movimento, nome: Movimento,         estado: "off", classe: motion}
+    - {id: sensor.externa_temperatura,      nome: Temperatura,       estado: "19.3", unidade: "°C"}
+
+  Pé Direito Duplo:
+    - {id: light.pe_direito_pendentes,  nome: Pendentes,       estado: "on"}
+    - {id: light.pe_direito_sanca,      nome: Sanca alta,      estado: "off"}
+
+  # ------------------------------------------ 2o PAVIMENTO - escritorio ----
+  Escritório:
+    - {id: light.escritorio_teto,       nome: Teto,            estado: "on"}
+    - {id: light.escritorio_sanca,      nome: Sanca,           estado: "off"}
+    - {id: light.escritorio_bancada,    nome: Bancada,         estado: "on"}
+    # PENDENTE no config: rele do banheiro do escritorio ainda nao identificado.
+    # Com este entity_id o padrao 'light.*escritorio_banheiro*' ja encontra.
+    - {id: light.escritorio_banheiro,   nome: Banheiro,        estado: "off"}
+    - {id: cover.escritorio_persiana,   nome: Persiana,        estado: open, posicao: 80}
+    - {id: sensor.escritorio_temperatura, nome: Temperatura,   estado: "24.2", unidade: "°C"}
+
+  Quarto de Visitas:
+    - {id: light.visitas_teto,          nome: Teto,            estado: "off"}
+    - {id: light.visitas_cabeceira,     nome: Cabeceira,       estado: "off"}
+    - {id: cover.visitas_blackout,      nome: Blackout,        estado: closed, posicao: 0}
+    - {id: sensor.visitas_temperatura,  nome: Temperatura,     estado: "22.6", unidade: "°C"}
+
+  # ---------------------------------------------- 2o PAVIMENTO - intimo ----
+  Hall e Rouparia:
+    - {id: light.hall_teto,             nome: Teto do hall,    estado: "on"}
+    - {id: light.rouparia_teto,         nome: Rouparia,        estado: "off"}
+    - {id: binary_sensor.hall_movimento, nome: Movimento,      estado: "on", classe: motion}
+
+  Estar Íntimo:
+    - {id: light.estar_intimo_teto,     nome: Teto,            estado: "off"}
+    - {id: light.estar_intimo_sanca,    nome: Sanca,           estado: "on"}
+    - {id: cover.estar_intimo_cortina,  nome: Cortina,         estado: open, posicao: 100}
+    - {id: sensor.estar_intimo_temperatura, nome: Temperatura, estado: "22.1", unidade: "°C"}
+
+  Suíte:
+    - {id: light.suite_teto,            nome: Teto,            estado: "off"}
+    - {id: light.suite_sanca,           nome: Sanca,           estado: "on"}
+    - {id: light.suite_cabeceira_e,     nome: Cabeceira esq.,  estado: "on"}
+    - {id: light.suite_cabeceira_d,     nome: Cabeceira dir.,  estado: "off"}
+    - {id: light.suite_closet,          nome: Closet,          estado: "off"}
+    - {id: light.suite_banheiro_teto,   nome: Banheiro teto,   estado: "off"}
+    - {id: light.suite_banheiro_espelho, nome: Banheiro espelho, estado: "on"}
+    - {id: cover.suite_blackout,        nome: Blackout,        estado: closed, posicao: 0}
+    - {id: cover.suite_persiana,        nome: Persiana,        estado: open, posicao: 35}
+    - {id: sensor.suite_temperatura,    nome: Temperatura,     estado: "21.8", unidade: "°C"}
+    - {id: sensor.suite_umidade,        nome: Umidade,         estado: "58", unidade: "%"}
+    - {id: climate.suite_ar,            nome: Ar-condicionado, estado: cool}
+
+  Quarto Guto:
+    - {id: light.guto_teto,             nome: Teto,            estado: "off"}
+    - {id: light.guto_cabeceira,        nome: Cabeceira,       estado: "on"}
+    - {id: cover.guto_blackout,         nome: Blackout,        estado: open, posicao: 50}
+    - {id: sensor.guto_temperatura,     nome: Temperatura,     estado: "22.4", unidade: "°C"}
+
+  Quarto Bia:
+    - {id: light.bia_teto,              nome: Teto,            estado: "off"}
+    - {id: light.bia_cabeceira,         nome: Cabeceira,       estado: "off"}
+    - {id: light.bia_led_nicho,         nome: LED nicho,       estado: "on"}
+    - {id: cover.bia_blackout,          nome: Blackout,        estado: closed, posicao: 0}
+    - {id: sensor.bia_temperatura,      nome: Temperatura,     estado: "22.7", unidade: "°C"}

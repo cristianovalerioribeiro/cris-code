@@ -4,118 +4,235 @@
 #  Este e o UNICO arquivo que voce precisa editar.
 #  Depois de mexer aqui, rode:
 #
-#      python3 tools/gerar_painel.py
+#      python3 tools/gerar_painel.py && python3 tools/validar.py
 #
-#  e o arquivo dashboards/painel-novo.yaml e regerado do zero.
-#
-#  As luminarias NAO sao listadas aqui: o painel descobre sozinho todas as
-#  luzes de cada area do Home Assistant. Se voce adicionar uma lampada nova
-#  na Cozinha, ela aparece no painel sem editar nada.
+#  As luminarias NAO sao listadas uma a uma quando o comodo tem area propria:
+#  o painel descobre sozinho as luzes daquela area. Onde um comodo precisa ser
+#  partido em dois blocos (Cozinha / Lavanderia, Gourmet / Lavabo), use
+#  'luzes:' com padroes de entity_id — ver o bloco COMO PARTIR UM COMODO.
 # =============================================================================
 
 painel:
-  titulo: Casa                 # titulo da aba principal
+  titulo: Casa
   url: painel-novo             # precisa bater com o url_path do configuration.yaml
-  colunas_max: 3               # maximo de colunas em telas grandes (o HA reduz sozinho
-                               # no celular). Blocos de comodo nao se dividem entre
-                               # colunas, entao MAIS colunas costuma deixar MAIS sobra
-                               # no pe das mais curtas. Medido nesta casa de exemplo,
-                               # a 1440px: 2 col = 17% vazio, 3 col = 9%, 4 col = 24%.
-                               # Meca a sua: python3 tools/preview.py --metricas
-  brilho: nunca                # 'nunca' se as suas lampadas sao comuns de liga/desliga:
-                               # tira slider e porcentagem, todo card de luz fica com a
-                               # altura de uma linha e as colunas encaixam sem sobra.
-                               # 'auto' devolve brilho e cor onde a lampada aceitar (o
-                               # Mushroom ja esconde onde nao aceita), mas ai use
-                               # colunas_luzes: 1, senao a luz sem slider vira uma caixa
-                               # vazia ao lado da que tem.
+  colunas_max: 3               # maximo de colunas em telas grandes
+  brilho: nunca                # lampadas comuns de liga/desliga
   colunas_luzes: 2             # luminarias por linha na aba Luzes e na pagina do comodo
-  densidade: true              # true = encaixa secoes curtas nos buracos (layout mais compacto)
-  view_luzes: true             # gera a aba "Luzes" (brilho de todas as luminarias)
-  estilo_luzes: botoes         # botoes = 1 botao redondo por luminaria (compacto)
-                               # cards  = 1 card com slider por luminaria (ocupa muito mais)
-  mostrar_persianas: true      # persianas/cortinas no bloco do comodo
-  mostrar_sensores: true       # sensores do comodo no rodape do bloco
-  cor_na_tela_inicial: true    # controle de cor/temperatura no mestre da tela Casa.
-                               # false deixa a tela Casa mais baixa; a cor continua
-                               # disponivel na pagina do comodo. So tem efeito nos
-                               # comodos que definem 'grupo'.
-  subviews: true               # gera uma pagina de detalhe para cada comodo
-  usar_script_inteligente: true  # ver packages/painel_novo.yaml (recomendado)
+  densidade: true
+  estilo_luzes: botoes
+  mostrar_persianas: true
+  mostrar_sensores: true
+  cor_na_tela_inicial: true
+
+  # O "painel geral" (resumo da casa toda). Fica como a ULTIMA aba, porque no
+  # dia a dia quem manda sao as abas de pavimento.
+  resumo: true
+  resumo_no_fim: true
+
+  # Aba unica com todas as luminarias da casa. Desligada: as abas de pavimento
+  # ja fazem esse papel, e ela viraria um segundo painel geral.
+  view_luzes: false
+
+  subviews: true               # pagina de detalhe por comodo
+  usar_script_inteligente: true
 
 globais:
-  # Padroes de entity_id ignorados em TODOS os comodos.
-  # Util para nao duplicar grupos de luz que voce mesmo criou.
   excluir_luzes:
     - light.*_grupo
     - light.grupo_*
     - light.todas_as_luzes
 
-# -----------------------------------------------------------------------------
-#  COMODOS
-# -----------------------------------------------------------------------------
-#  area      -> nome EXATO da area no Home Assistant (Configuracoes > Areas)
-#  area_id   -> opcional. Se o id da area nao for o nome "slugificado", informe.
-#               Confira em Ferramentas de Desenvolvedor > Modelo:
-#                   {{ areas() }}
-#  icone     -> qualquer icone mdi:
-#  cor       -> cor de destaque do comodo. Se omitir, o gerador distribui uma
-#               automaticamente. Valores: amber, blue, green, purple, teal,
-#               pink, indigo, cyan, orange, light-green, deep-purple, red
-#  grupo     -> OPCIONAL, mas muito recomendado: uma entidade de grupo de luz
-#               (Configuracoes > Dispositivos e servicos > Ajudantes > Grupo).
-#               Com ela, o card mestre ganha slider de brilho do comodo inteiro.
-#  temperatura / umidade -> opcionais, viram etiquetas no titulo do comodo
-#  extras    -> entidades avulsas que aparecem no rodape do comodo
-#               (ar-condicionado, ventilador, cortina, TV, ...)
-#  excluir   -> padroes de entity_id de luz ignorados so neste comodo
-# -----------------------------------------------------------------------------
+# =============================================================================
+#  COMO PARTIR UM COMODO
+# =============================================================================
+#  Cada item de 'comodos' e um BLOCO na tela — nao precisa ser uma area do
+#  Home Assistant. Campos:
+#
+#   nome            rotulo do bloco e URL da pagina dele. Precisa ser unico.
+#   area            area do HA de onde vem luzes, persianas e sensores.
+#   icone / cor     aparencia.
+#   luzes           OPCIONAL. Padroes de entity_id. Com isso, o bloco pega
+#                   SO as luzes da area que casam com os padroes.
+#   excluir         OPCIONAL. Padroes que este bloco ignora. Use no bloco
+#                   "principal" para tirar o que foi para o bloco separado.
+#   luzes_de_fora   OPCIONAL. Padroes de luzes de OUTRA area que devem aparecer
+#                   aqui (ex.: as laterais que sao da Area Externa mas fazem
+#                   parte da Sala de Estar).
+#   persianas       OPCIONAL (true/false). Ponha false no bloco separado para
+#   sensores        nao repetir as persianas e sensores do bloco principal.
+#   temperatura     OPCIONAL. Sensores que viram etiqueta no titulo.
+#   umidade
+#   extras          OPCIONAL. Entidades avulsas (ar, ventilador, TV...).
+#
+#  ATENCAO aos padroes de 'luzes': eles sao CHUTES a partir dos nomes que voce
+#  falou. Confira os entity_id reais com:
+#
+#      python3 tools/descobrir.py
+#
+#  e cole o template no Home Assistant em Ferramentas de Desenvolvedor > Modelo.
+# =============================================================================
 
-comodos:
-  - area: Sala de Estar
-    icone: mdi:sofa
-    cor: amber
-    grupo: light.sala_luzes
-    temperatura: sensor.sala_temperatura
-    umidade: sensor.sala_umidade
-    extras:
-      - climate.sala_ar
-      - media_player.sala_tv
+pavimentos:
+  # ---------------------------------------------------------------- TERREO --
+  - nome: Térreo
+    icone: mdi:home-floor-g
+    comodos:
+      - nome: Cozinha
+        area: Cozinha
+        icone: mdi:countertop
+        cor: orange
+        # tira do bloco da cozinha o que foi para a lavanderia/dispensa
+        excluir:
+          - light.*lavanderia*
+          - light.*dispensa*
 
-  - area: Cozinha
-    icone: mdi:countertop
-    cor: orange
-    temperatura: sensor.cozinha_temperatura
+      - nome: Lavanderia e Dispensa
+        area: Cozinha
+        icone: mdi:washing-machine
+        cor: teal
+        luzes:
+          - light.*lavanderia*
+          - light.*dispensa*
+        persianas: false
+        sensores: false
 
-  - area: Corredor
-    icone: mdi:wall-sconce-flat
-    cor: teal
-    temperatura: sensor.corredor_temperatura
+      - nome: Gourmet
+        area: Gourmet
+        icone: mdi:silverware-fork-knife
+        cor: amber
+        # o lavabo (pendente, LED e ducha) tem bloco proprio
+        excluir:
+          - light.*lavabo*
+          - light.*pendente*
+          - light.*ducha*
 
-  - area: Quarto
-    icone: mdi:bed-double
-    cor: indigo
-    temperatura: sensor.quarto_temperatura
-    umidade: sensor.quarto_umidade
-    extras:
-      - climate.quarto_ar
+      - nome: Lavabo
+        area: Gourmet
+        icone: mdi:toilet
+        cor: cyan
+        luzes:
+          - light.*pendente*
+          - light.*lavabo*
+          - light.*ducha*
+        persianas: false
+        sensores: false
 
-  - area: Quarto de Hóspedes
-    icone: mdi:bed-single
-    cor: purple
-    temperatura: sensor.hospedes_temperatura
+      - nome: Sala de Estar
+        area: Sala de Estar
+        icone: mdi:sofa
+        cor: blue
+        # as tres laterais sao da Area Externa mas pertencem a sala
+        luzes_de_fora:
+          - light.*lateral_fundo*
+          - light.*lateral_frente*
+          - light.*lateral_passarela*
 
-  - area: Escritório
-    icone: mdi:desk
-    cor: blue
-    temperatura: sensor.escritorio_temperatura
+      - nome: Espaço Kids e Home
+        area: Espaço Kids e Home
+        icone: mdi:teddy-bear
+        cor: purple
 
-  - area: Banheiro
-    icone: mdi:shower
-    cor: cyan
-    umidade: sensor.banheiro_umidade
+      - nome: Banho Social
+        area: Banho Social
+        icone: mdi:shower
+        cor: indigo
 
-  - area: Área Externa
-    icone: mdi:tree
-    cor: green
-    temperatura: sensor.externa_temperatura
+      - nome: Garagem
+        area: Garagem
+        icone: mdi:garage
+        cor: green
+
+      - nome: Área Externa
+        area: Área Externa
+        icone: mdi:tree
+        cor: light-green
+        # fica so com a arandela do fundo e a lateral direita;
+        # as outras laterais foram para a Sala de Estar
+        luzes:
+          - light.*arandela_fundo*
+          - light.*lateral_direita*
+
+      - nome: Pé Direito Duplo
+        area: Pé Direito Duplo
+        icone: mdi:arrow-expand-vertical
+        cor: pink
+
+  # -------------------------------------------------------- 1o PAVIMENTO --
+  # Voce falou que usa o 1o pavimento, mas nao detalhou o que tem nele.
+  # Preencha os blocos aqui e ele ganha uma aba; vazio, a aba nao e gerada.
+  - nome: 1º Pavimento
+    icone: mdi:home-floor-1
+    comodos: []
+
+  # --------------------------------------- 2o PAVIMENTO - lado escritorio --
+  - nome: 2º Pav · Escritório
+    icone: mdi:home-floor-2
+    comodos:
+      - nome: Escritório
+        area: Escritório
+        icone: mdi:desk
+        cor: blue
+        # o banheiro do escritorio ainda nao tem rele identificado;
+        # quando identificar, mova os padroes para o bloco de baixo
+        excluir:
+          - light.*banheiro*
+
+      - nome: Quarto de Visitas
+        area: Quarto de Visitas
+        icone: mdi:bed-single
+        cor: purple
+
+      - nome: Banheiro do Escritório
+        area: Escritório
+        icone: mdi:shower
+        cor: cyan
+        # PENDENTE: rele ainda nao identificado. Ajuste o padrao quando souber
+        # o entity_id real, senao este bloco aparece vazio.
+        luzes:
+          - light.*escritorio_banheiro*
+          - light.*banheiro_escritorio*
+        persianas: false
+        sensores: false
+
+  # ------------------------------------------ 2o PAVIMENTO - lado intimo --
+  - nome: 2º Pav · Íntimo
+    icone: mdi:home-floor-2
+    comodos:
+      # primeira coisa ao entrar no pavimento
+      - nome: Hall e Rouparia
+        area: Hall e Rouparia
+        icone: mdi:wardrobe
+        cor: teal
+
+      - nome: Estar Íntimo
+        area: Estar Íntimo
+        icone: mdi:sofa-outline
+        cor: amber
+
+      - nome: Suíte
+        area: Suíte
+        icone: mdi:bed-king
+        cor: indigo
+        excluir:
+          - light.*banheiro*
+          - light.*banho*
+
+      - nome: Banheiro da Suíte
+        area: Suíte
+        icone: mdi:bathtub
+        cor: cyan
+        luzes:
+          - light.*suite_banheiro*
+          - light.*banheiro_suite*
+        persianas: false
+        sensores: false
+
+      - nome: Quarto Guto
+        area: Quarto Guto
+        icone: mdi:bed
+        cor: green
+
+      - nome: Quarto Bia
+        area: Quarto Bia
+        icone: mdi:bed
+        cor: pink

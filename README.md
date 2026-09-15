@@ -4,7 +4,7 @@ Um painel **novo e independente**, criado do zero ao lado do painel existente.
 Ele não toca em nada do que você já tem: é adicionado como uma URL separada, você
 usa os dois em paralelo e apaga o antigo quando quiser.
 
-![Tela principal no desktop](docs/imagens/casa-desktop.png)
+![Aba Térreo no desktop](docs/imagens/terreo-desktop.png)
 
 ## O problema que ele resolve
 
@@ -16,16 +16,87 @@ Home Assistant e o painel descobre em tempo real todas as luzes daquela área.
 Trocou uma lâmpada, adicionou uma arandela, moveu um abajur de cômodo? O painel
 já mostra certo no próximo carregamento, sem editar YAML.
 
-## As três telas
+## As telas
 
-| Tela | Função | O que tem nela |
-|---|---|---|
-| **Casa** | Resumo | Um bloco por cômodo: mestre de luz, um botão por luminária, persianas e sensores |
-| **Luzes** | Controle fino | Brilho, temperatura e cor de **todas** as luminárias, agrupadas por cômodo |
-| **&lt;Cômodo&gt;** | Ambiente completo | Iluminação, persianas, clima, sensores e mídia daquele cômodo, em seções separadas |
+As abas são os **pavimentos** — é onde o dia a dia acontece. O painel geral
+fica por último, porque quase nunca se usa.
 
-Toque no card mestre alterna o cômodo inteiro. Toque no título do cômodo (ou
+| Aba | O que tem nela |
+|---|---|
+| **Térreo**, **1º Pav**, **2º Pav · …** | Um bloco por cômodo: mestre de luz, um botão por luminária, persianas e sensores |
+| **Casa** (última) | Painel geral: estado da casa e um atalho por pavimento |
+| **&lt;Cômodo&gt;** (sem aba) | Ambiente completo: iluminação, persianas, clima, sensores e mídia |
+
+Toque no card mestre alterna o bloco inteiro. Toque no título do cômodo (ou
 segure o mestre) abre a página do ambiente.
+
+Cada pavimento é um item de `pavimentos:` no config, e a ordem dos blocos na
+tela é a ordem em que você os escreve. Um pavimento sem blocos não vira aba.
+
+## Partir um cômodo em dois blocos
+
+Às vezes um cômodo do Home Assistant é uma coisa só, mas no uso são duas: a
+cozinha e a lavanderia se acendem juntas às vezes e separadas outras. Um bloco
+**não precisa ser uma área** — pode ser um recorte dela:
+
+```yaml
+- nome: Cozinha
+  area: Cozinha
+  excluir: [light.*lavanderia*, light.*dispensa*]   # o que saiu daqui
+
+- nome: Lavanderia e Dispensa
+  area: Cozinha
+  luzes: [light.*lavanderia*, light.*dispensa*]     # o que veio para cá
+  persianas: false        # não repetir as da Cozinha
+  sensores: false
+```
+
+E o contrário também: `luzes_de_fora:` traz para o bloco luminárias que estão
+em **outra** área — as laterais que pertencem à Área Externa mas fazem parte da
+Sala de Estar.
+
+| Campo | Para quê |
+|---|---|
+| `luzes` | Só as luzes da área que casam com estes padrões |
+| `excluir` | Padrões que este bloco ignora |
+| `luzes_de_fora` | Luzes de outra área que aparecem aqui |
+| `persianas` / `sensores` | `false` no bloco separado, para não duplicar |
+
+O toque no mestre respeita esses filtros: apagar a "Lavanderia e Dispensa" não
+apaga a cozinha. É o `script.alternar_luzes_do_bloco` do package que garante
+isso — por isso ele é **obrigatório** quando você usa esses campos.
+
+### Conferir se a separação funcionou
+
+```bash
+python3 tools/conferir_blocos.py
+```
+
+Lista, bloco por bloco, as luminárias que caíram nele, e avisa quando um bloco
+ficou vazio, quando uma luz aparece em dois blocos, ou quando uma luz da casa
+não aparece em nenhum.
+
+```
+=== Térreo ===
+  Cozinha                    3x  Bancada, Ilha, Teto
+  Lavanderia e Dispensa      2x  Dispensa, Lavanderia
+  Gourmet                    3x  Bancada, Churrasqueira, Teto
+  Lavabo                     3x  Ducha, LED lavabo, Pendente
+```
+
+## Descobrir os seus entity_id
+
+Os padrões de `luzes:` são inúteis se você não souber como as suas luzes se
+chamam. Para levantar isso:
+
+```bash
+python3 tools/descobrir.py
+```
+
+Ele imprime um template Jinja. Cole em **Ferramentas de Desenvolvedor →
+Modelo** no Home Assistant, e o resultado já sai no formato de
+`config/casa_exemplo.yaml` — salve por cima do arquivo e a pré-visualização
+passa a ser a sua casa de verdade, com os seus nomes e os seus relés.
 
 ## A gramática visual
 
@@ -55,11 +126,6 @@ ter a altura de uma linha** — o que deixa duas colunas encaixarem sem sobra:
 | `nunca` | 2 | **945 px** |
 | `auto` | 1 | 1371 px |
 | `auto` | 2 | 1377 px, com caixas vazias |
-
-![Aba Luzes no desktop](docs/imagens/luzes-desktop.png)
-
-*Aba Luzes com `brilho: nunca` e `colunas_luzes: 2`: 24 luminárias e 8 mestres
-em 945 px, todos os cards com a mesma altura.*
 
 A última linha é a armadilha: misturar cards com e sem slider na mesma linha faz
 a grade igualar as alturas, e a luz **sem** slider vira uma caixa grande e vazia
@@ -96,9 +162,9 @@ Por isso o padrão é 3. O número certo depende dos **seus** cômodos — meça
 
 ## No celular
 
-<img src="docs/imagens/casa-celular.png" width="330"> <img src="docs/imagens/comodo-celular.png" width="330">
+<img src="docs/imagens/terreo-celular.png" width="330"> <img src="docs/imagens/comodo-celular.png" width="330">
 
-*Tela principal e página de um cômodo, ambas em 390 px.*
+*Aba Térreo e página da Suíte, ambas em 390 px.*
 
 O layout usa a view `sections` nativa do Home Assistant: as colunas se
 reorganizam sozinhas conforme a largura — 4 no desktop, 1 no celular, sem media
@@ -114,28 +180,33 @@ buracos em vez de deixar espaço morto.
 
 ```
 config/comodos.yaml         <- o ÚNICO arquivo que você edita
-config/casa_exemplo.yaml    <- casa fictícia usada só pela pré-visualização
+config/casa_exemplo.yaml    <- sua casa, para a pré-visualização (tools/descobrir.py)
 tools/gerar_painel.py       <- gera o dashboard a partir do config
 tools/validar.py            <- confere o YAML gerado antes de colar no HA
+tools/conferir_blocos.py    <- mostra que luminárias caíram em cada bloco
+tools/descobrir.py          <- levanta os entity_id reais da sua casa
 tools/preview.py            <- desenha o painel e tira fotos dele
-tools/ha_mock.py            <- simulação do HA usada pela pré-visualização
+tools/ha_mock.py            <- simulação do HA usada pelas ferramentas acima
 tools/extrair_icones.py     <- vendora os ícones MDI usados (offline)
 dashboards/painel-novo.yaml <- GERADO. não edite à mão
-packages/painel_novo.yaml   <- script de apoio (alternância inteligente)
+packages/painel_novo.yaml   <- script de apoio (OBRIGATÓRIO com blocos partidos)
 docs/INSTALACAO.md          <- passo a passo de instalação
 ```
 
 ## Uso
 
 ```bash
-$EDITOR config/comodos.yaml               # 1. edite os cômodos
+python3 tools/descobrir.py                # 0. levante seus entity_id (uma vez)
+$EDITOR config/comodos.yaml               # 1. edite pavimentos e blocos
 python3 tools/gerar_painel.py             # 2. gere o painel
 python3 tools/validar.py                  # 3. confira o YAML
-python3 tools/preview.py --metricas       # 4. veja e meça, sem instalar nada
+python3 tools/conferir_blocos.py          # 4. confira as separações
+python3 tools/preview.py --metricas       # 5. veja e meça, sem instalar nada
 ```
 
-`config/comodos.yaml` só pede, por cômodo, o **nome exato da área** e um ícone.
-Cor, temperatura, umidade, grupo de luz e entidades extras são opcionais.
+`config/comodos.yaml` pede, por bloco, um **nome** e a **área** do Home
+Assistant. Cor, ícone, temperatura, umidade, filtros de luz e entidades extras
+são opcionais.
 
 ### Ver antes de instalar
 

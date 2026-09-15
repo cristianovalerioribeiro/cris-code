@@ -129,11 +129,25 @@ class Casa:
             eid = alvo.entity_id if isinstance(alvo, Entidade) else str(alvo)
             return re.match(padrao, eid) is not None
 
+        def state_attr(eid, atributo):
+            ent = self.por_id.get(eid)
+            if ent is None:
+                return None
+            fixos = {
+                "friendly_name": ent.name,
+                "unit_of_measurement": ent.unidade or None,
+                "device_class": ent.classe or None,
+                "current_position": ent.attributes.get("posicao"),
+                "supported_color_modes": (["brightness"] if ent.dimeriza else ["onoff"]),
+            }
+            if atributo in fixos:
+                return fixos[atributo]
+            return ent.attributes.get(atributo)
+
         env.globals["area_entities"] = self.area_entities
         env.globals["states"] = self.states
-        env.globals["state_attr"] = lambda e, a: (
-            self.por_id[e].attributes.get(a) if e in self.por_id else None
-        )
+        env.globals["state_attr"] = state_attr
+        env.globals["areas"] = lambda: sorted({e.area for e in self.entidades})
         env.globals["area_name"] = lambda a: a
         for nome, fn in (("is_state", is_state), ("match", combina)):
             env.tests[nome] = fn

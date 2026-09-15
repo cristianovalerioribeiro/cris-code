@@ -444,8 +444,9 @@ def fotografar(htmls: dict[Path, int], destino: Path) -> list[Path]:
     return feitas
 
 
-ALVOS_PADRAO = [("casa", 1440), ("casa", 820), ("casa", 390),
-                ("luzes", 390), ("sala-de-estar", 390)]
+ALVOS_PADRAO = [("terreo", 1440), ("terreo", 820), ("terreo", 390),
+                ("2o-pav-intimo", 1440), ("2o-pav-escritorio", 1440),
+                ("casa", 1440), ("suite", 390)]
 
 # Mede quanto de cada coluna fica vazio. Blocos de comodo nao se dividem entre
 # colunas, entao comodos de tamanhos muito diferentes deixam sobra no pe das
