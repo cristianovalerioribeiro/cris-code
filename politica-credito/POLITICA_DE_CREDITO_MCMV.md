@@ -7,6 +7,13 @@
 > saldo com a Caixa **só no fim da obra (repasse na chave)**, ~12 a 18 meses
 > depois da venda.
 
+> **Versões para uso no dia a dia (Word):**
+> [`Previa_Politica_de_Credito.docx`](Previa_Politica_de_Credito.docx) — regra
+> rápida com limites em reais, tipos de dívida e bloqueios; e
+> [`Termo_de_Responsabilidade.docx`](Termo_de_Responsabilidade.docx) — termo
+> para o cliente assinar. A regra rápida em reais da prévia é a triagem; a matriz
+> de pontos da seção 4 abaixo é o detalhamento para os casos de fronteira.
+
 ---
 
 ## 1. O problema, em uma frase
