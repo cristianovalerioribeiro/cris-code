@@ -6,7 +6,7 @@ const E = { green: '548235', yellow: 'BF9000', orange: 'C55A11', red: 'C00000', 
 
 const politica = {
   file: 'Politica_de_Credito_MCMV',
-  footer: 'Política de Crédito MCMV · v2',
+  footer: 'Política de Crédito MCMV · v3',
   blocks: [
     { t: 'banner', title: 'Política de Crédito', sub: 'Vendas Minha Casa Minha Vida · entrada durante a obra · financiamento Caixa na entrega das chaves' },
 
@@ -26,7 +26,7 @@ const politica = {
         { color: 'green', cells: ['Sem restrição', '—', '—', '**Assina.** Acompanhamento normal.'] },
         { color: 'green', cells: ['Leve', 'até R$ 1.000', 'até metade da renda', '**Assina com o Termo.** 60 dias para limpar.'] },
         { color: 'yellow', cells: ['Moderada', 'R$ 1.001 a R$ 3.000', 'até 1 renda', 'Dívida de loja/conta: **assina com o Termo**, 90 dias.\nDívida de banco: **só reserva** até quitar.'] },
-        { color: 'orange', cells: ['Alta', 'R$ 3.001 a R$ 6.000', 'até 2 rendas', '**Não assina.** Reserva por 60 dias; assina só depois de quitar e nova análise Caixa.'] },
+        { color: 'orange', cells: ['Alta', 'R$ 3.001 a R$ 6.000', 'até 2 rendas', '**Não assina.** Reserva por 60 dias (sinal devolvido se o crédito não sair); assina só depois de quitar e nova análise Caixa.'] },
         { color: 'red', cells: ['Grave', 'acima de R$ 6.000', 'mais de 2 rendas', '**Não vende.** Orienta e reavalia em 6 meses.'] },
       ] },
     { t: 'cards', items: [
@@ -56,18 +56,17 @@ const politica = {
     { t: 'tiles', items: [
       { big: '30%', label: 'Parcela do financiamento Caixa', color: 'blue' },
       { big: '25%', label: 'Durante a obra: entrada + acordos de dívida', color: 'blue' },
-      { big: '35%', label: 'Nas chaves: Caixa + saldo da entrada + acordos + empréstimos + cartão', color: 'blue' },
+      { big: '35%', label: 'Nas chaves: Caixa + entrada + acordos + empréstimos + cartão. Dívidas de banco acima de 6 rendas: só com comitê', color: 'blue' },
     ] },
-    { t: 'small', text: 'Dívidas de banco em dia somando mais de 6 vezes a renda: cliente alavancado demais, só com aprovação do comitê.' },
 
     { t: 'h', text: '6. A rotina, do atendimento às chaves' },
     { t: 'table', widths: [22, 78], head: ['Quando', 'O que fazer'], boldFirst: true,
       rows: [
         { cells: ['Atendimento', 'Perguntar: renda e como comprova · já teve imóvel/financiamento · dívidas e com quem · algo com a Caixa. Cliente gera o **Registrato** (Banco Central) no celular pelo gov.br.'] },
         { cells: ['Até 5 dias', 'Consulta Serasa/SPC + Registrato + **SICAQ** no correspondente Caixa. Classificar pelas seções 1 a 5.'] },
-        { cells: ['Assinatura', 'Contrato + **Termo de Responsabilidade** com as dívidas e o prazo de cada uma.'] },
+        { cells: ['Assinatura', 'Contrato + **Termo de Responsabilidade** com as dívidas e o prazo de cada uma. Entregar ao cliente o resultado da análise prévia. Assinado em estande ou fora da sede: respeitar os **7 dias de arrependimento**.'] },
         { color: 'gray', cells: ['Durante a obra', 'Com restrição: consulta **todo mês** até limpar, depois a cada 3 meses. Sem restrição: a cada **6 meses**. Atraso de mais de 15 dias na entrada: consulta na hora.'] },
-        { color: 'gray', cells: ['Restrição nova', 'Aviso por escrito → **30 dias** → mais **30 dias** e reunião → comitê decide.'] },
+        { color: 'gray', cells: ['Restrição nova', 'Aviso por escrito → **30 dias** → mais **30 dias** e reunião → comitê decide. Para desfazer o contrato: **notificação judicial ou por cartório (RTD) com 15 dias** para regularizar.'] },
         { color: 'blue', cells: ['180 dias antes', 'Consulta de todos os clientes.'] },
         { color: 'blue', cells: ['120 dias antes', '**Nova SICAQ para todos.**'] },
         { color: 'blue', cells: ['90 dias antes', 'Quem não vai passar: outro comprador para somar renda, unidade menor, mais entrada/FGTS, cessão ou distrato.'] },
@@ -81,85 +80,16 @@ const politica = {
         { cells: ['Alta (reserva)', 'Coordenador, e contrato só após nova SICAQ'] },
         { cells: ['Exceção a esta política', 'Comitê (comercial + financeiro + diretoria), por escrito, no máximo 2% das unidades'] },
       ] },
-    { t: 'small', text: 'Teto da carteira: no máximo 20% das unidades vendidas com Termo de Responsabilidade em aberto.' },
+    { t: 'small', text: 'Teto da carteira: no máximo 20% das unidades vendidas com Termo em aberto. A classificação é apoio: a decisão é sempre de uma pessoa, e o cliente pode pedir revisão (LGPD, art. 20).' },
 
-    { t: 'h', text: '8. Antes de adotar' },
+    { t: 'h', text: '8. Cuidados jurídicos' },
     { t: 'bullets', items: [
-      'Os valores em reais são ponto de partida: calibrar após os primeiros 50 repasses.',
-      'Confirmar com o correspondente Caixa o tratamento atual de prejuízo antigo e da restrição interna da Caixa.',
-      'Revisão jurídica do contrato, do quadro-resumo (Lei 13.786/2018) e do Termo.',
-      'Definir patrimônio de afetação: permite reter até 50% no distrato por culpa do comprador (sem ele, 25%).',
+      'Valores em reais são ponto de partida: calibrar após 50 repasses.',
+      'Retenção no distrato: 25% sem afetação; até 50% com afetação, **em julgamento no STJ** (Temas 1.464 a 1.466) — projetar com 25%.',
     ] },
   ],
 };
 
-const blank = '_______________________';
-const termo = {
-  file: 'Termo_de_Responsabilidade',
-  footer: 'Termo de Responsabilidade · rubricas: ________  ________',
-  blocks: [
-    { t: 'banner', title: 'Termo de Responsabilidade', sub: 'Compromisso de manter o nome limpo até o financiamento · anexo ao contrato de compra da unidade' },
+const { termo, parecer } = require('./termo_parecer');
 
-    { t: 'form', rows: [
-      [['Comprador(a) 1', ''], ['Comprador(a) 2', '']],
-      [['CPF', ''], ['CPF', '']],
-      [['RG', ''], ['RG', '']],
-      [['Endereço', ''], ['Endereço', '']],
-      [['WhatsApp', ''], ['WhatsApp', '']],
-      [['E-mail', ''], ['E-mail', '']],
-    ], head: true },
-    { t: 'form', rows: [
-      [['Vendedora', ''], ['CNPJ', '']],
-      [['Empreendimento', ''], ['Unidade / bloco', '']],
-      [['Contrato nº', ''], ['Previsão das chaves', '___/___/______']],
-    ] },
-    { t: 'small', text: 'Havendo dois compradores, tudo o que está neste Termo vale para os dois, que respondem juntos (solidariamente).' },
-
-    { t: 'h', text: '1. Estou ciente de que' },
-    { t: 'numlist', items: [
-      'O saldo do imóvel será pago com **financiamento da Caixa Econômica Federal**, pelo Minha Casa Minha Vida, **depois que a obra ficar pronta**.',
-      '**Quem aprova o financiamento é só a Caixa**, na data da assinatura. Para isso preciso estar **sem restrições no nome**, com renda compatível e dentro das regras do programa. A vendedora **não garante** a aprovação.',
-      '**Dívidas com a própria Caixa** e dívidas de banco registradas no Banco Central podem impedir o financiamento **mesmo depois de pagas**.',
-    ] },
-
-    { t: 'h', text: '2. Minhas dívidas hoje' },
-    { t: 'p', text: '(   )  **Não tenho** nenhuma restrição no nome.' },
-    { t: 'p', text: '(   )  Tenho **somente** as restrições abaixo:' },
-    { t: 'table', widths: [30, 26, 14, 14, 16], head: ['Credor', 'Tipo', 'Valor (R$)', 'Desde', 'Limpar até'], rows: [
-      { cells: [' ', ' ', ' ', ' ', ' '] }, { cells: [' ', ' ', ' ', ' ', ' '] }, { cells: [' ', ' ', ' ', ' ', ' '] },
-    ] },
-    { t: 'small', text: 'Tipo: negativação (Serasa/SPC), protesto, banco, cheque ou governo. Esconder dívida ou informar errado é descumprimento deste Termo.' },
-
-    { t: 'h', text: '3. Eu me comprometo a' },
-    { t: 'numlist', items: [
-      '**Limpar as dívidas acima até a data indicada** e entregar o comprovante de pagamento e da baixa.',
-      '**Manter o nome limpo** até assinar o financiamento com a Caixa.',
-      '**Avisar antes** de fazer empréstimo, financiamento (inclusive de carro), crediário, cartão novo ou ser fiador — e não comprometer mais de **35% da renda** da família com parcelas, contando a futura parcela da Caixa.',
-      '**Pagar a entrada em dia.**',
-      '**Avisar em até 15 dias** se mudar de emprego, renda, estado civil, endereço ou telefone.',
-      '**Não comprar outro imóvel** nem fazer outro financiamento habitacional até receber as chaves.',
-      '**Entregar os documentos** pedidos, inclusive o Registrato do Banco Central, em até 10 dias.',
-    ] },
-
-    { t: 'h', text: '4. Autorizo' },
-    { t: 'p', text: 'A vendedora e o correspondente Caixa indicado por ela a **consultar meu nome** (Serasa, SPC, cartórios, Receita) e a enviar meus dados para a **análise de crédito da Caixa**, hoje e **periodicamente até o financiamento**, só para acompanhar a aprovação deste imóvel, conforme a LGPD (Lei 13.709/2018).' },
-
-    { t: 'h', text: '5. Se aparecer restrição' },
-    { t: 'steps', items: [
-      { title: 'Aviso', body: 'por WhatsApp, e-mail ou carta' },
-      { title: '30 dias', body: 'para limpar o nome' },
-      { title: '+30 dias', body: 'último prazo, com reunião' },
-      { title: 'Solução', body: 'outro comprador, unidade menor, mais entrada/FGTS ou cessão' },
-    ] },
-    { t: 'small', text: 'Faltando menos de 120 dias para as chaves, os prazos caem pela metade. Avisos para os contatos deste Termo são válidos: devo mantê-los atualizados.' },
-
-    { t: 'h', text: '6. Se eu não cumprir' },
-    { t: 'callout', color: 'red', text: 'Se eu descumprir este Termo e isso impedir o financiamento, **a culpa é minha (inadimplemento do comprador)** e o contrato pode ser desfeito conforme o **quadro-resumo** e a **Lei 13.786/2018** (Lei do Distrato). Se a vendedora tolerar algum atraso, isso não é renúncia aos seus direitos.' },
-
-    { t: 'p', text: '**Li este Termo, tirei minhas dúvidas, recebi uma via e rubriquei todas as páginas.**' },
-    { t: 'p', text: 'Local e data: ______________________________, ___/___/______' },
-    { t: 'sign', names: [['Comprador(a) 1', 'CPF'], ['Comprador(a) 2', 'CPF'], ['Vendedora', 'CNPJ'], ['', ''], ['Testemunha 1', 'CPF'], ['Testemunha 2', 'CPF']] },
-  ],
-};
-
-module.exports = { C, E, docs: [politica, termo] };
+module.exports = { C, E, docs: [politica, termo, parecer] };

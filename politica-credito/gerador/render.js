@@ -157,9 +157,9 @@ function toHtml(b) {
 }
 
 const CSS = `
-@page { size: A4; margin: 15mm 15mm 16mm 15mm; }
+@page { size: A4; margin: 12mm 15mm 14mm 15mm; }
 * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-body { font-family: Arial, Helvetica, sans-serif; font-size: 9.5pt; color: #1a1a1a; line-height: 1.3; margin: 0; }
+body { font-family: Arial, Helvetica, sans-serif; font-size: 9.3pt; color: #1a1a1a; line-height: 1.28; margin: 0; }
 .banner { background: #${C.navy}; color: #fff; padding: 12px 16px; margin-bottom: 10px; }
 .bt { font-size: 18pt; font-weight: bold; } .bs { font-size: 9pt; color: #D9E1F2; margin-top: 3px; }
 h2 { font-size: 12pt; color: #${C.navy}; border-bottom: 1.5px solid #${C.navy}; padding-bottom: 3px; margin: 12px 0 6px; break-after: avoid; }

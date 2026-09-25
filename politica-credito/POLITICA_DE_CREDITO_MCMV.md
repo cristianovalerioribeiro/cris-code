@@ -9,7 +9,8 @@
 
 > **Versões para uso no dia a dia (Word e PDF):**
 > `Politica_de_Credito_MCMV.docx/.pdf` — política resumida em 2 páginas; e
-> `Termo_de_Responsabilidade.docx/.pdf` — termo para o cliente assinar.
+> `Termo_de_Responsabilidade.docx/.pdf` — termo para o cliente assinar (v3,
+> revisado); e `Parecer_Revisao_Juridica.docx/.pdf` — revisão jurídica dos dois.
 > Este arquivo é a versão completa, com a matriz de pontos (seção 4) para os
 > casos de fronteira e as fontes da pesquisa.
 
@@ -238,7 +239,7 @@ em risco):
 
 - **Verde:** contrato padrão + autorização de monitoramento.
 - **Amarelo:** contrato + **Termo de Compromisso de Regularização Cadastral**
-  (modelo em [`TERMO_COMPROMISSO_REGULARIZACAO.md`](TERMO_COMPROMISSO_REGULARIZACAO.md))
+  (modelo em `Termo_de_Responsabilidade.docx`)
   com a lista exata das restrições, prazo de 90 dias e obrigação de manter o nome
   limpo até o repasse.
 - **Laranja:** apenas **reserva/proposta** com sinal pequeno e prazo de 60 dias.
@@ -343,9 +344,13 @@ cláusulas.
 - A lei exige **quadro-resumo** com as condições de desfazimento.
 - Retenção máxima em distrato por culpa do comprador: **25%** dos valores pagos;
   **até 50%** se o empreendimento tiver **patrimônio de afetação** averbado na
-  matrícula **e** a cláusula estiver expressa e destacada no quadro-resumo (o
-  STJ validou os 50% nesse cenário). Recomenda-se instituir patrimônio de
-  afetação.
+  matrícula **e** a cláusula estiver expressa e destacada no quadro-resumo. A
+  4ª Turma do STJ valida os 50% nesse cenário, mas há decisões da 3ª Turma
+  limitando a 25% em relação de consumo, e a 2ª Seção afetou o tema ao rito
+  repetitivo (Temas 1.464 a 1.466, jun/2026). Nas projeções, usar 25%.
+- **Desfazimento por inadimplemento:** exige notificação judicial ou pelo
+  Registro de Títulos e Documentos, com 15 dias para purgar a mora (Decreto-Lei
+  745/1969, art. 1º). Aviso por WhatsApp/e-mail serve só para a rotina.
 - **Ponto de atenção:** há jurisprudência entendendo que a **negativa de
   financiamento por fato alheio à vontade das partes** justifica rescisão
   **sem culpa do comprador** — o que pode levar à devolução integral. Por isso a
