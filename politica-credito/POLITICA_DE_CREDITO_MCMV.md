@@ -7,12 +7,11 @@
 > saldo com a Caixa **só no fim da obra (repasse na chave)**, ~12 a 18 meses
 > depois da venda.
 
-> **Versões para uso no dia a dia (Word):**
-> [`Previa_Politica_de_Credito.docx`](Previa_Politica_de_Credito.docx) — regra
-> rápida com limites em reais, tipos de dívida e bloqueios; e
-> [`Termo_de_Responsabilidade.docx`](Termo_de_Responsabilidade.docx) — termo
-> para o cliente assinar. A regra rápida em reais da prévia é a triagem; a matriz
-> de pontos da seção 4 abaixo é o detalhamento para os casos de fronteira.
+> **Versões para uso no dia a dia (Word e PDF):**
+> `Politica_de_Credito_MCMV.docx/.pdf` — política resumida em 2 páginas; e
+> `Termo_de_Responsabilidade.docx/.pdf` — termo para o cliente assinar.
+> Este arquivo é a versão completa, com a matriz de pontos (seção 4) para os
+> casos de fronteira e as fontes da pesquisa.
 
 ---
 
