@@ -66,7 +66,7 @@ const politica = {
         { cells: ['Até 5 dias', 'Consulta Serasa/SPC + Registrato + **SICAQ** no correspondente Caixa. Classificar pelas seções 1 a 5.'] },
         { cells: ['Assinatura', 'Contrato + **Termo de Responsabilidade** com as dívidas e o prazo de cada uma. Entregar ao cliente o resultado da análise prévia. Assinado em estande ou fora da sede: respeitar os **7 dias de arrependimento**.'] },
         { color: 'gray', cells: ['Durante a obra', 'Com restrição: consulta **todo mês** até limpar, depois a cada 3 meses. Sem restrição: a cada **6 meses**. Atraso de mais de 15 dias na entrada: consulta na hora.'] },
-        { color: 'gray', cells: ['Restrição nova', 'Aviso por escrito → **30 dias** → mais **30 dias** e reunião → comitê decide. Para desfazer o contrato: **notificação judicial ou por cartório (RTD) com 15 dias** para regularizar.'] },
+        { color: 'gray', cells: ['Restrição nova', 'Aviso → **30 dias** (15 perto das chaves) → comitê: nova chance, soluções ou **notificação por cartório, 15 dias**.'] },
         { color: 'blue', cells: ['180 dias antes', 'Consulta de todos os clientes.'] },
         { color: 'blue', cells: ['120 dias antes', '**Nova SICAQ para todos.**'] },
         { color: 'blue', cells: ['90 dias antes', 'Quem não vai passar: outro comprador para somar renda, unidade menor, mais entrada/FGTS, cessão ou distrato.'] },

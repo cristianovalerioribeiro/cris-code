@@ -9,8 +9,8 @@
 
 > **Versões para uso no dia a dia (Word e PDF):**
 > `Politica_de_Credito_MCMV.docx/.pdf` — política resumida em 2 páginas; e
-> `Termo_de_Responsabilidade.docx/.pdf` — termo para o cliente assinar (v3,
-> revisado); e `Parecer_Revisao_Juridica.docx/.pdf` — revisão jurídica dos dois.
+> `Termo_de_Responsabilidade.docx/.pdf` — termo para o cliente assinar (v4,
+> versão rigorosa); e `Parecer_Revisao_Juridica.docx/.pdf` — revisão jurídica dos dois.
 > Este arquivo é a versão completa, com a matriz de pontos (seção 4) para os
 > casos de fronteira e as fontes da pesquisa.
 
@@ -272,14 +272,16 @@ pedido ao cliente):
 
 ### 5.7 Gatilhos de escalonamento (restrição nova durante a obra)
 
-1. **Dia 0** — detectada restrição nova: contato com o cliente (telefone +
-   WhatsApp + e-mail) e **notificação formal** com prazo de **30 dias**.
-2. **Dia 30** — sem baixa: segunda notificação, reunião presencial, proposta de
-   ajuda (encaminhar para Serasa Limpa Nome ou Desenrola, quando houver edição
-   vigente). Novo prazo de 30 dias.
-3. **Dia 60** — sem baixa: caso vai ao comitê, que decide entre as saídas da
-   seção 6.
-4. Se faltar menos de **120 dias** para o habite-se, os prazos caem pela metade.
+1. **Dia 0** — detectada restrição nova: aviso ao cliente pelos contatos do
+   Termo (telefone + WhatsApp + e-mail), com prazo de **30 dias** para
+   regularizar. Encaminhar para Serasa Limpa Nome ou Desenrola, quando houver.
+2. **Dia 30** — sem baixa: o comitê decide entre nova chance, as saídas da
+   seção 6 (sem obrigação de oferecê-las) ou a **notificação formal** (judicial
+   ou por cartório de Títulos e Documentos) com 15 dias para pagar ou
+   regularizar, que abre caminho para o desfazimento.
+3. Faltando menos de **120 dias** para o habite-se, o prazo do aviso cai para
+   15 dias.
+
 
 ---
 
