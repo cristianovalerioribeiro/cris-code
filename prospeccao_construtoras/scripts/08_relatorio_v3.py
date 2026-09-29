@@ -134,7 +134,7 @@ ul{margin:0;padding-left:0;list-style:none}li{margin:1px 0}.pes li{font-size:12.
 .tag{font-size:10.5px;color:var(--mut)}.ok{color:var(--ok);font-weight:700}.rf{font:600 10px var(--mono);color:var(--mut);border:1px solid var(--bd);border-radius:3px;padding:0 3px}
 .obras{margin:0;font-size:12.5px}.al{color:var(--pa);font-size:11.5px;margin:6px 0 0}.intro p{margin:4px 0;max-width:80ch}
 @media (max-width:760px){.grid,.cols{grid-template-columns:1fr}table{display:block;overflow-x:auto}.thumb{width:104px}}
-@page{size:A4;margin:9mm}@media print{a.src{display:none}main{padding:0}body{font-size:12px}.grid{gap:8px}}
+@page{size:A4;margin:9mm}@media print{a.src{display:none}main{padding:0}body{font-size:11px}.grid{gap:6px;grid-template-columns:repeat(2,minmax(0,1fr))}.cols{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}.thumb{width:96px}.card{padding:7px 9px}h2{font-size:13.5px}.pes li,.obras,.res{font-size:11px}}
 """
 FONTES = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700'
           '&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap">')
