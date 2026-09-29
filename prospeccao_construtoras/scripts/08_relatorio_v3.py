@@ -19,7 +19,8 @@ def fonte(u): return f' <a class="src" href="{e(u)}">↗</a>' if isinstance(u, s
 def site_link(u):
     if not u: return ""
     h = u if u.startswith("http") else "https://" + u
-    return f'<a href="{e(h)}">{e(re.sub(r"^https?://(www\\.)?", "", u).rstrip("/"))}</a>'
+    t = re.sub(r"^https?://(www\.)?", "", u).rstrip("/")
+    return f'<a href="{e(h)}">{e(t)}</a>'
 
 def juntar(x):
     p = {}
@@ -41,12 +42,16 @@ def juntar(x):
             fo[d] = dict(numero=y.get("numero"), tipo=y.get("tipo") or "", conf=bool(y.get("confirmado")), fonte=y.get("fonte"))
     for n in x["fixos"]:
         fo.setdefault(dig(n)[-8:], dict(numero=n, tipo="fixo", conf=False, fonte=""))
+    raizes = {re.sub(r"^https?://(www\.)?", "", u or "").split("/")[0].split(".")[0] for u in ((p.get("site") or {}).get("url"), x["dominio"])} - {""}
+    em = {k: y for k, y in em.items() if y["conf"] or k.split("@")[-1].split(".")[0] in raizes}   # outro dominio so se publicado
     em = sorted(em.values(), key=lambda y: (not y["conf"], y["area"] in ("financeiro", "outro", "Receita")))
     fo = sorted(fo.values(), key=lambda y: (not y["conf"], y["tipo"] != "fixo"))
     obras = [o for o in (p.get("empreendimentos_ativos") or []) if o.get("nome")]
     site = p.get("site") or {}
     pts = 2 * bool(site.get("confirmado")) + 2 * any(y["conf"] for y in em) + 2 * any(y["conf"] and y["tipo"] in ("fixo", "0800") for y in fo) \
           + bool(obras) + bool((p.get("decisor") or {}).get("nome"))
+    if any(re.search(r"contador|reclame aqui[^;]*nota [0-4][,.]", str(a), re.I) for a in p.get("alertas") or []):
+        pts -= 2                                                        # contato de contador ou reputacao ruim
     nivel = "Alta" if pts >= 7 else "Média" if pts >= 4 else "Baixa"
     return dict(x=x, p=p, em=em, fo=fo, obras=obras, site=site.get("url") or x["dominio"], site_ok=site.get("confirmado"),
                 pts=pts, nivel=nivel, marca=p.get("marca") or x["nome"].title())
@@ -115,7 +120,8 @@ def main():
     linhas = []
     for n, i in enumerate(itens, 1):
         em = next((y["email"] for y in i["em"] if y["conf"]), i["em"][0]["email"] if i["em"] else "")
-        fo = next((y["numero"] for y in i["fo"] if y["conf"]), i["fo"][0]["numero"] if i["fo"] else "")
+        fo = next((y["numero"] for y in i["fo"] if y["conf"] and y["tipo"] in ("fixo", "0800")),
+                  next((y["numero"] for y in i["fo"] if y["tipo"] == "fixo"), i["fo"][0]["numero"] if i["fo"] else ""))
         linhas.append(f'<tr><td>{n}</td><td><a href="#{e(i["x"]["dominio"])}"><b>{e(i["marca"])}</b></a></td><td>{site_link(i["site"])}</td>'
                       f'<td class="mono">{e(em)}</td><td class="mono">{e(fo)}</td><td>{len(i["obras"])}</td><td>{e(i["nivel"])}</td></tr>')
     alta = sum(i["nivel"] == "Alta" for i in itens); em_c = sum(any(y["conf"] for y in i["em"]) for i in itens)
