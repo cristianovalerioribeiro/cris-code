@@ -5,11 +5,12 @@ Funciona em qualquer computador com internet:
     pip install playwright
     python -m playwright install chromium
     python 09_capturar_sites.py
+    (na nuvem do Claude Code: CHROMIUM_PATH=/opt/pw-browsers/chromium python 09_capturar_sites.py)
 
 As imagens vao para fichas_v3/img/<dominio>.jpg (ou para a pasta passada como
 argumento). Depois, rode 08_relatorio_v3.py para colocar as imagens nos cartoes.
 Sites fora do ar ficam registrados em status_sites.json."""
-import json, sys
+import json, os, sys
 from datetime import datetime
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -50,7 +51,7 @@ def main():
     pasta.mkdir(parents=True, exist_ok=True)
     status = {}
     with sync_playwright() as pw:
-        nav = pw.chromium.launch()
+        nav = pw.chromium.launch(executable_path=os.environ.get("CHROMIUM_PATH") or None)
         for dom, url in SITES.items():
             pag = nav.new_page(viewport={"width": 1366, "height": 854}, locale="pt-BR")
             try:
