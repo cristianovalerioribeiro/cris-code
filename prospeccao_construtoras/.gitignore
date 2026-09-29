@@ -1,0 +1,8 @@
+# Repositorio publico: dados de socios, contatos e lista de alvos ficam fora do Git.
+dados/
+fichas/
+*.pdf
+fichas_v2/
+*.xlsx
+fichas_v3/
+*.zip
