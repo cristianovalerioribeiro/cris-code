@@ -56,66 +56,91 @@ def juntar(x):
     return dict(x=x, p=p, em=em, fo=fo, obras=obras, site=site.get("url") or x["dominio"], site_ok=site.get("confirmado"),
                 pts=pts, nivel=nivel, marca=p.get("marca") or x["nome"].title())
 
+AJ = json.load(open(R / "dados/v3/ajustes.json")) if (R / "dados/v3/ajustes.json").exists() else {}
+
+def img(dom):
+    """Print da home (fichas_v3/img/<dominio>.jpg), gerado por 09_capturar_sites.py."""
+    import base64
+    f = OUT / "img" / f"{dom}.jpg"
+    if f.exists():
+        return f'<img class="thumb" alt="Página inicial de {e(dom)}" src="data:image/jpeg;base64,{base64.b64encode(f.read_bytes()).decode()}">'
+    return f'<div class="thumb vazio"><span>imagem do site<br>pendente</span></div>'
+
+def pessoas(i):
+    x, p = i["x"], i["p"]
+    lst = list((AJ.get(x["dominio"]) or {}).get("pessoas") or [])
+    dec = p.get("decisor") or {}
+    if dec.get("nome") and not any(dec["nome"].split()[0].lower() == y["nome"].split()[0].lower() for y in lst):
+        lst.append(dict(nome=dec["nome"], cargo=dec.get("cargo"), linkedin=dec.get("linkedin"), email="", email_status="", fonte=dec.get("fonte")))
+    out = []
+    for y in lst[:2]:
+        partes = [f'<b>{e(y["nome"])}</b>', e(y.get("cargo"))]
+        if y.get("email"): partes.append(f'<span class="mono">{e(y["email"])}</span> <span class="tag">{e(y.get("email_status"))}</span>')
+        elif y.get("email_status"): partes.append(f'<span class="tag">{e(y["email_status"])}</span>')
+        if str(y.get("linkedin", "")).startswith("http"): partes.append(f'<a href="{e(y["linkedin"])}">LinkedIn</a>')
+        out.append("<li>" + " · ".join(z for z in partes if z) + fonte(y.get("fonte")) + "</li>")
+    if not out:
+        out.append(f'<li class="mut">Sem decisor público; sócios na Receita: {e(", ".join(x["socios_pf"][:3]).title())}</li>')
+    return "".join(out)
+
 def cartao(i, n):
     x, p = i["x"], i["p"]
-    dec = p.get("decisor") or {}
-    em = "".join(f'<li><span class="mono">{e(y["email"])}</span> <span class="tag">{e(y["area"])}</span>'
-                 f'{" <span class=ok>✔ publicado</span>" if y["conf"] else " <span class=mut>Receita</span>"}{fonte(y["fonte"])}</li>' for y in i["em"][:6])
-    fo = "".join(f'<li><span class="mono">{e(y["numero"])}</span> <span class="tag">{e(y["tipo"])}</span>'
-                 f'{" <span class=ok>✔ publicado</span>" if y["conf"] else " <span class=mut>Receita</span>"}{fonte(y["fonte"])}</li>' for y in i["fo"][:4])
-    ob = "".join(f'<li><b>{e(o.get("nome"))}</b> · {e(", ".join(z for z in (o.get("bairro"), o.get("cidade")) if z))}'
-                 f' · {e((o.get("status") or "").replace("_", " "))}'
-                 f'{(" · " + e(o.get("unidades")) + " unid.") if o.get("unidades") else ""}{(" · " + e(o.get("preco_ou_m2"))) if o.get("preco_ou_m2") else ""}'
-                 f'{fonte(o.get("fonte"))}</li>' for o in i["obras"][:6])
+    chip = lambda y: '<span class="ok">✔</span>' if y["conf"] else '<span class="rf" title="só no cadastro da Receita">R</span>'
+    em = "".join(f'<li>{chip(y)} <span class="mono">{e(y["email"])}</span>{fonte(y["fonte"])}</li>' for y in i["em"][:3])
+    fo = "".join(f'<li>{chip(y)} <span class="mono">{e(y["numero"])}</span> <span class="tag">{e(y["tipo"])}</span></li>' for y in i["fo"][:3])
+    ob = " · ".join(f'<b>{e(o.get("nome"))}</b> <span class="mut">({e(o.get("bairro") or o.get("cidade") or "local n/d")}{", " + e(o.get("unidades")) + " un." if o.get("unidades") else ""})</span>{fonte(o.get("fonte"))}'
+                    for o in i["obras"][:4])
     if not ob:
-        ob = "".join(f'<li class="mut">SPE {e(s["razao"])} · {e(s["bairro"])} · {e(s["ano"])}</li>' for s in x["spes_recentes"][:4])
-        ob = ('<li class="mut">Sem obra ativa confirmada na web; SPEs recentes na Receita:</li>' + ob) if ob else ""
-    al = "; ".join(e(a) for a in (p.get("alertas") or [])[:2])
+        ob = '<span class="mut">sem obra ativa confirmada; SPEs recentes: ' + e(", ".join(f'{s["bairro"]} {s["ano"]}' for s in x["spes_recentes"][:3])) + "</span>"
+    nota = (AJ.get(x["dominio"]) or {}).get("nota") or p.get("resumo") or ""
+    al = (p.get("alertas") or [""])[0]
     return f"""<article class="card" id="{e(x['dominio'])}">
- <header><span class="n">{n:02d}</span><h2>{e(i['marca'])}</h2><span class="nv {i['nivel'].lower()}">{i['nivel']}</span></header>
- <p class="sub">{site_link(i['site'])}{' ✔' if i['site_ok'] else ''} · {e(p.get('segmento') or x['segmento'])} · {x['n_spe']} SPEs, {x['spe_desde_2023']} desde 2023</p>
- {f'<p class="res">{e(p.get("resumo"))}</p>' if p.get('resumo') else ''}
- <div class="cols">
-  <div><h3>E-mails</h3><ul>{em or '<li class="mut">—</li>'}</ul></div>
-  <div><h3>Telefones</h3><ul>{fo or '<li class="mut">—</li>'}</ul>
-   <h3>Quem procurar</h3><p>{('<b>' + e(dec.get('nome')) + '</b> · ' + e(dec.get('cargo'))) if dec.get('nome') else '<span class="mut">sócios: ' + e(', '.join(x['socios_pf'][:3]).title()) + '</span>'}
-   {(' · <a href="' + e(dec.get('linkedin')) + '">LinkedIn</a>') if str(dec.get('linkedin', '')).startswith('http') else ''}</p>
-   {f'<p class="mut">{e((p.get("endereco") or {}).get("texto"))}</p>' if (p.get("endereco") or {}).get("texto") else ''}</div>
- </div>
- <h3>Obras ativas</h3><ul class="obras">{ob or '<li class="mut">—</li>'}</ul>
- {f'<p class="al">⚠ {al}</p>' if al else ''}
+ <div class="topo">{img(x['dominio'])}
+  <div class="id"><div class="l1"><span class="n">{n:02d}</span><h2>{e(i['marca'])}</h2><span class="nv {i['nivel'].lower()}">{i['nivel']}</span></div>
+   <p class="sub">{site_link(i['site'])} · {e(p.get('segmento') or x['segmento'])} · {x['spe_desde_2023']} SPEs desde 2023</p>
+   {f'<p class="res">{e(nota)}</p>' if nota else ''}</div></div>
+ <h3>Contato direto</h3><ul class="pes">{pessoas(i)}</ul>
+ <div class="cols"><div><h3>E-mails</h3><ul>{em or '<li class="mut">—</li>'}</ul></div>
+  <div><h3>Telefones</h3><ul>{fo or '<li class="mut">—</li>'}</ul></div></div>
+ <h3>Obras ativas</h3><p class="obras">{ob}</p>
+ {f'<p class="al">⚠ {e(al)}</p>' if al else ''}
 </article>"""
 
 CSS = """
-/* Layout: tabela-resumo no topo; um cartao compacto por construtora, dois por pagina impressa */
+/* Layout: tabela-resumo no topo; cartoes compactos em duas colunas (tela e impressao) */
 :root{--bg:#fafaf8;--fg:#1b2127;--mut:#5d6873;--bd:#dce0e3;--soft:#eff1f0;--ac:#1d6a58;--ok:#1a7a43;--pa:#9d5d00;--fa:#b3261e;
 --display:"Archivo",Arial,sans-serif;--body:"Source Sans 3",-apple-system,Segoe UI,Roboto,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#111514;--fg:#e3e8e6;--mut:#98a4a0;--bd:#2a3230;--soft:#191f1d;--ac:#62c3a6;--ok:#58c98a;--pa:#e8b15b;--fa:#ff8a80;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#111514;--fg:#e3e8e6;--mut:#98a4a0;--bd:#2a3230;--soft:#191f1d;--ac:#62c3a6;--ok:#58c98a;--pa:#e8b15b;--fa:#ff8a80;color-scheme:dark}
 @media print{:root,:root:not([data-theme="light"]){--bg:#fff;--fg:#1b2127;--mut:#5d6873;--bd:#dce0e3;--soft:#eff1f0;--ac:#1d6a58;--ok:#1a7a43;--pa:#9d5d00;--fa:#b3261e;color-scheme:light}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 var(--body)}
-main{max-width:1000px;margin:0 auto;padding-block:24px;padding-inline:16px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:13.5px/1.4 var(--body)}
+main{max-width:1100px;margin:0 auto;padding-block:24px;padding-inline:16px}
 a{color:var(--ac);text-decoration:none;overflow-wrap:anywhere}a:hover,a:focus-visible{text-decoration:underline}a.src{color:var(--mut);font-size:11px}
-h1{font:700 28px var(--display);margin:0 0 4px;text-wrap:balance}h2{font:700 18px var(--display);margin:0;flex:1;min-width:0}
-h3{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:10px 0 4px}
-.sub,.mut{color:var(--mut)}.mono{font-family:var(--mono);font-size:12px}
-table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--bd);vertical-align:top}
-th{background:var(--soft);font-weight:600;white-space:nowrap}.wrap{overflow-x:auto;margin:10px 0 24px}
-.card{border:1px solid var(--bd);border-radius:8px;padding:12px 14px;margin:14px 0;break-inside:avoid}
-.card header{display:flex;gap:10px;align-items:baseline}.n{font:600 13px var(--mono);color:var(--mut)}
-.nv{font-size:11px;padding:1px 8px;border-radius:10px;border:1px solid var(--bd);white-space:nowrap}.nv.alta{color:var(--ok)}.nv.média{color:var(--pa)}.nv.baixa{color:var(--fa)}
-.card .sub{margin:2px 0 4px}.res{margin:4px 0}
-.cols{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px}
-ul{margin:0;padding-left:16px}li{margin:1px 0}.tag{font-size:11px;color:var(--mut)}.ok{color:var(--ok);font-size:11px}.mut{font-size:12px}
-.al{color:var(--pa);font-size:12px;margin:8px 0 0}.intro p{margin:4px 0;max-width:75ch}
-@media (max-width:700px){.cols{grid-template-columns:1fr}table{display:block;overflow-x:auto}}
-@page{size:A4;margin:10mm}@media print{a.src{display:none}main{padding:0}.card{margin:8px 0}}
+h1{font:700 26px var(--display);margin:0 0 4px;text-wrap:balance}h2{font:700 15.5px var(--display);margin:0;flex:1;min-width:0}
+h3{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:8px 0 2px}
+.sub,.mut{color:var(--mut)}.mono{font-family:var(--mono);font-size:11.5px}
+table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:4px 6px;border-bottom:1px solid var(--bd);vertical-align:top}
+th{background:var(--soft);font-weight:600;white-space:nowrap}.wrap{overflow-x:auto;margin:10px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{border:1px solid var(--bd);border-radius:8px;padding:10px 12px;break-inside:avoid;min-width:0}
+.topo{display:flex;gap:10px;align-items:flex-start}.id{min-width:0;flex:1}
+.thumb{width:132px;aspect-ratio:16/10;max-width:100%;object-fit:cover;object-position:top;border:1px solid var(--bd);border-radius:5px;flex:none}
+.thumb.vazio{display:flex;align-items:center;justify-content:center;background:var(--soft);font-size:10.5px;color:var(--mut);text-align:center}
+.l1{display:flex;gap:8px;align-items:baseline}.n{font:600 12px var(--mono);color:var(--mut)}
+.nv{font-size:10.5px;padding:0 7px;border-radius:10px;border:1px solid var(--bd);white-space:nowrap}.nv.alta{color:var(--ok)}.nv.média{color:var(--pa)}.nv.baixa{color:var(--fa)}
+.card .sub{margin:1px 0 2px;font-size:12px}.res{margin:2px 0;font-size:12.5px}
+.cols{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:10px}
+ul{margin:0;padding-left:0;list-style:none}li{margin:1px 0}.pes li{font-size:12.5px}
+.tag{font-size:10.5px;color:var(--mut)}.ok{color:var(--ok);font-weight:700}.rf{font:600 10px var(--mono);color:var(--mut);border:1px solid var(--bd);border-radius:3px;padding:0 3px}
+.obras{margin:0;font-size:12.5px}.al{color:var(--pa);font-size:11.5px;margin:6px 0 0}.intro p{margin:4px 0;max-width:80ch}
+@media (max-width:760px){.grid,.cols{grid-template-columns:1fr}table{display:block;overflow-x:auto}.thumb{width:104px}}
+@page{size:A4;margin:9mm}@media print{a.src{display:none}main{padding:0}body{font-size:12px}.grid{gap:8px}}
 """
 FONTES = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700'
           '&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap">')
 
 def main():
-    itens = [juntar(x) for x in SEL]
+    itens = [juntar(x) for x in SEL if not (AJ.get(x["dominio"]) or {}).get("remover")]
     itens.sort(key=lambda i: (-i["pts"], -i["x"]["score"]))
     linhas = []
     for n, i in enumerate(itens, 1):
@@ -126,16 +151,15 @@ def main():
                       f'<td class="mono">{e(em)}</td><td class="mono">{e(fo)}</td><td>{len(i["obras"])}</td><td>{e(i["nivel"])}</td></tr>')
     alta = sum(i["nivel"] == "Alta" for i in itens); em_c = sum(any(y["conf"] for y in i["em"]) for i in itens)
     fo_c = sum(any(y["conf"] for y in i["fo"]) for i in itens); ob_c = sum(bool(i["obras"]) for i in itens)
-    corpo = f"""<div class="intro"><h1>30 construtoras para prospectar</h1>
+    corpo = f"""<div class="intro"><h1>{len(itens)} construtoras para prospectar</h1>
 <p class="sub">BH e região metropolitana · {HOJE} · porte médio e pequeno, escolhidas pela consistência dos contatos</p>
 <p>Todas têm site próprio, e-mail no domínio da empresa (sem contabilidade, jurídico ou fiscal), telefone fixo que não se repete em
-outras empresas e SPE aberta desde 2023. Grandes incorporadoras ficaram de fora. "✔ publicado" = o contato aparece no site ou em outra
-publicação da empresa; "Receita" = só no cadastro do CNPJ. <b>Consistência</b>: Alta, Média ou Baixa, conforme site, e-mail e fixo confirmados,
+outras empresas e SPE aberta desde 2023. Grandes incorporadoras ficaram de fora. ✔ = o contato aparece no site ou em outra publicação da empresa; R = só no cadastro do CNPJ na Receita. <b>Consistência</b>: Alta, Média ou Baixa, conforme site, e-mail e fixo confirmados,
 obra ativa e decisor identificado.</p>
 <p><b>{alta}</b> com consistência alta · <b>{em_c}</b> com e-mail publicado · <b>{fo_c}</b> com telefone publicado · <b>{ob_c}</b> com obra ativa localizada.</p></div>
 <div class="wrap"><table><thead><tr><th>#</th><th>Construtora</th><th>Site</th><th>E-mail principal</th><th>Telefone</th><th>Obras ativas</th><th>Consistência</th></tr></thead>
 <tbody>{''.join(linhas)}</tbody></table></div>
-{''.join(cartao(i, n) for n, i in enumerate(itens, 1))}"""
+<div class="grid">{''.join(cartao(i, n) for n, i in enumerate(itens, 1))}</div>"""
     OUT.mkdir(exist_ok=True)
     miolo = f"<title>30 construtoras para prospectar</title>{FONTES}<style>{CSS}</style><main>{corpo}</main>"
     (OUT / "artifact_index.html").write_text(miolo, encoding="utf-8")
