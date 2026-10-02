@@ -28,9 +28,21 @@ DOMINIO = "https://daleth.iajudite.com.br"
 # Decisões que continuam com o Cristiano (ver PENDENCIAS.md). Enquanto PREVIA for
 # True, todas as páginas saem com noindex e o rodapé avisa que o site é preliminar.
 PREVIA = True
-# O canal de contato ainda não foi definido. Com False, o formulário não envia e
-# diz isso com clareza; com True, passa a usar o Netlify Forms.
-FORMULARIO_ATIVO = False
+# Faixa "versão preliminar" no rodapé. O site já está no ar (GitHub Pages); o noindex
+# continua enquanto o domínio definitivo não for escolhido (Caderno 1.3).
+AVISO_PREVIA = False
+
+# Canal de contato (Caderno 1.1). Preencha e o site passa a mostrar/usar o que existir.
+CONTATO = {
+    "email": "",        # recebe o formulário quando FORMULARIO = "email"
+    "whatsapp": "",     # só números, com DDI e DDD: 5531999999999
+    "linkedin": "",     # URL do perfil; também entra no schema Person (sameAs)
+}
+# Como o formulário envia:
+#   ""         ainda não envia e diz isso com clareza (padrão até o canal ser definido)
+#   "email"    abre o e-mail de quem escreve já preenchido para CONTATO["email"] (funciona em qualquer hospedagem)
+#   "netlify"  Netlify Forms (só quando o site estiver hospedado no Netlify)
+FORMULARIO = ""
 
 SLOGAN = "Ao seu lado na construção da sua história."
 
@@ -63,9 +75,6 @@ MENU_APOIO = [
     ("/metodo/", "Método"),
     ("/sobre/", "Sobre"),
 ]
-# Modelos de home para validar (prévia): a home publicada usa o recomendado.
-MODELOS = [("/", "B", "Cinematográfico"), ("/modelos/a/", "A", "Prancha"),
-           ("/modelos/c/", "C", "Narrativa")]
 CTA = "Analisar meu caso"   # um rótulo só para a ação principal, em todo o site
 
 # Fecho padrão de quem ainda não decidiu: as três garantias aparecem só nas
@@ -97,10 +106,16 @@ def esc(t):
 
 # ---------------------------------------------------------------- links
 
-def relativizador(caminho, local):
-    """Devolve uma função que converte '/x/y/' no link certo para a página."""
+def relativizador(caminho, local, raiz="/"):
+    """Devolve uma função que converte '/x/y/' no link certo para a página.
+
+    local: links relativos com index.html (abre do disco ou em qualquer pasta).
+    raiz:  prefixo das URLs limpas, para publicar num subcaminho (GitHub Pages: /cris-code/).
+    """
     if not local:
-        return lambda alvo: alvo
+        if raiz == "/":
+            return lambda alvo: alvo
+        return lambda alvo: (raiz + alvo[1:]) if alvo.startswith("/") and not alvo.startswith("//") else alvo
     profundidade = caminho.strip("/").count("/") + 1 if caminho.strip("/") else 0
     prefixo = "../" * profundidade
 
@@ -214,23 +229,18 @@ def bloco_fecho(pg):
 </section>"""
 
 
-def bloco_modelos(pg):
-    """Barra flutuante para comparar os modelos de home (só nas homes)."""
-    atual = pg.get("modelo")
-    if not atual:
-        return ""
-    marca = ' aria-current="page"'
-    itens = "".join(
-        f'<a href="{a}"{marca if m == atual else ""}>{m}<span>{esc(n)}</span></a>'
-        for a, m, n in MODELOS)
-    return (f'<nav class="seletor-modelos" aria-label="Modelos de home"><span class="sm-rot">Modelo</span>{itens}'
-            f'<a href="/modelos/" class="sm-comparar">Comparar</a></nav>')
-
-
 def bloco_rodape():
+    itens = []
+    if CONTATO["email"]:
+        itens.append(f'<li><a href="mailto:{esc(CONTATO["email"])}">{esc(CONTATO["email"])}</a></li>')
+    if CONTATO["whatsapp"]:
+        itens.append(f'<li><a href="https://wa.me/{esc(CONTATO["whatsapp"])}" rel="noopener">WhatsApp</a></li>')
+    if CONTATO["linkedin"]:
+        itens.append(f'<li><a href="{esc(CONTATO["linkedin"])}" rel="noopener">LinkedIn</a></li>')
+    contatos = f'<ul class="rodape-contatos">{"".join(itens)}</ul>' if itens else ""
     vert = "".join(f'<li><a href="{a}">{r}</a></li>' for a, r in VERTENTES)
     previa = ('<p class="aviso-previa">Versão preliminar do site, em construção.</p>'
-              if PREVIA else "")
+              if AVISO_PREVIA else "")
     return f"""<footer class="rodape">
   <div class="wrap rodape-grade">
     <div class="rodape-marca">
@@ -265,8 +275,8 @@ def bloco_rodape():
         <li><a href="/sobre/">Sobre</a></li>
         <li><a href="/contato/">Contato</a></li>
         <li><a href="/privacidade/">Privacidade</a></li>
-        <li><a href="/modelos/">Modelos de home (prévia)</a></li>
       </ul>
+      {contatos}
       <p class="rodape-local">Belo Horizonte · atuação nacional</p>
     </nav>
   </div>
@@ -303,8 +313,11 @@ def json_ld(pg, url):
                       "provider": {"@id": DOMINIO + "/#org"}, "areaServed": "BR"})
     if pg.get("pessoa"):
         # sem sameAs enquanto o LinkedIn não for definido (Caderno de Definições 1.3)
-        grafo.append({"@type": "Person", "name": "Cristiano Valério Ribeiro",
-                      "jobTitle": "Fundador", "worksFor": {"@id": DOMINIO + "/#org"}})
+        pessoa = {"@type": "Person", "name": "Cristiano Valério Ribeiro",
+                  "jobTitle": "Fundador", "worksFor": {"@id": DOMINIO + "/#org"}}
+        if CONTATO["linkedin"]:
+            pessoa["sameAs"] = [CONTATO["linkedin"]]
+        grafo.append(pessoa)
     faqs = re.findall(r'<details class="faq">\s*<summary>(.*?)</summary>\s*(.*?)</details>',
                       pg["corpo"], re.S)
     if faqs:
@@ -348,7 +361,7 @@ def inserir_imagem(pg, corpo):
     return corpo if fim < 0 else corpo[:fim + 10] + "\n" + figura + corpo[fim + 10:]
 
 
-def montar(pg, local):
+def montar(pg, local, raiz="/"):
     url = DOMINIO + pg["caminho"]
     titulo = pg["titulo"] if pg["caminho"] == "/" or pg.get("sem_sufixo") else f'{pg["titulo"]} · DALETH'
     robots = '<meta name="robots" content="noindex, nofollow">' if PREVIA or pg.get(
@@ -365,13 +378,20 @@ def montar(pg, local):
     corpo = inserir_indice(corpo)
     corpo = inserir_imagem(pg, corpo)
     if "{{FORM_ATRIBUTOS}}" in corpo:
-        attrs = ('name="contato" method="POST" data-netlify="true" '
-                 'netlify-honeypot="bot-field" action="/contato/recebido/"'
-                 if FORMULARIO_ATIVO else 'data-inativo="true" method="post"')
+        modo = FORMULARIO if (FORMULARIO != "email" or CONTATO["email"]) else ""
+        if modo == "netlify":
+            attrs = ('name="contato" method="POST" data-netlify="true" '
+                     'netlify-honeypot="bot-field" action="/contato/recebido/"')
+            aviso = ""
+        elif modo == "email":
+            attrs = f'data-envio="email" data-destino="{esc(CONTATO["email"])}" method="post"'
+            aviso = ('<p class="aviso-form" id="aviso-form">Ao enviar, o seu programa de e-mail abre com a mensagem '
+                     'pronta. É só confirmar o envio.</p>')
+        else:
+            attrs = 'data-inativo="true" method="post"'
+            aviso = ('<p class="aviso-form" id="aviso-form">O envio por aqui está em configuração e entra nos próximos dias.</p>')
         corpo = corpo.replace("{{FORM_ATRIBUTOS}}", attrs)
-        corpo = corpo.replace("{{FORM_AVISO}}", "" if FORMULARIO_ATIVO else (
-            '<p class="aviso-form" id="aviso-form">Prévia: o envio ainda não está ligado. '
-            'O canal de contato entra quando for definido.</p>'))
+        corpo = corpo.replace("{{FORM_AVISO}}", aviso)
     classe = pg.get("classe_body", "")
     pagina = f"""<!doctype html>
 <html lang="pt-BR">
@@ -407,15 +427,41 @@ def montar(pg, local):
 {bloco_fecho(pg)}
 </main>
 {bloco_rodape()}
-{bloco_modelos(pg)}
 </body>
 </html>
 """
     base = "/" if pg.get("arquivo") else pg["caminho"]   # 404.html fica na raiz
-    return reescrever_links(pagina, relativizador(base, local))
+    return reescrever_links(pagina, relativizador(base, local, raiz))
 
 
-def gerar(local=False):
+def paginas_de_redirecionamento(local, raiz):
+    """Endereços antigos (_redirects) também viram páginas que levam ao novo endereço,
+    para hospedagens sem regra de redirecionamento (GitHub Pages)."""
+    arq = RAIZ / "_redirects"
+    if not arq.exists():
+        return 0
+    n = 0
+    for linha in arq.read_text(encoding="utf-8").splitlines():
+        partes = linha.split()
+        if len(partes) < 2 or linha.startswith("#") or not partes[0].endswith("/"):
+            continue
+        de, para = partes[0], partes[1]
+        destino = DIST / de.strip("/") / "index.html"
+        if destino.exists():
+            continue
+        alvo = relativizador(de, local, raiz)(para)
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        destino.write_text(
+            f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+            f'<meta name="robots" content="noindex"><link rel="canonical" href="{DOMINIO}{para}">'
+            f'<meta http-equiv="refresh" content="0; url={alvo}"><title>Endereço novo · DALETH</title></head>'
+            f'<body><p>Esta página mudou de endereço: <a href="{alvo}">continuar</a>.</p></body></html>\n',
+            encoding="utf-8")
+        n += 1
+    return n
+
+
+def gerar(local=False, raiz="/"):
     if DIST.exists():
         shutil.rmtree(DIST)
     shutil.copytree(RAIZ / "assets", DIST / "assets")
@@ -425,7 +471,7 @@ def gerar(local=False):
         if pg.get("arquivo"):
             destino = DIST / pg["arquivo"]
         destino.parent.mkdir(parents=True, exist_ok=True)
-        destino.write_text(montar(pg, local), encoding="utf-8")
+        destino.write_text(montar(pg, local, raiz), encoding="utf-8")
     # arquivos de servidor (Netlify)
     for nome in ("_headers", "_redirects"):
         if (RAIZ / nome).exists():
@@ -439,9 +485,15 @@ def gerar(local=False):
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{DOMINIO}{p['caminho']}</loc></url>\n" for p in urls)
         + "</urlset>\n", encoding="utf-8")
+    redirecionadas = paginas_de_redirecionamento(local, raiz)
+    (DIST / ".nojekyll").write_text("", encoding="utf-8")   # GitHub Pages: servir as pastas como estão
     print(f"{len(paginas)} páginas geradas em {DIST.relative_to(RAIZ.parent.parent)}"
-          + (" (modo local)" if local else ""))
+          + (" (modo local)" if local else "") + (f" sob {raiz}" if raiz != "/" else "")
+          + (f", {redirecionadas} endereços antigos redirecionados" if redirecionadas else ""))
 
 
 if __name__ == "__main__":
-    gerar(local="--local" in sys.argv)
+    raiz = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--raiz=")), "/")
+    if not raiz.endswith("/"):
+        raiz += "/"
+    gerar(local="--local" in sys.argv, raiz=raiz)

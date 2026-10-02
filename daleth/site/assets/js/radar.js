@@ -135,12 +135,12 @@
 
   // na prévia local os links são relativos (../../x/index.html); o botão já vem no formato certo
   var exemplo = document.getElementById("radar-levar").getAttribute("href");
-  var prefixo = (exemplo.match(/^((?:\.\.\/)*)/) || ["", ""])[1];
+  // a base do site sai do próprio link do botão: "../../" na prévia local, "/cris-code/" no GitHub Pages, "/" no domínio
+  var prefixo = exemplo.split("contato/")[0];
   var local = /index\.html/.test(exemplo);
   function rel(alvo) {
-    if (!local) return alvo;
     var partes = alvo.split("#");
-    return prefixo + partes[0].replace(/^\//, "") + "index.html" + (partes[1] ? "#" + partes[1] : "");
+    return prefixo + partes[0].replace(/^\//, "") + (local ? "index.html" : "") + (partes[1] ? "#" + partes[1] : "");
   }
 
   form.addEventListener("change", atualizar);

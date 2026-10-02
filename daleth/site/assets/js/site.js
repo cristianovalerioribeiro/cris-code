@@ -151,11 +151,36 @@
       e.preventDefault();
       var aviso = document.getElementById("aviso-form");
       if (aviso) {
-        aviso.textContent = "Prévia: a mensagem não foi enviada. O envio entra quando o canal de contato for definido.";
+        aviso.textContent = "A mensagem ainda não foi enviada: o envio por aqui está em configuração e entra nos próximos dias.";
         aviso.classList.add("ativo");
         aviso.setAttribute("role", "status");
         aviso.focus && aviso.setAttribute("tabindex", "-1");
         aviso.focus();
+      }
+    });
+  }
+
+  // ---- formulário por e-mail (build.py: FORMULARIO = "email"): abre o e-mail de quem escreve já preenchido
+  var formEmail = document.querySelector("form[data-envio=email]");
+  if (formEmail) {
+    formEmail.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (formEmail.checkValidity && !formEmail.checkValidity()) { formEmail.reportValidity(); return; }
+      var v = function (id) { var c = document.getElementById(id); return c ? c.value.trim() : ""; };
+      var sel = document.getElementById("momento");
+      var momento = sel && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : "";
+      var corpo = [
+        "Nome: " + v("nome"), "E-mail: " + v("email"), "Telefone/WhatsApp: " + (v("telefone") || "-"),
+        "Empresa: " + (v("empresa") || "-"), "Cidade: " + (v("cidade") || "-"), "Momento: " + momento,
+        "", v("mensagem"), "", "Origem: " + v("origem")
+      ].join("\n");
+      var destino = formEmail.getAttribute("data-destino");
+      window.location.href = "mailto:" + destino + "?subject=" + encodeURIComponent("Contato pelo site · " + v("nome")) +
+        "&body=" + encodeURIComponent(corpo);
+      var aviso = document.getElementById("aviso-form");
+      if (aviso) {
+        aviso.textContent = "Abrimos o seu programa de e-mail com a mensagem pronta. Se ele não abrir, escreva para " + destino + ".";
+        aviso.classList.add("ativo"); aviso.setAttribute("role", "status");
       }
     });
   }

@@ -265,6 +265,7 @@
     // rótulos HTML que acompanham os nós projetados
     var rotulos = [], caixaRot = tela.parentElement.querySelector(".cena-rotulos");
     var nomes = (tela.getAttribute("data-rotulos") || "").split("|").filter(Boolean);
+    if (caixaRot && claro) caixaRot.classList.add("claro");
     if (caixaRot && nomes.length) {
       nomes.slice(0, 6).forEach(function (nome) {
         var s = document.createElement("span");
@@ -310,10 +311,12 @@
     }
 
     var centro = tela.hasAttribute("data-centro");
+    var giro = parseFloat(tela.getAttribute("data-angulo")) || 0;   // pranchas renderizadas: cada página com seu ângulo
     var cameraBase = camera;
     camera = function (t, asp) {
       var c = cameraBase(t, asp);
       if (centro || host.classList.contains("estatica")) c.desloc = [0, 0];
+      if (giro) c.ang += giro;
       return c;
     };
 
@@ -378,7 +381,8 @@
         var a = todos[p.i], b = todos[p.j], u = p.u;
         dPontos.set([a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u, 5, 0, 10], k * 6); k++;
       });
-      // rótulos
+      // rótulos (um rótulo que encostaria noutro já posto fica escondido neste quadro)
+      var postos = [];
       for (i = 0; i < rotulos.length; i++) {
         var c = aplicar(vp, pos[i]);
         var el = rotulos[i];
@@ -392,6 +396,14 @@
         if (largoR && !centro && tipo === "heroi" && !claro && sx < cssW * 0.58) dentro = false;
         if (largoR && !centro && tipo === "jornada" && sx > cssW * 0.5) dentro = false;
         var prof = Math.max(0, Math.min(1, (16 - c[3]) / 8));
+        if (dentro) {
+          var cx0 = sx + 12, cy0 = sy - 12, cx1 = cx0 + lw, cy1 = sy + 12;
+          for (var pi = 0; pi < postos.length; pi++) {
+            var o = postos[pi];
+            if (cx0 < o[2] + 6 && cx1 + 6 > o[0] && cy0 < o[3] + 4 && cy1 + 4 > o[1]) { dentro = false; break; }
+          }
+          if (dentro) postos.push([cx0, cy0, cx1, cy1]);
+        }
         el.style.opacity = dentro ? String((prm.rede * (0.35 + 0.65 * prof)).toFixed(3)) : "0";
         el.style.transform = "translate3d(" + sx.toFixed(1) + "px," + sy.toFixed(1) + "px,0)";
       }

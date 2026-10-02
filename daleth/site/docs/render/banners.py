@@ -3,12 +3,9 @@ from urllib.parse import urlencode
 import shutil, os
 SITE='/home/user/cris-code/daleth/site'
 shutil.copy(str(__import__('pathlib').Path(__file__).with_name('render.html')), SITE+'/dist/__render.html')
-V={
- 'empresas':dict(cena='rede',rot='Gestão|Financeiro|Societário|Contábil|Crédito|Resultado'),
- 'empreendimentos':dict(cena='jornada',z='1',rot='Terreno|Produto|Orçamento|Caixa|Vendas|Obra'),
- 'capital':dict(cena='heroi',rot='Banco|Investidor|Sócio|Vendas|Permuta|Caixa'),
- 'inteligencia':dict(cena='heroi',tema='claro',fundo='#F2F5F8',rot='Permuta|Faseamento|SPE|SCP|Afetação|Caixa'),
-}
+import json, sys
+V=json.load(open(str(__import__('pathlib').Path(__file__).with_name('pranchas.json'))))
+if len(sys.argv)>1: V={k:v for k,v in V.items() if k in sys.argv[1:]}
 with sync_playwright() as p:
     b=p.chromium.launch(executable_path='/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
         args=['--enable-unsafe-swiftshader','--use-angle=swiftshader','--ignore-gpu-blocklist'])

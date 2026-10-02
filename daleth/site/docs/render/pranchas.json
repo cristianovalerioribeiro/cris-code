@@ -1,0 +1,91 @@
+{
+ "empresas": {
+  "cena": "rede",
+  "rot": "Gestão|Financeiro|Societário|Contábil|Crédito|Resultado"
+ },
+ "empreendimentos": {
+  "cena": "jornada",
+  "z": "1",
+  "rot": "Terreno|Produto|Orçamento|Caixa|Vendas|Obra"
+ },
+ "capital": {
+  "cena": "heroi",
+  "rot": "Banco|Investidor|Sócio|Vendas|Permuta|Caixa"
+ },
+ "inteligencia": {
+  "cena": "heroi",
+  "tema": "claro",
+  "fundo": "#F2F5F8",
+  "rot": "Permuta|Faseamento|SPE|SCP|Afetação|Caixa"
+ },
+ "preparacao": {
+  "cena": "heroi",
+  "angulo": "1.6",
+  "rot": "Contábil|Financeiro|Societário|Documentos|Capacidade|Banco"
+ },
+ "terreno": {
+  "cena": "jornada",
+  "z": "0.5",
+  "rot": "",
+  "angulo": "0.9"
+ },
+ "obra-parada": {
+  "cena": "jornada",
+  "z": "0.72",
+  "angulo": "-0.5",
+  "rot": ""
+ },
+ "viabilidade": {
+  "cena": "heroi",
+  "tema": "claro",
+  "fundo": "#F2F5F8",
+  "angulo": "2.4",
+  "rot": "Produto|Custo|Vendas|Caixa|Prazo|Resultado"
+ },
+ "financiamento": {
+  "cena": "jornada",
+  "z": "1",
+  "angulo": "2.2",
+  "rot": "Banco|Engenharia|Jurídico|Vendas|Garantias|Cronograma"
+ },
+ "metodo": {
+  "cena": "rede",
+  "angulo": "2.6",
+  "rot": "Mapear|Modelar|Estruturar|Conduzir|Verificar|Corrigir"
+ },
+ "sobre": {
+  "cena": "heroi",
+  "tema": "claro",
+  "fundo": "#F2F5F8",
+  "angulo": "4.0",
+  "rot": "Engenharia|Economia|Incorporação|Crédito|Gestão|Estratégia"
+ },
+ "art-permuta": {
+  "cena": "heroi",
+  "tema": "claro",
+  "fundo": "#F2F5F8",
+  "angulo": "0.9",
+  "rot": "Permuta física|Permuta financeira|Unidades|Caixa|Tributo|Risco"
+ },
+ "art-faseamento": {
+  "cena": "heroi",
+  "tema": "claro",
+  "fundo": "#F2F5F8",
+  "angulo": "3.1",
+  "rot": "Fase 1|Fase 2|Fase 3|Caixa|Vendas|Crédito"
+ },
+ "art-spe": {
+  "cena": "heroi",
+  "tema": "claro",
+  "fundo": "#F2F5F8",
+  "angulo": "5.0",
+  "rot": "SPE|Holding|SCP|Sócios|Risco|Tributo"
+ },
+ "art-afetacao": {
+  "cena": "heroi",
+  "tema": "claro",
+  "fundo": "#F2F5F8",
+  "angulo": "1.9",
+  "rot": "Afetação|RET|Obra|Adquirentes|Crédito|Caixa"
+ }
+}

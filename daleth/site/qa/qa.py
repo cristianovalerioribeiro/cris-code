@@ -29,7 +29,10 @@ def texto_visivel(html):
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
 
 falhas = []
-paginas = sorted(DIST.rglob("*.html"))
+# páginas de redirecionamento (endereços antigos) só levam ao novo endereço: fora da checagem
+paginas = sorted(p for p in DIST.rglob("*.html")
+                 if 'http-equiv="refresh"' not in p.read_text(encoding="utf-8")[:600]
+                 and not p.name.startswith("__"))
 
 # 1. vocabulário
 for p in paginas:

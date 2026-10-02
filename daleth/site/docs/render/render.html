@@ -19,7 +19,7 @@ body.modo-og .og{display:flex}
 <p>Estruturação de negócios imobiliários · Belo Horizonte · atuação nacional</p><div class="faixa"></div></div>
 <script>(function(){var q=new URLSearchParams(location.search),c=document.querySelector(".cena canvas"),h=document.querySelector(".cena");
 if(q.get("cena"))c.setAttribute("data-cena",q.get("cena"));if(q.get("rot")!==null)c.setAttribute("data-rotulos",q.get("rot"));
-if(q.get("centro"))c.setAttribute("data-centro","");if(q.get("z"))h.style.setProperty("--z",q.get("z"));
+if(q.get("centro"))c.setAttribute("data-centro","");if(q.get("angulo"))c.setAttribute("data-angulo",q.get("angulo"));if(q.get("z"))h.style.setProperty("--z",q.get("z"));
 if(q.get("tema")){c.setAttribute("data-tema",q.get("tema"));h.classList.add("hero-narrativa");}if(q.get("fundo")){document.body.style.background=q.get("fundo");document.documentElement.style.background=q.get("fundo");}})();</script>
 <script>if(location.hash==="#og")document.body.classList.add("modo-og");if(location.hash==="#limpo")document.querySelector(".cena-rotulos").style.display="none";</script>
 <script src="/assets/js/cena3d.js"></script>
