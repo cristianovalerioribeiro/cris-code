@@ -105,6 +105,8 @@ with sync_playwright() as pw:
     m.click(".menu-botao")
     if not m.is_visible("#menu") or not m.evaluate("document.querySelector('main').inert"):
         falhas.append("menu mobile não abre ou não isola o conteúdo")
+    if m.evaluate("document.getElementById('menu').getBoundingClientRect().height") < 400:
+        falhas.append("menu mobile aberto ficou baixo demais (fixed preso num ancestral com filtro?)")
     m.keyboard.press("Escape")
     if m.is_visible("#menu"):
         falhas.append("menu mobile não fecha com Esc")

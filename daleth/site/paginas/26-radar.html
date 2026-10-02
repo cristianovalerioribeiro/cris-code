@@ -1,0 +1,105 @@
+<!--meta {
+  "caminho": "/ferramentas/radar/",
+  "titulo": "Radar de estruturação: por onde começar",
+  "descricao": "Seis perguntas sobre empresa, terreno, caixa, capital e sociedade para saber por onde a estruturação do seu próximo empreendimento deve começar.",
+  "migalhas": [["Ferramentas", "/empreendimentos/simulador/"], ["Radar de estruturação", "/ferramentas/radar/"]],
+  "momento": "estudando",
+  "scripts": ["radar.js"],
+  "fecho": {
+    "rotulo": "Próximo passo",
+    "titulo": "O radar aponta a direção. A conversa define o caminho.",
+    "texto": "Leve o resultado para a conversa de enquadramento, sem custo. Ele ajuda a começar pelo que importa.",
+    "secundario": ["/empreendimentos/simulador/", "Ver também o simulador"]
+  }
+} -->
+<section class="abertura"><div class="wrap">
+  <p class="rotulo">Ferramentas · Radar</p>
+  <h1>Por onde a estruturação do seu próximo passo deve começar?</h1>
+  <p class="lead">Seis perguntas, dois minutos. No fim, o radar mostra onde está a maior alavanca e qual frente olhar primeiro.</p>
+  <p class="microcopy">Nada é enviado: as respostas ficam só no seu navegador.</p>
+</div></section>
+
+<section class="secao" aria-labelledby="radar-t">
+  <div class="wrap">
+    <h2 id="radar-t" class="oculto">Perguntas do radar</h2>
+    <form class="radar" id="radar" novalidate>
+      <div class="radar-perguntas">
+        <fieldset data-eixo="empresa">
+          <legend><span class="q">01</span> Como a empresa toma decisões hoje?</legend>
+          <p class="ajuda">Gestão, números e rotina.</p>
+          <div class="opcoes">
+            <label><input type="radio" name="empresa" value="0"> Muito na cabeça dos sócios</label>
+            <label><input type="radio" name="empresa" value="1"> Temos números, mas chegam tarde</label>
+            <label><input type="radio" name="empresa" value="2"> Temos rotina, falta conectar as áreas</label>
+            <label><input type="radio" name="empresa" value="3"> Decidimos com números atualizados</label>
+          </div>
+        </fieldset>
+        <fieldset data-eixo="terreno">
+          <legend><span class="q">02</span> Em que ponto está o terreno ou o produto?</legend>
+          <p class="ajuda">O que vai ser construído, e onde.</p>
+          <div class="opcoes">
+            <label><input type="radio" name="terreno" value="0"> Ainda buscando ou avaliando terreno</label>
+            <label><input type="radio" name="terreno" value="1"> Tenho o terreno, sem produto definido</label>
+            <label><input type="radio" name="terreno" value="2"> Produto definido, estudo em andamento</label>
+            <label><input type="radio" name="terreno" value="3"> Produto e viabilidade fechados</label>
+          </div>
+        </fieldset>
+        <fieldset data-eixo="caixa">
+          <legend><span class="q">03</span> Você sabe quanto capital a obra vai pedir, e em que mês?</legend>
+          <p class="ajuda">O pico de exposição de caixa.</p>
+          <div class="opcoes">
+            <label><input type="radio" name="caixa" value="0"> Não, ainda não calculamos</label>
+            <label><input type="radio" name="caixa" value="1"> Temos uma ideia do total</label>
+            <label><input type="radio" name="caixa" value="2"> Temos um fluxo, mas só de um cenário</label>
+            <label><input type="radio" name="caixa" value="3"> Comparamos cenários mês a mês</label>
+          </div>
+        </fieldset>
+        <fieldset data-eixo="capital">
+          <legend><span class="q">04</span> De onde vem o dinheiro deste projeto?</legend>
+          <p class="ajuda">Crédito, investidor, sócio, vendas.</p>
+          <div class="opcoes">
+            <label><input type="radio" name="capital" value="0"> Ainda não sabemos</label>
+            <label><input type="radio" name="capital" value="1"> Contamos com banco, sem conversa iniciada</label>
+            <label><input type="radio" name="capital" value="2"> Há conversas com banco ou investidor</label>
+            <label><input type="radio" name="capital" value="3"> As fontes estão definidas e combinadas</label>
+          </div>
+        </fieldset>
+        <fieldset data-eixo="sociedade">
+          <legend><span class="q">05</span> Como o projeto está organizado entre sócios e empresas?</legend>
+          <p class="ajuda">SPE, holding, SCP, acordos.</p>
+          <div class="opcoes">
+            <label><input type="radio" name="sociedade" value="0"> Tudo na mesma empresa, sem acordo escrito</label>
+            <label><input type="radio" name="sociedade" value="1"> Pensamos numa SPE, nada formalizado</label>
+            <label><input type="radio" name="sociedade" value="2"> Estrutura definida, acordos em revisão</label>
+            <label><input type="radio" name="sociedade" value="3"> Estrutura e acordos formalizados</label>
+          </div>
+        </fieldset>
+        <fieldset data-eixo="execucao">
+          <legend><span class="q">06</span> Como está a obra, ou o plano de obra?</legend>
+          <p class="ajuda">Cronograma, orçamento e acompanhamento.</p>
+          <div class="opcoes">
+            <label><input type="radio" name="execucao" value="0"> Uma obra parou ou está atrasada</label>
+            <label><input type="radio" name="execucao" value="1"> Ainda não há plano de obra</label>
+            <label><input type="radio" name="execucao" value="2"> Plano feito, acompanhamento informal</label>
+            <label><input type="radio" name="execucao" value="3"> Plano e acompanhamento em dia</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <aside class="radar-painel" aria-labelledby="radar-res-t">
+        <h2 id="radar-res-t">Seu radar</h2>
+        <p id="radar-status" role="status">Responda as seis perguntas. O desenho se completa a cada resposta.</p>
+        <svg id="radar-svg" viewBox="-10 0 360 300" role="img" aria-label="Radar de estruturação, ainda sem respostas"></svg>
+        <div id="radar-resultado" hidden>
+          <p class="rotulo">Por onde começar</p>
+          <p class="r-vertente" id="radar-vertente"></p>
+          <p id="radar-texto"></p>
+          <ul id="radar-links"></ul>
+          <a class="btn btn-ouro" id="radar-levar" href="/contato/?momento=estudando&amp;origem=radar">Levar o radar para a conversa</a>
+          <p class="legenda" style="margin-top:12px">Leitura indicativa, a partir de respostas gerais. Não substitui o diagnóstico.</p>
+        </div>
+      </aside>
+    </form>
+    <noscript><p class="nota">O radar precisa de JavaScript. Sem ele, <a href="/contato/?momento=estudando&amp;origem=radar">conte o momento em poucas linhas</a>.</p></noscript>
+  </div>
+</section>

@@ -94,3 +94,29 @@ Decisões que a reestruturação expôs e seguem com o Cristiano:
 - **Prazo de resposta declarado** (ex.: "em até 1 dia útil"): não publicado, porque é proibido inventar.
 - **Investidor como contratante** (`/capital/#investidor`): redação a revisar junto com a frase regulatória.
 - **Páginas novas recomendadas pelo SEO:** estudo de viabilidade (prioridade 1), financiamento à produção, preparação para crédito (GERIC) e política de privacidade.
+
+## Versão 04 de 02/10/2026: site revisado e mais completo
+
+Feito para depois podar. Tudo está na prévia e pode sair.
+- **Três modelos de home** com seletor fixo no canto da tela e comparação em `/modelos/`:
+  - **B Cinematográfico** (`/`): fundo vivo em WebGL, aproximação na rolagem, vitrine de ferramentas.
+  - **A Prancha** (`/modelos/a/`): a home anterior.
+  - **C Narrativa** (`/modelos/c/`): cinco capítulos.
+
+  Ao escolher, apague as outras duas páginas (`paginas/01-modelo-a.html`, `paginas/02-modelo-c.html`) e `paginas/03-modelos.html`, tire `"modelo"` do meta e a linha de `MODELOS` some sozinha.
+- **Efeitos:**
+  - **Fundo vivo** (`assets/js/fundo.js`): inspirado no Miravo, com código próprio sem three.js (~9 KB).
+  - **Aproximação** (`.aproxima` no CSS e `site.js`): é o mesmo princípio do Grupo Escalar, uma variável CSS guiada pela rolagem.
+
+  Os dois respeitam "movimento reduzido", pausam fora da tela e têm versão estática.
+- **Menu:** submenus nas vertentes, "Ferramentas" (simulador, comparador, radar) e "Inteligência".
+- **Páginas novas:**
+  - estudo de viabilidade
+  - financiamento à produção
+  - preparação para crédito
+  - Inteligência, com 4 artigos
+  - Radar de estruturação
+  - privacidade (rascunho para revisão jurídica, `noindex`)
+- **Textos:** todas as páginas de serviço e institucionais foram encurtadas, com abertura em cena (storytelling), sem caso inventado.
+
+O que precisa de decisão está no *Caderno de refinamento do site (v04)*, no Claude Docs.

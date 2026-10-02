@@ -41,12 +41,31 @@ VERTENTES = [
     ("/empreendimentos/", "Empreendimentos"),
     ("/capital/", "Capital"),
 ]
-# Simulador no topo: decisão do Cristiano em 28/09 (é a prova mais forte do site).
+# Submenus das vertentes (a vertente continua visível no topo; os filhos abrem no hover/foco).
+SUBMENUS = {
+    "/empresas/": [("/empresas/", "Gestão, financeiro e societário"),
+                   ("/empresas/preparacao-para-credito/", "Preparação para crédito")],
+    "/empreendimentos/": [("/empreendimentos/", "Do terreno à entrega"),
+                          ("/empreendimentos/estudo-de-viabilidade/", "Estudo de viabilidade"),
+                          ("/empreendimentos/permuta-de-terreno/", "Vender, permutar ou incorporar"),
+                          ("/empreendimentos/obra-parada/", "Obras paradas")],
+    "/capital/": [("/capital/", "Crédito e capital"),
+                  ("/capital/financiamento-a-producao/", "Financiamento à produção")],
+}
+# Ferramentas no topo: decisão do Cristiano em 28/09 (são a prova mais forte do site).
+FERRAMENTAS = [
+    ("/empreendimentos/simulador/", "Simulador de exposição de caixa"),
+    ("/empreendimentos/permuta-de-terreno/#comp-t", "Comparador vender × permutar × incorporar"),
+    ("/ferramentas/radar/", "Radar de estruturação"),
+]
 MENU_APOIO = [
-    ("/empreendimentos/simulador/", "Simulador"),
+    ("/inteligencia/", "Inteligência"),
     ("/metodo/", "Método"),
     ("/sobre/", "Sobre"),
 ]
+# Modelos de home para validar (prévia): a home publicada usa o recomendado.
+MODELOS = [("/", "B", "Cinematográfico"), ("/modelos/a/", "A", "Prancha"),
+           ("/modelos/c/", "C", "Narrativa")]
 CTA = "Analisar meu caso"   # um rótulo só para a ação principal, em todo o site
 
 # Fecho padrão de quem ainda não decidiu: as três garantias aparecem só nas
@@ -126,8 +145,19 @@ def bloco_cabecalho(pg):
         marca = ' aria-current="page"' if ativo else ""
         return f'<li><a href="{alvo}"{marca} class="{classe}">{rotulo}</a></li>'
 
-    vert = "".join(item(a, r, "nav-vertente") for a, r in VERTENTES)
-    apoio = "".join(item(a, r) for a, r in MENU_APOIO)
+    def com_sub(alvo, rotulo, filhos, classe):
+        base = item(alvo, rotulo, classe)[:-5]   # tira o </li>
+        subs = "".join(f'<li><a href="{a}">{esc(r)}</a></li>' for a, r in filhos)
+        return (base.replace("<li>", '<li class="tem-sub">', 1)
+                + f'<ul class="sub" aria-label="{esc(rotulo)}">{subs}</ul></li>')
+
+    vert = "".join(com_sub(a, r, SUBMENUS[a], "nav-vertente") if a in SUBMENUS
+                   else item(a, r, "nav-vertente") for a, r in VERTENTES)
+    ferr = ('<li class="tem-sub"><a href="/empreendimentos/simulador/" class="'
+            + ('ativo' if atual.startswith(("/ferramentas/", "/empreendimentos/simulador/")) else '')
+            + '">Ferramentas</a><ul class="sub" aria-label="Ferramentas">'
+            + "".join(f'<li><a href="{a}">{esc(r)}</a></li>' for a, r in FERRAMENTAS) + "</ul></li>")
+    apoio = ferr + "".join(item(a, r) for a, r in MENU_APOIO)
     return f"""<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="topo" id="topo">
   <div class="wrap topo-linha">
@@ -176,6 +206,19 @@ def bloco_fecho(pg):
 </section>"""
 
 
+def bloco_modelos(pg):
+    """Barra flutuante para comparar os modelos de home (só nas homes)."""
+    atual = pg.get("modelo")
+    if not atual:
+        return ""
+    marca = ' aria-current="page"'
+    itens = "".join(
+        f'<a href="{a}"{marca if m == atual else ""}>{m}<span>{esc(n)}</span></a>'
+        for a, m, n in MODELOS)
+    return (f'<nav class="seletor-modelos" aria-label="Modelos de home"><span class="sm-rot">Modelo</span>{itens}'
+            f'<a href="/modelos/" class="sm-comparar">Comparar</a></nav>')
+
+
 def bloco_rodape():
     vert = "".join(f'<li><a href="{a}">{r}</a></li>' for a, r in VERTENTES)
     previa = ('<p class="aviso-previa">Versão preliminar do site, em construção.</p>'
@@ -190,6 +233,9 @@ def bloco_rodape():
     <nav aria-label="Atuação">
       <p class="rotulo">Atuação</p>
       <ul>{vert}
+        <li><a href="/empreendimentos/estudo-de-viabilidade/">Estudo de viabilidade</a></li>
+        <li><a href="/capital/financiamento-a-producao/">Financiamento à produção</a></li>
+        <li><a href="/empresas/preparacao-para-credito/">Preparação para crédito</a></li>
         <li><a href="/empreendimentos/obra-parada/">Obras paradas</a></li>
       </ul>
     </nav>
@@ -198,8 +244,10 @@ def bloco_rodape():
       <ul>
         <li><a href="/empreendimentos/simulador/">Simulador de exposição de caixa</a></li>
         <li><a href="/empreendimentos/permuta-de-terreno/">Vender, permutar ou incorporar um terreno</a></li>
+        <li><a href="/ferramentas/radar/">Radar de estruturação</a></li>
         <li><a href="/metodo/">Método</a></li>
         <li><a href="/metodo/modelagens/">As nove modelagens</a></li>
+        <li><a href="/inteligencia/">Inteligência</a></li>
       </ul>
     </nav>
     <nav aria-label="Institucional">
@@ -208,6 +256,8 @@ def bloco_rodape():
         <li><a href="/como-comeca/">Como começa um trabalho</a></li>
         <li><a href="/sobre/">Sobre</a></li>
         <li><a href="/contato/">Contato</a></li>
+        <li><a href="/privacidade/">Privacidade</a></li>
+        <li><a href="/modelos/">Modelos de home (prévia)</a></li>
       </ul>
       <p class="rodape-local">Belo Horizonte · atuação nacional</p>
     </nav>
@@ -332,6 +382,7 @@ def montar(pg, local):
 {bloco_fecho(pg)}
 </main>
 {bloco_rodape()}
+{bloco_modelos(pg)}
 </body>
 </html>
 """

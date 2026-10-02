@@ -53,6 +53,28 @@
     medir();
   }
 
+  // ---- aproximação na rolagem (modelo B): a seção fica parada e a prancha cresce em direção
+  // ao lote, como o efeito do Grupo Escalar (uma variável CSS, --z, guiada pela rolagem)
+  document.querySelectorAll(".aproxima").forEach(function (sec) {
+    if (reduzir || !("requestAnimationFrame" in window)) { sec.classList.add("estatica"); return; }
+    var batidas = sec.querySelectorAll(".batida");
+    var marcas = sec.querySelectorAll(".aproxima-progresso i");
+    var esperando = false;
+    var medir = function () {
+      esperando = false;
+      var r = sec.getBoundingClientRect();
+      var curso = sec.offsetHeight - (window.innerHeight - (parseFloat(getComputedStyle(doc).getPropertyValue("--topo")) || 64));
+      var z = Math.min(Math.max(-r.top / (curso || 1), 0), 1);
+      sec.style.setProperty("--z", z.toFixed(4));
+      var n = batidas.length, atual = Math.min(n - 1, Math.floor(z * n * 0.999));
+      batidas.forEach(function (b, i) { b.classList.toggle("ativa", i === atual); });
+      marcas.forEach(function (m, i) { m.classList.toggle("ativa", i <= atual); });
+    };
+    window.addEventListener("scroll", function () { if (!esperando) { esperando = true; requestAnimationFrame(medir); } }, { passive: true });
+    window.addEventListener("resize", medir);
+    medir();
+  });
+
   // ---- entrada suave dos blocos marcados com .surge
   var surgem = document.querySelectorAll(".surge");
   if (surgem.length && "IntersectionObserver" in window && !reduzir) {
@@ -90,7 +112,7 @@
   var barra = document.querySelector(".barra-cta");
   var noContato = /\/contato\//.test(location.pathname);
   if (barra && !noContato) {
-    var abertura = document.querySelector(".hero, .abertura");
+    var abertura = document.querySelector(".hero, .hero-cine, .hero-narrativa, .abertura");
     var fecho = document.querySelector(".fecho");
     var limite = abertura ? abertura.offsetTop + abertura.offsetHeight : 400;
     var mostrar = function () {
