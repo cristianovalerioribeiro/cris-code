@@ -671,7 +671,7 @@ main:focus{outline:none}
 .aproxima{position:relative;background:var(--marinho);color:#fff;--z:0}
 .aproxima-palco{position:sticky;top:var(--topo);height:calc(100svh - var(--topo));overflow:hidden;display:grid;place-items:center}
 .aproxima-arte{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
-.aproxima-arte canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.aproxima-arte canvas{position:absolute;inset:0;width:100%;height:100%;display:block;justify-self:stretch;align-self:stretch}
 .aproxima.cena-viva .aproxima-arte>svg{display:none}
 .aproxima-arte svg{width:min(96vw,860px);height:auto;
   transform-origin:50% 52%;
@@ -707,8 +707,9 @@ main:focus{outline:none}
 }
 /* sem JS ou com movimento reduzido: vira uma seção comum, imagem fixa e as três batidas em sequência */
 .aproxima.estatica .aproxima-palco{position:relative;top:0;height:auto;display:block;padding-block:var(--sec)}
-.aproxima.estatica .aproxima-arte{position:relative;height:clamp(260px,40vw,460px);overflow:hidden}
+.aproxima.estatica .aproxima-arte{position:relative;inset:auto;width:100%;height:clamp(260px,40vw,460px);overflow:hidden}
 .aproxima.estatica .aproxima-arte svg{transform:scale(1.25)}
+.aproxima.estatica .aproxima-arte::after{background:radial-gradient(ellipse at 50% 50%,rgba(8,37,56,0) 45%,rgba(8,37,56,.9) 95%)}
 .aproxima.estatica .aproxima-batidas{height:auto;margin:0 auto;display:grid;gap:32px;padding-top:32px}
 @media (min-width:1024px){.aproxima.estatica .aproxima-batidas{grid-template-columns:repeat(3,1fr)}}
 .aproxima.estatica .batida{position:static;opacity:1;transform:none;max-width:none;background:none;padding:0;border-top:1px solid var(--dourado);padding-top:20px}

@@ -289,13 +289,17 @@
     var estado = { rolagem: 0, z: 0 };
 
     function camera(t, asp) {
-      var largo = asp > 1.3 && (tipo !== "heroi" || claro || cssH > 420);   // a faixa do hero no celular é larga, mas centrada
+      // hero escuro: no desktop a cena vai para a direita do texto, seja qual for a proporção;
+      // no celular (faixa acima do texto) fica centrada
+      var largo = tipo === "heroi" && !claro ? cssW >= 900 : asp > 1.3;
       var k = estado.rolagem, z = estado.z;
       if (tipo === "heroi") {
         var ang = 0.32 + t * 0.03 + smx * 0.22, elev = 0.4 + smy * 0.05 - k * 0.08;
-        var dist = (largo ? 12 : claro ? 10.4 : 9.2) - k * 4.6;
+        // telas largas mas não tanto (notebook pequeno, tablet deitado): afasta e empurra para a direita
+        var aperto = largo && !claro ? Math.max(0, Math.min(1.5, (1.78 - asp) / 0.45)) : 0;
+        var dist = (largo ? 12 + aperto * 3.2 : claro ? 10.4 : 9.2) - k * 4.6;
         return { ang: ang, elev: elev, dist: dist, alvo: [0, 1.15 + k * 0.4, 0],
-          desloc: largo ? [0.36, -0.03] : [0, claro ? -0.02 : -0.06], fov: 0.72 };
+          desloc: largo ? [0.36 + aperto * 0.16, -0.03] : [0, claro ? -0.02 : -0.06], fov: 0.72 };
       }
       if (tipo === "jornada") {
         return { ang: 0.4 + (1 - z) * 1.7 + t * 0.012 + smx * 0.1, elev: 0.62 - z * 0.24, dist: 12.6 - z * 4.8,
@@ -307,7 +311,11 @@
 
     var centro = tela.hasAttribute("data-centro");
     var cameraBase = camera;
-    camera = function (t, asp) { var c = cameraBase(t, asp); if (centro) c.desloc = [0, 0]; return c; };
+    camera = function (t, asp) {
+      var c = cameraBase(t, asp);
+      if (centro || host.classList.contains("estatica")) c.desloc = [0, 0];
+      return c;
+    };
 
     function parametros(t) {
       if (tipo === "jornada") {
@@ -381,7 +389,7 @@
         var largoR = cssW / cssH > 1.3;
         var lw = el._w || (el._w = el.offsetWidth || 100);
         var dentro = sx > 8 && sx + 14 + lw < cssW - 4 && sy > 14 && sy < cssH - 14;
-        if (largoR && !centro && tipo === "heroi" && !claro && sx < cssW * 0.54) dentro = false;
+        if (largoR && !centro && tipo === "heroi" && !claro && sx < cssW * 0.58) dentro = false;
         if (largoR && !centro && tipo === "jornada" && sx > cssW * 0.5) dentro = false;
         var prof = Math.max(0, Math.min(1, (16 - c[3]) / 8));
         el.style.opacity = dentro ? String((prm.rede * (0.35 + 0.65 * prof)).toFixed(3)) : "0";
