@@ -117,7 +117,7 @@ def relativizador(caminho, local):
 
 
 def reescrever_links(texto, rel):
-    return re.sub(r'(href|src|action)="(/[^"]*)"',
+    return re.sub(r'(href|src|action|srcset)="(/[^"]*)"',
                   lambda m: f'{m.group(1)}="{rel(m.group(2))}"', texto)
 
 
@@ -193,6 +193,7 @@ def bloco_fecho(pg):
     contato = "/contato/" + (f"?momento={pg['momento']}&amp;origem={pg['caminho'].strip('/').replace('/', '-') or 'inicio'}"
                              if pg.get("momento") else "")
     return f"""<section class="fecho" aria-labelledby="fecho-titulo">
+  <div class="palco-3d fecho-3d" aria-hidden="true"><canvas data-cena="rede"></canvas></div>
   <div class="wrap">
     <p class="rotulo">{esc(f.get("rotulo", "Como começa"))}</p>
     <h2 id="fecho-titulo">{esc(f["titulo"])}</h2>
@@ -325,6 +326,21 @@ def inserir_indice(corpo):
             + indice + m.group(3) + corpo[m.end():])
 
 
+def inserir_imagem(pg, corpo):
+    """Prancha 3D renderizada da própria cena (assets/img/<nome>-3d.jpg), logo abaixo da abertura."""
+    img = pg.get("imagem")
+    if not img:
+        return corpo
+    nome, alt = img["arquivo"], esc(img["alt"])
+    claro = " clara" if img.get("clara") else ""
+    figura = (f'<figure class="prancha-3d{claro}"><picture>'
+              f'<source media="(max-width: 600px)" srcset="/assets/img/{nome}-m.jpg">'
+              f'<img src="/assets/img/{nome}.jpg" alt="{alt}" width="1600" height="520" decoding="async">'
+              f'</picture></figure>')
+    fim = corpo.find("</section>")
+    return corpo if fim < 0 else corpo[:fim + 10] + "\n" + figura + corpo[fim + 10:]
+
+
 def montar(pg, local):
     url = DOMINIO + pg["caminho"]
     titulo = pg["titulo"] if pg["caminho"] == "/" or pg.get("sem_sufixo") else f'{pg["titulo"]} · DALETH'
@@ -340,6 +356,7 @@ def montar(pg, local):
         import modelo
         corpo = corpo.replace("{{QUADRO}}", modelo.quadro())
     corpo = inserir_indice(corpo)
+    corpo = inserir_imagem(pg, corpo)
     if "{{FORM_ATRIBUTOS}}" in corpo:
         attrs = ('name="contato" method="POST" data-netlify="true" '
                  'netlify-honeypot="bot-field" action="/contato/recebido/"'
@@ -372,6 +389,7 @@ def montar(pg, local):
 <link rel="stylesheet" href="/assets/site.css">
 {json_ld(pg, url)}
 <script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/cena3d.js" defer></script>
 {scripts}
 </head>
 <body class="{classe}">

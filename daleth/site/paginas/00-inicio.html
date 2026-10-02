@@ -5,7 +5,6 @@
   "descricao": "Para construtoras e incorporadoras: empresa, terreno e capital estruturados numa mesma decisão, antes de comprometer capital. BH, atuação nacional.",
   "classe_body": "home home-b",
   "modelo": "B",
-  "scripts": ["fundo.js"],
   "fecho": {
     "rotulo": "Próximo passo",
     "titulo": "O maior empreendimento até aqui começa numa conversa",
@@ -14,7 +13,10 @@
   }
 } -->
 <section class="hero-cine" aria-labelledby="h1">
-  <canvas class="fundo-vivo" aria-hidden="true"></canvas>
+  <div class="palco-3d" aria-hidden="true">
+    <canvas data-cena="heroi" data-rotulos="Empresa|Terreno|Caixa|Capital|Sociedade|Execução"></canvas>
+    <div class="cena-rotulos"></div>
+  </div>
   <div class="wrap">
     <p class="hero-categoria entra">Estruturação de negócios imobiliários</p>
     <h1 id="h1" class="entra">Seu próximo empreendimento pode ser <em>o maior até aqui.</em></h1>
@@ -35,7 +37,11 @@
 
 <section class="aproxima" id="aproximar" aria-label="Do lote à decisão, em três passos">
   <div class="aproxima-palco">
-    <div class="aproxima-arte" aria-hidden="true">{{CENARIO}}</div>
+    <div class="aproxima-arte" aria-hidden="true">
+      <canvas data-cena="jornada" data-rotulos="Produto|Orçamento|Caixa|Capital|Cronograma|Sociedade"></canvas>
+      <div class="cena-rotulos"></div>
+      {{CENARIO}}
+    </div>
     <div class="aproxima-batidas">
       <div class="aproxima-progresso" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="batida">

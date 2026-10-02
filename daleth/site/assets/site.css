@@ -628,12 +628,15 @@ main:focus{outline:none}
 /* ---------- hero cinematográfico (modelo B): fundo vivo em WebGL */
 .hero-cine{position:relative;isolation:isolate;background:var(--marinho);color:#fff;overflow:hidden;
   min-height:min(calc(100svh - var(--topo) - 40px),880px);display:flex;flex-direction:column;justify-content:flex-end}
-.hero-cine .fundo-vivo{position:absolute;inset:0;z-index:-2;width:100%;height:100%;display:block}
+.hero-cine .palco-3d{position:absolute;inset:0;z-index:-2}
+.hero-cine .palco-3d canvas{display:block;width:100%;height:100%}
 .hero-cine::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(90deg,rgba(8,37,56,.92) 0%,rgba(8,37,56,.7) 38%,rgba(8,37,56,.05) 75%),
+  background:linear-gradient(90deg,rgba(8,37,56,.94) 0%,rgba(8,37,56,.86) 40%,rgba(8,37,56,.3) 60%,rgba(8,37,56,0) 76%),
              linear-gradient(0deg,rgba(8,37,56,.95) 0%,rgba(8,37,56,0) 38%)}
 /* sem WebGL (ou movimento reduzido sem render): malha de pontos estática */
-.hero-cine:not(.vivo){background-image:radial-gradient(rgba(185,200,212,.28) 1px,transparent 1.3px);background-size:22px 22px;background-position:center bottom}
+/* antes do WebGL desenhar (ou sem ele): o pôster renderizado da própria cena */
+.hero-cine:not(.cena-viva) .palco-3d{background:url(img/heroi-poster.jpg) right center/cover no-repeat}
+.hero-cine:not(.cena-viva){background-image:radial-gradient(rgba(185,200,212,.28) 1px,transparent 1.3px);background-size:22px 22px;background-position:center bottom}
 .hero-cine .wrap{width:100%;padding-top:clamp(48px,3rem + 3vw,112px);padding-bottom:clamp(32px,2rem + 2vw,56px)}
 .hero-cine h1{font:600 clamp(2.4rem,1.3rem + 3.6vw,4.5rem)/1.04 var(--serif);letter-spacing:-.02em;max-width:16ch;margin-bottom:24px}
 .hero-cine h1 em{font-style:italic;color:var(--dourado-claro)}
@@ -644,12 +647,13 @@ main:focus{outline:none}
 .hero-cine :focus-visible,.aproxima :focus-visible{outline-color:var(--dourado-claro)}
 .hero-cine .credenciais{margin-top:clamp(40px,2rem + 3vw,72px)}
 .rolar-dica{display:none}
-@media (max-width:767px){
+@media (max-width:899px){
   .hero-cine{min-height:0;justify-content:flex-start}
-  .hero-cine .fundo-vivo{position:relative;inset:auto;height:clamp(220px,62vw,320px)}
-  .hero-cine::before{background:linear-gradient(180deg,rgba(8,37,56,0) 0,rgba(8,37,56,0) clamp(150px,44vw,240px),rgba(8,37,56,1) clamp(220px,62vw,320px))}
+  .hero-cine .palco-3d{position:relative;inset:auto;height:clamp(240px,70vw,360px)}
+  .hero-cine::before{background:linear-gradient(180deg,rgba(8,37,56,0) 0,rgba(8,37,56,0) clamp(170px,50vw,270px),rgba(8,37,56,1) clamp(240px,70vw,360px))}
+  .hero-cine:not(.cena-viva) .palco-3d{background-image:url(img/heroi-poster-m.jpg);background-position:center}
+  .hero-cine .cena-rotulos{display:none}
   .hero-cine .wrap{position:relative;z-index:1;margin-top:-48px;padding-top:0}
-  .hero-cine:not(.vivo) .fundo-vivo{height:96px}
 }
 @media (min-width:1024px) and (min-height:700px){
   .rolar-dica{display:flex;position:absolute;right:max(20px,calc((100vw - var(--max))/2));bottom:40px;flex-direction:column;align-items:center;gap:10px;
@@ -667,6 +671,8 @@ main:focus{outline:none}
 .aproxima{position:relative;background:var(--marinho);color:#fff;--z:0}
 .aproxima-palco{position:sticky;top:var(--topo);height:calc(100svh - var(--topo));overflow:hidden;display:grid;place-items:center}
 .aproxima-arte{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.aproxima-arte canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.aproxima.cena-viva .aproxima-arte>svg{display:none}
 .aproxima-arte svg{width:min(96vw,860px);height:auto;
   transform-origin:50% 52%;
   transform:translate3d(var(--ax,0px),calc(var(--z)*6%),0) scale(calc(1 + var(--z)*var(--zmax,2.4)));
@@ -738,6 +744,11 @@ main:focus{outline:none}
 .hero-narrativa .acoes{margin-top:32px}
 .hero-narrativa .traco-arte{position:absolute;right:-4%;top:52%;width:min(46vw,620px);transform:translateY(-50%);opacity:.9;pointer-events:none}
 .hero-narrativa .traco-arte svg{width:100%;height:auto;display:block}
+.hero-narrativa .traco-arte canvas{display:none}
+.hero-narrativa.cena-viva .traco-arte{aspect-ratio:1/1}
+.hero-narrativa.cena-viva .traco-arte canvas{display:block;position:absolute;inset:0;width:100%;height:100%}
+.hero-narrativa .traco-arte canvas{-webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
+.hero-narrativa.cena-viva .traco-arte>svg{visibility:hidden}
 .hero-narrativa .camada-fundo [stroke],.hero-narrativa .camada-meio [stroke]{stroke:#7D8D9B}
 .hero-narrativa .camada-frente line[stroke="#B9C8D4"]{stroke:#7D8D9B}
 .hero-narrativa .camada-frente [stroke="#D4B37C"]{stroke:#9C7535}
@@ -780,3 +791,27 @@ main:focus{outline:none}
 .radar-painel .btn{width:100%;justify-content:center}
 .radar-painel .legenda{color:var(--gelo)}
 @media (max-width:1023px){.radar-painel{position:static}}
+
+/* ---------- cenas 3D: rótulos que seguem os nós e o fecho com a rede */
+.palco-3d{pointer-events:none}
+.cena-rotulos{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.cena-rotulos span{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;will-change:transform,opacity;
+  margin:-11px 0 0 12px;padding:5px 10px 5px 8px;border-radius:999px;
+  font:600 .6875rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#fff;
+  background:rgba(8,37,56,.62);border:1px solid rgba(212,179,124,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cena-rotulos span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--dourado-claro);margin-right:7px;vertical-align:1px}
+.hero-narrativa .cena-rotulos span{color:var(--marinho);background:rgba(255,255,255,.78);border-color:rgba(156,117,53,.45)}
+.hero-narrativa .cena-rotulos span::before{background:var(--dourado-forma)}
+.fecho{position:relative;isolation:isolate;overflow:hidden}
+.fecho-3d{position:absolute;inset:0;z-index:-1}
+.fecho-3d canvas{display:block;width:100%;height:100%}
+.fecho::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(8,37,56,.96) 0%,rgba(8,37,56,.82) 45%,rgba(8,37,56,.2) 100%)}
+@media (max-width:767px){.fecho::after{background:rgba(8,37,56,.8)}}
+@media print{.palco-3d,.cena-rotulos{display:none!important}}
+
+/* ---------- prancha 3D das páginas internas (imagem renderizada da cena) */
+.prancha-3d{margin:0;background:var(--marinho);border-bottom:1px solid var(--fio)}
+.prancha-3d.clara{background:var(--nevoa)}
+.prancha-3d img{display:block;width:100%;height:clamp(200px,30vw,480px);object-fit:cover;object-position:center}
+@media (max-width:600px){.prancha-3d img{height:auto;aspect-ratio:400/260}}
