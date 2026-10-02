@@ -862,7 +862,8 @@ main:focus{outline:none}
 
 /* ---------- variações leves de layout do hero (classe no classe_body da home) */
 body.hero-centrado .hero-cine .wrap{text-align:center;display:flex;flex-direction:column;align-items:center}
-body.hero-centrado .hero-cine h1{max-width:18ch}
+body.hero-centrado .hero-cine h1{max-width:20ch;font-size:clamp(2.2rem,1.2rem + 3vw,3.9rem)}
+body.hero-centrado .hero-cine .wrap{padding-top:clamp(40px,2rem + 2vw,72px)}
 body.hero-centrado .hero-cine .lead{max-width:52ch}
 body.hero-centrado .hero-cine .acoes{justify-content:center}
 body.hero-centrado .hero-cine::before{background:linear-gradient(180deg,rgba(8,37,56,.55) 0%,rgba(8,37,56,.78) 45%,rgba(8,37,56,.55) 72%,rgba(8,37,56,.1) 100%)}
