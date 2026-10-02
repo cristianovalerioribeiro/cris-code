@@ -299,6 +299,9 @@
         // telas largas mas não tanto (notebook pequeno, tablet deitado): afasta e empurra para a direita
         var aperto = largo && !claro ? Math.max(0, Math.min(1.5, (1.78 - asp) / 0.45)) : 0;
         var dist = (largo ? 12 + aperto * 3.2 : claro ? 10.4 : 9.2) - k * 4.6;
+        if (centrada) {
+          return { ang: ang, elev: elev + 0.12, dist: dist + 5, alvo: [0, 0.9, 0], desloc: [0, -0.42], fov: 0.72 };
+        }
         return { ang: ang, elev: elev, dist: dist, alvo: [0, 1.15 + k * 0.4, 0],
           desloc: largo ? [0.36 + aperto * 0.16, -0.03] : [0, claro ? -0.02 : -0.06], fov: 0.72 };
       }
@@ -311,6 +314,8 @@
     }
 
     var centro = tela.hasAttribute("data-centro");
+    // hero centrado (texto no meio): a cena fica atrás, mais afastada e mais baixa
+    var centrada = tipo === "heroi" && document.body.classList.contains("hero-centrado");
     var giro = parseFloat(tela.getAttribute("data-angulo")) || 0;   // pranchas renderizadas: cada página com seu ângulo
     var cameraBase = camera;
     camera = function (t, asp) {
@@ -393,7 +398,8 @@
         var largoR = cssW / cssH > 1.3;
         var lw = el._w || (el._w = el.offsetWidth || 100);
         var dentro = sx > 8 && sx + 14 + lw < cssW - 4 && sy > 14 && sy < cssH - 14;
-        if (largoR && !centro && tipo === "heroi" && !claro && sx < cssW * 0.58) dentro = false;
+        if (largoR && !centro && tipo === "heroi" && !claro && !centrada && sx < cssW * 0.58) dentro = false;
+        if (centrada && sy < cssH * 0.72) dentro = false;
         if (largoR && !centro && tipo === "jornada" && sx > cssW * 0.5) dentro = false;
         var prof = Math.max(0, Math.min(1, (16 - c[3]) / 8));
         if (dentro) {

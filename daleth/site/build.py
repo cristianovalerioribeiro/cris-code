@@ -86,17 +86,35 @@ GARANTIAS = """<ul class="garantias">
 </ul>"""
 
 
+# Variantes de copy em teste (variantes/vN/*.html): publicadas em /vN/..., com barra para alternar.
+# Quando a escolha for feita, os textos escolhidos vão para paginas/ e as pastas somem.
+VARIANTES = [("v1", "Ambição"), ("v2", "Precisão"), ("v3", "Parceria")]
+
+
+def _ler(arq):
+    bruto = arq.read_text(encoding="utf-8")
+    m = re.match(r"\s*<!--meta\s*(\{.*?\})\s*-->\s*", bruto, re.S)
+    if not m:
+        sys.exit(f"{arq.name}: falta o bloco <!--meta {{...}} -->")
+    meta = json.loads(m.group(1))
+    meta["corpo"] = bruto[m.end():]
+    meta.setdefault("caminho", "/")
+    return meta
+
+
 def ler_paginas():
-    paginas = []
-    for arq in sorted((RAIZ / "paginas").glob("*.html")):
-        bruto = arq.read_text(encoding="utf-8")
-        m = re.match(r"\s*<!--meta\s*(\{.*?\})\s*-->\s*", bruto, re.S)
-        if not m:
-            sys.exit(f"{arq.name}: falta o bloco <!--meta {{...}} -->")
-        meta = json.loads(m.group(1))
-        meta["corpo"] = bruto[m.end():]
-        meta.setdefault("caminho", "/")
-        paginas.append(meta)
+    paginas = [_ler(a) for a in sorted((RAIZ / "paginas").glob("*.html"))]
+    for v, nome in VARIANTES:
+        pasta = RAIZ / "variantes" / v
+        if not pasta.is_dir():
+            continue
+        for arq in sorted(pasta.glob("*.html")):
+            pg = _ler(arq)
+            pg["variante"] = v
+            pg["caminho_base"] = pg["caminho"]
+            pg["caminho"] = "/" + v + pg["caminho"]
+            pg["noindex"] = True
+            paginas.append(pg)
     return paginas
 
 
@@ -227,6 +245,76 @@ def bloco_fecho(pg):
     </div>
   </div>
 </section>"""
+
+
+def bloco_variantes(pg):
+    """Barra para alternar entre a versão publicada e as variantes de copy (só nas páginas que têm variante)."""
+    base = pg.get("caminho_base", pg["caminho"])
+    existe = {v for v, _ in VARIANTES if (RAIZ / "variantes" / v).is_dir()
+              and any(_ler(a)["caminho"] == base for a in (RAIZ / "variantes" / v).glob("*.html"))}
+    if not existe:
+        return ""
+    atual = pg.get("variante", "")
+    marca = ' aria-current="page"'
+    itens = [f'<a href="{base}"{marca if not atual else ""}>Atual</a>']
+    for v, nome in VARIANTES:
+        if v in existe:
+            itens.append(f'<a href="/{v}{base}"{marca if v == atual else ""}>{v.upper()}<span>{esc(nome)}</span></a>')
+    return ('<nav class="seletor-variantes" aria-label="Versões de texto"><span class="sv-rot">Texto</span>'
+            + "".join(itens) + '<a class="sv-caderno" href="/variantes/">Comparar</a></nav>')
+
+
+def pagina_comparacao(paginas):
+    """/variantes/: H1 e lead de cada página, na versão atual e em cada variante, para escolher."""
+    por = {}
+    for pg in paginas:
+        base = pg.get("caminho_base", pg["caminho"])
+        por.setdefault(base, {})[pg.get("variante", "atual")] = pg
+    existe = [v for v, _ in VARIANTES if any(v in d for d in por.values())]
+    if not existe:
+        return None
+    nomes = dict(VARIANTES)
+    limpar = lambda t: re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", t or "")).strip()
+
+    def resumo(pg):
+        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", pg["corpo"], re.S)
+        lead = re.search(r'<p class="lead[^"]*">(.*?)</p>', pg["corpo"], re.S)
+        cta = re.search(r'<a class="btn[^"]*"[^>]*>(.*?)</a>', pg["corpo"], re.S)
+        return limpar(h1.group(1) if h1 else ""), limpar(lead.group(1) if lead else ""), limpar(cta.group(1) if cta else "")
+
+    blocos = []
+    for base, d in por.items():
+        if not any(v in d for v in existe):
+            continue
+        cartoes = []
+        for chave, rotulo in [("atual", "Atual, no ar")] + [(v, f"{v.upper()} · {nomes[v]}") for v in existe]:
+            pg = d.get(chave)
+            if not pg:
+                cartoes.append(f'<article><p class="cp-rot">{esc(rotulo)}</p><p>Sem versão.</p></article>')
+                continue
+            h1, lead, cta = resumo(pg)
+            cartoes.append(f'<article class="{"atual" if chave == "atual" else ""}"><p class="cp-rot">{esc(rotulo)}</p>'
+                           f'<h3>{esc(h1)}</h3><p>{esc(lead)}</p>'
+                           + (f'<p><strong>Botão:</strong> {esc(cta)}</p>' if cta else "")
+                           + f'<a class="link" href="{pg["caminho"]}">Abrir a página</a></article>')
+        titulo = d.get("atual", next(iter(d.values())))["titulo"]
+        blocos.append(f'<div class="comparacao-pagina"><h2>{esc(titulo)}</h2><div class="comparacao-grade">{"".join(cartoes)}</div></div>')
+    notas = "".join(f'<li><a href="/{v}/NOTAS.md">Notas da {v.upper()} · {esc(nomes[v])}</a></li>'
+                    for v in existe if (RAIZ / "variantes" / v / "NOTAS.md").exists())
+    corpo = f"""<section class="abertura"><div class="wrap">
+  <p class="rotulo">Prévia · Para escolher</p>
+  <h1>Três versões de texto, o mesmo site</h1>
+  <p class="lead">Cada versão conta a mesma história com uma estratégia diferente. Compare página a página pelo título e pela primeira frase, abra cada uma e marque no caderno o que fica.</p>
+  <ul class="lista-traco"><li><strong>V1 · Ambição:</strong> você é o protagonista do maior passo até aqui.</li>
+  <li><strong>V2 · Precisão:</strong> autoridade técnica, prova pelos números de exemplo; hero centrado.</li>
+  <li><strong>V3 · Parceria:</strong> ao seu lado até o decidido virar rotina; hero claro.</li></ul>
+  <p class="microcopy">A barra no canto da tela troca de versão em qualquer página que tenha variante. Esta página e as pastas /v1/, /v2/ e /v3/ saem do ar quando a escolha for feita.</p>
+</div></section>
+<section class="secao"><div class="wrap comparacao">{"".join(blocos)}</div></section>
+""" + (f'<section class="secao papel"><div class="wrap"><div class="cabeca"><p class="rotulo">Bastidores</p><h2 id="notas">Notas de cada versão</h2></div><ul class="lista-traco">{notas}</ul><p class="nota">Análise completa do texto atual: <a href="/variantes/ANALISE-COPY.md">ANALISE-COPY.md</a>.</p></div></section>' if notas else "")
+    return {"caminho": "/variantes/", "titulo": "Versões de texto para escolher", "noindex": True,
+            "descricao": "Prévia: três versões de texto do site DALETH, lado a lado, para escolher.",
+            "migalhas": [["Versões de texto", "/variantes/"]], "corpo": corpo}
 
 
 def bloco_rodape():
@@ -393,6 +481,8 @@ def montar(pg, local, raiz="/"):
         corpo = corpo.replace("{{FORM_ATRIBUTOS}}", attrs)
         corpo = corpo.replace("{{FORM_AVISO}}", aviso)
     classe = pg.get("classe_body", "")
+    if "tema-claro-hero" in classe:
+        corpo = corpo.replace('<canvas data-cena="heroi"', '<canvas data-cena="heroi" data-tema="claro"', 1)
     pagina = f"""<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -427,9 +517,16 @@ def montar(pg, local, raiz="/"):
 {bloco_fecho(pg)}
 </main>
 {bloco_rodape()}
+{bloco_variantes(pg)}
 </body>
 </html>
 """
+    if pg.get("variante"):
+        v = pg["variante"]
+        proprias = {_ler(a)["caminho"] for a in (RAIZ / "variantes" / v).glob("*.html")}
+        pagina = re.sub(r'href="(/[^"#?]*/)([#?][^"]*)?"',
+                        lambda m: f'href="/{v}{m.group(1)}{m.group(2) or ""}"' if m.group(1) in proprias and not m.group(1).startswith("/" + v + "/") else m.group(0),
+                        pagina)
     base = "/" if pg.get("arquivo") else pg["caminho"]   # 404.html fica na raiz
     return reescrever_links(pagina, relativizador(base, local, raiz))
 
@@ -466,6 +563,16 @@ def gerar(local=False, raiz="/"):
         shutil.rmtree(DIST)
     shutil.copytree(RAIZ / "assets", DIST / "assets")
     paginas = ler_paginas()
+    comparacao = pagina_comparacao(paginas)
+    if comparacao:
+        paginas.append(comparacao)
+        for v, _ in VARIANTES:   # as notas e a análise, para ler pelo navegador
+            for arq in (RAIZ / "variantes" / v).glob("*.md"):
+                (DIST / v).mkdir(parents=True, exist_ok=True)
+                shutil.copy(arq, DIST / v / arq.name)
+        for arq in (RAIZ / "variantes").glob("*.md"):
+            (DIST / "variantes").mkdir(parents=True, exist_ok=True)
+            shutil.copy(arq, DIST / "variantes" / arq.name)
     for pg in paginas:
         destino = DIST / pg["caminho"].strip("/") / "index.html"
         if pg.get("arquivo"):
