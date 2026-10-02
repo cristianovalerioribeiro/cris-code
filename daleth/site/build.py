@@ -41,11 +41,13 @@ VERTENTES = [
     ("/empreendimentos/", "Empreendimentos"),
     ("/capital/", "Capital"),
 ]
+# Simulador no topo: decisão do Cristiano em 28/09 (é a prova mais forte do site).
 MENU_APOIO = [
+    ("/empreendimentos/simulador/", "Simulador"),
     ("/metodo/", "Método"),
-    ("/repertorio/", "Repertório"),
     ("/sobre/", "Sobre"),
 ]
+CTA = "Analisar meu caso"   # um rótulo só para a ação principal, em todo o site
 
 # Fecho padrão de quem ainda não decidiu: as três garantias aparecem só nas
 # páginas que pedem (para não repetir a mesma frase em todas).
@@ -87,10 +89,11 @@ def relativizador(caminho, local):
         if not alvo.startswith("/") or alvo.startswith("//"):
             return alvo
         base, _, ancora = alvo.partition("#")
+        base, _, consulta = base.partition("?")
         base = base.lstrip("/")
         if base == "" or base.endswith("/"):
             base += "index.html"
-        return prefixo + base + ("#" + ancora if ancora else "")
+        return prefixo + base + ("?" + consulta if consulta else "") + ("#" + ancora if ancora else "")
     return rel
 
 
@@ -117,8 +120,10 @@ def bloco_cabecalho(pg):
     atual = pg["caminho"]
 
     def item(alvo, rotulo, classe=""):
-        marca = ' aria-current="page"' if atual == alvo or (
-            alvo != "/" and atual.startswith(alvo)) else ""
+        ativo = atual == alvo or (alvo != "/" and atual.startswith(alvo))
+        if alvo == "/empreendimentos/" and atual.startswith("/empreendimentos/simulador/"):
+            ativo = False
+        marca = ' aria-current="page"' if ativo else ""
         return f'<li><a href="{alvo}"{marca} class="{classe}">{rotulo}</a></li>'
 
     vert = "".join(item(a, r, "nav-vertente") for a, r in VERTENTES)
@@ -136,10 +141,11 @@ def bloco_cabecalho(pg):
     <nav class="menu" id="menu" aria-label="Principal">
       <ul class="menu-vertentes">{vert}</ul>
       <ul class="menu-apoio">{apoio}</ul>
-      <a class="btn btn-primario menu-cta" href="/contato/">Analisar meu caso</a>
+      <a class="btn btn-primario menu-cta" href="/contato/">{CTA}</a>
     </nav>
   </div>
 </header>
+<a class="barra-cta" href="/contato/" hidden>{CTA}<span>Conversa de enquadramento, sem custo</span></a>
 <div class="faixa-slogan" role="note" aria-label="Assinatura">
   <div class="wrap"><p>{SLOGAN}</p></div>
 </div>"""
@@ -154,13 +160,15 @@ def bloco_fecho(pg):
     if f.get("secundario"):
         alvo, rotulo = f["secundario"]
         secundario = f'<a class="link" href="{alvo}">{esc(rotulo)}</a>'
+    contato = "/contato/" + (f"?momento={pg['momento']}&amp;origem={pg['caminho'].strip('/').replace('/', '-') or 'inicio'}"
+                             if pg.get("momento") else "")
     return f"""<section class="fecho" aria-labelledby="fecho-titulo">
   <div class="wrap">
     <p class="rotulo">{esc(f.get("rotulo", "Como começa"))}</p>
     <h2 id="fecho-titulo">{esc(f["titulo"])}</h2>
     <p class="lead">{f["texto"]}</p>
     <div class="acoes">
-      <a class="btn btn-ouro" href="/contato/">{esc(f.get("botao", "Analisar meu caso"))}</a>
+      <a class="btn btn-ouro" href="{contato}">{esc(f.get("botao", CTA))}</a>
       {secundario}
     </div>
     {garantias}
@@ -188,10 +196,10 @@ def bloco_rodape():
     <nav aria-label="Ferramentas e método">
       <p class="rotulo">Para decidir</p>
       <ul>
-        <li><a href="/metodo/">Método</a></li>
-        <li><a href="/repertorio/">As nove modelagens</a></li>
         <li><a href="/empreendimentos/simulador/">Simulador de exposição de caixa</a></li>
-        <li><a href="/empreendimentos/terreno/">Vender, permutar ou incorporar</a></li>
+        <li><a href="/empreendimentos/permuta-de-terreno/">Vender, permutar ou incorporar um terreno</a></li>
+        <li><a href="/metodo/">Método</a></li>
+        <li><a href="/metodo/modelagens/">As nove modelagens</a></li>
       </ul>
     </nav>
     <nav aria-label="Institucional">
@@ -269,7 +277,7 @@ def inserir_indice(corpo):
 
 def montar(pg, local):
     url = DOMINIO + pg["caminho"]
-    titulo = pg["titulo"] if pg["caminho"] == "/" else f'{pg["titulo"]} · DALETH'
+    titulo = pg["titulo"] if pg["caminho"] == "/" or pg.get("sem_sufixo") else f'{pg["titulo"]} · DALETH'
     robots = '<meta name="robots" content="noindex, nofollow">' if PREVIA or pg.get(
         "noindex") else ""
     scripts = "".join(f'<script src="/assets/js/{s}" defer></script>'

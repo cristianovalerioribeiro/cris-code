@@ -44,7 +44,7 @@ for p in paginas:
 
 # 2. links internos (modo --local: relativos)
 for p in paginas:
-    for alvo in re.findall(r'(?:href|src)="([^"#:]+)(?:#[^"]*)?"', p.read_text(encoding="utf-8")):
+    for alvo in re.findall(r'(?:href|src)="([^"#:?]+)(?:[?#][^"]*)?"', p.read_text(encoding="utf-8")):
         if alvo.startswith(("http", "mailto", "tel", "//")) or not alvo:
             continue
         if not (p.parent / alvo).resolve().exists():

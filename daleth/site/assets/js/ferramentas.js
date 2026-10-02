@@ -144,6 +144,20 @@
     el("k-resultado").textContent = moeda(r.resultado);
     desenhar(r);
     anunciar(r);
+    levar(p, r);
+  }
+
+  // "Levar estes números para a conversa": o cenário da tela vai escrito na mensagem do contato
+  function levar(p, r) {
+    var texto = "Cenário do simulador (números de exemplo): VGV R$ " + p.vgv + " mi; terreno " + p.terreno +
+      "% do VGV, " + p.permuta + "% em permuta; vendas na planta " + p.planta + "%; crédito de obra " + p.credito +
+      "% do custo. Exposição máxima " + (r.sem ? "R$ 0" : moeda(r.exposicao) + " no mês " + r.mes) + ".";
+    try { sessionStorage.setItem("daleth-cenario", texto); } catch (e) {}
+    var a = el("levar-numeros");
+    if (a) {
+      var base = a.getAttribute("href").split("&msg=")[0];
+      a.setAttribute("href", base + "&msg=" + encodeURIComponent(texto));
+    }
   }
 
   var CENARIOS = {

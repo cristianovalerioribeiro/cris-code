@@ -1,20 +1,27 @@
 <!--meta {
-  "caminho": "/empreendimentos/terreno/",
-  "titulo": "Vender, permutar ou incorporar um terreno",
-  "descricao": "Vender, permutar ou incorporar: três negócios diferentes, com risco, prazo e capital diferentes. Comparação lado a lado pelos critérios que decidem a escolha.",
-  "migalhas": [["Empreendimentos", "/empreendimentos/"], ["Terreno", "/empreendimentos/terreno/"]],
+  "caminho": "/empreendimentos/permuta-de-terreno/",
+  "titulo": "Permuta de terreno, venda ou incorporação?",
+  "descricao": "Vender, permutar ou incorporar: três negócios com risco, prazo e capital diferentes. Compare lado a lado antes de responder a uma proposta.",
+  "migalhas": [["Empreendimentos", "/empreendimentos/"], ["Vender, permutar ou incorporar", "/empreendimentos/permuta-de-terreno/"]],
+  "servico": "Análise de terreno: venda, permuta ou incorporação",
+  "momento": "terreno",
   "fecho": {
     "rotulo": "Antes de responder a uma proposta",
     "titulo": "Conte onde fica o terreno e o que já ofereceram",
-    "texto": "Devolvemos uma primeira leitura e, se fizer sentido, a proposta do diagnóstico de estruturação, para comparar os caminhos com número.",
-    "botao": "Falar sobre o meu terreno"
+    "texto": "Se recebeu proposta, diga o tipo (compra, permuta física ou financeira) e o prazo para responder. A primeira conversa é de enquadramento, sem custo.",
+    "botao": "Falar sobre o meu terreno",
+    "secundario": ["/empreendimentos/simulador/", "Ver o efeito no caixa de incorporar"]
   }
 } -->
 <section class="abertura">
   <div class="wrap">
     <p class="rotulo">Empreendimentos · Terreno</p>
     <h1>Vender, permutar ou incorporar: três negócios diferentes</h1>
-    <p class="lead">Cada caminho tem risco, prazo e necessidade de capital próprios. A comparação abaixo é de natureza, e não de valores: os números dependem do lote, da praça e do produto, e saem do estudo de viabilidade.</p>
+    <p class="lead">Uma proposta diz quanto alguém quer pagar. Não diz o que o terreno vale como empreendimento. Antes de responder, vale comparar os três caminhos.</p>
+    <div class="acoes">
+      <a class="btn btn-primario" href="/contato/?momento=terreno&amp;origem=terreno-abertura">Falar sobre o meu terreno</a>
+      <a class="link" href="#comp-t">Ver os três caminhos lado a lado</a>
+    </div>
   </div>
 </section>
 
@@ -36,27 +43,25 @@
       </table>
     </div>
     <p class="dica-rolagem">Arraste a tabela para o lado para ver os três caminhos.</p>
-    <p class="nota" style="margin-top:32px">Nenhum dos três é melhor por natureza. A escolha depende do potencial do lote, do seu apetite de risco e do capital disponível, e é isso que o estudo compara, com número.</p>
+    <p class="nota" style="margin-top:32px">A comparação é de natureza, e não de valores: os números dependem do lote, da praça e do produto. Nenhum dos três é melhor por natureza. A escolha depende do potencial do lote, do seu apetite de risco e do capital disponível, e é isso que o estudo compara, com número.</p>
   </div>
 </section>
 
 <section class="secao papel" aria-labelledby="olha-t">
   <div class="wrap duas-colunas">
     <div>
-      <p class="rotulo">Proposta na mesa</p>
-      <h2 id="olha-t">Uma proposta diz quanto alguém quer pagar</h2>
-      <p class="lead">Não diz o que o terreno vale como empreendimento. São números diferentes, e a diferença costuma ser grande. Antes de responder, vale saber o que cabe no lote e quanto isso vale.</p>
+      <p class="rotulo">O que o diagnóstico entrega para um terreno</p>
+      <h2 id="olha-t">O que o terreno vale como empreendimento, com número</h2>
+      <p class="lead">A diferença entre a proposta e esse valor costuma ser grande. É ela que decide se vale vender, permutar ou incorporar.</p>
+      <div class="acoes"><a class="btn btn-primario" href="/contato/?momento=terreno&amp;origem=terreno-proposta">Contar o que ofereceram</a></div>
     </div>
-    <div>
-      <p class="rotulo">O que olhamos no seu caso</p>
-      <ul class="lista-traco">
-        <li>Potencial construtivo e restrições do lote.</li>
-        <li>Produto adequado à praça e ao público.</li>
-        <li>Formas de aquisição e o efeito de cada uma no caixa.</li>
-        <li>Cenários de preço e de ritmo de vendas.</li>
-        <li>Quem seria o parceiro certo, se o caminho for parceria.</li>
-      </ul>
-    </div>
+    <ul class="itens">
+      <li><strong>Potencial construtivo levantado.</strong> <span>Zoneamento, coeficiente, altura, recuos e restrições do lote.</span></li>
+      <li><strong>Produtos possíveis.</strong> <span>O que cabe ali e o que vende naquela praça, para aquele público.</span></li>
+      <li><strong>Os três caminhos comparados.</strong> <span>Vender, permutar e incorporar, com risco, prazo e resultado de cada um.</span></li>
+      <li><strong>Efeito de cada forma de aquisição no caixa.</strong> <span>Permuta física, financeira ou mista, opção de compra, prazo.</span></li>
+      <li><strong>O parceiro certo, se o caminho for parceria.</strong> <span>O perfil de quem faz sentido para aquele lote.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -64,15 +69,14 @@
   <div class="wrap">
     <div class="cabeca">
       <p class="rotulo">Perguntas frequentes</p>
-      <h2 id="faq-t">O que costumam perguntar sobre terreno</h2>
+      <h2 id="faq-t">Antes de decidir o terreno</h2>
     </div>
     <div class="faqs">
       <details class="faq"><summary>Vender ou incorporar, o que rende mais?</summary><p>Depende do potencial do lote e do capital disponível. Incorporar costuma somar mais resultado ao longo do ciclo, porque o terreno deixa de ser o negócio e passa a ser insumo, mas concentra risco, prazo e capital em quem incorpora. Vender resolve tudo isso de uma vez, por um valor menor. A comparação só fica honesta com o estudo do lote.</p></details>
       <details class="faq"><summary>Qual a diferença entre permuta física e financeira?</summary><p>Na física, o proprietário recebe unidades prontas. Na financeira, recebe um percentual do que for vendido, em dinheiro, conforme as vendas acontecem. A mista combina as duas. Muda o momento do recebimento, a exposição ao desempenho do projeto e o tratamento tributário.</p></details>
       <details class="faq"><summary>Preciso ter dinheiro para incorporar o meu terreno?</summary><p>Precisa de capital para o ciclo, e não necessariamente para o terreno. Ele pode entrar como permuta, e a obra pode contar com vendas na planta e crédito. Ainda assim sobra uma exposição de caixa a sustentar, e é ela que costuma definir se o caminho é viável.</p></details>
-      <details class="faq"><summary>Como sei o potencial construtivo do meu lote?</summary><p>Pela legislação urbanística do município aplicada ao lote: zoneamento, coeficiente de aproveitamento, altura, recuos, vagas e restrições ambientais ou de tombamento. É a primeira coisa a levantar, porque define o que cabe ali.</p></details>
       <details class="faq"><summary>Já tenho corretor e advogado. Ainda faz sentido?</summary><p>Faz, e não substitui nenhum dos dois. O corretor sabe por quanto o terreno vende hoje, e o advogado cuida da segurança do negócio. A pergunta que fica sem dono é quanto o terreno vale como empreendimento, e qual caminho sobra melhor para você depois de risco, prazo e capital.</p></details>
     </div>
-    <p class="continuar">Para continuar: <a href="/empreendimentos/simulador/">simular a exposição de caixa</a>, <a href="/repertorio/">ver as formas de aquisição no repertório</a> ou <a href="/empreendimentos/">voltar a Empreendimentos</a>.</p>
+    <p class="continuar">Para continuar: <a href="/empreendimentos/simulador/">simular a exposição de caixa</a>, <a href="/metodo/modelagens/">ver as formas de aquisição nas modelagens</a> ou <a href="/empreendimentos/">voltar a Empreendimentos</a>.</p>
   </div>
 </section>

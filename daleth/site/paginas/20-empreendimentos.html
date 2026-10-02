@@ -1,46 +1,77 @@
 <!--meta {
   "caminho": "/empreendimentos/",
-  "titulo": "Empreendimentos · Do terreno à entrega",
-  "descricao": "Terreno, produto, viabilidade, cronogramas, incorporação e vendas planejados juntos. Comparamos as formas de fazer o empreendimento antes de comprometer capital e acompanhamos até a entrega.",
+  "titulo": "Empreendimentos imobiliários, do terreno à entrega",
+  "descricao": "Terreno, produto, viabilidade, cronogramas, incorporação e vendas planejados juntos. Comparamos caminhos antes de comprometer capital.",
   "migalhas": [["Empreendimentos", "/empreendimentos/"]],
   "servico": "Estruturação de empreendimentos imobiliários",
+  "momento": "empreendimento",
   "fecho": {
     "rotulo": "Para o seu empreendimento",
     "titulo": "Traga o terreno, o projeto ou a dúvida entre dois caminhos",
-    "texto": "Devolvemos uma primeira leitura e, se fizer sentido, a proposta do diagnóstico de estruturação, com escopo, prazo e valor definidos antes de começar.",
+    "texto": "Quanto mais cedo, mais caminhos ainda podem ser comparados. A primeira conversa é de enquadramento, sem custo.",
     "botao": "Falar sobre o meu empreendimento",
-    "secundario": ["/empreendimentos/simulador/", "Testar o simulador"]
+    "secundario": ["/empreendimentos/simulador/", "Antes, testar o simulador"]
   }
 } -->
 <section class="abertura">
   <div class="wrap">
     <p class="rotulo">Empreendimentos</p>
     <h1>Descubra se o empreendimento fecha, e qual estrutura faz ele fechar melhor</h1>
-    <p class="lead">É por aqui que a maior parte dos trabalhos começa. Comparamos a forma de comprar o terreno, testamos a viabilidade em cenários e planejamos obra, vendas e caixa juntos, numa só mesa de decisão.</p>
+    <p class="lead">Comparamos a forma de comprar o terreno, testamos a viabilidade em cenários e planejamos obra, vendas e caixa juntos, numa só mesa de decisão, e acompanhamos até a entrega.</p>
     <div class="acoes">
-      <a class="btn btn-primario" href="/contato/">Analisar meu caso</a>
-      <a class="link" href="/empreendimentos/terreno/">Tenho um terreno</a>
+      <a class="btn btn-primario" href="/contato/?momento=empreendimento&amp;origem=empreendimentos-abertura">Falar sobre o meu empreendimento</a>
+    </div>
+    <ul class="atalhos" aria-label="Atalhos">
+      <li><a href="/empreendimentos/permuta-de-terreno/">Tenho um terreno</a></li>
+      <li><a href="/empreendimentos/obra-parada/">Uma obra parou</a></li>
+      <li><a href="/empreendimentos/simulador/">Testar o simulador</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="secao" aria-labelledby="quando-t">
+  <div class="wrap duas-colunas">
+    <div>
+      <p class="rotulo">Quando faz sentido</p>
+      <h2 id="quando-t">Do terreno ainda livre à obra em andamento</h2>
+    </div>
+    <div class="linhas-link">
+      <a href="/empreendimentos/permuta-de-terreno/"><span class="t">Um terreno a decidir, ou uma proposta de compra, permuta ou parceria na mesa</span><span class="d">Vender, permutar ou incorporar</span></a>
+      <a href="#alternativas"><span class="t">Um projeto a testar antes de lançar: produto, preço, ritmo e caixa</span><span class="d">Estudo de viabilidade em cenários</span></a>
+      <a href="#ciclo"><span class="t">Um empreendimento em andamento em que obra, vendas e caixa precisam voltar ao mesmo plano</span><span class="d">Planejamento integrado e acompanhamento</span></a>
+      <a href="/empreendimentos/obra-parada/"><span class="t">Uma operação travada que precisa de um caminho técnico</span><span class="d">Obras paradas</span></a>
     </div>
   </div>
 </section>
 
-<section class="secao" aria-labelledby="estrut-t">
+<section class="secao papel" id="alternativas" aria-labelledby="alt-t">
   <div class="wrap duas-colunas">
     <div>
-      <p class="rotulo">O que estruturamos</p>
-      <h2 id="estrut-t">O ciclo inteiro, em decisões que conversam</h2>
-      <p class="lead">Uma decisão de projeto muda o custo. O custo muda o preço. A forma de comprar o terreno muda o tributo. Ninguém decide bem uma dessas coisas olhando só para ela.</p>
+      <p class="rotulo">As alternativas que comparamos</p>
+      <h2 id="alt-t">O mesmo empreendimento, estruturado de formas diferentes</h2>
+      <p class="lead">A forma de pagar o terreno, vender e financiar a obra muda o capital que o projeto exige no caminho. Comparamos antes de decidir.</p>
+      <p class="continuar"><a class="mais" href="/empreendimentos/simulador/">Testar com os controles do simulador</a></p>
     </div>
-    <ul class="itens duas">
-      <li><strong>Produto.</strong> <span>O que cabe e o que vende naquele terreno, para aquele público.</span></li>
-      <li><strong>Terreno.</strong> <span>Avaliação e modelagem da forma de aquisição, inclusive permuta.</span></li>
-      <li><strong>Viabilidade.</strong> <span>Cenários de preço, ritmo de vendas, exposição e retorno.</span></li>
-      <li><strong>Decisões de projeto.</strong> <span>O que muda custo, prazo e o que se pode vender.</span></li>
-      <li><strong>Cronogramas.</strong> <span>Físico e financeiro compatíveis entre si e com a obra real.</span></li>
-      <li><strong>Lançamento e vendas.</strong> <span>Momento, tabela e velocidade esperada.</span></li>
-      <li><strong>Incorporação.</strong> <span>Arranjo societário e documentação, com a área jurídica.</span></li>
-      <li><strong>Acompanhamento.</strong> <span>Obra, vendas, medições e revisão de cenário até a entrega.</span></li>
-    </ul>
+    {{QUADRO}}
+  </div>
+</section>
+
+<section class="secao" id="ciclo" aria-labelledby="como-t">
+  <div class="wrap duas-colunas">
+    <div>
+      <p class="rotulo">Como atuamos</p>
+      <h2 id="como-t">Obra, caixa e vendas decididos na mesma mesa</h2>
+      <p class="apoio">Uma decisão de projeto muda o custo; o custo muda o preço; a forma de comprar o terreno muda o tributo.</p>
+    </div>
+    <div>
+      <div class="grade g3">
+        <div class="cartao"><h3>Obra</h3><p>Decisões de projeto, orçamento e cronograma físico compatíveis com a obra real.</p></div>
+        <div class="cartao"><h3>Caixa</h3><p>Viabilidade em cenários, curva de desembolso, exposição máxima e o momento do recurso.</p></div>
+        <div class="cartao"><h3>Vendas</h3><p>Produto, preço, mix, lançamento e o efeito de cada cenário sobre o resultado.</p></div>
+      </div>
+      <p class="rotulo" style="margin-top:32px">Também entram no escopo</p>
+      <p class="apoio">Avaliação e forma de aquisição do terreno · Estruturação da incorporação, com o jurídico · Acompanhamento de obra, vendas, medições e liberações até a entrega</p>
+    </div>
   </div>
 </section>
 
@@ -49,78 +80,46 @@
     <div class="cabeca">
       <p class="rotulo">Do terreno à entrega</p>
       <h2 id="ciclo-t">Em que momento a DALETH entra</h2>
-      <p class="lead">Quase sempre antes do que se imagina. Nas cinco primeiras etapas participamos da decisão; nas demais, acompanhamos a execução.</p>
+      <p class="lead">Nas três primeiras etapas participamos da decisão; depois, acompanhamos a execução. Nas etapas de decisão, a organização da <a href="/empresas/">empresa</a> e o <a href="/capital/">capital</a> entram na conta.</p>
     </div>
     <ol class="trilho">
       <li class="decide"><strong>Terreno</strong><span>Avaliar e comparar formas de aquisição</span><span class="marca-decide">Decisão</span></li>
       <li class="decide"><strong>Produto</strong><span>O que cabe e o que vende ali</span><span class="marca-decide">Decisão</span></li>
       <li class="decide"><strong>Viabilidade</strong><span>Cenários de preço, ritmo e exposição</span><span class="marca-decide">Decisão</span></li>
-      <li class="decide"><strong>Empresa</strong><span>Informação que a análise externa pede</span><span class="marca-decide">Decisão</span></li>
-      <li class="decide"><strong>Capital</strong><span>Enquadrar e montar a operação</span><span class="marca-decide">Decisão</span></li>
-      <li><strong>Aprovações</strong><span>Incorporação, licenças e documentos</span></li>
-      <li><strong>Obra e vendas</strong><span>Medições, liberações e revisão de cenário</span></li>
+      <li><strong>Incorporação</strong><span>Arranjo e documentação, com o jurídico</span></li>
+      <li><strong>Lançamento</strong><span>Momento, tabela e velocidade esperada</span></li>
+      <li><strong>Obra</strong><span>Medições, liberações e revisão de cenário</span></li>
+      <li><strong>Vendas</strong><span>Ritmo real comparado ao planejado</span></li>
       <li><strong>Entrega</strong><span>Resultado apurado e lições do ciclo</span></li>
     </ol>
   </div>
 </section>
 
-<section class="secao" aria-labelledby="partida-t">
-  <div class="wrap">
-    <div class="cabeca">
-      <p class="rotulo">Dentro de Empreendimentos</p>
-      <h2 id="partida-t">Três pontos de partida, se o seu caso já tem nome</h2>
-      <p class="lead">Cada um tem página própria porque o assunto pede profundidade. Os três nascem da mesma pergunta: o que fazer com um terreno, um produto e um caixa que precisam se sustentar até a entrega.</p>
+<section class="secao" aria-labelledby="entrega-t">
+  <div class="wrap duas-colunas">
+    <div>
+      <p class="rotulo">O que você recebe</p>
+      <h2 id="entrega-t">Do diagnóstico à entrega</h2>
     </div>
-    <ul class="dimensoes">
-      <li class="dimensao surge">
-        <h3>Tenho um terreno</h3>
-        <p>Vender, permutar ou incorporar são três negócios diferentes, com risco e prazo diferentes. Veja lado a lado, pelos critérios que decidem a escolha.</p>
-        <a class="mais" href="/empreendimentos/terreno/">Comparar os três caminhos</a>
-      </li>
-      <li class="dimensao surge">
-        <h3>Simulador de exposição</h3>
-        <p>A mesma obra exige capital próprio diferente conforme a estrutura. Mexa nos controles e veja o efeito no caixa, mês a mês.</p>
-        <a class="mais" href="/empreendimentos/simulador/">Simular a exposição</a>
-      </li>
-      <li class="dimensao surge">
-        <h3>Obras paradas</h3>
-        <p>Quando a obra para, jurídico, técnico e financeiro costumam travar juntos. Veja o que fazer nas duas primeiras semanas.</p>
-        <a class="mais" href="/empreendimentos/obra-parada/">Ver por onde começar</a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="secao" aria-labelledby="planej-t">
-  <div class="wrap">
-    <div class="cabeca">
-      <p class="rotulo">Planejamento integrado</p>
-      <h2 id="planej-t">Obra, caixa e vendas no mesmo plano</h2>
-      <p class="lead">O ganho maior não está em acertar cada conta, e sim em fazer as três frentes conversarem desde o começo.</p>
+    <div class="grade g2">
+      <div class="cartao"><h3>No diagnóstico</h3><p>A situação mapeada, os caminhos possíveis comparados com premissas escritas (produto, aquisição do terreno, estrutura de capital) e um caminho recomendado, discutido com você.</p></div>
+      <div class="cartao"><h3>Na estruturação e condução</h3><p>Cronogramas compatíveis entre si, documentação no padrão da análise externa e reuniões de decisão com cenário revisado até a entrega.</p></div>
     </div>
-    <div class="grade g3">
-      <div class="cartao surge"><h3>Obra</h3><p>Cronograma físico, orçamento e as decisões de projeto que mudam o custo.</p></div>
-      <div class="cartao surge"><h3>Caixa</h3><p>Curva de desembolso, exposição máxima e o momento em que o recurso precisa entrar.</p></div>
-      <div class="cartao surge"><h3>Vendas</h3><p>Preço, mix, velocidade e o efeito de cada cenário sobre o resultado.</p></div>
-    </div>
-    <p class="destaque-frase">A execução de obra, vendas e projeto continua com você e seus fornecedores. Nós estruturamos a decisão que vem antes de cada frente e conduzimos até a entrega.</p>
   </div>
 </section>
 
 <section class="secao papel" aria-labelledby="faq-t">
-  <div class="wrap">
-    <div class="cabeca">
+  <div class="wrap duas-colunas solto">
+    <div>
       <p class="rotulo">Perguntas frequentes</p>
-      <h2 id="faq-t">O que costumam perguntar sobre o empreendimento</h2>
+      <h2 id="faq-t">Antes de estruturar um empreendimento</h2>
+      <p class="apoio">A execução de obra, vendas e projeto continua com você e seus fornecedores.</p>
     </div>
     <div class="faqs">
       <details class="faq"><summary>Dá para começar só com o terreno, sem projeto?</summary><p>Sim, e costuma ser o melhor momento. Antes do projeto há mais liberdade para comparar produtos, formas de aquisição e estruturas.</p></details>
       <details class="faq"><summary>O estudo de viabilidade diz se o empreendimento vai dar certo?</summary><p>Ele mostra em que condições o empreendimento se sustenta, e o que precisa mudar quando não se sustenta. Trabalhamos com cenários e premissas escritas, e não com garantia de resultado.</p></details>
-      <details class="faq"><summary>Vocês fazem o projeto de arquitetura?</summary><p>Não. Trabalhamos com os projetistas do cliente ou indicamos parceiros. Nosso papel é traduzir as decisões de projeto em custo, prazo, produto e resultado, para que a escolha seja feita com informação.</p></details>
-      <details class="faq"><summary>Já tenho arquiteto, advogado e contador. Ainda faz sentido?</summary><p>Faz, e o trabalho não substitui nenhum deles. Cada um responde muito bem pela própria parte; o que costuma faltar é alguém olhando as partes juntas. Trabalhamos com os profissionais que já estão na mesa.</p></details>
+      <details class="faq"><summary>Já tenho arquiteto, advogado e contador. Ainda faz sentido?</summary><p>Faz, e o trabalho não substitui nenhum deles. Traduzimos as decisões de cada um em custo, prazo, produto e resultado, para que a escolha seja feita com informação.</p></details>
       <details class="faq"><summary>Vocês acompanham a obra depois?</summary><p>Sim. Acompanhamos obra, vendas, medições e liberações, com revisão periódica de cenário e reuniões de decisão.</p></details>
-      <details class="faq"><summary>O simulador e o comparador substituem o estudo de viabilidade?</summary><p>Não. Os dois usam premissas fixas e números de exemplo para mostrar o raciocínio. O seu terreno tem zoneamento, praça, custo e ritmo de vendas próprios, e é isso que o estudo apura, caso a caso.</p></details>
     </div>
-    <p class="continuar">Para continuar: <a href="/capital/">a dimensão de Capital</a>, <a href="/repertorio/">as nove modelagens</a> ou <a href="/empresas/">a organização da empresa</a>.</p>
   </div>
 </section>

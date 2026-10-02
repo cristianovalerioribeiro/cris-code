@@ -66,3 +66,31 @@ Feita com os agentes 47 (UI/UX) e 45 (Brand) da gaveta de design. Relatórios co
 - **Simulador no celular:** mostra o resultado antes dos controles. Gráfico com eixo em R$ mi e texto legível.
 - **Terreno no celular:** um bloco por critério.
 - **Páginas internas:** índice "Nesta página" no desktop.
+
+## Reestruturação de 02/10/2026 (agentes 14 Página, 09 Copy e 34 SEO)
+
+Relatórios em `docs/revisao-estrutura/`. Aplicado sem depender de decisão nova:
+- **Menu:** Empresas · Empreendimentos · Capital | Simulador · Método · Sobre. O Simulador volta ao topo (decisão de 28/09), e o Repertório virou `/metodo/modelagens/`.
+- **Home** em 9 blocos:
+  1. Hero
+  2. Diferencial
+  3. Roteamento por situação, com destino próprio e o investidor
+  4. Como começa, com a sequência e as garantias
+  5. Por que conversar cedo, com o método
+  6. Presença
+  7. Quem conduz
+  8. Perguntas frequentes
+  9. Fecho
+- **Páginas de serviço** no modelo do Caderno §12: situação → ganhos → alternativas → como atuamos → entregas → interfaces → perguntas frequentes.
+- **Endereço novo** `/empreendimentos/permuta-de-terreno/`, com 301 do antigo.
+- **SEO:** novos titles e descriptions.
+- **Formulário:** recebe momento, origem e o cenário do simulador.
+- **Celular:** barra de contato fixa.
+- **Repetições:** a frase de fecho repetida e as FAQs duplicadas saíram.
+
+Decisões que a reestruturação expôs e seguem com o Cristiano:
+- **H1 da home:** "Para realizar mais, é preciso estruturar melhor." é quase literal de uma frase recusada no V4 de 30/09. Propostas do agente 09: "Seu próximo empreendimento pode ser o maior até aqui." e "Todo grande empreendimento se apoia em decisões que ninguém vê."
+- **Rótulo do CTA:** unificado em "Analisar meu caso" em todo o site; era "A TESTAR" contra "Conversar sobre uma oportunidade".
+- **Prazo de resposta declarado** (ex.: "em até 1 dia útil"): não publicado, porque é proibido inventar.
+- **Investidor como contratante** (`/capital/#investidor`): redação a revisar junto com a frase regulatória.
+- **Páginas novas recomendadas pelo SEO:** estudo de viabilidade (prioridade 1), financiamento à produção, preparação para crédito (GERIC) e política de privacidade.

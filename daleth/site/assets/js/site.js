@@ -85,6 +85,43 @@
     });
   }
 
+
+  // ---- barra de contato no celular: aparece depois da abertura, some perto do fecho e no contato
+  var barra = document.querySelector(".barra-cta");
+  var noContato = /\/contato\//.test(location.pathname);
+  if (barra && !noContato) {
+    var abertura = document.querySelector(".hero, .abertura");
+    var fecho = document.querySelector(".fecho");
+    var limite = abertura ? abertura.offsetTop + abertura.offsetHeight : 400;
+    var mostrar = function () {
+      var y = window.scrollY, fim = fecho ? fecho.getBoundingClientRect().top < window.innerHeight : false;
+      var visivel = y > limite && !fim && !document.body.classList.contains("menu-aberto");
+      barra.hidden = !visivel;
+      document.body.classList.toggle("com-barra", visivel);
+    };
+    window.addEventListener("scroll", mostrar, { passive: true });
+    mostrar();
+  }
+
+  // ---- contato: momento, origem e mensagem vindos do link (?momento=...&origem=...&msg=...)
+  var form2 = document.querySelector("form.form");
+  if (form2) {
+    var q = {};
+    location.search.replace(/^\?/, "").split("&").forEach(function (par) {
+      if (!par) return;
+      var kv = par.split("=");
+      try { q[decodeURIComponent(kv[0])] = decodeURIComponent((kv[1] || "").replace(/\+/g, " ")); } catch (e) {}
+    });
+    var sel = document.getElementById("momento");
+    if (q.momento && sel && sel.querySelector('option[value="' + q.momento + '"]')) sel.value = q.momento;
+    var orig = document.getElementById("origem");
+    if (orig) orig.value = q.origem || (document.referrer ? "referencia-externa" : "direto");
+    var msg = document.getElementById("mensagem");
+    var guardada = null;
+    try { guardada = sessionStorage.getItem("daleth-cenario"); } catch (e) {}
+    if (msg && !msg.value && (q.msg || (q.origem === "simulador" && guardada))) msg.value = q.msg || guardada;
+  }
+
   // ---- formulário de contato enquanto o canal não está definido
   var form = document.querySelector("form[data-inativo]");
   if (form) {

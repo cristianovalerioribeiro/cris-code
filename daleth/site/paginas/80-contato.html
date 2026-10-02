@@ -1,13 +1,13 @@
 <!--meta {
   "caminho": "/contato/",
-  "titulo": "Contato · Analisar meu caso",
-  "descricao": "Conte o momento da sua empresa ou do seu empreendimento. Respondemos com uma primeira leitura e, se fizer sentido, com a proposta do diagnóstico de estruturação.",
+  "titulo": "Analisar meu caso",
+  "descricao": "Conte o momento da empresa ou do empreendimento. Respondemos para marcar a conversa de enquadramento, sem custo.",
   "migalhas": [["Contato", "/contato/"]]
 } -->
 <section class="abertura">
   <div class="wrap">
     <p class="rotulo">Contato</p>
-    <h1>Conte o momento da sua empresa ou do seu empreendimento</h1>
+    <h1>Conte o que você quer realizar a seguir</h1>
     <p class="lead">Respondemos com uma primeira leitura e, se fizer sentido, com a proposta do diagnóstico de estruturação.</p>
   </div>
 </section>
@@ -18,6 +18,7 @@
       <h2 id="form-t" class="oculto">Formulário</h2>
       <form class="form" {{FORM_ATRIBUTOS}}>
         <input type="hidden" name="form-name" value="contato">
+        <input type="hidden" name="origem" id="origem" value="">
         <p class="oculto"><label>Não preencha <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="linha">
           <div class="campo"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required></div>
@@ -32,13 +33,14 @@
           <div class="campo"><label for="momento">O que você tem hoje</label>
             <select id="momento" name="momento" required>
               <option value="">Selecione</option>
-              <option>Uma empresa em crescimento, que quer organizar o próximo ciclo</option>
-              <option>Um terreno ou um ativo para estudar</option>
-              <option>Um empreendimento para estruturar ou em andamento</option>
-              <option>Uma demanda de capital, ou um investidor já definido</option>
-              <option>Uma obra parada (sou a incorporadora)</option>
-              <option>Uma obra parada (represento um grupo de adquirentes)</option>
-              <option>Ainda estudando o assunto</option>
+              <option value="empresa">Uma empresa em crescimento, que quer organizar o próximo ciclo</option>
+              <option value="terreno">Um terreno ou um ativo para estudar</option>
+              <option value="empreendimento">Um empreendimento para estruturar ou em andamento</option>
+              <option value="capital">Uma demanda de capital, ou um investidor já definido</option>
+              <option value="investidor">Sou investidor e avalio entrar numa operação</option>
+              <option value="obra-parada">Uma obra parada (sou a incorporadora)</option>
+              <option value="obra-parada-adquirentes">Uma obra parada (represento um grupo de adquirentes)</option>
+              <option value="estudando">Ainda estudando o assunto</option>
             </select>
           </div>
         </div>
@@ -48,6 +50,14 @@
       </form>
     </div>
     <aside class="lado-contato">
+      <div>
+        <p class="rotulo">O que acontece depois</p>
+        <ol class="sequencia">
+          <li>Lemos o que você contou.</li>
+          <li>Respondemos para marcar a conversa de enquadramento, online e sem custo.</li>
+          <li>Se houver aderência, a proposta do diagnóstico chega por escrito, com escopo, prazo e valor.</li>
+        </ol>
+      </div>
       <div>
         <p class="rotulo">O que ajuda na primeira mensagem</p>
         <ul class="lista-traco">
