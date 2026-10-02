@@ -65,7 +65,7 @@
     // o SVG encolhe no celular: o texto cresce na mesma proporção para ficar com ~12px na tela
     var k = Math.max(1, 640 / (curva.clientWidth || 640));
     var fs = Math.round(12 * k), fsDestaque = Math.round(13 * k);
-    var w = 640, h = 300 + Math.round(20 * (k - 1)), e = 22 + Math.round(30 * k), d = 16, t = 26, b = 18 + Math.round(16 * k);
+    var w = 640, h = 300 + Math.round(140 * (k - 1)), e = 22 + Math.round(30 * k), d = 16, t = 26, b = 18 + Math.round(16 * k);
     curva.setAttribute("viewBox", "0 0 " + w + " " + h);
     var vals = r.serie.concat([0]);
     var max = Math.max.apply(null, vals), min = Math.min.apply(null, vals);
@@ -104,8 +104,11 @@
     if (!r.sem) {
       var px = x(r.mes), py = y(-r.exposicao), direita = px > w * 0.6;
       curva.appendChild(no("circle", { cx: px, cy: py, r: 6, fill: "#B58A44", stroke: "#fff", "stroke-width": 2 }));
-      curva.appendChild(no("text", { x: direita ? px - 10 : px + 10, y: Math.max(py - 14, t + 14),
-        "text-anchor": direita ? "end" : "start", fill: "#7A5A28", "font-size": fsDestaque, "font-weight": 700,
+      // no celular o rótulo do pico vai para o canto de cima, longe da curva e do eixo
+      var celular = k > 1.3;
+      curva.appendChild(no("text", { x: celular ? e + 6 : direita ? px - 10 : px + 10,
+        y: celular ? t + fs + 10 + fsDestaque : Math.max(py - 14, t + 14),
+        "text-anchor": celular ? "start" : direita ? "end" : "start", fill: "#7A5A28", "font-size": fsDestaque, "font-weight": 700,
         "font-family": "Inter, sans-serif", stroke: "#fff", "stroke-width": 4, "paint-order": "stroke",
         "stroke-linejoin": "round" }, "pico: " + moeda(r.exposicao) + " no mês " + r.mes));
       var xr = x(OBRA + REPASSE);

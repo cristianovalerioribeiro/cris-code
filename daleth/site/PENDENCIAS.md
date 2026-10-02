@@ -120,3 +120,24 @@ Feito para depois podar. Tudo está na prévia e pode sair.
 - **Textos:** todas as páginas de serviço e institucionais foram encurtadas, com abertura em cena (storytelling), sem caso inventado.
 
 O que precisa de decisão está no *Caderno de refinamento do site (v04)*, no Claude Docs.
+
+## Versão 05 de 02/10/2026: 3D e responsividade
+
+- **Motor 3D próprio** (`assets/js/cena3d.js`, sem biblioteca). As cenas são marcadas no HTML com `<canvas data-cena="heroi|jornada|rede">`; `data-tema="claro"` dá a versão clara e `data-rotulos` os rótulos.
+  - **Hero da home B:** terreno de pontos, lote, quatro torres e rede de decisões com pulsos.
+  - **Aproximação:** a mesma cena guiada pela rolagem, em três atos.
+  - **Fecho:** a rede ao fundo, em todas as páginas.
+  - **Modelo C:** a versão clara.
+- **Imagens renderizadas da própria cena** (`assets/img/`):
+  - pôster do hero, para antes do 3D carregar e para aparelhos sem WebGL;
+  - `og.png` com o H1;
+  - pranchas 3D de Empresas, Empreendimentos, Capital e Inteligência, que entram com `"imagem"` no meta da página.
+
+  Para refazer, use os scripts em `docs/render/`.
+- **Revisão de responsividade** (21 pontos de um agente revisor), entre eles:
+  - lista do método;
+  - botão do topo entre 1080 e 1200px;
+  - gráfico do simulador e formulário de contato;
+  - trilho, migalhas, menu do celular e rodapé;
+  - índice "Nesta página" também no celular;
+  - fecho em duas colunas, com o que acontece depois.

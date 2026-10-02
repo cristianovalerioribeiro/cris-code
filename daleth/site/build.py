@@ -203,6 +203,13 @@ def bloco_fecho(pg):
       {secundario}
     </div>
     {garantias}
+    <div class="fecho-depois" aria-label="O que acontece depois">
+      <ol>
+        <li><span><strong>Conversa de enquadramento</strong>Sem custo e sem compromisso.</span></li>
+        <li><span><strong>Diagnóstico de estruturação</strong>Só se fizer sentido para os dois lados.</span></li>
+        <li><span><strong>Escopo escrito</strong>Prazo e entregas definidos antes de começar.</span></li>
+      </ol>
+    </div>
   </div>
 </section>"""
 

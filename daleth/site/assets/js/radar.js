@@ -69,7 +69,7 @@
       svg.appendChild(no("line", { x1: CX, y1: CY, x2: p[0], y2: p[1], stroke: "#24465F" }));
       var anc = Math.abs(l[0] - CX) < 4 ? "middle" : l[0] > CX ? "start" : "end";
       svg.appendChild(no("text", { x: l[0], y: l[1] + 4, "text-anchor": anc, fill: "#B9C8D4",
-        "font-size": 12, "font-family": "Inter, sans-serif" }, e.rot));
+        "font-size": 14, "font-family": "Inter, sans-serif" }, e.rot));
     });
     var vals = EIXOS.map(function (e) { return notas[e.id] == null ? 0 : (notas[e.id] + 0.35) / 3.35; });
     var algum = EIXOS.some(function (e) { return notas[e.id] != null; });
