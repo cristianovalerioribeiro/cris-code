@@ -1,0 +1,14 @@
+# Endereços do site v12 que mudaram (terreno, simulador e obra parada vivem dentro de Empreendimentos)
+/terreno/        /empreendimentos/permuta-de-terreno/  301
+/simulador/      /empreendimentos/simulador/     301
+/obra-parada/    /empreendimentos/obra-parada/   301
+/setup/          /como-comeca/                   301
+/recebido/       /contato/recebido/              301
+/terreno         /empreendimentos/permuta-de-terreno/  301
+/simulador       /empreendimentos/simulador/     301
+/obra-parada     /empreendimentos/obra-parada/   301
+/setup           /como-comeca/                   301
+/empreendimentos/terreno/  /empreendimentos/permuta-de-terreno/  301
+/repertorio/               /metodo/modelagens/                   301
+/repertorio                /metodo/modelagens/                   301
+/modelos/*      /    301
