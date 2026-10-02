@@ -4,7 +4,22 @@ Site institucional da DALETH, Estruturação de Negócios Imobiliários. Substit
 site v12 (gerado por `site_build.py`) mantendo os textos já aprovados e corrigindo
 os erros estruturais apontados pelas três revisões de 30/09.
 
-Hoje no ar, em prévia: https://daleth.iajudite.com.br (com `noindex`).
+**No ar:** https://cristianovalerioribeiro.github.io/cris-code/ (GitHub Pages, branch `gh-pages`).
+Continua com `noindex` até o domínio definitivo ser escolhido, para não indexar um endereço provisório.
+O site antigo (v12) segue em https://daleth.iajudite.com.br até o domínio ser apontado para o novo.
+
+## Publicar
+
+```bash
+cd daleth/site
+python3 build.py --local && python3 qa/qa.py   # conferir antes
+./publicar.sh                                  # gera com --raiz=/cris-code/ e envia para gh-pages
+```
+
+Domínio próprio (quando definido): aponte o DNS para o GitHub Pages, crie `CNAME` com o domínio,
+troque `DOMINIO` no `build.py`, publique com `RAIZ=/ ./publicar.sh` e, por fim, `PREVIA = False`.
+No Netlify, o `netlify.toml` já serve (base `daleth/site`): basta conectar o repositório e trocar
+`FORMULARIO = "netlify"`.
 
 ## Como rodar
 
@@ -26,9 +41,13 @@ aponta o build e a pasta `dist/`.
 | Cabeçalho, menu, rodapé, slogan, fecho | `build.py` |
 | Visual | `assets/site.css` |
 | Simulador | `assets/js/ferramentas.js` **e** `modelo.py` (são gêmeos; o QA confere) |
-| Cenário do hero | `cenario.py` |
+| Desenho a traço (fallback da aproximação sem WebGL) | `cenario.py` |
 | Por que o visual é assim | `docs/revisao-layout/BRIEFING-REDESENHO.md` |
-| Sair da prévia / ligar o formulário | `PREVIA` e `FORMULARIO_ATIVO` no topo do `build.py` |
+| Sair da prévia (indexar) | `PREVIA` no topo do `build.py` |
+| Canal de contato e envio do formulário | `CONTATO` e `FORMULARIO` no topo do `build.py` |
+| Cenas 3D (hero, aproximação, fecho) | `assets/js/cena3d.js` (`<canvas data-cena="heroi|jornada|rede">`) |
+| Pranchas 3D das páginas | `docs/render/pranchas.json` → `python3 docs/render/banners.py` (com o servidor local em 8765); a página usa `"imagem"` no meta |
+| Pôster do hero e og.png | `python3 docs/render/render.py` |
 | Ordem das vertentes no menu | `VERTENTES` no `build.py` |
 
 Nunca editar `dist/` à mão: é saída do build.

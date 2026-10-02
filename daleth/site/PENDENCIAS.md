@@ -141,3 +141,12 @@ O que precisa de decisão está no *Caderno de refinamento do site (v04)*, no Cl
   - trilho, migalhas, menu do celular e rodapé;
   - índice "Nesta página" também no celular;
   - fecho em duas colunas, com o que acontece depois.
+
+## Versão 06 de 02/10/2026: modelo B escolhido e site no ar
+
+- **Modelo B (cinematográfico) é o site.** A, C, `/modelos/` e o seletor saíram; `/modelos/` redireciona para a home.
+- **No ar** em https://cristianovalerioribeiro.github.io/cris-code/ (GitHub Pages, `./publicar.sh`).
+  Segue com `noindex` até o domínio definitivo (Caderno 1.3); o aviso de prévia no rodapé saiu (`AVISO_PREVIA`).
+- **Formulário:** sem canal definido, diz que o envio está em configuração. Basta preencher `CONTATO["email"]`
+  e trocar `FORMULARIO = "email"` (funciona no GitHub Pages) ou usar `"netlify"` no Netlify.
+- **Pranchas 3D** em 15 páginas e nos cards de artigo; endereços antigos (v12) viram páginas de redirecionamento.
