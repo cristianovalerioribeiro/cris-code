@@ -1,0 +1,103 @@
+<!--meta {
+  "caminho": "/empreendimentos/simulador/",
+  "titulo": "Simulador de exposição de caixa",
+  "descricao": "Veja como permuta, vendas na planta e crédito de obra mudam o capital próprio que um empreendimento exige até a entrega. Simulação com números de exemplo.",
+  "migalhas": [["Empreendimentos", "/empreendimentos/"], ["Simulador", "/empreendimentos/simulador/"]],
+  "scripts": ["ferramentas.js"],
+  "fecho": {
+    "rotulo": "Do exemplo ao seu projeto",
+    "titulo": "Se a curva lembrou o seu caso, vale conversar",
+    "texto": "Um projeto real tem custo, prazo, preço e ritmo de vendas próprios. Devolvemos uma primeira leitura e, se fizer sentido, a proposta do diagnóstico de estruturação.",
+    "botao": "Falar sobre a exposição do meu projeto"
+  }
+} -->
+<section class="abertura">
+  <div class="wrap">
+    <p class="rotulo">Empreendimentos · Simulador</p>
+    <h1>A mesma obra, estruturas de capital diferentes</h1>
+    <p class="lead">O resultado no fim de um empreendimento costuma variar pouco entre estruturas. O que muda de verdade é quanto capital próprio você precisa sustentar até a entrega. Escolha um arranjo, ajuste os controles e veja o efeito.</p>
+  </div>
+</section>
+
+<section class="secao curta" aria-labelledby="sim-t">
+  <div class="wrap">
+    <h2 id="sim-t" class="oculto">Simulador</h2>
+    <div class="sim" id="sim">
+      <div>
+        <p class="rotulo">Arranjo de partida</p>
+        <div class="cenarios" role="group" aria-label="Arranjos de partida">
+          <button type="button" data-cenario="proprio" aria-pressed="true" data-nota="Terreno pago em dinheiro, sem vender na planta nem tomar crédito. Você sustenta sozinho o caixa até a entrega.">Capital próprio</button>
+          <button type="button" data-cenario="planta" aria-pressed="false" data-nota="40% do VGV vendido e recebido durante a obra. Parte do caixa da entrega chega antes.">Vendas na planta</button>
+          <button type="button" data-cenario="permuta" aria-pressed="false" data-nota="70% do terreno pago em unidades. Sai menos dinheiro no começo, e entra menos na venda.">Permuta</button>
+          <button type="button" data-cenario="combinada" aria-pressed="false" data-nota="Permuta, vendas na planta e crédito de obra juntos. Cada instrumento desloca uma parte do desembolso.">Combinada</button>
+        </div>
+        <p class="apoio nota-cenario" id="nota-cenario">Terreno pago em dinheiro, sem vender na planta nem tomar crédito. Você sustenta sozinho o caixa até a entrega.</p>
+        <div class="controle">
+          <label for="vgv">VGV do empreendimento <output id="o-vgv" for="vgv">R$ 20 mi</output></label>
+          <input id="vgv" type="range" min="5" max="50" step="1" value="20">
+          <small>Valor geral de vendas, de R$ 5 a 50 mi. Dá a escala de tudo.</small>
+        </div>
+        <div class="controle">
+          <label for="terreno">Terreno, em % do VGV <output id="o-terreno" for="terreno">15%</output></label>
+          <input id="terreno" type="range" min="8" max="25" step="1" value="15">
+          <small>Quanto maior, mais capital comprometido logo na compra.</small>
+        </div>
+        <div class="controle">
+          <label for="permuta">Terreno pago em permuta <output id="o-permuta" for="permuta">0%</output></label>
+          <input id="permuta" type="range" min="0" max="100" step="5" value="0">
+          <small>Parte do terreno trocada por unidades, em vez de dinheiro no início.</small>
+        </div>
+        <div class="controle">
+          <label for="planta">Vendas na planta, até o fim da obra <output id="o-planta" for="planta">0%</output></label>
+          <input id="planta" type="range" min="0" max="70" step="5" value="0">
+          <small>Quanto do VGV é vendido e recebido durante a obra.</small>
+        </div>
+        <div class="controle">
+          <label for="credito">Crédito de obra, em % do custo <output id="o-credito" for="credito">0%</output></label>
+          <input id="credito" type="range" min="0" max="80" step="5" value="0">
+          <small>Liberado conforme o avanço e quitado depois da entrega.</small>
+        </div>
+      </div>
+      <div>
+        <div class="indicadores">
+          <div class="indicador principal"><span class="valor" id="k-exposicao">R$ 16,4 mi</span><span class="rot">Exposição máxima: o capital próprio exigido no pior mês</span></div>
+          <div class="indicador"><span class="valor" id="k-mes">mês 24</span><span class="rot">Quando o pico acontece</span></div>
+          <div class="indicador"><span class="valor" id="k-resultado">R$ 3,60 mi</span><span class="rot">Resultado ao fim do ciclo</span></div>
+        </div>
+        <p class="sem-js">Os controles precisam de JavaScript. Sem ele, valem os números do arranjo de capital próprio: exposição máxima de R$ 16,4 mi no mês 24 e resultado de R$ 3,60 mi.</p>
+        <svg class="grafico" id="curva" viewBox="0 0 640 300" role="img" aria-label="Saldo de caixa acumulado ao longo de 30 meses"></svg>
+        <p class="apoio" aria-live="polite" id="sim-resumo"></p>
+        <p class="nota"><strong>Premissas fixas.</strong> Obra de 24 meses com desembolso linear; custo de obra de 55% do VGV e despesas de 12%. Vendas na planta entram ao longo da obra, e o restante na entrega. O crédito é liberado com a obra e quitado três meses após a conclusão. A simulação não cobra o custo dos instrumentos (juros, prêmio da permuta, desconto da venda na planta). Por isso o resultado final sai igual: ela mostra o efeito no caixa, e não na margem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao papel" aria-labelledby="exp-t">
+  <div class="wrap duas-colunas">
+    <div>
+      <p class="rotulo">Para entender a curva</p>
+      <h2 id="exp-t">O que é exposição máxima de caixa</h2>
+    </div>
+    <div>
+      <p>Num empreendimento, o dinheiro sai antes de entrar. O terreno é pago no começo, a obra consome caixa mês a mês, e boa parte do que se vende só é recebida na entrega. A diferença entre o que saiu e o que entrou é a exposição de caixa; o pior momento dela é a exposição máxima.</p>
+      <p>É esse número, e não o lucro final, que decide se uma empresa consegue tocar um empreendimento com os próprios recursos. Dois projetos com resultado parecido podem exigir capital muito diferente no caminho.</p>
+      <p>Nenhum instrumento é de graça. A permuta troca dinheiro hoje por unidades amanhã. A venda na planta antecipa caixa em troca de preço. O crédito tem custo, exige garantia e passa por aprovação. Escolher entre eles é comparar efeito no caixa, custo e risco, com número na mesa.</p>
+    </div>
+  </div>
+</section>
+
+<section class="secao" aria-labelledby="faq-t">
+  <div class="wrap">
+    <div class="cabeca">
+      <p class="rotulo">Perguntas frequentes</p>
+      <h2 id="faq-t">O que costumam perguntar sobre exposição de caixa</h2>
+    </div>
+    <div class="faqs">
+      <details class="faq"><summary>Vender na planta reduz o capital próprio necessário?</summary><p>Reduz, porque antecipa para o período de obra parte do dinheiro que só entraria na entrega. Em troca, costuma haver preço menor e compromisso de prazo. O quanto compensa depende do projeto e da praça.</p></details>
+      <details class="faq"><summary>Crédito de obra substitui capital próprio?</summary><p>Não substitui: muda o momento. O crédito acompanha o avanço da obra e é quitado com o recebimento das unidades, o que alivia o caixa no meio do caminho. A aprovação depende da empresa, do projeto e das garantias, e é decidida pelo financiador.</p></details>
+      <details class="faq"><summary>Esta simulação serve para avaliar o meu projeto?</summary><p>Não. Ela usa premissas fixas e números de exemplo para mostrar o raciocínio. Um projeto real tem custo, prazo, preço e ritmo de vendas próprios, e é isso que o estudo de viabilidade apura, caso a caso.</p></details>
+    </div>
+    <p class="continuar">Para continuar: <a href="/empreendimentos/terreno/">vender, permutar ou incorporar</a>, <a href="/capital/">a dimensão de Capital</a> ou <a href="/repertorio/">o repertório de modelagens</a>.</p>
+  </div>
+</section>

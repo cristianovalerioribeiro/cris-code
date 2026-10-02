@@ -1,0 +1,67 @@
+<!--meta {
+  "caminho": "/contato/",
+  "titulo": "Contato · Analisar meu caso",
+  "descricao": "Conte o momento da sua empresa ou do seu empreendimento. Respondemos com uma primeira leitura e, se fizer sentido, com a proposta do diagnóstico de estruturação.",
+  "migalhas": [["Contato", "/contato/"]]
+} -->
+<section class="abertura">
+  <div class="wrap">
+    <p class="rotulo">Contato</p>
+    <h1>Conte o momento da sua empresa ou do seu empreendimento</h1>
+    <p class="lead">Respondemos com uma primeira leitura e, se fizer sentido, com a proposta do diagnóstico de estruturação.</p>
+  </div>
+</section>
+
+<section class="secao" aria-labelledby="form-t">
+  <div class="wrap duas-colunas inverte">
+    <div>
+      <h2 id="form-t" class="oculto">Formulário</h2>
+      <form class="form" {{FORM_ATRIBUTOS}}>
+        <input type="hidden" name="form-name" value="contato">
+        <p class="oculto"><label>Não preencha <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="linha">
+          <div class="campo"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required></div>
+          <div class="campo"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="linha">
+          <div class="campo"><label for="telefone">Telefone ou WhatsApp <span>(opcional)</span></label><input id="telefone" name="telefone" type="tel" autocomplete="tel"></div>
+          <div class="campo"><label for="empresa">Empresa <span>(opcional)</span></label><input id="empresa" name="empresa" autocomplete="organization"></div>
+        </div>
+        <div class="linha">
+          <div class="campo"><label for="cidade">Cidade e estado</label><input id="cidade" name="cidade" autocomplete="address-level2"></div>
+          <div class="campo"><label for="momento">O que você tem hoje</label>
+            <select id="momento" name="momento" required>
+              <option value="">Selecione</option>
+              <option>Uma empresa em crescimento, que quer organizar o próximo ciclo</option>
+              <option>Um terreno ou um ativo para estudar</option>
+              <option>Um empreendimento para estruturar ou em andamento</option>
+              <option>Uma demanda de capital, ou um investidor já definido</option>
+              <option>Uma obra parada (sou a incorporadora)</option>
+              <option>Uma obra parada (represento um grupo de adquirentes)</option>
+              <option>Ainda estudando o assunto</option>
+            </select>
+          </div>
+        </div>
+        <div class="campo"><label for="mensagem">Em poucas linhas, qual é a situação e o que você quer realizar</label><textarea id="mensagem" name="mensagem" required></textarea></div>
+        {{FORM_AVISO}}
+        <div><button class="btn btn-primario" type="submit">Enviar</button></div>
+      </form>
+    </div>
+    <aside class="lado-contato">
+      <div>
+        <p class="rotulo">O que ajuda na primeira mensagem</p>
+        <ul class="lista-traco">
+          <li>O tipo de empreendimento ou o porte da empresa.</li>
+          <li>Em que etapa está: ideia, terreno, projeto, obra ou retomada.</li>
+          <li>Qual decisão precisa ser tomada, e em qual prazo.</li>
+          <li>O que você quer que essa decisão permita fazer.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="rotulo">Onde atuamos</p>
+        <p>Base em Belo Horizonte, atuação nacional. Conversas e acompanhamento à distância, com presença física quando o caso pede.</p>
+      </div>
+      <p class="nota"><strong>Confidencialidade.</strong> O que você contar aqui fica entre nós e serve só para a primeira leitura do caso.</p>
+    </aside>
+  </div>
+</section>

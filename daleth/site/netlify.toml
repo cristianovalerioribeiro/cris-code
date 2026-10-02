@@ -1,0 +1,4 @@
+# No Netlify, defina "Base directory" = daleth/site; este arquivo vale a partir dela.
+[build]
+  command = "python3 build.py"
+  publish = "dist"
