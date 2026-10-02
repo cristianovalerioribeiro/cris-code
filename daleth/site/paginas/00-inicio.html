@@ -14,21 +14,20 @@
   }
 } -->
 <section class="hero" aria-labelledby="h1">
-  <div class="cenario" aria-hidden="true">{{CENARIO}}</div>
-  <div class="wrap hero-conteudo">
-    <p class="hero-categoria">Estruturação de negócios imobiliários</p>
-    <h1 id="h1">Para realizar mais, é preciso estruturar melhor.</h1>
-    <p class="lead">A DALETH integra empresa, empreendimento e capital para que construtoras e incorporadoras modelem os caminhos possíveis, estruturem o escolhido e conduzam a implantação, da oportunidade à entrega.</p>
-    <div class="acoes">
-      <a class="btn btn-ouro" href="/contato/">Conversar sobre uma oportunidade</a>
-      <a class="btn btn-linha-clara" href="/metodo/">Conhecer o método</a>
-    </div>
-  </div>
-</section>
-
-<section class="credenciais" aria-label="De onde vem a leitura">
   <div class="wrap">
-    <ul>
+    <div class="hero-grade">
+      <div>
+        <p class="hero-categoria">Estruturação de negócios imobiliários</p>
+        <h1 id="h1">Para realizar mais, é preciso estruturar melhor.</h1>
+        <p class="lead">A DALETH integra empresa, empreendimento e capital para que construtoras e incorporadoras modelem os caminhos possíveis, estruturem o escolhido e conduzam a implantação até a entrega.</p>
+        <div class="acoes">
+          <a class="btn btn-ouro" href="/contato/">Conversar sobre uma oportunidade</a>
+          <a class="link" href="/metodo/">Conhecer o método</a>
+        </div>
+      </div>
+      <div class="cenario" aria-hidden="true">{{CENARIO}}</div>
+    </div>
+    <ul class="credenciais" aria-label="De onde vem a leitura">
       <li><strong>Engenharia e economia</strong><span>Técnica e número na mesma leitura</span></li>
       <li><strong>Incorporação</strong><span>Ciclos completos, do terreno à entrega</span></li>
       <li><strong>Crédito imobiliário</strong><span>Dos dois lados: de quem analisa e de quem estrutura</span></li>
@@ -41,79 +40,106 @@
   <div class="wrap duas-colunas">
     <div>
       <p class="rotulo">O centro do método</p>
-      <h2 id="modelar-t">Antes de escolher um caminho, colocamos os caminhos lado a lado</h2>
+      <h2 id="modelar-t">Antes de escolher um caminho, colocamos os caminhos <em>lado a lado</em></h2>
       <p class="lead">Um mesmo terreno e uma mesma empresa produzem negócios diferentes conforme a forma como são modelados.</p>
-      <p>Vender, permutar, incorporar, fasear, associar ou financiar: cada escolha muda risco, caixa, retorno, tributação, produto e prazo. Modelar é comparar essas consequências com número, antes de comprometer capital, e só então transformar o caminho escolhido em operação.</p>
-      <p>Ao lado, um exemplo do que isso muda. O mesmo empreendimento, com o mesmo resultado no fim, exige capital próprio muito diferente no caminho, dependendo de como é estruturado.</p>
-      <div class="acoes">
-        <a class="btn btn-primario" href="/empreendimentos/simulador/">Testar no simulador</a>
-        <a class="btn btn-linha" href="/repertorio/">Ver as nove modelagens</a>
+      <p>Vender, permutar, incorporar, fasear, associar ou financiar: cada escolha muda risco, caixa, retorno, tributação, produto e prazo. Modelar é comparar essas consequências com número antes de comprometer capital.</p>
+      <p class="rotulo" style="margin-top:32px">Teste você mesmo</p>
+      <div class="linhas-link">
+        <a href="/empreendimentos/simulador/"><span class="t">Simulador de exposição de caixa</span><span class="d">Mude permuta, vendas na planta e crédito e veja o capital exigido</span></a>
+        <a href="/empreendimentos/terreno/"><span class="t">Vender, permutar ou incorporar</span><span class="d">Os três caminhos de um terreno, lado a lado</span></a>
       </div>
     </div>
-    <div>
-      {{QUADRO}}
-    </div>
+    {{QUADRO}}
   </div>
 </section>
 
 <section class="secao papel" aria-labelledby="comeca-t">
-  <div class="wrap">
-    <div class="cabeca">
+  <div class="wrap duas-colunas solto">
+    <div>
       <p class="rotulo">Como começa</p>
       <h2 id="comeca-t">Dois passos, nesta ordem</h2>
       <p class="lead">Primeiro entendemos o momento e se há aderência. Só depois começa o trabalho pago, com escopo, prazo e valor escritos antes.</p>
+      <div class="acoes">
+        <a class="btn btn-primario" href="/contato/">Analisar meu caso</a>
+        <a class="link" href="/como-comeca/">Como funciona cada passo</a>
+      </div>
     </div>
     <ol class="passos dois">
-      <li class="passo surge">
+      <li class="passo">
         <span class="etiqueta">Sem custo</span>
         <h3>Conversa de enquadramento</h3>
-        <p>Entender o momento da empresa ou do empreendimento, validar a aderência e definir qual é o passo seguinte certo.</p>
+        <p>Entender o momento da empresa ou do empreendimento, validar a aderência e definir o passo seguinte certo.</p>
       </li>
-      <li class="passo surge">
+      <li class="passo">
         <span class="etiqueta ouro">Primeiro trabalho</span>
         <h3>Diagnóstico de estruturação</h3>
         <p>Mapear a situação, organizar a informação, identificar as decisões críticas e modelar as primeiras alternativas. Termina num caminho recomendado, discutido com você.</p>
       </li>
     </ol>
-    <p class="continuar"><a class="mais" href="/como-comeca/">Ver como funciona cada passo</a></p>
   </div>
 </section>
 
-<section class="secao" aria-labelledby="momento-t">
+<section class="secao" aria-labelledby="entrar-t">
   <div class="wrap">
     <div class="cabeca">
-      <p class="rotulo">Para quem</p>
-      <h2 id="momento-t">Construtoras e incorporadoras que cresceram pela capacidade de executar</h2>
-      <p class="lead">E também proprietários de terreno, investidores e grupos que precisam decidir uma operação. Em que momento você está?</p>
+      <p class="rotulo">Por onde entrar</p>
+      <h2 id="entrar-t">Para construtoras e incorporadoras que cresceram pela capacidade de executar</h2>
+      <p class="lead">E também para proprietários de terreno, investidores e grupos que precisam decidir uma operação. Empresa, empreendimento e capital dependem uns dos outros: o trabalho começa por qualquer um, mas nenhum decide sozinho.</p>
     </div>
-    <ul class="momentos">
-      <li class="momento surge"><a href="/empresas/"><span class="frase">A empresa cresceu e a estrutura de decisão precisa acompanhar.</span><span class="destino">Empresas</span></a></li>
-      <li class="momento surge"><a href="/empreendimentos/"><span class="frase">Tenho um empreendimento para estruturar, do produto à entrega.</span><span class="destino">Empreendimentos</span></a></li>
-      <li class="momento surge"><a href="/empreendimentos/terreno/"><span class="frase">Tenho um terreno e quero saber o que ele vale como empreendimento.</span><span class="destino">Terreno</span></a></li>
-      <li class="momento surge"><a href="/capital/"><span class="frase">Quero estruturar o capital da operação, próprio ou de terceiros.</span><span class="destino">Capital</span></a></li>
-      <li class="momento surge"><a href="/capital/"><span class="frase">Já tenho investidor e preciso que o recurso entre bem estruturado.</span><span class="destino">Capital</span></a></li>
-      <li class="momento surge"><a href="/empreendimentos/obra-parada/"><span class="frase">Uma operação travou e preciso de um caminho técnico para retomar.</span><span class="destino">Obras paradas</span></a></li>
-    </ul>
+    <div class="vertentes">
+      <div class="vertente">
+        <h3>Empresas</h3>
+        <p class="papel-dim">A capacidade organizacional que sustenta decisões e vários empreendimentos ao mesmo tempo.</p>
+        <div class="linhas-link">
+          <a href="/empresas/"><span class="t">A empresa cresceu e a estrutura de decisão precisa acompanhar</span></a>
+          <a href="/empresas/"><span class="t">Quero preparar a empresa para banco, investidor ou novo sócio</span></a>
+        </div>
+        <a class="mais" href="/empresas/">Ver Empresas</a>
+      </div>
+      <div class="vertente">
+        <h3>Empreendimentos</h3>
+        <p class="papel-dim">O desenho econômico, técnico e operacional do negócio, do terreno à entrega.</p>
+        <div class="linhas-link">
+          <a href="/empreendimentos/"><span class="t">Tenho um empreendimento para estruturar</span></a>
+          <a href="/empreendimentos/terreno/"><span class="t">Tenho um terreno e quero saber o que ele vale como empreendimento</span></a>
+          <a href="/empreendimentos/obra-parada/"><span class="t">Uma operação travou e preciso de um caminho técnico</span></a>
+        </div>
+        <a class="mais" href="/empreendimentos/">Ver Empreendimentos</a>
+      </div>
+      <div class="vertente">
+        <h3>Capital</h3>
+        <p class="papel-dim">A forma, o momento e as condições em que o recurso entra na operação.</p>
+        <div class="linhas-link">
+          <a href="/capital/"><span class="t">Quero estruturar o capital da operação, próprio ou de terceiros</span></a>
+          <a href="/capital/"><span class="t">Já tenho investidor e preciso que o recurso entre bem estruturado</span></a>
+        </div>
+        <a class="mais" href="/capital/">Ver Capital</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="secao escura" aria-labelledby="tese-t">
-  <div class="wrap duas-colunas">
-    <div>
-      <p class="rotulo">A tese</p>
-      <h2 id="tese-t">Nenhuma decisão de um empreendimento é tomada sozinha</h2>
-      <p class="lead">Produto, terreno, sociedade, tributação, orçamento, cronograma, vendas e capital se movem juntos. Mexer em um muda os outros.</p>
-      <p class="destaque-frase">Por isso começamos pelo negócio, e não pelo crédito, pelo projeto ou pela estrutura jurídica.</p>
-      <p class="apoio">Integrar disciplinas, para nós, não é reunir especialistas. É conectar as consequências de cada decisão antes que uma solução seja tratada como definitiva.</p>
+  <div class="wrap">
+    <div class="duas-colunas solto">
+      <div>
+        <p class="rotulo">A tese</p>
+        <h2 id="tese-t">Nenhuma decisão de um empreendimento é tomada sozinha</h2>
+      </div>
+      <div>
+        <p class="lead">Produto, terreno, sociedade, tributação, orçamento, cronograma, vendas e capital se movem juntos. Integrar disciplinas, para nós, é conectar as consequências de cada decisão antes que uma solução seja tratada como definitiva.</p>
+        <p class="destaque-frase">Por isso começamos pelo negócio, e não pelo crédito, pelo projeto ou pela estrutura jurídica.</p>
+      </div>
     </div>
     <ol class="cadeia" aria-label="Como uma decisão leva à outra">
-      <li><strong>O produto</strong><span>define o orçamento</span></li>
-      <li><strong>O orçamento</strong><span>define o caixa que a obra consome</span></li>
-      <li><strong>O caixa</strong><span>define quanto capital é preciso, e quando</span></li>
-      <li><strong>O capital</strong><span>pode mudar o cronograma</span></li>
-      <li><strong>O cronograma</strong><span>muda a estratégia de vendas</span></li>
-      <li><strong>A estrutura societária</strong><span>interfere em risco, tributo e funding</span></li>
+      <li><strong>Produto</strong><span>define o orçamento</span></li>
+      <li><strong>Orçamento</strong><span>define o caixa que a obra consome</span></li>
+      <li><strong>Caixa</strong><span>define quanto capital é preciso, e quando</span></li>
+      <li><strong>Capital</strong><span>pode mudar o cronograma</span></li>
+      <li><strong>Cronograma</strong><span>muda a estratégia de vendas</span></li>
+      <li><strong>Sociedade</strong><span>interfere em risco, tributo e funding</span></li>
     </ol>
+    <p class="cadeia-volta">E cada uma dessas respostas volta a mexer no produto.</p>
   </div>
 </section>
 
@@ -125,96 +151,45 @@
       <p class="lead">Vale para um terreno, um empreendimento em andamento, uma empresa inteira ou uma demanda de capital. O que muda é por onde se entra.</p>
     </div>
     <ol class="movimentos">
-      <li class="movimento surge"><span class="num">01</span><h3>Mapear</h3><p>Entender antes de recomendar: o que existe, o que falta, as premissas e a situação real.</p></li>
-      <li class="movimento central surge"><span class="num">02</span><h3>Modelar</h3><p>Desenhar os caminhos possíveis e comparar o que cada um custa, exige e devolve, antes de escolher.</p><span class="selo">Onde a decisão se forma</span></li>
-      <li class="movimento surge"><span class="num">03</span><h3>Estruturar</h3><p>Transformar o caminho escolhido em operação: societário, tributário, documental, financeiro e funding.</p></li>
-      <li class="movimento surge"><span class="num">04</span><h3>Conduzir</h3><p>Acompanhar a implantação com quem executa: verificar, cobrar o combinado e corrigir a rota.</p></li>
+      <li class="movimento"><span class="num">01</span><h3>Mapear</h3><p>Entender antes de recomendar: o que existe, o que falta, as premissas e a situação real.</p></li>
+      <li class="movimento central"><span class="num">02</span><h3>Modelar</h3><p>Desenhar os caminhos possíveis e comparar o que cada um custa, exige e devolve, antes de escolher.</p><span class="selo">Onde a decisão se forma</span></li>
+      <li class="movimento"><span class="num">03</span><h3>Estruturar</h3><p>Transformar o caminho escolhido em operação: societário, tributário, documental, financeiro e funding.</p></li>
+      <li class="movimento"><span class="num">04</span><h3>Conduzir</h3><p>Acompanhar a implantação com quem executa: verificar, cobrar o combinado e corrigir a rota.</p></li>
     </ol>
     <p class="continuar"><a class="mais" href="/metodo/">O método em detalhe</a></p>
   </div>
 </section>
 
-<section class="secao papel" aria-labelledby="dim-t">
-  <div class="wrap">
-    <div class="cabeca">
-      <p class="rotulo">Atuação</p>
-      <h2 id="dim-t">Empresas, empreendimentos e capital: uma mesma decisão</h2>
-      <p class="lead">São dimensões que dependem umas das outras, e não uma escada. O trabalho começa por qualquer uma delas, mas nenhuma decide sozinha.</p>
-    </div>
-    <ul class="dimensoes">
-      <li class="dimensao surge">
-        <h3>Empresas</h3>
-        <p class="papel-dim">A capacidade organizacional que sustenta decisões e vários empreendimentos ao mesmo tempo.</p>
-        <p>Planejamento, processos, financeiro, informação contábil e gerencial, societário, tributário e governança.</p>
-        <a class="mais" href="/empresas/">Ver Empresas</a>
-      </li>
-      <li class="dimensao surge">
-        <h3>Empreendimentos</h3>
-        <p class="papel-dim">O desenho econômico, técnico e operacional do negócio.</p>
-        <p>Terreno, produto, viabilidade, decisões de projeto, cronogramas, incorporação, vendas e acompanhamento até a entrega.</p>
-        <a class="mais" href="/empreendimentos/">Ver Empreendimentos</a>
-      </li>
-      <li class="dimensao surge">
-        <h3>Capital</h3>
-        <p class="papel-dim">A forma, o momento e as condições em que o recurso entra na operação.</p>
-        <p>Enquadramento, crédito bancário, investidores e mercado de capitais, como consequência de uma operação estruturada.</p>
-        <a class="mais" href="/capital/">Ver Capital</a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="secao" aria-labelledby="ciclo-t">
-  <div class="wrap">
-    <div class="cabeca">
-      <p class="rotulo">Do terreno à entrega</p>
-      <h2 id="ciclo-t">Em que momento a DALETH entra</h2>
-      <p class="lead">Quase sempre antes do que se imagina. Nos pontos em dourado participamos da decisão, e não só do acompanhamento.</p>
-    </div>
-    <ol class="trilho">
-      <li class="decide"><strong>Terreno</strong><span>Avaliar e comparar formas de aquisição</span></li>
-      <li class="decide"><strong>Produto</strong><span>O que cabe e o que vende ali</span></li>
-      <li class="decide"><strong>Viabilidade</strong><span>Cenários de preço, ritmo e exposição</span></li>
-      <li class="decide"><strong>Empresa</strong><span>Informação que a análise externa pede</span></li>
-      <li class="decide"><strong>Capital</strong><span>Enquadrar e montar a operação</span></li>
-      <li><strong>Aprovações</strong><span>Incorporação, licenças e documentos</span></li>
-      <li><strong>Obra e vendas</strong><span>Medições, liberações e revisão de cenário</span></li>
-      <li><strong>Entrega</strong><span>Resultado apurado e lições do ciclo</span></li>
-    </ol>
-    <p class="legenda-trilho"><i aria-hidden="true"></i> Etapas em que a DALETH participa da decisão</p>
-  </div>
-</section>
-
 <section class="secao papel" aria-labelledby="rep-t">
-  <div class="wrap duas-colunas inverte">
+  <div class="wrap duas-colunas solto">
     <div>
       <p class="rotulo">Repertório</p>
       <h2 id="rep-t">Não existe uma única forma de fazer um empreendimento</h2>
-      <p class="lead">O repertório de modelagens é o que permite enxergar caminhos que não aparecem para quem trabalha sempre com o mesmo modelo.</p>
-      <p>São nove frentes, da societária à estrutura do empreendimento. Quatro delas costumam decidir o rumo logo no começo:</p>
-      <p class="continuar"><a class="mais" href="/repertorio/">As nove modelagens, uma a uma</a></p>
+      <p class="lead">São nove frentes de modelagem, da societária à estrutura do empreendimento. Quatro delas costumam decidir o rumo logo no começo.</p>
     </div>
-    <div class="grade g2">
-      <div class="cartao surge"><h3>Aquisição do terreno</h3><p>Permuta física, financeira ou mista, opção de compra, prazo e parceria com o proprietário.</p></div>
-      <div class="cartao surge"><h3>Societária</h3><p>SPE, holding, sociedade em conta de participação, entrada e saída de sócios, isolamento de risco.</p></div>
-      <div class="cartao surge"><h3>Funding</h3><p>Crédito bancário, investidores, mercado de capitais e recursos próprios, na combinação certa.</p></div>
-      <div class="cartao surge"><h3>Estrutura do empreendimento</h3><p>Fases, torres ou quadras, e a relação de caixa entre elas.</p></div>
+    <div>
+      <div class="grade g2">
+        <div class="cartao"><h3>Aquisição do terreno</h3><p>Permuta física, financeira ou mista, opção de compra, prazo e parceria com o proprietário.</p></div>
+        <div class="cartao"><h3>Societária</h3><p>SPE, holding, sociedade em conta de participação, entrada e saída de sócios, isolamento de risco.</p></div>
+        <div class="cartao"><h3>Funding</h3><p>Crédito bancário, investidores, mercado de capitais e recursos próprios, na combinação certa.</p></div>
+        <div class="cartao"><h3>Estrutura do empreendimento</h3><p>Fases, torres ou quadras, e a relação de caixa entre elas.</p></div>
+      </div>
+      <p class="continuar" style="margin-top:8px"><a class="mais" href="/repertorio/">As nove modelagens, uma a uma</a></p>
     </div>
   </div>
 </section>
 
 <section class="secao" aria-labelledby="conduz-t">
-  <div class="wrap conduz">
-    <div class="monograma" aria-hidden="true"><img src="/assets/marca/simbolo-negative.svg" alt="" width="58" height="51"></div>
+  <div class="wrap duas-colunas solto">
     <div>
       <p class="rotulo">Quem conduz</p>
       <h2 id="conduz-t">Cristiano Valério Ribeiro</h2>
-      <ul class="formacao" aria-label="Formação">
-        <li>Engenharia de produção</li><li>Economia</li><li>MBA em gestão de negócios de incorporação e construção</li>
-      </ul>
-      <p>Atuou nos dois lados do crédito imobiliário, na análise das operações e na estruturação delas, e acompanhou ciclos completos de incorporação, do terreno à entrega. É dessa vivência que vem a leitura de cada caso, e não de um modelo pronto.</p>
-      <p class="apoio">A decisão é sempre do dono do negócio. O papel da DALETH é trazer alternativas, consequências e condução até o que foi decidido virar rotina.</p>
-      <p class="continuar"><a class="mais" href="/sobre/">Sobre a DALETH</a></p>
+    </div>
+    <div class="ficha">
+      <p class="formacao">Engenharia de produção · Economia · MBA em gestão de negócios de incorporação e construção</p>
+      <p class="lead">Atuou nos dois lados do crédito imobiliário, na análise das operações e na estruturação delas, e acompanhou ciclos completos de incorporação, do terreno à entrega.</p>
+      <p>É dessa vivência que vem a leitura de cada caso, e não de um modelo pronto. A decisão é sempre do dono do negócio; o papel da DALETH é trazer alternativas, consequências e condução até o que foi decidido virar rotina.</p>
+      <p><a class="mais" href="/sobre/">Sobre a DALETH</a></p>
     </div>
   </div>
 </section>

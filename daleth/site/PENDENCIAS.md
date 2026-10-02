@@ -17,7 +17,7 @@ já estava no ar ou o que as Regras mandam, e está marcado abaixo.
 
 | Item | O que foi usado | Observação |
 |---|---|---|
-| **2.1 Tipografia** | Manrope + Inter, como está no ar. | Manual v2.0 pede Cambria + Arial. Trocar é mudar duas linhas em `assets/site.css`. |
+| **2.1 Tipografia** | **Source Serif 4 (títulos) + Inter (corpo)**, desde a revisão de layout de 02/10. Os agentes 47 (UI/UX) e 45 (Brand) recomendaram trocar a Manrope por uma serifa editorial que converse com o wordmark sem imitá-lo; é a "terceira opção com serifa" que o Caderno de Definições já cogitava. | Confirmar. O Manual v2.0 ainda diz Cambria + Arial e precisa ser atualizado. Voltar atrás é trocar as variáveis `--serif`/`--sans` em `assets/site.css`. |
 | **2.2 Nome do trabalho inicial** | "Diagnóstico de estruturação", como está no ar e como você pediu. | O Manual v2.0 ainda diz "Setup de Estruturação" e precisa ser corrigido. |
 | **2.3 Ordem das vertentes** | **Empresas · Empreendimentos · Capital** em todo o site (menu, home, rodapé), como nas Regras e no Manual p8. | A inconsistência do v12 (menu numa ordem, cards em outra) acabou. Se a ordem for outra, muda em `VERTENTES` no `build.py` e nos blocos da home. |
 
@@ -25,8 +25,8 @@ já estava no ar ou o que as Regras mandam, e está marcado abaixo.
 
 | Item | Como está |
 |---|---|
-| **3.1 Intensidade do cenário** | Redesenhado: implantação isométrica com quadras, massas e, à frente, o lote tracejado com **três volumetrias alternativas** sobre ele (o MODELAR desenhado). CSS puro no scroll, sem biblioteca. No celular fica bem mais discreto. |
-| **3.2 Marinho no hero** | Mantido (o marinho "abre capítulos", Manual p37). Páginas internas claras. |
+| **3.1 Intensidade do cenário** | Redesenhado na revisão de 02/10 como **desenho a traço**: lote demarcado com cotas, o volume escolhido montado com as hastes do símbolo D e duas volumetrias alternativas tracejadas em dourado (o MODELAR desenhado). Movimento máximo de 16px. No celular vai abaixo dos botões. |
+| **3.2 Marinho no hero** | Mantido (o marinho "abre capítulos", Manual p37). Páginas internas claras. A faixa do slogan deixou de ser marinho: virou uma linha clara em serifa itálica, ainda no topo de todas as páginas. |
 | **3.3 Movimento nas internas** | Só a home tem cenário. |
 
 ## Conteúdo que falta
@@ -56,3 +56,13 @@ já estava no ar ou o que as Regras mandam, e está marcado abaixo.
 - **"Crédito imobiliário dos dois lados"** aparece na faixa de credenciais e em /sobre/,
   como no site atual. No Caderno §09 esse item ainda está como "[confirmar]".
 - **Imagem de compartilhamento (`og.png`)** é a do v12. Vale refazer quando o H1 fechar.
+
+## Revisão de layout de 02/10/2026
+
+Feita com os agentes 47 (UI/UX) e 45 (Brand) da gaveta de design. Relatórios completos e o briefing consolidado em `docs/revisao-layout/`. O que mudou de forma visível:
+- **Home:** caiu de 13 para 9 blocos. "Do terreno à entrega" foi para /empreendimentos/.
+- **Sem cartões:** as listas viraram linhas com fio, e o dourado aparece só onde há decisão.
+- **Rodapé claro.** O marinho fica para o hero, o fecho e no máximo um capítulo por página.
+- **Simulador no celular:** mostra o resultado antes dos controles. Gráfico com eixo em R$ mi e texto legível.
+- **Terreno no celular:** um bloco por critério.
+- **Páginas internas:** índice "Nesta página" no desktop.

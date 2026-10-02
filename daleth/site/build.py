@@ -129,6 +129,7 @@ def bloco_cabecalho(pg):
     <a class="marca" href="/" aria-label="DALETH, Estruturação de Negócios: página inicial">
       <img src="/assets/marca/horizontal-color.svg" alt="" width="190" height="50">
     </a>
+    <a class="btn btn-primario cta-movel" href="/contato/">Conversar</a>
     <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">
       <span class="menu-icone" aria-hidden="true"></span><span class="menu-texto">Menu</span>
     </button>
@@ -152,17 +153,15 @@ def bloco_fecho(pg):
     secundario = ""
     if f.get("secundario"):
         alvo, rotulo = f["secundario"]
-        secundario = f'<a class="btn btn-linha-clara" href="{alvo}">{esc(rotulo)}</a>'
-    return f"""<section class="fecho escura" aria-labelledby="fecho-titulo">
-  <div class="wrap fecho-grade">
-    <div>
-      <p class="rotulo">{esc(f.get("rotulo", "Como começa"))}</p>
-      <h2 id="fecho-titulo">{esc(f["titulo"])}</h2>
-      <p class="lead">{f["texto"]}</p>
-      <div class="acoes">
-        <a class="btn btn-ouro" href="/contato/">{esc(f.get("botao", "Analisar meu caso"))}</a>
-        {secundario}
-      </div>
+        secundario = f'<a class="link" href="{alvo}">{esc(rotulo)}</a>'
+    return f"""<section class="fecho" aria-labelledby="fecho-titulo">
+  <div class="wrap">
+    <p class="rotulo">{esc(f.get("rotulo", "Como começa"))}</p>
+    <h2 id="fecho-titulo">{esc(f["titulo"])}</h2>
+    <p class="lead">{f["texto"]}</p>
+    <div class="acoes">
+      <a class="btn btn-ouro" href="/contato/">{esc(f.get("botao", "Analisar meu caso"))}</a>
+      {secundario}
     </div>
     {garantias}
   </div>
@@ -176,7 +175,7 @@ def bloco_rodape():
     return f"""<footer class="rodape">
   <div class="wrap rodape-grade">
     <div class="rodape-marca">
-      <img src="/assets/marca/horizontal-negative.svg" alt="DALETH, Estruturação de Negócios" width="200" height="53">
+      <img src="/assets/marca/horizontal-color.svg" alt="DALETH, Estruturação de Negócios" width="180" height="48">
       <p>Estruturação de negócios imobiliários para construtoras, incorporadoras, investidores e proprietários.</p>
       <p class="rodape-slogan">{SLOGAN}</p>
     </div>
@@ -205,10 +204,10 @@ def bloco_rodape():
       <p class="rodape-local">Belo Horizonte · atuação nacional</p>
     </nav>
   </div>
-  <div class="wrap rodape-base">
+  <div class="wrap"><div class="rodape-base">
     <p>© 2026 DALETH. Os números das ferramentas são exemplos ilustrativos, e não leitura de um projeto real.</p>
     {previa}
-  </div>
+  </div></div>
 </footer>"""
 
 
@@ -252,6 +251,22 @@ def json_ld(pg, url):
             + json.dumps(dados, ensure_ascii=False, separators=(",", ":")) + "</script>")
 
 
+def inserir_indice(corpo):
+    """Na abertura das páginas internas, um índice com os H2 da página (só aparece no desktop)."""
+    m = re.search(r'(<section class="abertura">\s*<div class="wrap">)(.*?)(</div>\s*</section>)', corpo, re.S)
+    if not m:
+        return corpo
+    titulos = re.findall(r'<h2 id="([^"]+)"(?: class="(?!oculto)[^"]*")?>(.*?)</h2>', corpo[m.end():], re.S)
+    titulos = [(i, re.sub(r"<[^>]+>", "", t).strip()) for i, t in titulos if i != "fecho-titulo"][:6]
+    if len(titulos) < 3:
+        indice = ""
+    else:
+        itens = "".join(f'<li><a href="#{i}">{t}</a></li>' for i, t in titulos)
+        indice = f'<nav class="indice" aria-label="Nesta página"><p class="rotulo">Nesta página</p><ol>{itens}</ol></nav>'
+    return (corpo[:m.start()] + m.group(1) + '<div class="abertura-texto">' + m.group(2) + "</div>"
+            + indice + m.group(3) + corpo[m.end():])
+
+
 def montar(pg, local):
     url = DOMINIO + pg["caminho"]
     titulo = pg["titulo"] if pg["caminho"] == "/" else f'{pg["titulo"]} · DALETH'
@@ -266,6 +281,7 @@ def montar(pg, local):
     if "{{QUADRO}}" in corpo:
         import modelo
         corpo = corpo.replace("{{QUADRO}}", modelo.quadro())
+    corpo = inserir_indice(corpo)
     if "{{FORM_ATRIBUTOS}}" in corpo:
         attrs = ('name="contato" method="POST" data-netlify="true" '
                  'netlify-honeypot="bot-field" action="/contato/recebido/"'
@@ -293,7 +309,8 @@ def montar(pg, local):
 <meta property="og:image" content="{DOMINIO}/assets/og.png">
 <meta name="theme-color" content="#082538">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
 {json_ld(pg, url)}
 <script src="/assets/js/site.js" defer></script>

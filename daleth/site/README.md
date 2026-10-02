@@ -27,6 +27,7 @@ aponta o build e a pasta `dist/`.
 | Visual | `assets/site.css` |
 | Simulador | `assets/js/ferramentas.js` **e** `modelo.py` (são gêmeos; o QA confere) |
 | Cenário do hero | `cenario.py` |
+| Por que o visual é assim | `docs/revisao-layout/BRIEFING-REDESENHO.md` |
 | Sair da prévia / ligar o formulário | `PREVIA` e `FORMULARIO_ATIVO` no topo do `build.py` |
 | Ordem das vertentes no menu | `VERTENTES` no `build.py` |
 

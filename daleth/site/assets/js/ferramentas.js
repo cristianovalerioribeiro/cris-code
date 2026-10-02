@@ -62,27 +62,39 @@
   }
 
   function desenhar(r) {
-    var w = 640, h = 300, e = 46, d = 16, t = 26, b = 34;
+    // o SVG encolhe no celular: o texto cresce na mesma proporção para ficar com ~12px na tela
+    var k = Math.max(1, 640 / (curva.clientWidth || 640));
+    var fs = Math.round(12 * k), fsDestaque = Math.round(13 * k);
+    var w = 640, h = 300 + Math.round(20 * (k - 1)), e = 22 + Math.round(30 * k), d = 16, t = 26, b = 18 + Math.round(16 * k);
+    curva.setAttribute("viewBox", "0 0 " + w + " " + h);
     var vals = r.serie.concat([0]);
     var max = Math.max.apply(null, vals), min = Math.min.apply(null, vals);
     var amp = (max - min) || 1;
     var x = function (i) { return e + i / (r.serie.length - 1) * (w - e - d); };
     var y = function (v) { return t + (max - v) / amp * (h - t - b); };
     while (curva.firstChild) curva.removeChild(curva.firstChild);
-    var cinza = "#6B7A86";
+    var cinza = "#5E6E7D";
     // eixo do tempo
     [0, 6, 12, 18, 24, 30].forEach(function (m) {
       curva.appendChild(no("line", { x1: x(m), x2: x(m), y1: t, y2: h - b, stroke: "#E9EEF2" }));
       curva.appendChild(no("text", { x: x(m), y: h - 12, "text-anchor": "middle", fill: cinza,
-        "font-size": 12, "font-family": "Inter, sans-serif" }, m === 0 ? "mês 0" : String(m)));
+        "font-size": fs, "font-family": "Inter, sans-serif" }, m === 0 ? "mês 0" : String(m)));
     });
     // faixa da obra
     curva.appendChild(no("rect", { x: x(1), y: h - b + 4, width: x(OBRA) - x(1), height: 4, fill: "#D6DEE6", rx: 2 }));
     // linha do zero
     var z = y(0);
     curva.appendChild(no("line", { x1: e, x2: w - d, y1: z, y2: z, stroke: "#082538", "stroke-width": 1, "stroke-dasharray": "4 4" }));
-    curva.appendChild(no("text", { x: e - 8, y: z + 4, "text-anchor": "end", fill: cinza, "font-size": 12,
-      "font-family": "Inter, sans-serif" }, "0"));
+    // eixo do saldo, em R$ mi
+    var passoMi = amp / 1e6 > 24 ? 10 : amp / 1e6 > 10 ? 5 : amp / 1e6 > 4 ? 2 : 1;
+    for (var v = Math.ceil(min / 1e6 / passoMi) * passoMi; v <= max / 1e6; v += passoMi) {
+      var yy = y(v * 1e6);
+      if (v !== 0) curva.appendChild(no("line", { x1: e, x2: w - d, y1: yy, y2: yy, stroke: "#F2F5F8" }));
+      curva.appendChild(no("text", { x: e - 8, y: yy + 4, "text-anchor": "end", fill: cinza, "font-size": fs,
+        "font-family": "Inter, sans-serif" }, v === 0 ? "0" : String(v)));
+    }
+    curva.appendChild(no("text", { x: e - 8, y: t - 10, "text-anchor": "end", fill: cinza, "font-size": fs,
+      "font-family": "Inter, sans-serif" }, "R$ mi"));
     // área negativa e curva
     var caminho = r.serie.map(function (v, i) { return (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1); }).join(" ");
     curva.appendChild(no("path", { d: caminho + " L" + x(r.serie.length - 1) + " " + z + " L" + x(0) + " " + z + " Z",
@@ -93,12 +105,15 @@
       var px = x(r.mes), py = y(-r.exposicao), direita = px > w * 0.6;
       curva.appendChild(no("circle", { cx: px, cy: py, r: 6, fill: "#B58A44", stroke: "#fff", "stroke-width": 2 }));
       curva.appendChild(no("text", { x: direita ? px - 10 : px + 10, y: Math.max(py - 14, t + 14),
-        "text-anchor": direita ? "end" : "start", fill: "#7F5F2C", "font-size": 13, "font-weight": 700,
-        "font-family": "Manrope, sans-serif", stroke: "#fff", "stroke-width": 4, "paint-order": "stroke",
+        "text-anchor": direita ? "end" : "start", fill: "#7A5A28", "font-size": fsDestaque, "font-weight": 700,
+        "font-family": "Inter, sans-serif", stroke: "#fff", "stroke-width": 4, "paint-order": "stroke",
         "stroke-linejoin": "round" }, "pico: " + moeda(r.exposicao) + " no mês " + r.mes));
+      var xr = x(OBRA + REPASSE);
+      curva.appendChild(no("text", { x: xr - 6, y: t + 4 + fs, "text-anchor": "end", fill: cinza, "font-size": fs,
+        "font-family": "Inter, sans-serif" }, "entrega e repasse"));
     } else {
-      curva.appendChild(no("text", { x: e + 6, y: t + 14, fill: "#7F5F2C", "font-size": 13, "font-weight": 700,
-        "font-family": "Manrope, sans-serif" }, "o caixa não fica negativo nesta combinação"));
+      curva.appendChild(no("text", { x: e + 6, y: t + 14, fill: "#7A5A28", "font-size": fsDestaque, "font-weight": 700,
+        "font-family": "Inter, sans-serif" }, "o caixa não fica negativo nesta combinação"));
     }
     curva.setAttribute("aria-label", "Saldo de caixa acumulado ao longo de 30 meses. " +
       (r.sem ? "O saldo não fica negativo. " : "Pico negativo de " + moeda(r.exposicao) + " no mês " + r.mes + ". ") +
@@ -158,6 +173,11 @@
   });
 
   // a home e as páginas internas podem abrir o simulador num arranjo: ?arranjo=combinada
+  var largura = curva.clientWidth;
+  window.addEventListener("resize", function () {
+    if (Math.abs(curva.clientWidth - largura) > 40) { largura = curva.clientWidth; atualizar(); }
+  });
+
   var pedido = (location.search.match(/arranjo=(\w+)/) || [])[1];
   escolher(CENARIOS[pedido] ? pedido : "proprio");
   var caixa = el("sim");

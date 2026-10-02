@@ -55,19 +55,25 @@ def quadro():
         largura = r["exposicao"] / maior * 100
         destaque = " destaque" if chave == "combinada" else ""
         linhas.append(f"""<div class="alternativa{destaque}">
-  <p class="alt-nome">{nome}<small>{desc}</small></p>
+  <p class="alt-nome">{nome}{'<span class="marca-leve">a mais leve</span>' if destaque else ''}<small>{desc}</small></p>
   <div class="alt-barra" role="img" aria-label="{nome}: exposição máxima de {moeda(r['exposicao'])}, no mês {r['mes']}"><i style="width:{largura:.1f}%"></i></div>
   <p class="alt-numero">{moeda(r['exposicao'])}<small>pico no mês {r['mes']}</small></p>
 </div>""")
     menor = min(r["exposicao"] for _, r in resultados)
+    reducao = round((1 - menor / maior) * 100)
+    maior_txt, menor_txt = (moeda(v).replace(" ", "\u00a0") for v in (maior, menor))
     resultado = moeda(resultados[0][1]["resultado"])
-    return f"""<div class="quadro surge">
+    return f"""<div class="quadro">
   <div class="quadro-topo">
-    <h3>Um empreendimento de exemplo, quatro estruturas de capital</h3>
-    <p class="apoio">VGV de R$ 20 mi · terreno de 15% · obra de 24 meses · capital próprio exigido no pior mês</p>
+    <h3>O mesmo empreendimento pede de {maior_txt} a {menor_txt} de capital próprio</h3>
+    <p class="apoio">Exemplo ilustrativo · VGV de R$ 20 mi · terreno de 15% do VGV · obra de 24 meses · capital próprio exigido no pior mês</p>
   </div>
   {"".join(linhas)}
-  <div class="quadro-pe"><p>O resultado ao fim do ciclo é o mesmo nos quatro ({resultado}), porque esta conta não cobra o custo de cada instrumento. O que muda é o capital que precisa estar disponível no caminho: de {moeda(maior)} para {moeda(menor)}. Números de exemplo, e não leitura de um projeto real.</p></div>
+  <div class="quadro-resumo">
+    <p class="cota" aria-hidden="true">−{reducao}%</p>
+    <p>de capital próprio no pior mês, entre a estrutura mais pesada e a mais leve. O resultado no fim do ciclo é o mesmo nas quatro ({resultado}).</p>
+  </div>
+  <p class="quadro-pe">Esta conta não cobra o custo de cada instrumento (juros, prêmio da permuta, desconto da venda na planta). Mostra o efeito no caixa, e não na margem. Números de exemplo, e não leitura de um projeto real.</p>
 </div>"""
 
 

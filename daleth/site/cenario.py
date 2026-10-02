@@ -1,20 +1,21 @@
-"""Cenário do hero da home: uma implantação em isométrica.
+"""Cenário do hero da home: prancha a traço de um empreendimento sobre o lote.
 
-Três camadas, que se aproximam em velocidades diferentes conforme a página desce
-(a variável --p é escrita pelo site.js; sem JS, o desenho fica parado):
-  fundo  quadras e ruas
-  meio   massas edificadas do entorno
-  frente o lote em estudo, tracejado, com três volumetrias alternativas
-
-Por que uma implantação: o Manual (p39) pede diagramas que expliquem e veta
-imagens de luxo. O terreno é o objeto de trabalho; as três volumetrias sobre o
-mesmo lote são o MODELAR desenhado.
+Desenho de linha, como numa prancha de projeto (Brand 45, seção 5):
+  fundo  malha de quadras em fio fino
+  meio   poucos volumes do entorno, só em aresta, sem preenchimento
+  frente o lote demarcado com cotas; o volume escolhido em linha cheia, montado com os
+         módulos do símbolo D (hastes crescentes); duas volumetrias alternativas em
+         tracejado dourado: o MODELAR desenhado.
+As camadas se deslocam no máximo 16px com a rolagem (--p, escrita pelo site.js).
 """
 import math
 
-ESCALA = 26
-ORIGEM = (640, 250)
+ESCALA = 30
+ORIGEM = (320, 236)
 COS = math.cos(math.radians(30))
+GELO = "#B9C8D4"
+OURO = "#B58A44"
+OURO_CLARO = "#D4B37C"
 
 
 def iso(x, y, z=0):
@@ -22,103 +23,74 @@ def iso(x, y, z=0):
     return (ox + (x - y) * COS * ESCALA, oy + (x + y) * 0.5 * ESCALA - z * ESCALA)
 
 
-def pts(*coords):
-    return " ".join(f"{a:.1f},{b:.1f}" for a, b in (iso(*c) for c in coords))
+def _p(c):
+    a, b = iso(*c)
+    return f"{a:.1f},{b:.1f}"
+
+
+def poligono(cs, **attrs):
+    extra = " ".join(f'{k.rstrip("_").replace("_", "-")}="{v}"' for k, v in attrs.items())
+    return f'<polygon points="{" ".join(_p(c) for c in cs)}" {extra}/>'
+
+
+def linha(a, b, **attrs):
+    (x1, y1), (x2, y2) = iso(*a), iso(*b)
+    extra = " ".join(f'{k.rstrip("_").replace("_", "-")}="{v}"' for k, v in attrs.items())
+    return f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" {extra}/>'
 
 
 def losango(x, y, w, d, z=0):
-    return pts((x, y, z), (x + w, y, z), (x + w, y + d, z), (x, y + d, z))
+    return [(x, y, z), (x + w, y, z), (x + w, y + d, z), (x, y + d, z)]
 
 
-def caixa(x, y, w, d, h, cor_topo, cor_esq, cor_dir, traco="rgba(255,255,255,.10)", extra=""):
-    # faces visíveis: frente-esquerda (y+d), frente-direita (x+w) e topo
-    esq = pts((x, y + d, 0), (x + w, y + d, 0), (x + w, y + d, h), (x, y + d, h))
-    dir_ = pts((x + w, y, 0), (x + w, y + d, 0), (x + w, y + d, h), (x + w, y, h))
+def volume(x, y, w, d, h, traco, largura=1, tracejado=None, preenche="none", opacidade=1):
+    """Caixa só em arestas visíveis (frente-esquerda, frente-direita e topo)."""
+    frente = [(x, y + d, 0), (x + w, y + d, 0), (x + w, y + d, h), (x, y + d, h)]
+    lado = [(x + w, y, 0), (x + w, y + d, 0), (x + w, y + d, h), (x + w, y, h)]
     topo = losango(x, y, w, d, h)
-    a = f'stroke="{traco}" stroke-width="1" {extra}'
-    return (f'<polygon points="{esq}" fill="{cor_esq}" {a}/>'
-            f'<polygon points="{dir_}" fill="{cor_dir}" {a}/>'
-            f'<polygon points="{topo}" fill="{cor_topo}" {a}/>')
-
-
-def aramado(x, y, w, d, h, cor, tracejado="6 5", opacidade=1):
-    """Volume só em arestas: uma alternativa ainda não escolhida."""
-    p = lambda *c: iso(*c)
-    arestas = [
-        ((x, y + d, 0), (x + w, y + d, 0)), ((x + w, y, 0), (x + w, y + d, 0)),
-        ((x, y + d, 0), (x, y + d, h)), ((x + w, y + d, 0), (x + w, y + d, h)), ((x + w, y, 0), (x + w, y, h)),
-        ((x, y, h), (x + w, y, h)), ((x + w, y, h), (x + w, y + d, h)),
-        ((x + w, y + d, h), (x, y + d, h)), ((x, y + d, h), (x, y, h)),
-    ]
-    linhas = "".join(
-        f'<line x1="{p(*a)[0]:.1f}" y1="{p(*a)[1]:.1f}" x2="{p(*b)[0]:.1f}" y2="{p(*b)[1]:.1f}"/>'
-        for a, b in arestas)
-    return (f'<g fill="none" stroke="{cor}" stroke-width="1.4" stroke-dasharray="{tracejado}" '
-            f'opacity="{opacidade}" stroke-linecap="round">{linhas}</g>')
+    a = dict(fill=preenche, stroke=traco, stroke_width=largura, stroke_linejoin="round")
+    if tracejado:
+        a["stroke_dasharray"] = tracejado
+    return (f'<g opacity="{opacidade}">' + poligono(frente, **a) + poligono(lado, **a)
+            + poligono(topo, **a) + "</g>")
 
 
 def svg():
-    fundo, meio = [], []
-    # malha de quadras: 4 x 4, cada uma 6 x 6, ruas de 1.6
-    passo = 7.6
-    for i in range(-1, 4):
-        for j in range(-1, 4):
-            fundo.append(f'<polygon points="{losango(i * passo, j * passo, 6, 6)}" '
-                         'fill="rgba(255,255,255,.025)" stroke="rgba(255,255,255,.16)" stroke-width="1"/>')
-    # eixo de rua com marcação central
-    for k in range(-1, 4):
-        a, b = iso(k * passo - 0.8, -8), iso(k * passo - 0.8, 30)
-        fundo.append(f'<line x1="{a[0]:.1f}" y1="{a[1]:.1f}" x2="{b[0]:.1f}" y2="{b[1]:.1f}" '
-                     'stroke="rgba(255,255,255,.07)" stroke-dasharray="3 9"/>')
+    fundo, meio, frente = [], [], []
+    # malha de quadras (3 x 3), ruas de 1.4
+    passo = 7.4
+    for i in range(-1, 3):
+        for j in range(-1, 3):
+            fundo.append(poligono(losango(i * passo, j * passo, 6, 6), fill="none",
+                                  stroke=GELO, stroke_width=0.8, opacity=0.28))
+    # entorno: poucos volumes, só aresta
+    for i, j, dx, dy, w, d, h in [(-1, 0, .8, .8, 4.2, 2.2, 3.2), (0, -1, 1, 1, 2.4, 4, 5.4),
+                                  (1, -1, .8, .8, 4.4, 2, 2.6), (-1, 1, 3.2, .8, 2, 4.2, 2.2),
+                                  (1, 1, 3.4, .8, 2, 2, 6.2), (0, 1, .8, 3.4, 4.4, 2, 1.8)]:
+        meio.append(volume(i * passo + dx, j * passo + dy, w, d, h, GELO, 1, opacidade=0.42))
 
-    topo, esq, dir_ = "#1D4F74", "#123D5C", "#0D3350"
-    # massas do entorno: (quadra i, j, dx, dy, w, d, h)
-    massas = [
-        (0, 0, .6, .6, 2.4, 4.6, 4.2), (0, 0, 3.4, .8, 2.0, 2.2, 2.2),
-        (1, 0, .8, .8, 4.4, 2.0, 6.5), (1, 0, .8, 3.4, 2.2, 2.0, 2.8),
-        (2, 0, 1.0, 1.0, 3.6, 3.6, 3.4),
-        (0, 1, .8, .8, 2.0, 2.0, 3.0), (0, 1, 3.2, 3.0, 2.2, 2.4, 5.0),
-        (2, 1, .6, .6, 2.0, 4.6, 8.4), (2, 1, 3.0, 2.6, 2.4, 2.6, 3.2),
-        (0, 2, 1.0, .8, 4.0, 2.2, 2.4), (0, 2, 1.0, 3.6, 2.0, 2.0, 4.0),
-        (1, 2, 3.4, .6, 2.0, 2.0, 2.0),
-        (3, 0, .8, .8, 2.0, 2.0, 3.6), (3, 1, .8, .8, 4.0, 2.2, 2.6),
-        (-1, 1, 3.0, .8, 2.4, 4.0, 3.0), (1, -1, .8, 3.0, 4.0, 2.4, 3.8),
-        (2, 2, .8, .8, 4.4, 4.4, 1.6),
-    ]
-    massas.sort(key=lambda m: (m[0] * passo + m[2]) + (m[1] * passo + m[3]))
-    for i, j, dx, dy, w, d, h in massas:
-        meio.append(caixa(i * passo + dx, j * passo + dy, w, d, h, topo, esq, dir_))
+    # o lote em estudo, na quadra (0,0)
+    lx, ly, lw, ld = .4, .4, 5.2, 5.2
+    frente.append(poligono(losango(lx, ly, lw, ld), fill="rgba(181,138,68,.08)", stroke=OURO,
+                           stroke_width=1.6, stroke_dasharray="7 5", class_="tracejado-decisao"))
+    # cotas do lote
+    for a, b in [((lx, ly + ld + .8), (lx + lw, ly + ld + .8)), ((lx + lw + .8, ly), (lx + lw + .8, ly + ld))]:
+        frente.append(linha((*a, 0), (*b, 0), stroke=GELO, stroke_width=0.8, opacity=0.8))
+        for c in (a, b):
+            cx, cy = iso(*c, 0)
+            frente.append(f'<line x1="{cx-4:.1f}" y1="{cy+4:.1f}" x2="{cx+4:.1f}" y2="{cy-4:.1f}" stroke="{GELO}" stroke-width="1"/>')
+    # alternativas modeladas: tracejado dourado
+    frente.append(volume(lx + .5, ly + .5, 4.2, 1.6, 8.2, OURO_CLARO, 1.2, "5 5", opacidade=0.75))
+    frente.append(volume(lx + .5, ly + .5, 4.2, 4.2, 2.4, OURO_CLARO, 1.2, "5 5", opacidade=0.75))
+    # a escolhida: módulos do símbolo D, hastes crescentes, em linha cheia
+    for k, h in enumerate((2.6, 3.8, 5.0, 6.2)):
+        frente.append(volume(lx + .6 + k * 1.05, ly + 2.8, .9, 1.9, h, "#FFFFFF", 1.3,
+                             preenche="rgba(8,37,56,.85)"))
+    # marco: o triângulo de decisão
+    mx, my = iso(lx + lw / 2, ly + ld + 1.6, 0)
+    frente.append(f'<path d="M{mx:.1f} {my-7:.1f} L{mx+7:.1f} {my+5:.1f} L{mx-7:.1f} {my+5:.1f} Z" fill="{OURO}"/>')
 
-    # o lote em estudo: quadra (1,1), à frente
-    lx, ly = passo + .5, passo + .5
-    lw, ld = 5.0, 5.0
-    ouro, ouro_claro = "#B58A44", "#D2B07A"
-    frente = [
-        f'<polygon points="{losango(lx, ly, lw, ld)}" fill="rgba(181,138,68,.10)" stroke="{ouro}" '
-        'stroke-width="2" stroke-dasharray="9 6"/>',
-        # cotas do lote
-        _cota(lx, ly + ld + .9, lx + lw, ly + ld + .9, ouro_claro),
-        _cota(lx + lw + .9, ly, lx + lw + .9, ly + ld, ouro_claro),
-        # três alternativas sobre o mesmo lote
-        aramado(lx + .4, ly + .4, 4.2, 1.8, 7.5, ouro_claro, "5 6", .55),   # torre esbelta
-        aramado(lx + .4, ly + .4, 4.2, 4.2, 3.0, ouro_claro, "5 6", .55),   # lâmina baixa
-        caixa(lx + .6, ly + 2.6, 2.0, 2.0, 5.2, "rgba(181,138,68,.55)", "rgba(181,138,68,.30)",
-              "rgba(181,138,68,.20)", traco=ouro),
-    ]
-    marco = iso(lx + lw / 2, ly + ld / 2, 0)
-    frente.append(f'<circle cx="{marco[0]:.1f}" cy="{marco[1]:.1f}" r="3.5" fill="{ouro}"/>')
-
-    return (
-        '<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
-        f'<g class="camada-fundo">{"".join(fundo)}</g>'
-        f'<g class="camada-meio">{"".join(meio)}</g>'
-        f'<g class="camada-frente">{"".join(frente)}</g>'
-        '</svg>')
-
-
-def _cota(x1, y1, x2, y2, cor):
-    a, b = iso(x1, y1), iso(x2, y2)
-    return (f'<g stroke="{cor}" stroke-width="1" opacity=".7">'
-            f'<line x1="{a[0]:.1f}" y1="{a[1]:.1f}" x2="{b[0]:.1f}" y2="{b[1]:.1f}"/>'
-            f'<circle cx="{a[0]:.1f}" cy="{a[1]:.1f}" r="2" fill="{cor}"/>'
-            f'<circle cx="{b[0]:.1f}" cy="{b[1]:.1f}" r="2" fill="{cor}"/></g>')
+    return ('<svg viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
+            f'<g class="camada-fundo">{"".join(fundo)}</g>'
+            f'<g class="camada-meio">{"".join(meio)}</g>'
+            f'<g class="camada-frente">{"".join(frente)}</g></svg>')
