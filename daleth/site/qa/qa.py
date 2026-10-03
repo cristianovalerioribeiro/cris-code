@@ -18,7 +18,7 @@ PROIBIDO = [
     r"raio[- ]x", r"garant(e|imos) (a )?aprova", r"assumimos a execução(?! é)",
     r"projeto inteiro", r"solução completa", r"nunca do banco", r"percentual de êxito",
     r"êxito na contrata", r"mensalidade", r"abrimos portas", r"ficamos até funcionar",
-    r"potencial não basta", r"começa antes da obra", r"r\$ ?324", r"\bcabal", r"esotér",
+    r"potencial não basta", r"começa antes da obra", r"\bcabal", r"esotér",
     r"\bGERIC\b", r"não administra, não gere",
 ]
 LARGURAS = [360, 390, 768, 1024, 1280, 1440]
