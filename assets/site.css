@@ -125,6 +125,8 @@ main:focus{outline:none}
 .menu .nav-vertente{color:var(--marinho);font-weight:600}
 .menu-apoio{padding-left:16px;border-left:1px solid var(--fio)}
 .menu-cta{min-height:44px;padding:10px 20px;font-size:.9375rem;white-space:nowrap;flex:none}
+/* rótulos longos do botão (variantes): o menu encolhe antes de estourar */
+@media (min-width:1080px) and (max-width:1439px){.menu-cta{padding:10px 14px;font-size:.875rem}.menu{gap:8px}.menu ul{gap:0}.menu ul a{padding:0 8px;font-size:.875rem}.menu-apoio{padding-left:6px}.marca img{width:132px}}
 .menu-botao,.cta-movel{display:none}
 
 @media (max-width:1079px){
