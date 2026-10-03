@@ -88,7 +88,13 @@ GARANTIAS = """<ul class="garantias">
 
 # Variantes de copy em teste (variantes/vN/*.html): publicadas em /vN/..., com barra para alternar.
 # Quando a escolha for feita, os textos escolhidos vão para paginas/ e as pastas somem.
-VARIANTES = [("v1", "Ambição"), ("v2", "Precisão"), ("v3", "Parceria")]
+VARIANTES = [("m1", "Trajetória"), ("m2", "Fachada"), ("m3", "Passagem")]
+# uma linha por variante, para a página /variantes/
+VARIANTES_DESC = {
+    "m1": "Executar levou você até aqui. A frase vencedora dos júris como espinha; prova e método no corpo; fecho de parceria.",
+    "m2": "O que sustenta um prédio não aparece na fachada. As decisões invisíveis, com a conta e as três alternativas; hero centrado.",
+    "m3": "Oportunidade se enxerga. Realização se estrutura. O território potencial → estrutura → realização; hero claro; o nome em Sobre.",
+}
 
 
 def _ler(arq):
@@ -108,7 +114,7 @@ def ler_paginas():
         pasta = RAIZ / "variantes" / v
         if not pasta.is_dir():
             continue
-        for arq in sorted(pasta.glob("*.html")):
+        for arq in sorted(pasta.glob("*.html")):   # só a pasta da variante, não as anteriores
             pg = _ler(arq)
             pg["variante"] = v
             pg["caminho_base"] = pg["caminho"]
@@ -204,11 +210,11 @@ def bloco_cabecalho(pg):
     <nav class="menu" id="menu" aria-label="Principal">
       <ul class="menu-vertentes">{vert}</ul>
       <ul class="menu-apoio">{apoio}</ul>
-      <a class="btn btn-primario menu-cta" href="/contato/">{CTA}</a>
+      <a class="btn btn-primario menu-cta" href="/contato/">{esc(pg.get("cta", CTA))}</a>
     </nav>
   </div>
 </header>
-<a class="barra-cta" href="/contato/" hidden>{CTA}<span>Conversa de enquadramento, sem custo</span></a>
+<a class="barra-cta" href="/contato/" hidden>{esc(pg.get("cta", CTA))}<span>Conversa de enquadramento, sem custo</span></a>
 <div class="faixa-slogan" role="note" aria-label="Assinatura">
   <div class="wrap"><p>{SLOGAN}</p></div>
 </div>"""
@@ -232,7 +238,7 @@ def bloco_fecho(pg):
     <h2 id="fecho-titulo">{esc(f["titulo"])}</h2>
     <p class="lead">{f["texto"]}</p>
     <div class="acoes">
-      <a class="btn btn-ouro" href="{contato}">{esc(f.get("botao", CTA))}</a>
+      <a class="btn btn-ouro" href="{contato}">{esc(f.get("botao", pg.get("cta", CTA)))}</a>
       {secundario}
     </div>
     {garantias}
@@ -305,10 +311,8 @@ def pagina_comparacao(paginas):
   <p class="rotulo">Prévia · Para escolher</p>
   <h1>Três versões de texto, o mesmo site</h1>
   <p class="lead">Cada versão conta a mesma história com uma estratégia diferente. Compare página a página pelo título e pela primeira frase, abra cada uma e marque no caderno o que fica.</p>
-  <ul class="lista-traco"><li><strong>V1 · Ambição:</strong> você é o protagonista do maior passo até aqui.</li>
-  <li><strong>V2 · Precisão:</strong> autoridade técnica, prova pelos números de exemplo; hero centrado.</li>
-  <li><strong>V3 · Parceria:</strong> ao seu lado até o decidido virar rotina; hero claro.</li></ul>
-  <p class="microcopy">A barra no canto da tela troca de versão em qualquer página que tenha variante. Esta página e as pastas /v1/, /v2/ e /v3/ saem do ar quando a escolha for feita.</p>
+  <ul class="lista-traco">{"".join(f'<li><strong>{v.upper()} · {esc(nomes[v])}:</strong> {esc(VARIANTES_DESC.get(v, ""))}</li>' for v in existe)}</ul>
+  <p class="microcopy">A barra no canto da tela troca de versão em qualquer página que tenha variante. Esta página e as pastas das versões saem do ar quando a escolha for feita.</p>
 </div></section>
 <section class="secao"><div class="wrap comparacao">{"".join(blocos)}</div></section>
 """ + (f'<section class="secao papel"><div class="wrap"><div class="cabeca"><p class="rotulo">Bastidores</p><h2 id="notas">Notas de cada versão</h2></div><ul class="lista-traco">{notas}</ul><p class="nota">Análise completa do texto atual: <a href="/variantes/ANALISE-COPY.md">ANALISE-COPY.md</a>.</p></div></section>' if notas else "")
