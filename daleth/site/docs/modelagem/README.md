@@ -2,7 +2,7 @@
 
 Material de apoio do método DALETH (movimento 02 · Modelar), para uso em propostas e no projeto.
 
-- `DALETH-Modelagem-do-Empreendimento.pdf`: 15 páginas A4, versão fechada para enviar e imprimir.
+- `DALETH-Modelagem-do-Empreendimento.pdf`: 15 páginas A4, versão fechada para enviar e imprimir. Uma cópia fica em `assets/docs/` e é o arquivo que a home oferece para baixar.
 - `DALETH-Modelagem-do-Empreendimento.docx`: a mesma estrutura em Word, para editar e colar em outros documentos.
 
 Conteúdo: o que é modelar (quatro movimentos, vender/permutar/incorporar, cadeia de consequências) · o conceito visual

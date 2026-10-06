@@ -49,10 +49,10 @@ p{margin:0 0 3mm}
 .cadeia .seta{border:0;color:var(--dourado);padding:0;font-size:12pt}
 /* conceito visual */
 .prancha{margin:2mm 0 6mm;border-radius:2mm;overflow:hidden;background:var(--marinho)}
-.prancha img{display:block;width:100%;height:118mm;object-fit:cover;object-position:center 48%;transform:scale(1.22);transform-origin:50% 48%}
+.prancha img{display:block;width:100%;height:100mm;object-fit:cover;object-position:center 48%;transform:scale(1.22);transform-origin:50% 48%}
 .duas{display:grid;grid-template-columns:1.15fr 1fr;gap:8mm}
 .duas h3{margin-top:0}
-.legenda-frentes{list-style:none;margin:0;padding:0;columns:2;column-gap:5mm;font-size:9.5pt}
+.legenda-frentes{list-style:none;margin:0;padding:0;font-size:9.5pt}
 .legenda-frentes li{break-inside:avoid;display:flex;gap:2.5mm;align-items:baseline;padding:1.8mm 0;border-bottom:1px solid var(--fio);color:var(--marinho);font-weight:500}
 .legenda-frentes .n{font:600 8pt/1 var(--sans);color:var(--dourado-texto);letter-spacing:.08em}
 /* frentes */
@@ -113,3 +113,9 @@ p{margin:0 0 3mm}
 .leituras div{border-top:2px solid var(--dourado);padding-top:3mm}
 .leituras strong{display:block;font:600 12pt/1.25 var(--serif);color:var(--marinho);margin-bottom:1.5mm}
 .leituras p{font-size:9.5pt;color:var(--grafite)}
+
+.legenda-frentes li.vt{display:block;border-bottom:0;border-top:2px solid var(--dourado);padding:2mm 0 .6mm;margin-top:2mm}
+.legenda-frentes li.vt:first-child{margin-top:0}
+.legenda-frentes li.vt b{display:block;font:600 11pt/1.2 var(--serif);color:var(--marinho)}
+.legenda-frentes li.vt small{display:block;font:400 8.5pt/1.4 var(--sans);color:var(--grafite);margin-top:.5mm}
+.legenda-frentes li:not(.vt){padding:1.1mm 0}

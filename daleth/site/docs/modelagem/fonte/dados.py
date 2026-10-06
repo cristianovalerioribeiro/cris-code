@@ -39,7 +39,7 @@ CAMINHOS = [
 ]
 CADEIA = ["Produto", "Orçamento", "Caixa", "Capital", "Cronograma", "Vendas"]
 MOVIMENTOS = [("01", "Mapear", "para compreender"), ("02", "Modelar", "para enxergar"),
-              ("03", "Estruturar", "para tornar executável"), ("04", "Conduzir", "para funcionar")]
+              ("03", "Estruturar", "para tornar executável"), ("04", "Sustentar", "para funcionar")]
 ENTREGA = [
  ("Premissas escritas", "Cada número do modelo tem origem declarada: mercado, custo, prazo, tributo e capital."),
  ("Caminhos lado a lado", "Dois ou três cenários comparados pelos mesmos critérios, não uma recomendação isolada."),
@@ -47,4 +47,10 @@ ENTREGA = [
  ("Decisão registrada", "O caminho escolhido, o porquê e o que precisa estar pronto para a estruturação começar."),
 ]
 SITE = "cristianovalerioribeiro.github.io/cris-code"
+VERTENTES = [
+ ("Empreendimento", "O que vai ser construído, onde, para quem e por quanto.", ["terreno", "produto", "tecnica", "comercial"]),
+ ("Empresa", "Quem constrói, com qual sociedade e com que fôlego.", ["juridico", "societario", "tributario"]),
+ ("Capital", "De onde vem o dinheiro, quando entra e quanto custa.", ["financeiro", "capital", "risco"]),
+]
+PAPEIS = "O cliente decide. A empresa executa. A DALETH fica ao lado: verifica, cobra o combinado e corrige a rota."
 SLOGAN = "Ao seu lado na construção da sua história."

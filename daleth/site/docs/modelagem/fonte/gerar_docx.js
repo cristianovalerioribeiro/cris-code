@@ -91,7 +91,7 @@ secoes.push(pagina('O que é modelar', [
   h2('Modelar é colocar os caminhos lado a lado, com premissas escritas, antes de comprometer capital.'),
   movimentos,
   new Paragraph({ spacing: { after: 120 } }),
-  lead('Mapeamos para compreender, modelamos para enxergar, estruturamos para tornar executável, conduzimos para funcionar. Modelar é o movimento que muda o resultado: é quando o empreendimento ainda cabe inteiro numa planilha e qualquer decisão custa pouco para ser revista.'),
+  lead('Mapeamos para compreender, modelamos para enxergar, estruturamos para tornar executável, sustentamos para funcionar. Modelar é o movimento que muda o resultado: é quando o empreendimento ainda cabe inteiro numa planilha e qualquer decisão custa pouco para ser revista.'),
   h3('O mesmo terreno gera negócios diferentes'),
   p('Vender, permutar ou incorporar. Uma torre ou duas fases. SPE ou SCP. Crédito de obra ou investidor. Cada escolha move as outras, e todas aparecem no caixa. Comparamos os caminhos pelos mesmos critérios antes de escolher um.'),
   caminhos,
@@ -103,9 +103,13 @@ secoes.push(pagina('O que é modelar', [
 // Conceito visual
 const legW = Math.floor(CW / 2);
 const metade = Math.ceil(DEZ.length / 2);
-const legenda = grade(Array.from({ length: metade }, (_, i) => [DEZ[i], DEZ[i + metade]].map(f => celula([new Paragraph({ children: [
-  new TextRun({ text: f.num + '   ', font: SANS, size: 16, bold: true, color: DOURT }), new TextRun({ text: f.nome, font: SANS, size: 20, color: MAR })] })], legW,
-  { borders: { top: nada, left: nada, right: nada, bottom: { style: BorderStyle.SINGLE, size: 4, color: FIO } }, pad: 90, padx: 60 }))), [legW, legW]);
+const vtW = Math.floor(CW / 3);
+const legenda = grade([D.vertentes.map(([v, dsc, ids]) => celula([
+  new Paragraph({ spacing: { after: 40 }, children: [new TextRun({ text: v, font: SERIF, size: 23, bold: true, color: MAR })] }),
+  p(dsc, { size: 16, cor: GRAF, after: 120 }),
+  ...ids.map(id => new Paragraph({ spacing: { after: 60 }, children: [
+    new TextRun({ text: porId[id].num + '   ', font: SANS, size: 16, bold: true, color: DOURT }), new TextRun({ text: porId[id].nome, font: SANS, size: 19, color: MAR })] }))
+], vtW, { borders: topBorder(DOUR), padx: 80 }))], Array(3).fill(vtW));
 secoes.push(pagina('O conceito visual', [
   rotulo('Tudo conectado', DOURT, 0),
   h2('Um empreendimento se decide em dez frentes ao mesmo tempo.'),
@@ -113,7 +117,8 @@ secoes.push(pagina('O conceito visual', [
   h3('Como ler a imagem'),
   p('No centro, o empreendimento. Em volta, uma rede: cada ponto é uma decisão, cada linha é uma consequência. Nenhuma frente está isolada. Puxar uma delas desloca as vizinhas, e o efeito chega ao caixa.'),
   p('Nas páginas seguintes, a rede troca de palavras a cada frente: as decisões que ela carrega e as outras frentes que ela move.'),
-  rotulo('As dez frentes', DOURT, 200),
+  p('As dez frentes se agrupam em três vertentes: empreendimento, empresa e capital. O projeto costuma ficar com o arquiteto, a empresa com o contador, o capital com o banco. Estruturar é decidir as três de uma vez.'),
+  rotulo('As dez frentes, por vertente', DOURT, 200),
   legenda,
 ]));
 
@@ -171,7 +176,7 @@ secoes.push(pagina('O que a modelagem entrega', [
   h2('Modelar é o que separa uma oportunidade de uma decisão.'),
   entregas,
   new Paragraph({ spacing: { before: 400, after: 400, line: 300 }, indent: { left: 240 }, border: { left: { style: BorderStyle.SINGLE, size: 18, color: DOUR, space: 12 } },
-    children: [new TextRun({ text: 'O cliente decide. A empresa executa. A DALETH conduz, verifica e corrige a rota.', font: SERIF, size: 26, color: MAR })] }),
+    children: [new TextRun({ text: D.papeis, font: SERIF, size: 26, color: MAR })] }),
   grade([[celula([
     new Paragraph({ spacing: { after: 120 }, children: [new TextRun({ text: 'Modelar o seu empreendimento começa com uma conversa', font: SERIF, size: 28, bold: true, color: 'FFFFFF' })] }),
     p('Conte o terreno, o produto ou a empresa. A primeira conversa é de enquadramento, sem custo, e já mostra por quais frentes o seu caso pede para começar.', { size: 21, cor: GELO }),

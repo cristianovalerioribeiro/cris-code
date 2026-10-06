@@ -16,7 +16,7 @@ with sync_playwright() as p:
         pg.set_content(f'<img src="file://{os.getcwd()}/{nome}.svg" style="width:1041px;height:275px;display:block">'); pg.wait_for_timeout(400)
         pg.screenshot(path=f'{nome}.png',omit_background=True); pg.close()
     b.close()
-json.dump(dict(frentes=D.FRENTES, apoio=D.APOIO, caminhos=D.CAMINHOS, cadeia=D.CADEIA, movimentos=D.MOVIMENTOS, entrega=D.ENTREGA, site=D.SITE, slogan=D.SLOGAN), open('dados.json','w',encoding='utf-8'), ensure_ascii=False)
+json.dump(dict(frentes=D.FRENTES, apoio=D.APOIO, caminhos=D.CAMINHOS, cadeia=D.CADEIA, movimentos=D.MOVIMENTOS, entrega=D.ENTREGA, site=D.SITE, slogan=D.SLOGAN, vertentes=D.VERTENTES, papeis=D.PAPEIS), open('dados.json','w',encoding='utf-8'), ensure_ascii=False)
 PY
 node gerar_docx.js
 mv DALETH-Modelagem-do-Empreendimento.pdf DALETH-Modelagem-do-Empreendimento.docx ..

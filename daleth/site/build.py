@@ -22,6 +22,7 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent
 DIST = RAIZ / "dist"
+HOME_SOLTA = RAIZ / "home" / "index.html"   # página única na raiz; a home gerada vai para /anterior/
 
 DOMINIO = "https://daleth.iajudite.com.br"
 
@@ -539,6 +540,17 @@ def montar(pg, local, raiz="/"):
     return reescrever_links(pagina, relativizador(base, local, raiz))
 
 
+def montar_home_solta(local, raiz="/"):
+    """A home é um arquivo pronto (home/index.html); aqui entram só robots, domínio, dados
+    estruturados e os links reescritos para o modo local ou para a raiz publicada."""
+    texto = HOME_SOLTA.read_text(encoding="utf-8")
+    robots = '<meta name="robots" content="noindex, nofollow">' if PREVIA else ""
+    pg = {"caminho": "/", "corpo": texto, "pessoa": True}
+    texto = (texto.replace("{{ROBOTS}}", robots).replace("{{DOMINIO}}", DOMINIO)
+                  .replace("{{JSON_LD}}", json_ld(pg, DOMINIO + "/")))
+    return reescrever_links(texto, relativizador("/", local, raiz))
+
+
 def paginas_de_redirecionamento(local, raiz):
     """Endereços antigos (_redirects) também viram páginas que levam ao novo endereço,
     para hospedagens sem regra de redirecionamento (GitHub Pages)."""
@@ -571,6 +583,14 @@ def gerar(local=False, raiz="/"):
         shutil.rmtree(DIST)
     shutil.copytree(RAIZ / "assets", DIST / "assets")
     paginas = ler_paginas()
+    home_solta = HOME_SOLTA.exists()
+    if home_solta:
+        for pg in paginas:
+            if pg["caminho"] == "/" and not pg.get("variante"):
+                pg["caminho"] = "/anterior/"
+                pg["noindex"] = True
+                pg["titulo"] = pg["titulo"] + " (home anterior)"
+                pg["sem_sufixo"] = False
     comparacao = pagina_comparacao(paginas)
     if comparacao:
         paginas.append(comparacao)
@@ -587,6 +607,8 @@ def gerar(local=False, raiz="/"):
             destino = DIST / pg["arquivo"]
         destino.parent.mkdir(parents=True, exist_ok=True)
         destino.write_text(montar(pg, local, raiz), encoding="utf-8")
+    if home_solta:
+        (DIST / "index.html").write_text(montar_home_solta(local, raiz), encoding="utf-8")
     # arquivos de servidor (Netlify)
     for nome in ("_headers", "_redirects"):
         if (RAIZ / nome).exists():
@@ -598,6 +620,7 @@ def gerar(local=False, raiz="/"):
     (DIST / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + (f"  <url><loc>{DOMINIO}/</loc></url>\n" if home_solta else "")
         + "".join(f"  <url><loc>{DOMINIO}{p['caminho']}</loc></url>\n" for p in urls)
         + "</urlset>\n", encoding="utf-8")
     redirecionadas = paginas_de_redirecionamento(local, raiz)

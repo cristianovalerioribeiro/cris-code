@@ -96,15 +96,15 @@ with sync_playwright() as pw:
         esperado = modelo.moeda(modelo.calcular(**params)["exposicao"])
         if tela != esperado:
             falhas.append(f"simulador  {nome}: tela {tela} ≠ modelo {esperado}")
-    # quadro da home usa os mesmos números
-    pg.goto(base + "index.html")
+    # quadro da home anterior usa os mesmos números (a home atual é a página solta, sem quadro)
+    pg.goto(base + "anterior/index.html")
     numeros = pg.eval_on_selector_all(".alt-numero", "els=>els.map(e=>e.firstChild.textContent.trim())")
     esperados = [modelo.moeda(modelo.calcular(**a[3])["exposicao"]) for a in modelo.ARRANJOS]
     if numeros != esperados:
         falhas.append(f"quadro da home {numeros} ≠ {esperados}")
     # menu mobile: abre, isola o resto, fecha com Esc
     m = nav.new_page(viewport={"width": 390, "height": 800})
-    m.goto(base + "index.html")
+    m.goto(base + "anterior/index.html")
     m.click(".menu-botao")
     if not m.is_visible("#menu") or not m.evaluate("document.querySelector('main').inert"):
         falhas.append("menu mobile não abre ou não isola o conteúdo")

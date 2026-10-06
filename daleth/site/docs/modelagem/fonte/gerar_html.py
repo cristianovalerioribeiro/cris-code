@@ -29,7 +29,7 @@ paginas.append(f'''
   <p class="rotulo">O segundo movimento do método</p>
   <h2>Modelar é colocar os caminhos lado a lado, com premissas escritas, antes de comprometer capital.</h2>
   <div class="movimentos">{mov}</div>
-  <p class="lead">Mapeamos para compreender, modelamos para enxergar, estruturamos para tornar executável, conduzimos para funcionar. Modelar é o movimento que muda o resultado: é quando o empreendimento ainda cabe inteiro numa planilha e qualquer decisão custa pouco para ser revista.</p>
+  <p class="lead">Mapeamos para compreender, modelamos para enxergar, estruturamos para tornar executável, sustentamos para funcionar. Modelar é o movimento que muda o resultado: é quando o empreendimento ainda cabe inteiro numa planilha e qualquer decisão custa pouco para ser revista.</p>
   <h3>O mesmo terreno gera negócios diferentes</h3>
   <p>Vender, permutar ou incorporar. Uma torre ou duas fases. SPE ou SCP. Crédito de obra ou investidor. Cada escolha move as outras, e todas aparecem no caixa. Comparamos os caminhos pelos mesmos critérios antes de escolher um.</p>
   <div class="caminhos">{cam}</div>
@@ -40,7 +40,7 @@ paginas.append(f'''
 </section>''')
 
 # 3 · Tudo conectado
-legenda = ''.join(f'<li><span class="n">{f["num"]}</span>{e(f["nome"])}</li>' for f in D.DEZ)
+legenda = ''.join(f'<li class="vt"><b>{e(v)}</b><small>{e(d)}</small></li>' + ''.join(f'<li><span class="n">{D.POR_ID[i]["num"]}</span>{e(D.POR_ID[i]["nome"])}</li>' for i in ids) for v,d,ids in D.VERTENTES)
 paginas.append(f'''
 <section class="pagina clara">
   <header class="topo"><span>Modelagem do empreendimento</span><span>O conceito visual</span></header>
@@ -51,6 +51,7 @@ paginas.append(f'''
     <div>
       <h3>Como ler a imagem</h3>
       <p>No centro, o empreendimento. Em volta, uma rede: cada ponto é uma decisão, cada linha é uma consequência. Nenhuma frente está isolada. Puxar uma delas desloca as vizinhas, e o efeito chega ao caixa.</p>
+      <p>As dez frentes se agrupam em três vertentes: empreendimento, empresa e capital. O projeto costuma ficar com o arquiteto, a empresa com o contador, o capital com o banco. Estruturar é decidir as três de uma vez.</p>
       <p>Nas páginas seguintes, a rede troca de palavras a cada frente: as decisões que ela carrega e as outras frentes que ela move.</p>
     </div>
     <ol class="legenda-frentes">{legenda}</ol>
@@ -120,7 +121,7 @@ paginas.append(f'''
   <p class="rotulo">Do mapa ao seu caso</p>
   <h2>Modelar é o que separa uma oportunidade de uma decisão.</h2>
   <div class="entregas">{ent}</div>
-  <div class="papeis"><p>O cliente decide. A empresa executa. A DALETH conduz, verifica e corrige a rota.</p></div>
+  <div class="papeis"><p>{e(D.PAPEIS)}</p></div>
   <div class="convite">
     <h3>Modelar o seu empreendimento começa com uma conversa</h3>
     <p>Conte o terreno, o produto ou a empresa. A primeira conversa é de enquadramento, sem custo, e já mostra por quais frentes o seu caso pede para começar.</p>
