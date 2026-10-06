@@ -2,384 +2,770 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DALETH · Estruturação de negócios imobiliários</title>
-<meta name="description" content="Para construtoras e incorporadoras: empresa, terreno e capital estruturados numa mesma decisão, antes de comprometer capital. BH, atuação nacional.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DALETH · Estruturação de Negócios Imobiliários</title>
+<meta name="description" content="DALETH · Estruturação de Negócios Imobiliários. Empreendimento, empresa e capital pensados juntos, antes da decisão. Belo Horizonte, atuação nacional.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://daleth.iajudite.com.br/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="DALETH">
-<meta property="og:title" content="Seu próximo empreendimento pode ser o maior até aqui">
-<meta property="og:description" content="Para construtoras e incorporadoras: empresa, terreno e capital estruturados numa mesma decisão, antes de comprometer capital. BH, atuação nacional.">
+<meta property="og:title" content="DALETH · Estruturação de Negócios Imobiliários">
+<meta property="og:description" content="Empreendimento, empresa e capital pensados juntos, antes da decisão. Belo Horizonte, atuação nacional.">
 <meta property="og:url" content="https://daleth.iajudite.com.br/">
 <meta property="og:image" content="https://daleth.iajudite.com.br/assets/og.png">
 <meta name="theme-color" content="#082538">
 <link rel="icon" href="/cris-code/assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/cris-code/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/cris-code/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/cris-code/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/cris-code/assets/site.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://daleth.iajudite.com.br/#org","name":"DALETH","description":"Estruturação de negócios imobiliários","url":"https://daleth.iajudite.com.br/","logo":"https://daleth.iajudite.com.br/assets/marca/vertical-color.svg","slogan":"Ao seu lado na construção da sua história.","areaServed":"BR","address":{"@type":"PostalAddress","addressLocality":"Belo Horizonte","addressRegion":"MG","addressCountry":"BR"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quanto custa?","acceptedAnswer":{"@type":"Answer","text":"Depende do escopo, que sai da conversa de enquadramento. O valor fica escrito na proposta, com prazo e entregas, antes de começar."}},{"@type":"Question","name":"Vocês captam recursos ou garantem crédito?","acceptedAnswer":{"@type":"Answer","text":"Não, e ninguém pode garantir. Preparamos a operação para chegar pronta: quem aprova é o financiador, e quem decide investir é o investidor."}},{"@type":"Question","name":"Já tenho contador, advogado e arquiteto. Ainda faz sentido?","acceptedAnswer":{"@type":"Answer","text":"Faz, e o trabalho não substitui nenhum deles. O que costuma faltar é alguém olhando as partes juntas."}},{"@type":"Question","name":"Atendem fora de Minas Gerais?","acceptedAnswer":{"@type":"Answer","text":"Sim. A base é Belo Horizonte e a atuação é nacional, à distância, com presença quando o caso pede."}}]}]}</script>
-<script src="/cris-code/assets/js/site.js" defer></script>
-<script src="/cris-code/assets/js/cena3d.js" defer></script>
+<style>
+@font-face{font-family:"Manrope";font-style:normal;font-weight:500 800;font-display:swap;src:url(/assets/fonts/manrope-latin.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url(/assets/fonts/inter-latin.woff2) format("woff2")}
 
+/* Layout: uma página em capítulos. Azul-tinta abre e fecha (topo, "ao seu lado", contato); papel claro na análise (vertentes, método, modelagem). Diagramas explicam relações. */
+:root{
+  --papel:#F4F6F7; --papel-2:#E9EEF1; --tinta:#082538; --tinta-2:#46596A; --linha:#D2DBE2;
+  --cap:#082538; --cap-2:#0D2F47; --cap-txt:#F4F6F8; --cap-txt-2:#B5C5D2; --cap-linha:#24445B;
+  --ouro:#7A5A2C; --ouro-cap:#CAA972; --ouro-marca:#B58A44; --foco:#B58A44;
+  --f-disp:"Manrope", "Segoe UI", Arial, sans-serif;
+  --f-txt:"Inter", "Segoe UI", Arial, sans-serif;
+  --larg:1160px; --gut:clamp(16px,4vw,40px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --papel:#071B29; --papel-2:#0B2536; --tinta:#E6EDF2; --tinta-2:#9DB0BF; --linha:#1E3A4E;
+  --cap:#0C2D44; --cap-2:#11384F; --cap-txt:#F4F6F8; --cap-txt-2:#B5C5D2; --cap-linha:#2B4B61;
+  --ouro:#CAA972; --ouro-cap:#CAA972; --ouro-marca:#B58A44; --foco:#CAA972; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --papel:#071B29; --papel-2:#0B2536; --tinta:#E6EDF2; --tinta-2:#9DB0BF; --linha:#1E3A4E;
+  --cap:#0C2D44; --cap-2:#11384F; --cap-txt:#F4F6F8; --cap-txt-2:#B5C5D2; --cap-linha:#2B4B61;
+  --ouro:#CAA972; --ouro-cap:#CAA972; --ouro-marca:#B58A44; --foco:#CAA972; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--papel);color:var(--tinta);font-family:var(--f-txt);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--f-disp);text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--foco);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--larg);margin-inline:auto;padding-inline:var(--gut)}
+.sobre{font-family:var(--f-txt);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+.cap .sobre{color:var(--ouro-cap)}
+.h2{font-size:clamp(28px,3.6vw,40px);font-weight:700;line-height:1.15}
+.lead{font-size:clamp(17px,1.6vw,19px);color:var(--tinta-2);max-width:62ch}
+.cap .lead{color:var(--cap-txt-2)}
+section{padding-block:clamp(64px,9vw,112px)}
+.cab{display:flex;flex-direction:column;gap:16px;margin-bottom:clamp(36px,5vw,56px)}
+
+/* capítulos azuis */
+.cap{background:var(--cap);color:var(--cap-txt)}
+
+/* cabeçalho */
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--papel);border-bottom:1px solid var(--linha)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+.marca{display:flex;align-items:center;color:var(--tinta);text-decoration:none}
+.marca svg{height:30px;width:auto;display:block}
+.topo nav{display:flex;gap:26px;font-size:14px;font-weight:500}
+.topo nav a{text-decoration:none;color:var(--tinta-2)}
+.topo nav a:hover{color:var(--tinta)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-disp);font-weight:700;font-size:15px;text-decoration:none;padding:13px 22px;border-radius:2px;border:1px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn-tinta{background:var(--tinta);color:var(--papel)}
+.btn-tinta:hover{background:var(--ouro);color:var(--papel)}
+.btn-ouro{background:var(--ouro-cap);color:#082538}
+.btn-ouro:hover{background:var(--cap-txt)}
+.btn-linha{border-color:var(--cap-linha);color:var(--cap-txt)}
+.btn-linha:hover{border-color:var(--ouro-cap)}
+.topo .btn{padding:9px 16px;font-size:14px}
+@media (max-width:860px){.topo nav{display:none}}
+
+/* hero */
+.hero{padding-block:clamp(56px,8vw,104px) clamp(56px,7vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero-txt{display:flex;flex-direction:column;gap:24px;min-width:0}
+.hero h1{font-size:clamp(36px,5.4vw,62px);font-weight:800;line-height:1.06;letter-spacing:-.025em;color:var(--cap-txt)}
+.hero h1 em{font-style:normal;color:var(--ouro-cap)}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.assina{font-family:var(--f-disp);font-size:15px;font-weight:600;color:var(--cap-txt-2);display:flex;align-items:center;gap:12px}
+.assina::before{content:"";width:28px;height:1px;background:var(--ouro-cap);flex:none}
+.assina span{min-height:1.4em}
+.assina.digitando span::after{content:"";display:inline-block;width:2px;height:1em;margin-left:3px;vertical-align:-.15em;background:var(--ouro-cap);animation:pisca 1s steps(1) infinite}
+@keyframes pisca{50%{opacity:0}}
+.tri{width:100%;max-width:440px;justify-self:center;display:block}
+.tri .aresta{stroke:var(--cap-linha);stroke-width:1.5;fill:none}
+.tri .fluxo{stroke:var(--ouro-cap);stroke-width:2;fill:none;stroke-dasharray:6 22;animation:flui 3.2s linear infinite}
+.tri .fluxo.b{animation-duration:3.8s;animation-direction:reverse}
+.tri .fluxo.c{animation-duration:4.4s}
+@keyframes flui{to{stroke-dashoffset:-112}}
+.tri .no{fill:var(--cap-2);stroke:var(--ouro-cap);stroke-width:1.5}
+.tri .rot{font-family:var(--f-disp);font-weight:700;font-size:15px;letter-spacing:.08em;fill:var(--cap-txt)}
+.tri .sub{font-family:var(--f-txt);font-size:12px;fill:var(--cap-txt-2)}
+.tri .centro{fill:var(--ouro-cap)}
+.tri .centro-t{font-family:var(--f-disp);font-weight:700;font-size:13px;fill:var(--cap-txt);letter-spacing:.06em}
+@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.tri{max-width:340px}}
+
+/* vertentes */
+.vert{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--linha)}
+.vert article{padding:28px 28px 32px 0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.vert article+article{padding-left:28px;border-left:1px solid var(--linha)}
+.vert h3{font-size:22px;font-weight:700}
+.vert .itens{font-size:14px;color:var(--tinta-2)}
+.lig{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.lig div{display:flex;flex-direction:column;gap:8px;min-width:0;padding-top:16px;border-top:2px solid var(--ouro-marca)}
+.lig b{font-family:var(--f-disp);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ouro)}
+.lig p{font-size:16px}
+.fecho{margin-top:40px;font-family:var(--f-disp);font-size:clamp(20px,2.2vw,24px);font-weight:600;max-width:40ch}
+@media (max-width:760px){.vert,.lig{grid-template-columns:minmax(0,1fr)}.vert article,.vert article+article{padding:24px 0;border-left:0;border-bottom:1px solid var(--linha)}}
+
+/* método */
+.metodo{background:var(--papel-2)}
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,.8fr) repeat(4,minmax(0,1fr));gap:0;position:relative}
+.passos li{display:flex;flex-direction:column;gap:12px;padding:0 22px 0 0;min-width:0;position:relative}
+.passos li+li{padding-left:22px;border-left:1px solid var(--linha)}
+.passos .num{font-family:var(--f-disp);font-weight:700;font-size:13px;color:var(--ouro);letter-spacing:.1em}
+.passos h3{font-size:26px;font-weight:800}
+.passos .para{font-size:14px;color:var(--tinta-2);margin-top:-8px}
+.passos .frase{font-family:var(--f-disp);font-weight:600;font-size:17px;line-height:1.35}
+.passos .recebe{font-size:14px;color:var(--tinta-2)}
+.passos .recebe b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta);margin-bottom:4px}
+.passos li.entrada h3{font-size:20px;font-weight:700}
+.selo{align-self:flex-start;font-size:12px;font-weight:600;padding:3px 10px;border:1px solid var(--ouro);color:var(--ouro);border-radius:20px}
+@media (max-width:980px){.passos{grid-template-columns:minmax(0,1fr)}.passos li,.passos li+li{padding:24px 0 24px 28px;border-left:2px solid var(--linha)}.passos li::before{content:"";position:absolute;left:-7px;top:30px;width:12px;height:12px;border-radius:50%;background:var(--papel-2);border:2px solid var(--ouro-marca)}}
+
+/* modelagem */
+.bloco{margin-top:clamp(48px,6vw,72px);display:flex;flex-direction:column;gap:20px}
+.bloco h3{font-size:clamp(22px,2.4vw,26px);font-weight:700}
+.cam{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.cam article{background:var(--papel-2);padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.cam h4{margin:0;font-family:var(--f-disp);font-size:20px;font-weight:700}
+.cam p{font-size:15px;color:var(--tinta-2)}
+.escala{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;font-size:12px;color:var(--tinta-2);margin-top:8px}
+.barra{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.barra i{height:6px;background:var(--linha)}
+.barra i.on{background:var(--ouro-marca)}
+.cadeia{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;font-family:var(--f-disp);font-weight:700;font-size:14px;letter-spacing:.08em}
+.cadeia span{padding:8px 14px;border:1px solid var(--linha);background:var(--papel)}
+.cadeia span.seta{border:0;padding:0;color:var(--ouro);background:none}
+.nota{font-size:15px;color:var(--tinta-2);max-width:70ch}
+
+.explorar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,48px);align-items:start;border-top:1px solid var(--linha);padding-top:28px}
+.abas{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.abas button{font-family:var(--f-txt);font-size:14px;font-weight:500;text-align:left;padding:10px 12px;border:1px solid var(--linha);background:var(--papel);color:var(--tinta-2);cursor:pointer;display:flex;gap:8px;align-items:baseline;min-width:0}
+.abas button span{font-family:var(--f-disp);font-weight:700;font-size:12px;color:var(--ouro)}
+.abas button[aria-selected="true"]{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.abas button[aria-selected="true"] span{color:var(--ouro-cap)}
+.abas button.movido{border-color:var(--ouro-marca);color:var(--tinta)}
+.rede{width:100%;max-width:470px;display:block;justify-self:center}
+.rede .liga{stroke:var(--linha);stroke-width:1}
+.rede .liga.on{stroke:var(--ouro-marca);stroke-width:2.2}
+.rede .raio{stroke:var(--linha);stroke-width:1;stroke-dasharray:2 4}
+.rede circle.n{fill:var(--papel);stroke:var(--tinta-2);stroke-width:1.4;cursor:pointer;transition:fill .2s}
+.rede circle.n.movido{stroke:var(--ouro-marca);stroke-width:2.4}
+.rede circle.n.sel{fill:var(--tinta);stroke:var(--tinta)}
+.rede text{font-family:var(--f-disp);font-size:12px;font-weight:700;fill:var(--tinta-2);letter-spacing:.06em;pointer-events:none}
+.rede text.sel,.rede text.movido{fill:var(--tinta)}
+.rede .miolo{fill:var(--tinta)}
+.rede .miolo-t{fill:var(--papel);font-size:10px;letter-spacing:.08em}
+.painel{display:flex;flex-direction:column;gap:18px;min-width:0}
+.painel h4{margin:0;font-family:var(--f-disp);font-size:clamp(24px,2.6vw,30px);font-weight:800}
+.painel .def{font-size:17px}
+.painel dl{margin:0;display:flex;flex-direction:column;gap:16px}
+.painel dt{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro);margin-bottom:6px}
+.painel dd{margin:0;font-size:15px;color:var(--tinta-2)}
+.painel dd.perg{font-family:var(--f-disp);font-weight:600;font-size:18px;color:var(--tinta);line-height:1.4}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:13px;padding:4px 10px;background:var(--papel-2);color:var(--tinta)}
+@media (max-width:900px){.explorar{grid-template-columns:minmax(0,1fr)}.abas{grid-template-columns:repeat(2,minmax(0,1fr))}.rede{max-width:340px}}
+@media (max-width:760px){.cam{grid-template-columns:minmax(0,1fr)}}
+
+.entregas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.entregas div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.entregas b{font-family:var(--f-disp);font-size:17px}
+.entregas p{font-size:14px;color:var(--tinta-2)}
+.entregas div::before{content:"";width:22px;height:2px;background:var(--ouro-marca)}
+@media (max-width:900px){.entregas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.entregas{grid-template-columns:minmax(0,1fr)}}
+
+/* ao seu lado */
+.lado .grande{font-family:var(--f-disp);font-size:clamp(26px,3.6vw,42px);font-weight:700;line-height:1.2;max-width:26ch;color:var(--cap-txt)}
+.papeis{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--cap-linha);border-bottom:1px solid var(--cap-linha)}
+.papeis div{padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.papeis div+div{padding-left:24px;border-left:1px solid var(--cap-linha)}
+.papeis b{font-family:var(--f-disp);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ouro-cap)}
+.papeis p{font-family:var(--f-disp);font-size:20px;font-weight:600}
+.papeis p small{display:block;font-family:var(--f-txt);font-size:14px;font-weight:400;color:var(--cap-txt-2);margin-top:6px}
+.comp{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,64px)}
+.comp ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;counter-reset:c}
+.comp li{counter-increment:c;display:grid;grid-template-columns:34px 1fr;gap:8px;padding-block:14px;border-bottom:1px solid var(--cap-linha);font-size:17px}
+.comp li::before{content:counter(c,decimal-leading-zero);font-family:var(--f-disp);font-weight:700;font-size:13px;color:var(--ouro-cap);padding-top:3px}
+.prop{display:flex;flex-direction:column;gap:14px}
+.prop p{color:var(--cap-txt-2)}
+.prop .p-txt{font-family:var(--f-disp);font-size:20px;font-weight:600;color:var(--cap-txt);line-height:1.4}
+@media (max-width:760px){.papeis,.comp{grid-template-columns:minmax(0,1fr)}.papeis div,.papeis div+div{padding:20px 0;border-left:0}.papeis div+div{border-top:1px solid var(--cap-linha)}}
+
+/* quem */
+.quem .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,64px);align-items:start}
+.quem .txt{display:flex;flex-direction:column;gap:16px}
+.quem .nome{font-family:var(--f-disp);font-size:22px;font-weight:700}
+.quem .num{font-family:var(--f-disp);font-size:clamp(34px,4vw,46px);font-weight:800;color:var(--tinta);font-variant-numeric:tabular-nums;line-height:1}
+.quem .num small{display:block;font-family:var(--f-txt);font-size:14px;font-weight:400;color:var(--tinta-2);margin-top:8px;line-height:1.5}
+@media (max-width:760px){.quem .wrap{grid-template-columns:minmax(0,1fr)}}
+
+/* contato */
+.contato .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:end}
+.contato h2{font-size:clamp(30px,4vw,46px);font-weight:800;line-height:1.1}
+.canal{border:1px dashed var(--ouro-cap);padding:22px;display:flex;flex-direction:column;gap:10px}
+.canal b{font-family:var(--f-disp);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ouro-cap)}
+.canal p{font-size:15px;color:var(--cap-txt-2)}
+@media (max-width:760px){.contato .wrap{grid-template-columns:minmax(0,1fr)}}
+
+footer{background:var(--cap);color:var(--cap-txt-2);border-top:1px solid var(--cap-linha);padding-block:32px;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+footer .marca{color:var(--cap-txt)}
+footer .marca svg{height:26px}
+footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
+
+/* conectores: o pé de cada seção aponta para a seguinte */
+.ponte{margin-top:clamp(48px,6vw,72px);padding-top:20px;border-top:1px solid var(--linha);display:flex;align-items:center;justify-content:space-between;gap:16px;
+  text-decoration:none;color:var(--tinta);font-family:var(--f-disp);font-weight:600;font-size:clamp(17px,1.8vw,20px)}
+.ponte i{flex:none;font-style:normal;width:40px;height:40px;border-radius:50%;border:1px solid var(--ouro-marca);color:var(--ouro);display:grid;place-items:center;font-size:18px;transition:transform .25s,background .25s,color .25s}
+.ponte:hover i{transform:translateY(4px);background:var(--ouro-marca);color:var(--papel)}
+.cap .ponte{border-top-color:var(--cap-linha);color:var(--cap-txt)}
+.cap .ponte i{color:var(--ouro-cap);border-color:var(--ouro-cap)}
+.modelar .ponte{border-top-color:#24465F;color:#FFFFFF}
+.modelar .ponte i{color:#D4B37C;border-color:#D4B37C}
+.modelar .ponte:hover i,.cap .ponte:hover i{background:var(--ouro-cap);color:#082538}
+
+/* conector 1: do terreno à decisão */
+.historia{padding-block:clamp(40px,5vw,56px) clamp(56px,8vw,96px)}
+.cred{list-style:none;margin:0 0 clamp(48px,6vw,72px);padding:0 0 24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;border-bottom:1px solid var(--linha)}
+.cred li{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cred b{font-family:var(--f-disp);font-size:15px}
+.cred span{font-size:13px;color:var(--tinta-2)}
+.trama{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,48px)}
+.trama li{display:flex;flex-direction:column;gap:12px;min-width:0;padding-top:20px;border-top:2px solid var(--tinta)}
+.trama li:last-child{border-top-color:var(--ouro-marca)}
+.trama .num{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+.trama h2{font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.2}
+.trama p{font-size:16px;color:var(--tinta-2)}
+@media (max-width:860px){.cred{grid-template-columns:repeat(2,minmax(0,1fr))}.trama{grid-template-columns:minmax(0,1fr)}}
+
+.vertentes{background:var(--papel-2)}
+.vert .fr{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.vert .fr span{font-size:12px;font-weight:500;padding:4px 9px;border:1px solid var(--linha);background:var(--papel);color:var(--tinta)}
+
+/* pergunta na mesa */
+.mesa-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,56px)}
+.mesa-col h3{font-size:20px;font-weight:700;padding-bottom:12px;border-bottom:2px solid var(--tinta)}
+.mesa-col ul{list-style:none;margin:0;padding:0}
+.mesa-col a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--linha);text-decoration:none;color:var(--tinta)}
+.mesa-col a span{font-size:16px;min-width:0}
+.mesa-col a em{flex:none;font-style:normal;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ouro)}
+.mesa-col a:hover span{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--ouro-marca)}
+@media (max-width:760px){.mesa-col{grid-template-columns:minmax(0,1fr)}}
+
+.lado .cab .lead{margin-top:4px}
+.quem .meta{font-size:14px;color:var(--tinta-2)}
+.quem .ponte{grid-column:1/-1}
+
+/* perguntas */
+.faq{background:var(--papel-2)}
+.faq-lista{max-width:820px;border-top:1px solid var(--linha)}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;position:relative;font-family:var(--f-disp);font-weight:700;font-size:18px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:16px;font-size:24px;font-weight:400;color:var(--ouro)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 20px;color:var(--tinta-2);max-width:68ch}
+
+.degraus{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;counter-reset:d}
+.degraus li{counter-increment:d;display:grid;grid-template-columns:34px 1fr;padding-block:10px;border-top:1px solid var(--cap-linha)}
+.degraus li::before{content:counter(d,decimal-leading-zero);grid-row:span 2;font-family:var(--f-disp);font-weight:700;font-size:13px;color:var(--ouro-cap);padding-top:3px}
+.degraus b{font-family:var(--f-disp);font-size:16px}
+.degraus span{font-size:14px;color:var(--cap-txt-2)}
+
+/* modelagem 3D (cena WebGL do cris-code). A cena pinta seu próprio fundo marinho, então este capítulo é azul nos dois temas. */
+.modelar{--m-marinho:#082538;--m-dourado:#B58A44;--m-dourado-claro:#D4B37C;--m-fio:#24465F;--m-gelo:#B9C8D4;--m-branco:#FFFFFF;
+  background:var(--m-marinho);color:var(--m-branco);outline:none;padding-block:clamp(64px,9vw,112px)}
+.modelar .cab .h2{color:var(--m-branco)}
+.modelar .cab .lead{color:var(--m-gelo)}
+.modelar .cab .sobre{color:var(--m-dourado-claro)}
+.modelar canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cena-rotulos{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.cena-rotulos span{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;will-change:transform,opacity;margin:-11px 0 0 12px;padding:6px 12px 6px 9px;border-radius:999px;
+  font:600 12px/1 var(--f-txt);letter-spacing:.12em;text-transform:uppercase;color:var(--m-branco);background:rgba(8,37,56,.74);border:1px solid rgba(212,179,124,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cena-rotulos span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--m-dourado-claro);margin-right:7px;vertical-align:1px}
+.cena-rotulos span.troca{animation:rotulo-entra .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes rotulo-entra{from{filter:blur(4px);letter-spacing:.3em}to{filter:none;letter-spacing:.12em}}
+@keyframes ficha-entra{from{opacity:.2;transform:translateX(12px)}to{opacity:1;transform:none}}
+.mf-num{font:600 11px/1.3 var(--f-txt);letter-spacing:.14em;text-transform:uppercase;color:var(--m-dourado-claro);margin:0 0 8px}
+.mf-nome{font:700 clamp(22px,2.4vw,30px)/1.15 var(--f-disp);color:var(--m-branco);margin:0 0 12px}
+.mf-frase{font:400 clamp(16px,1.4vw,18px)/1.5 var(--f-txt);color:var(--m-gelo);margin:0 0 16px}
+.mf-sub{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0;list-style:none}
+.mf-sub li{font:500 12px/1 var(--f-txt);letter-spacing:.04em;color:var(--m-branco);padding:7px 10px;border:1px solid rgba(212,179,124,.45);border-radius:999px;background:rgba(255,255,255,.04)}
+.mf-move{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0;padding-top:14px;border-top:1px solid var(--m-fio)}
+.mf-move-rot{font:600 11px/1.3 var(--f-txt);letter-spacing:.12em;text-transform:uppercase;color:var(--m-gelo);margin-right:4px}
+.mf-link{background:none;border:0;padding:4px 0;cursor:pointer;font:600 14px/1.3 var(--f-txt);color:var(--m-dourado-claro);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.mf-link:hover{color:var(--m-branco)}
+.mp-palco{position:relative;aspect-ratio:16/9;max-height:680px;min-height:420px;border:1px solid var(--m-fio);overflow:hidden;background:var(--m-marinho)}
+.modelar:not(.cena-viva) .mp-palco{background-image:radial-gradient(rgba(185,200,212,.28) 1px,transparent 1.3px);background-size:22px 22px}
+.mp-titulo{position:absolute;left:24px;top:20px;margin:0;z-index:2;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--m-gelo)}
+.mp-ficha{position:absolute;right:24px;top:24px;bottom:24px;width:min(34%,380px);padding:24px;overflow:auto;z-index:2;
+  background:rgba(8,37,56,.78);border:1px solid var(--m-fio);border-top:2px solid var(--m-dourado);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.mp-ficha.troca{animation:ficha-entra .45s cubic-bezier(.2,.7,.2,1)}
+.mp-controles{display:flex;align-items:center;gap:8px;margin-top:16px;min-width:0}
+.mp-trilho{flex:1;min-width:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.mp-trilho::-webkit-scrollbar{display:none}
+.mp-frente{flex:none;display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:1px solid var(--m-fio);border-radius:999px;background:transparent;color:var(--m-gelo);font:500 14px/1 var(--f-txt);cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s,color .15s}
+.mp-frente .n{font:700 12px/1 var(--f-disp);color:var(--m-dourado-claro);font-variant-numeric:tabular-nums}
+.mp-frente:hover{border-color:var(--m-gelo);color:var(--m-branco)}
+.mp-frente[aria-pressed=true]{background:var(--m-dourado);border-color:var(--m-dourado);color:var(--m-marinho);font-weight:600}
+.mp-frente[aria-pressed=true] .n{color:var(--m-marinho)}
+.mp-seta,.mp-auto{flex:none;min-height:44px;min-width:44px;padding:0 12px;border:1px solid var(--m-fio);border-radius:999px;background:transparent;color:var(--m-branco);font:600 14px/1 var(--f-txt);cursor:pointer}
+.mp-seta:hover,.mp-auto:hover{border-color:var(--m-gelo)}
+.mp-auto{border-style:dashed;padding:0 16px;color:var(--m-gelo)}
+.mp-auto[aria-pressed=true]{background:rgba(255,255,255,.08);color:var(--m-branco);border-style:solid}
+.mp-dica{color:var(--m-gelo);margin-top:12px;font-size:13px}
+.mp-dica a{color:var(--m-dourado-claro);text-underline-offset:4px}
+@media (max-width:1023px){
+  .mp-palco{aspect-ratio:auto;min-height:0;height:min(62vw,420px)}
+  .mp-ficha{position:static;width:auto;margin-top:20px;border-top:2px solid var(--m-dourado);background:transparent;border-left:0;border-right:0;border-bottom:0;padding:20px 0 0;backdrop-filter:none}
+  .mp-ficha.troca{animation:none}
+  .modelar-prancha .wrap{display:flex;flex-direction:column}
+  .mp-controles{order:-1;margin:0 0 16px}
+  .modelar-prancha .cab{order:-2}
+  .mp-auto,.mp-dica{display:none}
+}
+@media (max-width:767px){.mp-palco{margin-inline:calc(-1 * var(--gut));border-left:0;border-right:0}}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tri .fluxo{animation:none}.assina.digitando span::after{animation:none}}
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://daleth.iajudite.com.br/#org","name":"DALETH","description":"Estruturação de negócios imobiliários","url":"https://daleth.iajudite.com.br/","logo":"https://daleth.iajudite.com.br/assets/marca/vertical-color.svg","slogan":"Ao seu lado na construção da sua história.","areaServed":"BR","address":{"@type":"PostalAddress","addressLocality":"Belo Horizonte","addressRegion":"MG","addressCountry":"BR"}},{"@type":"Person","name":"Cristiano Valério Ribeiro","jobTitle":"Fundador","worksFor":{"@id":"https://daleth.iajudite.com.br/#org"}}]}</script>
+<script src="/cris-code/assets/js/cena3d.js" defer></script>
+<script src="/cris-code/assets/js/modelagem.js" defer></script>
 </head>
-<body class="home home-b">
-<a class="pular" href="#conteudo">Pular para o conteúdo</a>
-<header class="topo" id="topo">
-  <div class="wrap topo-linha">
-    <a class="marca" href="/cris-code/" aria-label="DALETH, Estruturação de Negócios: página inicial">
-      <img src="/cris-code/assets/marca/horizontal-color.svg" alt="" width="190" height="50">
-    </a>
-    <a class="btn btn-primario cta-movel" href="/cris-code/contato/">Conversar</a>
-    <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">
-      <span class="menu-icone" aria-hidden="true"></span><span class="menu-texto">Menu</span>
-    </button>
-    <nav class="menu" id="menu" aria-label="Principal">
-      <ul class="menu-vertentes"><li class="tem-sub"><a href="/cris-code/empresas/" class="nav-vertente">Empresas</a><ul class="sub" aria-label="Empresas"><li><a href="/cris-code/empresas/">Gestão, financeiro e societário</a></li><li><a href="/cris-code/empresas/preparacao-para-credito/">Preparação para crédito</a></li></ul></li><li class="tem-sub"><a href="/cris-code/empreendimentos/" class="nav-vertente">Empreendimentos</a><ul class="sub" aria-label="Empreendimentos"><li><a href="/cris-code/empreendimentos/">Do terreno à entrega</a></li><li><a href="/cris-code/empreendimentos/estudo-de-viabilidade/">Estudo de viabilidade</a></li><li><a href="/cris-code/empreendimentos/permuta-de-terreno/">Vender, permutar ou incorporar</a></li><li><a href="/cris-code/empreendimentos/obra-parada/">Obras paradas</a></li></ul></li><li class="tem-sub"><a href="/cris-code/capital/" class="nav-vertente">Capital</a><ul class="sub" aria-label="Capital"><li><a href="/cris-code/capital/">Crédito e capital</a></li><li><a href="/cris-code/capital/financiamento-a-producao/">Financiamento à produção</a></li></ul></li></ul>
-      <ul class="menu-apoio"><li class="tem-sub"><a href="/cris-code/empreendimentos/simulador/" class="">Ferramentas</a><ul class="sub" aria-label="Ferramentas"><li><a href="/cris-code/empreendimentos/simulador/">Simulador de exposição de caixa</a></li><li><a href="/cris-code/empreendimentos/permuta-de-terreno/#comp-t">Comparador vender × permutar × incorporar</a></li><li><a href="/cris-code/ferramentas/radar/">Radar de estruturação</a></li></ul></li><li><a href="/cris-code/inteligencia/" class="">Inteligência</a></li><li class="tem-sub"><a href="/cris-code/metodo/" class="">Método</a><ul class="sub" aria-label="Método"><li><a href="/cris-code/metodo/">Os quatro movimentos</a></li><li><a href="/cris-code/metodo/modelagem/">Modelagem: tudo conectado</a></li><li><a href="/cris-code/metodo/modelagens/">As nove modelagens</a></li></ul></li><li><a href="/cris-code/sobre/" class="">Sobre</a></li></ul>
-      <a class="btn btn-primario menu-cta" href="/cris-code/contato/">Analisar meu caso</a>
+<body>
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="DALETH, início"><svg fill-rule="evenodd" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="42 112 2082 550" aria-hidden="true" focusable="false"><path d="M64 134L237 134C353 134 422 184 422 282C422 373 342 439 238 439L64 439L64 436C93 433 105 425 105 400L105 174C105 148 92 140 64 137ZM174 172C174 151 177 145 200 145L236 145C308 145 352 210 352 282C352 365 302 430 230 430L207 430C180 430 174 426 174 405Z"/><path d="M406 439L406 435C425 431 434 422 443 414L606 135C608 132 611 132 613 135L752 397C766 424 776 432 796 435L796 439L676 439L676 435C693 431 692 424 686 411L580 209L466 414C458 425 462 431 481 435L481 439Z"/><path d="M820 136L969 136L969 139C939 142 929 152 929 180L929 401C929 421 934 429 958 429L996 429C1040 429 1073 406 1097 365L1081 439L820 439L820 436C849 433 859 422 859 399L859 177C859 151 849 141 820 139Z"/><path d="M1125 136L1370 136L1373 199L1370 199C1368 164 1349 149 1300 149L1245 149C1231 149 1228 154 1228 171L1228 278L1265 278C1304 278 1324 268 1331 237L1334 237L1334 337L1331 337C1324 305 1311 292 1265 292L1228 292L1228 399C1228 421 1234 429 1260 429L1295 429C1330 429 1357 411 1385 389L1376 439L1125 439L1125 436C1153 432 1164 422 1164 399L1164 175C1164 150 1152 141 1125 139Z"/><path d="M1419 136L1690 136L1698 206L1694 206C1671 163 1650 149 1607 149L1585 149L1585 399C1585 425 1598 433 1627 436L1627 439L1480 439L1480 436C1507 433 1519 424 1519 399L1519 149L1496 149C1454 149 1430 166 1412 206L1408 206Z"/><path d="M1721 136L1869 136L1869 139C1839 142 1827 152 1827 177L1827 276L1991 276L1991 177C1991 151 1981 141 1953 139L1953 136L2103 136L2103 139C2073 142 2060 152 2060 177L2060 399C2060 424 2072 433 2103 436L2103 439L1953 439L1953 436C1981 433 1991 424 1991 399L1991 289L1827 289L1827 399C1827 424 1839 433 1869 436L1869 439L1721 439L1721 436C1749 433 1759 424 1759 399L1759 177C1759 151 1749 141 1721 139Z"/><path fill="#B58A44" d="M580 321L645 439L512 439Z"/><path fill="#B58A44" d="M896 497L1305 497L1305 508L896 508Z"/><path d="M0.000 0.000L37.000 0.000L37.000 6.000L7.000 6.000L7.000 22.500L34.000 22.500L34.000 28.500L7.000 28.500L7.000 46.000L37.000 46.000L37.000 52.000L0.000 52.000Z" transform="translate(183 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(255 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(326 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(404 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(481 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(561 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(638 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(724 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(799 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(884 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(965 572) scale(1 1)"/><path d="M28.0 -1C43.463972999999996 -1 56 11.08831175 56 26.0C56 40.91168825 43.463972999999996 53 28.0 53C12.536027 53 0 40.91168825 0 26.0C0 11.08831175 12.536027 -1 28.0 -1ZM28.0 5C39.59797975 5 49 14.40202025 49 26.0C49 37.59797975 39.59797975 47 28.0 47C16.40202025 47 7 37.59797975 7 26.0C7 14.40202025 16.40202025 5 28.0 5Z" transform="translate(1049 572) scale(1 1)"/><path d="M0 0L19.6 0C39.2 0 49 10 49 26C49 42 39.2 52 19.6 52L0 52ZM7 6L19.6 6C34.3 6 42 14 42 26C42 38 34.3 46 19.6 46L7 46Z" transform="translate(1190 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1277 572) scale(1 1)"/><path d="M0.000 0.000L7.500 0.000L39.400 40.000L39.400 0.000L46.000 0.000L46.000 52.000L38.500 52.000L6.600 12.000L6.600 52.000L0.000 52.000Z" transform="translate(1397 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1485 572) scale(1 1)"/><path d="M49 7L44.5 12C38 6 32.34 5 26.46 5C11.76 5 7 13 7 26C7 39 11.76 47 26.46 47C34.3 47 40 45 42.4 42L42.4 31L26.950000000000003 31L26.950000000000003 25L49 25L49 45C40 51 36.26 53 25.48 53C8.33 53 0 42 0 26C0 10 8.33 -1 25.48 -1C36.26 -1 41 1 49 7Z" transform="translate(1556 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1641 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(1731 572) scale(1 1)"/><path d="M0.000 0.000L7.000 0.000L7.000 52.000L0.000 52.000Z" transform="translate(1816 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1862 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(1952 572) scale(1 1)"/><path d="M905 623L910 623L908 628C920 628 919 640 908 640L901 638L903 634C909 637 914 633 907 632L903 632Z"/><path d="M979 565C980 553 986 555 992 558C998 561 1000 561 1001 557L1006 557C1005 568 999 568 992 564C986 561 984 561 984 565Z"/><path d="M1663 564L1670 555L1679 555L1670 564Z"/></svg></a>
+    <nav aria-label="Seções">
+      <a href="#modelagem">Modelagem</a>
+      <a href="#vertentes">Vertentes</a>
+      <a href="#metodo">Método</a>
+      <a href="#ao-seu-lado">Ao seu lado</a>
+      <a href="#perguntas">Perguntas</a>
     </nav>
+    <a class="btn btn-tinta" href="#contato">Conversar</a>
   </div>
 </header>
-<a class="barra-cta" href="/cris-code/contato/" hidden>Analisar meu caso<span>Conversa de enquadramento, sem custo</span></a>
-<div class="faixa-slogan" role="note" aria-label="Assinatura">
-  <div class="wrap"><p>Ao seu lado na construção da sua história.</p></div>
-</div>
 
-<main id="conteudo" tabindex="-1">
-<section class="hero-cine" aria-labelledby="h1">
-  <div class="palco-3d" aria-hidden="true">
-    <canvas data-cena="heroi" data-rotulos="Empresa|Terreno|Caixa|Capital|Sociedade|Execução"></canvas>
-    <div class="cena-rotulos"></div>
-  </div>
+<main>
+<section class="cap hero" id="inicio">
   <div class="wrap">
-    <p class="hero-categoria entra">Estruturação de negócios imobiliários</p>
-    <h1 id="h1" class="entra">Seu próximo empreendimento pode ser <em>o maior até aqui.</em></h1>
-    <p class="lead entra">Quando empresa, terreno e capital são pensados juntos, antes da decisão, o mesmo projeto pede menos dinheiro, corre menos risco e chega mais longe.</p>
-    <div class="acoes entra">
-      <a class="btn btn-ouro" href="/cris-code/contato/?origem=inicio-hero">Analisar meu caso</a>
-      <a class="link" href="#aproximar">Ver como um lote vira decisão</a>
-    </div>
-    <p class="microcopy entra">O primeiro passo é uma conversa de enquadramento, sem custo.</p>
-    <ul class="credenciais" aria-label="De onde vem a leitura">
-      <li><strong>Engenharia e economia</strong><span>Técnica e número na mesma leitura</span></li>
-      <li><strong>Incorporação</strong><span>Ciclos completos, do terreno à entrega</span></li>
-      <li><strong>Crédito imobiliário</strong><span>De quem analisa e de quem estrutura</span></li>
-      <li><strong>Belo Horizonte</strong><span>Atuação nacional</span></li>
-    </ul>
-  </div>
-</section>
-
-<section class="aproxima" id="aproximar" aria-label="Do lote à decisão, em três passos">
-  <div class="aproxima-palco">
-    <div class="aproxima-arte" aria-hidden="true">
-      <canvas data-cena="jornada" data-rotulos="Produto|Orçamento|Caixa|Capital|Cronograma|Sociedade"></canvas>
-      <div class="cena-rotulos"></div>
-      <svg viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g class="camada-fundo"><polygon points="320.0,14.0 475.9,104.0 320.0,194.0 164.1,104.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="127.7,125.0 283.6,215.0 127.7,305.0 -28.1,215.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="-64.5,236.0 91.4,326.0 -64.5,416.0 -220.4,326.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="-256.8,347.0 -100.9,437.0 -256.8,527.0 -412.7,437.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="512.3,125.0 668.1,215.0 512.3,305.0 356.4,215.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="320.0,236.0 475.9,326.0 320.0,416.0 164.1,326.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="127.7,347.0 283.6,437.0 127.7,527.0 -28.1,437.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="-64.5,458.0 91.4,548.0 -64.5,638.0 -220.4,548.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="704.5,236.0 860.4,326.0 704.5,416.0 548.6,326.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="512.3,347.0 668.1,437.0 512.3,527.0 356.4,437.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="320.0,458.0 475.9,548.0 320.0,638.0 164.1,548.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="127.7,569.0 283.6,659.0 127.7,749.0 -28.1,659.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="896.8,347.0 1052.7,437.0 896.8,527.0 740.9,437.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="704.5,458.0 860.4,548.0 704.5,638.0 548.6,548.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="512.3,569.0 668.1,659.0 512.3,749.0 356.4,659.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/><polygon points="320.0,680.0 475.9,770.0 320.0,860.0 164.1,770.0" fill="none" stroke="#B9C8D4" stroke-width="0.8" opacity="0.28"/></g><g class="camada-meio"><g opacity="0.42"><polygon points="70.6,182.0 179.7,245.0 179.7,149.0 70.6,86.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="236.9,212.0 179.7,245.0 179.7,149.0 236.9,116.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="127.7,53.0 236.9,116.0 179.7,149.0 70.6,86.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/></g><g opacity="0.42"><polygon points="408.3,215.0 470.7,251.0 470.7,89.0 408.3,53.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="574.6,191.0 470.7,251.0 470.7,89.0 574.6,29.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="512.3,-7.0 574.6,29.0 470.7,89.0 408.3,53.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/></g><g opacity="0.42"><polygon points="652.6,290.0 766.9,356.0 766.9,278.0 652.6,212.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="818.8,326.0 766.9,356.0 766.9,278.0 818.8,248.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="704.5,182.0 818.8,248.0 766.9,278.0 652.6,212.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/></g><g opacity="0.42"><polygon points="-111.3,359.0 -59.3,389.0 -59.3,323.0 -111.3,293.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="49.8,326.0 -59.3,389.0 -59.3,323.0 49.8,260.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="-2.2,230.0 49.8,260.0 -59.3,323.0 -111.3,293.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/></g><g opacity="0.42"><polygon points="335.6,551.0 387.5,581.0 387.5,395.0 335.6,365.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="439.5,551.0 387.5,581.0 387.5,395.0 439.5,365.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="387.5,335.0 439.5,365.0 387.5,395.0 335.6,365.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/></g><g opacity="0.42"><polygon points="8.2,440.0 122.5,506.0 122.5,452.0 8.2,386.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="174.5,476.0 122.5,506.0 122.5,452.0 174.5,422.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/><polygon points="60.2,356.0 174.5,422.0 122.5,452.0 8.2,386.0" fill="none" stroke="#B9C8D4" stroke-width="1" stroke-linejoin="round"/></g></g><g class="camada-frente"><polygon points="320.0,248.0 455.1,326.0 320.0,404.0 184.9,326.0" fill="rgba(181,138,68,.08)" stroke="#B58A44" stroke-width="1.6" stroke-dasharray="7 5" class="tracejado-decisao"/><line x1="164.1" y1="338.0" x2="299.2" y2="416.0" stroke="#B9C8D4" stroke-width="0.8" opacity="0.8"/><line x1="160.1" y1="342.0" x2="168.1" y2="334.0" stroke="#B9C8D4" stroke-width="1"/><line x1="295.2" y1="420.0" x2="303.2" y2="412.0" stroke="#B9C8D4" stroke-width="1"/><line x1="475.9" y1="338.0" x2="340.8" y2="416.0" stroke="#B9C8D4" stroke-width="0.8" opacity="0.8"/><line x1="471.9" y1="342.0" x2="479.9" y2="334.0" stroke="#B9C8D4" stroke-width="1"/><line x1="336.8" y1="420.0" x2="344.8" y2="412.0" stroke="#B9C8D4" stroke-width="1"/><g opacity="0.75"><polygon points="278.4,287.0 387.5,350.0 387.5,104.0 278.4,41.0" fill="none" stroke="#D4B37C" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="5 5"/><polygon points="429.1,326.0 387.5,350.0 387.5,104.0 429.1,80.0" fill="none" stroke="#D4B37C" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="5 5"/><polygon points="320.0,17.0 429.1,80.0 387.5,104.0 278.4,41.0" fill="none" stroke="#D4B37C" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="5 5"/></g><g opacity="0.75"><polygon points="210.9,326.0 320.0,389.0 320.0,317.0 210.9,254.0" fill="none" stroke="#D4B37C" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="5 5"/><polygon points="429.1,326.0 320.0,389.0 320.0,317.0 429.1,254.0" fill="none" stroke="#D4B37C" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="5 5"/><polygon points="320.0,191.0 429.1,254.0 320.0,317.0 210.9,254.0" fill="none" stroke="#D4B37C" stroke-width="1.2" stroke-linejoin="round" stroke-dasharray="5 5"/></g><g opacity="1"><polygon points="213.5,327.5 236.9,341.0 236.9,263.0 213.5,249.5" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/><polygon points="286.2,312.5 236.9,341.0 236.9,263.0 286.2,234.5" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/><polygon points="262.8,221.0 286.2,234.5 236.9,263.0 213.5,249.5" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/></g><g opacity="1"><polygon points="240.8,343.2 264.1,356.8 264.1,242.8 240.8,229.2" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/><polygon points="313.5,328.2 264.1,356.8 264.1,242.8 313.5,214.2" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/><polygon points="290.1,200.8 313.5,214.2 264.1,242.8 240.8,229.2" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/></g><g opacity="1"><polygon points="268.0,359.0 291.4,372.5 291.4,222.5 268.0,209.0" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/><polygon points="340.8,344.0 291.4,372.5 291.4,222.5 340.8,194.0" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/><polygon points="317.4,180.5 340.8,194.0 291.4,222.5 268.0,209.0" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/></g><g opacity="1"><polygon points="295.3,374.8 318.7,388.2 318.7,202.2 295.3,188.8" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/><polygon points="368.1,359.8 318.7,388.2 318.7,202.2 368.1,173.8" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/><polygon points="344.7,160.2 368.1,173.8 318.7,202.2 295.3,188.8" fill="rgba(8,37,56,.85)" stroke="#FFFFFF" stroke-width="1.3" stroke-linejoin="round"/></g><path d="M210.9 382.0 L217.9 394.0 L203.9 394.0 Z" fill="#B58A44"/></g></svg>
-    </div>
-    <div class="aproxima-batidas">
-      <div class="aproxima-progresso" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="batida">
-        <span class="num">01 · O terreno</span>
-        <h2 id="ap-1">Tudo começa como uma possibilidade.</h2>
-        <p>Um lote, uma empresa que sabe construir e a vontade de dar o próximo passo.</p>
-      </div>
-      <div class="batida">
-        <span class="num">02 · Os caminhos</span>
-        <h2 id="ap-2">O mesmo lote cabe em negócios muito diferentes.</h2>
-        <p>Permuta, vendas na planta, crédito de obra, um sócio. Cada combinação muda o caixa, o risco e o prazo.</p>
-      </div>
-      <div class="batida">
-        <span class="num">03 · A decisão</span>
-        <h2 id="ap-3">Escolher com número, antes de comprometer capital.</h2>
-        <p>Os caminhos lado a lado, com premissas escritas. E acompanhamento enquanto o escolhido vira obra.</p>
-      </div>
-    </div>
-  </div>
-  <div class="aproxima-rolo" aria-hidden="true"></div>
-</section>
-
-<section class="secao" id="modelar" aria-labelledby="modelar-t">
-  <div class="wrap duas-colunas">
-    <div>
-      <p class="rotulo">O que nos diferencia</p>
-      <h2 id="modelar-t">Quatro estruturas para o <em>mesmo</em> empreendimento</h2>
-      <p class="lead">Mesmo terreno, mesmo VGV, mesmo resultado no fim. O que muda é quanto capital a empresa precisa ter na mão, e quando.</p>
-      <div class="linhas-link" style="margin-top:32px">
-        <a href="/cris-code/empreendimentos/simulador/"><span class="t">Teste no simulador</span><span class="d">Mude permuta, vendas e crédito e veja o pico de caixa</span></a>
-        <a href="/cris-code/empreendimentos/estudo-de-viabilidade/"><span class="t">Estudo de viabilidade</span><span class="d">O mesmo raciocínio, com os números do seu projeto</span></a>
-      </div>
-    </div>
-    <div class="quadro">
-  <div class="quadro-topo">
-    <h3>O mesmo empreendimento pede de R$ 16,4 mi a R$ 1,98 mi de capital próprio</h3>
-    <p class="apoio">Exemplo ilustrativo · VGV de R$ 20 mi · terreno de 15% do VGV · obra de 24 meses · capital próprio exigido no pior mês</p>
-  </div>
-  <div class="alternativa">
-  <p class="alt-nome">Capital próprio<small>Terreno em dinheiro, sem vender na planta nem tomar crédito</small></p>
-  <div class="alt-barra" role="img" aria-label="Capital próprio: exposição máxima de R$ 16,4 mi, no mês 24"><i style="width:100.0%"></i></div>
-  <p class="alt-numero">R$ 16,4 mi<small>pico no mês 24</small></p>
-</div><div class="alternativa">
-  <p class="alt-nome">Vendas na planta<small>40% do VGV vendido e recebido durante a obra</small></p>
-  <div class="alt-barra" role="img" aria-label="Vendas na planta: exposição máxima de R$ 8,40 mi, no mês 24"><i style="width:51.2%"></i></div>
-  <p class="alt-numero">R$ 8,40 mi<small>pico no mês 24</small></p>
-</div><div class="alternativa">
-  <p class="alt-nome">Permuta do terreno<small>70% do terreno pago em unidades, e não em dinheiro</small></p>
-  <div class="alt-barra" role="img" aria-label="Permuta do terreno: exposição máxima de R$ 14,3 mi, no mês 24"><i style="width:87.2%"></i></div>
-  <p class="alt-numero">R$ 14,3 mi<small>pico no mês 24</small></p>
-</div><div class="alternativa destaque">
-  <p class="alt-nome">Estrutura combinada<span class="marca-leve">a mais leve</span><small>Permuta, vendas na planta e crédito de obra juntos</small></p>
-  <div class="alt-barra" role="img" aria-label="Estrutura combinada: exposição máxima de R$ 1,98 mi, no mês 24"><i style="width:12.1%"></i></div>
-  <p class="alt-numero">R$ 1,98 mi<small>pico no mês 24</small></p>
-</div>
-  <div class="quadro-resumo">
-    <p class="cota" aria-hidden="true">−88%</p>
-    <p>de capital próprio no pior mês, entre a estrutura mais pesada e a mais leve. O resultado no fim do ciclo é o mesmo nas quatro (R$ 3,60 mi).</p>
-  </div>
-  <p class="quadro-pe">Esta conta não cobra o custo de cada instrumento (juros, prêmio da permuta, desconto da venda na planta). Mostra o efeito no caixa, e não na margem. Números de exemplo, e não leitura de um projeto real.</p>
-</div>
-  </div>
-</section>
-
-<section class="secao papel" id="momento" aria-labelledby="momento-t">
-  <div class="wrap">
-    <div class="cabeca">
-      <p class="rotulo">Por onde começar</p>
-      <h2 id="momento-t">Qual é a pergunta que está na sua mesa?</h2>
-    </div>
-    <div class="roteamento">
-      <div>
-        <h3>Quero realizar</h3>
-        <div class="linhas-link">
-          <a href="/cris-code/empreendimentos/permuta-de-terreno/"><span class="t">Tenho um terreno e quero saber o que ele vale como empreendimento</span><span class="d">Terreno</span></a>
-          <a href="/cris-code/empreendimentos/estudo-de-viabilidade/"><span class="t">Quero saber qual estrutura faz o projeto fechar melhor</span><span class="d">Viabilidade</span></a>
-          <a href="/cris-code/empresas/"><span class="t">A empresa cresceu, e a gestão precisa acompanhar</span><span class="d">Empresas</span></a>
-        </div>
-      </div>
-      <div>
-        <h3>Quero destravar ou entrar</h3>
-        <div class="linhas-link">
-          <a href="/cris-code/capital/financiamento-a-producao/"><span class="t">Quero financiar a obra e chegar bem preparado ao banco</span><span class="d">Capital</span></a>
-          <a href="/cris-code/capital/#investidor"><span class="t">Sou investidor e avalio entrar numa operação</span><span class="d">Capital</span></a>
-          <a href="/cris-code/empreendimentos/obra-parada/"><span class="t">Uma obra parou e precisamos de um caminho para retomar</span><span class="d">Obras paradas</span></a>
-        </div>
-      </div>
-    </div>
-    <p class="continuar">Não sabe por onde começar? <a href="/cris-code/ferramentas/radar/">Faça o radar de estruturação</a>: seis perguntas, dois minutos.</p>
-  </div>
-</section>
-
-<section class="secao" aria-labelledby="ferramentas-t">
-  <div class="wrap">
-    <div class="cabeca">
-      <p class="rotulo">Para decidir melhor</p>
-      <h2 id="ferramentas-t">Três ferramentas, abertas, com números de exemplo</h2>
-    </div>
-    <div class="vitrine">
-      <a href="/cris-code/empreendimentos/simulador/">
-        <svg viewBox="0 0 260 90" aria-hidden="true"><path d="M4 20 H256" stroke="#D3DCE3" stroke-dasharray="4 4"/><path d="M4 20 C40 30 60 60 100 70 S170 78 190 74 L206 14 L256 12" fill="none" stroke="#082538" stroke-width="2.5" stroke-linecap="round"/><circle cx="190" cy="74" r="5" fill="#B58A44" stroke="#fff" stroke-width="2"/></svg>
-        <span class="v-n">01</span><span class="v-t">Simulador de exposição de caixa</span>
-        <span class="v-d">Quanto dinheiro falta, e em que mês, conforme a estrutura escolhida.</span><span class="v-ir">Abrir o simulador</span>
-      </a>
-      <a href="/cris-code/empreendimentos/permuta-de-terreno/#comp-t">
-        <svg viewBox="0 0 260 90" aria-hidden="true"><rect x="10" y="40" width="60" height="44" fill="none" stroke="#B9C8D4" stroke-width="1.5"/><rect x="100" y="24" width="60" height="60" fill="none" stroke="#B9C8D4" stroke-width="1.5"/><rect x="190" y="8" width="60" height="76" fill="#082538"/><path d="M190 8 h60" stroke="#B58A44" stroke-width="3"/></svg>
-        <span class="v-n">02</span><span class="v-t">Vender, permutar ou incorporar</span>
-        <span class="v-d">Os três caminhos de um terreno, lado a lado, critério a critério.</span><span class="v-ir">Comparar os caminhos</span>
-      </a>
-      <a href="/cris-code/ferramentas/radar/">
-        <svg viewBox="0 0 260 90" aria-hidden="true"><g transform="translate(130 46)"><polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" fill="none" stroke="#D3DCE3"/><polygon points="0,-20 17,-10 17,10 0,20 -17,10 -17,-10" fill="none" stroke="#D3DCE3"/><polygon points="0,-32 28,-14 20,12 0,30 -30,17 -12,-7" fill="rgba(181,138,68,.18)" stroke="#B58A44" stroke-width="1.5"/></g></svg>
-        <span class="v-n">03</span><span class="v-t">Radar de estruturação</span>
-        <span class="v-d">Seis perguntas para saber por onde a estruturação deve começar.</span><span class="v-ir">Fazer o radar</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="secao escura" aria-labelledby="presenca-t">
-  <div class="wrap">
-    <div class="duas-colunas solto">
-      <div>
-        <p class="rotulo">Depois da recomendação</p>
-        <h2 id="presenca-t">Uma coisa é dizer o que fazer. Outra é estar lá enquanto é feito.</h2>
-      </div>
-      <div>
-        <p class="lead">A execução continua com a sua empresa e os seus fornecedores. A DALETH conduz, verifica, cobra o combinado e corrige a rota, até o que foi decidido virar rotina.</p>
-      </div>
-    </div>
-    <div class="metodo-compacto">
-      <p class="rotulo">O método</p>
-      <ol>
-        <li><b>Mapear</b> a situação real, antes de recomendar.</li>
-        <li class="central"><b>Modelar</b> os caminhos possíveis e comparar. <span>Onde a decisão se forma</span></li>
-        <li><b>Estruturar</b> o caminho escolhido como operação.</li>
-        <li><b>Conduzir</b> a implantação com quem executa.</li>
-      </ol>
-      <a class="mais" href="/cris-code/metodo/">O método em detalhe</a>
-    </div>
-  </div>
-</section>
-
-<section class="secao" aria-labelledby="comeca-t">
-  <div class="wrap duas-colunas solto">
-    <div>
-      <p class="rotulo">Como começa</p>
-      <h2 id="comeca-t">Dois passos, e nenhum obriga o seguinte</h2>
+    <div class="hero-txt">
+      <p class="sobre">Estruturação de Negócios Imobiliários</p>
+      <h1>A estrutura certa muda o tamanho do que você <em>pode construir.</em></h1>
       <div class="acoes">
-        <a class="btn btn-primario" href="/cris-code/contato/?origem=inicio-como-comeca">Analisar meu caso</a>
-        <a class="link" href="/cris-code/como-comeca/">Como funciona cada passo</a>
+        <a class="btn btn-ouro" href="#contato">Começar pela conversa</a>
+        <a class="btn btn-linha" href="#modelagem">Ver a modelagem</a>
+      </div>
+      <p class="assina" id="assina" aria-label="Ao seu lado na construção de sua história."><span aria-hidden="true">Ao seu lado na construção de sua história.</span></p>
+    </div>
+    <svg class="tri" viewBox="0 0 420 400" role="img" aria-labelledby="tri-t">
+      <title id="tri-t">Empreendimento, empresa e capital ligados entre si, com uma decisão no centro</title>
+      <path class="aresta" d="M210 70 L70 320 L350 320 Z"/>
+      <path class="fluxo" d="M210 70 L70 320"/>
+      <path class="fluxo b" d="M70 320 L350 320"/>
+      <path class="fluxo c" d="M350 320 L210 70"/>
+      <line class="aresta" x1="210" y1="70" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <line class="aresta" x1="70" y1="320" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <line class="aresta" x1="350" y1="320" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <circle class="centro" cx="210" cy="236" r="7"/>
+      <text class="centro-t" x="210" y="262" text-anchor="middle">UMA DECISÃO</text>
+      <circle class="no" cx="210" cy="70" r="12"/>
+      <circle class="no" cx="70" cy="320" r="12"/>
+      <circle class="no" cx="350" cy="320" r="12"/>
+      <text class="rot" x="210" y="30" text-anchor="middle">EMPREENDIMENTO</text>
+      <text class="sub" x="210" y="48" text-anchor="middle">terreno · produto · obra</text>
+      <text class="rot" x="70" y="358" text-anchor="middle">CAPITAL</text>
+      <text class="sub" x="70" y="376" text-anchor="middle">próprio · sócios · banco</text>
+      <text class="rot" x="350" y="358" text-anchor="middle">EMPRESA</text>
+      <text class="sub" x="350" y="376" text-anchor="middle">construtora · sociedade</text>
+    </svg>
+  </div>
+</section>
+
+<section class="historia" id="historia" aria-label="Do terreno à decisão">
+  <div class="wrap">
+    <ul class="cred" aria-label="Repertório">
+      <li><b>Engenharia e economia</b><span>Técnica e número na mesma leitura</span></li>
+      <li><b>Incorporação</b><span>Ciclos completos, do terreno à entrega</span></li>
+      <li><b>Crédito imobiliário</b><span>De quem analisa e de quem estrutura</span></li>
+      <li><b>Belo Horizonte</b><span>Atuação nacional</span></li>
+    </ul>
+    <ol class="trama">
+      <li><span class="num">01 · O terreno</span><h2>Tudo começa como uma possibilidade.</h2><p>Um lote, uma empresa que sabe construir e a vontade de dar o próximo passo.</p></li>
+      <li><span class="num">02 · Os caminhos</span><h2>O mesmo lote cabe em negócios muito diferentes.</h2><p>Permuta, vendas na planta, crédito de obra, um sócio. Cada combinação muda o caixa, o risco e o prazo.</p></li>
+      <li><span class="num">03 · A decisão</span><h2>Escolher com número, antes de comprometer capital.</h2><p>Os caminhos lado a lado, com premissas escritas. E alguém ao seu lado enquanto o escolhido vira obra.</p></li>
+    </ol>
+    <a class="ponte" href="#modelagem"><span>Essa decisão passa por dez frentes ao mesmo tempo.</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+
+<section class="modelar modelar-prancha" id="modelagem" data-modelar="prancha" aria-labelledby="mod-t" tabindex="-1">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">O coração do método · Modelar</p>
+      <h2 class="h2" id="mod-t">Um empreendimento se decide em dez frentes ao mesmo tempo.</h2>
+      <p class="lead">Mudar uma muda as outras. Escolha uma frente e veja as decisões que ela carrega e quais outras frentes ela move.</p>
+    </div>
+    <div class="mp-palco">
+      <canvas data-cena="modelagem" data-lado="esquerda" data-reserva-direita="0.36" data-reserva-baixo="0.06" data-rotulos="Terreno|Produto e mercado|Técnica|Jurídico|Societário|Tributário|Econômico-financeiro|Capital e funding|Comercialização|Risco e retorno" aria-hidden="true"></canvas>
+      <div class="cena-rotulos"></div>
+      <p class="mp-titulo">Modelagem do empreendimento</p>
+      <div class="mp-ficha" aria-live="polite"></div>
+    </div>
+    <div class="mp-controles">
+      <button type="button" class="mp-seta" data-passo="-1" aria-label="Frente anterior">←</button>
+      <div class="mp-trilho" role="group" aria-label="Frentes da modelagem"></div>
+      <button type="button" class="mp-seta" data-passo="1" aria-label="Próxima frente">→</button>
+      <button type="button" class="mp-auto" aria-pressed="false">Passear pelas frentes</button>
+    </div>
+    <p class="mp-dica">Use as setas do teclado para percorrer as frentes. Os nomes em dourado na ficha levam às frentes que esta move. <a href="/cris-code/assets/docs/DALETH-Modelagem-do-Empreendimento.pdf" download>Este capítulo em PDF, para levar à mesa</a>.</p>
+    <a class="ponte" href="#modelar"><span>Na prática, modelar é comparar caminhos pelos mesmos critérios.</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+
+<section id="modelar">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Por que modelar</p>
+      <h2 class="h2">O mesmo terreno gera negócios diferentes, conforme a forma como é modelado.</h2>
+      <p class="lead">Modelar é colocar os caminhos lado a lado, com premissas escritas, antes de comprometer capital. É quando o empreendimento ainda cabe inteiro numa planilha e qualquer decisão custa pouco para ser revista.</p>
+    </div>
+
+    <div class="bloco" style="margin-top:0">
+      <h3>Vender, permutar ou incorporar</h3>
+      <div class="cam">
+        <article>
+          <h4>Vender</h4>
+          <p>Recebe à vista e sai no primeiro dia.</p>
+          <div class="escala"><span>Captura de valor</span><span class="barra"><i class="on"></i><i></i><i></i></span><span>Exposição</span><span class="barra"><i class="on"></i><i></i><i></i></span></div>
+        </article>
+        <article>
+          <h4>Permutar</h4>
+          <p>Recebe unidades no lugar do preço. Assume risco de obra e de vendas, com caixa preservado.</p>
+          <div class="escala"><span>Captura de valor</span><span class="barra"><i class="on"></i><i class="on"></i><i></i></span><span>Exposição</span><span class="barra"><i class="on"></i><i class="on"></i><i></i></span></div>
+        </article>
+        <article>
+          <h4>Incorporar</h4>
+          <p>Assume o empreendimento inteiro.</p>
+          <div class="escala"><span>Captura de valor</span><span class="barra"><i class="on"></i><i class="on"></i><i class="on"></i></span><span>Exposição</span><span class="barra"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+        </article>
+      </div>
+      <p class="nota">Uma torre ou duas fases. SPE ou SCP. Crédito de obra ou investidor. Cada escolha move as outras, e todas aparecem no caixa. Comparamos os caminhos pelos mesmos critérios antes de escolher um.</p>
+    </div>
+
+    <div class="bloco">
+      <h3>Cada decisão muda a seguinte</h3>
+      <div class="cadeia" aria-label="Produto, orçamento, caixa, capital, cronograma, vendas">
+        <span>PRODUTO</span><span class="seta">→</span><span>ORÇAMENTO</span><span class="seta">→</span><span>CAIXA</span><span class="seta">→</span><span>CAPITAL</span><span class="seta">→</span><span>CRONOGRAMA</span><span class="seta">→</span><span>VENDAS</span>
+      </div>
+      <p class="nota">O produto define o orçamento. O orçamento define o caixa. O caixa define o capital necessário, que define o cronograma, que define as vendas.</p>
+    </div>
+
+    <div class="bloco">
+      <h3>Quem move quem</h3>
+      <p class="nota">Escolha uma frente. As marcadas em dourado são as que ela move primeiro.</p>
+      <div class="explorar">
+        <div class="abas" role="tablist" aria-label="Frentes da modelagem" id="abas"></div>
+        <svg class="rede" id="rede" viewBox="0 0 480 440" aria-hidden="true"></svg>
+        <div class="painel" id="painel" role="tabpanel" aria-live="polite"></div>
       </div>
     </div>
-    <div>
-      <ol class="passos dois">
-        <li class="passo">
-          <span class="etiqueta">Sem custo</span>
-          <h3>Conversa de enquadramento</h3>
-          <p>Entender o momento e definir o passo seguinte certo.</p>
-        </li>
-        <li class="passo">
-          <span class="etiqueta ouro">Primeiro trabalho</span>
-          <h3>Diagnóstico de estruturação</h3>
-          <p>Mapear, achar as decisões críticas e modelar as primeiras alternativas. Termina num caminho recomendado.</p>
-        </li>
-      </ol>
+
+    <div class="bloco">
+      <h3>O que a modelagem entrega</h3>
+      <div class="entregas">
+        <div><b>Premissas escritas</b><p>Cada número do modelo tem origem declarada: mercado, custo, prazo, tributo e capital.</p></div>
+        <div><b>Caminhos lado a lado</b><p>Dois ou três cenários comparados pelos mesmos critérios.</p></div>
+        <div><b>Efeito no caixa</b><p>Para cada caminho, a exposição máxima, o momento em que ela acontece e quem a financia.</p></div>
+        <div><b>Decisão registrada</b><p>O caminho escolhido, o porquê e o que precisa estar pronto para a estruturação começar.</p></div>
+      </div>
     </div>
+    <a class="ponte" href="#vertentes"><span>As dez frentes se agrupam em três vertentes que conversam.</span><i aria-hidden="true">↓</i></a>
   </div>
 </section>
 
-<section class="secao papel" aria-labelledby="conduz-t">
-  <div class="wrap duas-colunas solto">
-    <div>
-      <p class="rotulo">Quem senta à mesa com você</p>
-      <h2 id="conduz-t">Cristiano Valério Ribeiro</h2>
-    </div>
-    <div class="ficha">
-      <p class="formacao">Engenharia de produção · Economia · MBA em gestão de negócios de incorporação e construção</p>
-      <p class="lead">Atuou nos dois lados do crédito imobiliário, na análise das operações e na estruturação delas, e acompanhou ciclos completos de incorporação, do terreno à entrega.</p>
-      <p><a class="mais" href="/cris-code/sobre/">Sobre a DALETH</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="secao" aria-labelledby="intel-t">
+<section class="vertentes" id="vertentes">
   <div class="wrap">
-    <div class="cabeca cabeca-acao">
+    <div class="cab">
+      <p class="sobre">Três vertentes, uma conversa</p>
+      <h2 class="h2">O projeto fica com o arquiteto, a empresa com o contador, o capital com o banco.</h2>
+      <p class="lead">Cada um olha a sua parte. Só que as três se movem juntas: mexer em uma muda as outras duas. Estruturar é decidir as três de uma vez.</p>
+    </div>
+    <div class="vert">
+      <article>
+        <h3>Empreendimento</h3>
+        <p>O que vai ser construído, onde, para quem e por quanto.</p>
+        <p class="fr"><span>01 Terreno</span><span>02 Produto e mercado</span><span>03 Técnica</span><span>09 Comercialização</span></p>
+      </article>
+      <article>
+        <h3>Empresa</h3>
+        <p>Quem constrói, com qual sociedade e com que fôlego.</p>
+        <p class="fr"><span>04 Jurídico e regulatório</span><span>05 Societário e governança</span><span>06 Tributário</span></p>
+      </article>
+      <article>
+        <h3>Capital</h3>
+        <p>De onde vem o dinheiro, quando entra e quanto custa.</p>
+        <p class="fr"><span>07 Econômico-financeiro</span><span>08 Capital e funding</span><span>10 Risco e retorno</span></p>
+      </article>
+    </div>
+    <div class="lig">
+      <div><b>Empreendimento ↔ Capital</b><p>O caixa do empreendimento define quanto capital entra, quando e de quem.</p></div>
+      <div><b>Empresa ↔ Capital</b><p>A estrutura da empresa define quem pode aportar, emprestar e com quais garantias.</p></div>
+      <div><b>Empresa ↔ Empreendimento</b><p>A capacidade e o veículo societário definem o que a empresa consegue entregar.</p></div>
+    </div>
+    <p class="fecho">Quando as três são pensadas juntas, o mesmo projeto pede menos dinheiro, corre menos risco e chega mais longe.</p>
+    <a class="ponte" href="#comecar"><span>Cada caso começa por uma pergunta diferente.</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+
+<section class="mesa" id="comecar">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Por onde começar</p>
+      <h2 class="h2">Qual é a pergunta que está na sua mesa?</h2>
+    </div>
+    <div class="mesa-col">
+      <div><h3>Quero realizar</h3><ul>
+        <li><a href="#contato"><span>Tenho um terreno e quero saber o que ele vale como empreendimento</span><em>Terreno</em></a></li>
+        <li><a href="#contato"><span>Quero saber qual estrutura faz o projeto fechar melhor</span><em>Viabilidade</em></a></li>
+        <li><a href="#contato"><span>A empresa cresceu, e a gestão precisa acompanhar</span><em>Empresa</em></a></li>
+      </ul></div>
+      <div><h3>Quero destravar ou entrar</h3><ul>
+        <li><a href="#contato"><span>Quero financiar a obra e chegar bem preparado ao banco</span><em>Capital</em></a></li>
+        <li><a href="#contato"><span>Sou investidor e avalio entrar numa operação</span><em>Capital</em></a></li>
+        <li><a href="#contato"><span>Uma obra parou e precisamos de um caminho para retomar</span><em>Obra parada</em></a></li>
+      </ul></div>
+    </div>
+    <a class="ponte" href="#metodo"><span>Qualquer que seja a pergunta, o caminho tem quatro movimentos.</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+
+<section class="metodo" id="metodo">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Como trabalhamos</p>
+      <h2 class="h2">Quatro movimentos, do terreno à obra.</h2>
+      <p class="lead">Cada movimento termina com algo escrito na mão do cliente. O seguinte só começa quando a decisão anterior foi tomada.</p>
+    </div>
+    <ol class="passos">
+      <li class="entrada">
+        <span class="num">PORTA DE ENTRADA</span>
+        <h3>Conversa de enquadramento</h3>
+        <p class="recebe">Você conta o terreno, o produto ou a empresa. Saímos sabendo por quais frentes o caso pede para começar.</p>
+        <span class="selo">sem custo</span>
+      </li>
+      <li>
+        <span class="num">01</span>
+        <h3>Mapear</h3>
+        <p class="para">para compreender</p>
+        <p class="frase">Mapear a situação real, antes de recomendar.</p>
+        <p class="recebe"><b>Você recebe</b>O retrato do terreno, da empresa e do capital disponível, e as frentes que pedem atenção primeiro.</p>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <h3>Modelar</h3>
+        <p class="para">para enxergar</p>
+        <p class="frase">Modelar os caminhos possíveis.</p>
+        <p class="recebe"><b>Você recebe</b>Premissas escritas, caminhos lado a lado, o efeito de cada um no caixa e a decisão registrada.</p>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <h3>Estruturar</h3>
+        <p class="para">para tornar executável</p>
+        <p class="frase">Estruturar o caminho escolhido como operação.</p>
+        <p class="recebe"><b>Você recebe</b>Sociedade, contratos, garantias, fontes de capital, cronograma e regras de decisão prontos para executar.</p>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <h3>Sustentar</h3>
+        <p class="para">para funcionar</p>
+        <p class="frase">Sustentar a implantação ao lado de quem executa.</p>
+        <p class="recebe"><b>Você recebe</b>Presença nas decisões da obra: verificar, cobrar o combinado e corrigir a rota.</p>
+      </li>
+    </ol>
+    <a class="ponte" href="#ao-seu-lado"><span>O quarto movimento é o que mais nos diferencia.</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+
+<section class="cap lado" id="ao-seu-lado">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Depois da recomendação</p>
+      <p class="grande">Uma coisa é dizer o que fazer. Outra é estar lá enquanto é feito.</p>
+      <p class="lead">A execução continua com a sua empresa e os seus fornecedores. Formulários e checklists ajudam, mas quem constrói precisa de alguém ao lado quando a decisão aparece.</p>
+    </div>
+    <div class="papeis">
+      <div><b>O cliente</b><p>decide.<small>A decisão é sua, com os caminhos e os números na mesa.</small></p></div>
+      <div><b>A empresa</b><p>executa.<small>Quem constrói continua construindo.</small></p></div>
+      <div><b>A DALETH</b><p>fica ao lado.<small>Verifica, cobra o combinado e corrige a rota.</small></p></div>
+    </div>
+    <div class="comp">
+      <div class="prop">
+        <p class="sobre">Por que existimos</p>
+        <p class="p-txt">Dar estrutura para que bons empreendimentos imobiliários realizem seu potencial.</p>
+        <p>Ao seu lado na construção de sua história.</p>
+      </div>
       <div>
-        <p class="rotulo">Inteligência</p>
-        <h2 id="intel-t">Para ler antes de decidir</h2>
+        <p class="sobre" style="margin-bottom:6px">Nossos compromissos</p>
+        <ol>
+          <li>Mapear a situação real antes de recomendar.</li>
+          <li>Mostrar os caminhos lado a lado, com as premissas escritas.</li>
+          <li>Dizer o que os números dizem, inclusive quando o caminho preferido não fecha.</li>
+          <li>Estar presente quando a decisão vira obra.</li>
+        </ol>
       </div>
-      <a class="mais" href="/cris-code/inteligencia/">Todos os textos e ferramentas</a>
     </div>
-    <div class="artigos-grade">
-      <a class="artigo-card" href="/cris-code/inteligencia/permuta-fisica-ou-financeira/">
-        <img src="/cris-code/assets/img/art-permuta-3d-m.jpg" alt="" width="800" height="520" loading="lazy" decoding="async">
-        <span class="ac-tema">Terreno</span>
-        <span class="ac-t">Permuta física ou financeira: o efeito no caixa da incorporadora</span>
-        <span class="ac-d">O que comparar antes de propor ao proprietário.</span>
-      </a>
-      <a class="artigo-card" href="/cris-code/inteligencia/faseamento-e-exposicao-de-caixa/">
-        <img src="/cris-code/assets/img/art-faseamento-3d-m.jpg" alt="" width="800" height="520" loading="lazy" decoding="async">
-        <span class="ac-tema">Empreendimento</span>
-        <span class="ac-t">Faseamento e exposição de caixa</span>
-        <span class="ac-d">Quando dividir em fases reduz o capital próprio, e quando aumenta o custo.</span>
-      </a>
-      <a class="artigo-card" href="/cris-code/inteligencia/spe-holding-ou-scp/">
-        <img src="/cris-code/assets/img/art-spe-3d-m.jpg" alt="" width="800" height="520" loading="lazy" decoding="async">
-        <span class="ac-tema">Sociedade</span>
-        <span class="ac-t">SPE, holding ou SCP na incorporação</span>
-        <span class="ac-d">Três formas de organizar um empreendimento, e o que cada uma muda.</span>
-      </a>
-      <a class="artigo-card" href="/cris-code/inteligencia/patrimonio-de-afetacao/">
-        <img src="/cris-code/assets/img/art-afetacao-3d-m.jpg" alt="" width="800" height="520" loading="lazy" decoding="async">
-        <span class="ac-tema">Incorporação</span>
-        <span class="ac-t">Patrimônio de afetação: o que ele protege e o que exige</span>
-        <span class="ac-d">Separação do empreendimento, relação com SPE e RET.</span>
-      </a>
-    </div>
+    <a class="ponte" href="#quem"><span>Quem senta à mesa com você.</span><i aria-hidden="true">↓</i></a>
   </div>
 </section>
 
-<section class="secao papel" aria-labelledby="faq-t">
-  <div class="wrap duas-colunas solto">
-    <div>
-      <p class="rotulo">Antes de escrever</p>
-      <h2 id="faq-t">O que costumam perguntar primeiro</h2>
-    </div>
-    <div class="faqs">
-      <details class="faq"><summary>Quanto custa?</summary><p>Depende do escopo, que sai da conversa de enquadramento. O valor fica escrito na proposta, com prazo e entregas, antes de começar.</p></details>
-      <details class="faq"><summary>Vocês captam recursos ou garantem crédito?</summary><p>Não, e ninguém pode garantir. Preparamos a operação para chegar pronta: quem aprova é o financiador, e quem decide investir é o investidor.</p></details>
-      <details class="faq"><summary>Já tenho contador, advogado e arquiteto. Ainda faz sentido?</summary><p>Faz, e o trabalho não substitui nenhum deles. O que costuma faltar é alguém olhando as partes juntas.</p></details>
-      <details class="faq"><summary>Atendem fora de Minas Gerais?</summary><p>Sim. A base é Belo Horizonte e a atuação é nacional, à distância, com presença quando o caso pede.</p></details>
-    </div>
-  </div>
-</section>
-
-<section class="fecho" aria-labelledby="fecho-titulo">
-  <div class="palco-3d fecho-3d" aria-hidden="true"><canvas data-cena="rede"></canvas></div>
+<section class="quem" id="quem">
   <div class="wrap">
-    <p class="rotulo">Próximo passo</p>
-    <h2 id="fecho-titulo">O maior empreendimento até aqui começa numa conversa</h2>
-    <p class="lead">Conte o momento da empresa ou do projeto. A primeira conversa é de enquadramento, sem custo, e não obriga a nada.</p>
-    <div class="acoes">
-      <a class="btn btn-ouro" href="/cris-code/contato/">Analisar meu caso</a>
-      <a class="link" href="/cris-code/ferramentas/radar/">Antes, fazer o radar de estruturação</a>
+    <div class="cab" style="margin-bottom:0">
+      <p class="sobre">Quem senta à mesa com você</p>
+      <h2 class="h2">Cristiano Valério Ribeiro</h2>
+      <p class="meta">Engenharia de produção · Economia · MBA em gestão de negócios de incorporação e construção</p>
     </div>
-    
-    <div class="fecho-depois" aria-label="O que acontece depois">
-      <ol>
-        <li><span><strong>Conversa de enquadramento</strong>Sem custo e sem compromisso.</span></li>
-        <li><span><strong>Diagnóstico de estruturação</strong>Só se fizer sentido para os dois lados.</span></li>
-        <li><span><strong>Escopo escrito</strong>Prazo e entregas definidos antes de começar.</span></li>
+    <div class="txt">
+      <p class="lead">Atuou nos dois lados do crédito imobiliário, na análise das operações e na estruturação delas, e acompanhou ciclos completos de incorporação, do terreno à entrega. A DALETH reúne esse repertório num método: mapear, modelar, estruturar e sustentar.</p>
+      <p class="num">R$ 324 mi<small>em VGV de empreendimentos trabalhados pelo fundador, via TRAL3.</small></p>
+    </div>
+    <a class="ponte" href="#perguntas"><span>Antes de escrever, o que costumam perguntar.</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+
+<section class="faq" id="perguntas">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Antes de escrever</p>
+      <h2 class="h2">O que costumam perguntar primeiro</h2>
+    </div>
+    <div class="faq-lista">
+      <details><summary>Quanto custa?</summary><p>Depende do escopo, que sai da conversa de enquadramento. O valor fica escrito na proposta, com prazo e entregas, antes de começar.</p></details>
+      <details><summary>Vocês captam recursos ou garantem crédito?</summary><p>Não, e ninguém pode garantir. Preparamos a operação para chegar pronta: quem aprova é o financiador, e quem decide investir é o investidor.</p></details>
+      <details><summary>Já tenho contador, advogado e arquiteto. Ainda faz sentido?</summary><p>Faz, e o trabalho não substitui nenhum deles. O que costuma faltar é alguém olhando as partes juntas.</p></details>
+      <details><summary>Atendem fora de Minas Gerais?</summary><p>Sim. A base é Belo Horizonte e a atuação é nacional, à distância, com presença quando o caso pede.</p></details>
+    </div>
+    <a class="ponte" href="#contato"><span>Começa com uma conversa.</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+
+<section class="cap contato" id="contato">
+  <div class="wrap">
+    <div class="cab" style="margin-bottom:0">
+      <p class="sobre">Começa com uma conversa</p>
+      <h2>Conte o terreno, o produto ou a empresa.</h2>
+      <p class="lead">A primeira conversa é de enquadramento, sem custo, e já mostra por quais frentes o seu caso pede para começar.</p>
+      <ol class="degraus">
+        <li><b>Conversa de enquadramento</b><span>Sem custo e sem compromisso.</span></li>
+        <li><b>Mapeamento</b><span>O primeiro trabalho, só se fizer sentido para os dois lados.</span></li>
+        <li><b>Escopo escrito</b><span>Prazo e entregas definidos antes de começar.</span></li>
       </ol>
+    </div>
+    <div class="canal">
+      <b>Canal de contato</b>
+      <p>Em definição: e-mail, WhatsApp ou formulário. Este quadro sai quando o canal estiver escolhido.</p>
+      <p>Belo Horizonte · atuação nacional</p>
     </div>
   </div>
 </section>
 </main>
-<footer class="rodape">
-  <div class="wrap rodape-grade">
-    <div class="rodape-marca">
-      <img src="/cris-code/assets/marca/horizontal-color.svg" alt="DALETH, Estruturação de Negócios" width="180" height="48">
-      <p>Estruturação de negócios imobiliários para construtoras, incorporadoras, investidores e proprietários.</p>
-      <p class="rodape-slogan">Ao seu lado na construção da sua história.</p>
-    </div>
-    <nav aria-label="Atuação">
-      <p class="rotulo">Atuação</p>
-      <ul><li><a href="/cris-code/empresas/">Empresas</a></li><li><a href="/cris-code/empreendimentos/">Empreendimentos</a></li><li><a href="/cris-code/capital/">Capital</a></li>
-        <li><a href="/cris-code/empreendimentos/estudo-de-viabilidade/">Estudo de viabilidade</a></li>
-        <li><a href="/cris-code/capital/financiamento-a-producao/">Financiamento à produção</a></li>
-        <li><a href="/cris-code/empresas/preparacao-para-credito/">Preparação para crédito</a></li>
-        <li><a href="/cris-code/empreendimentos/obra-parada/">Obras paradas</a></li>
-      </ul>
-    </nav>
-    <nav aria-label="Ferramentas e método">
-      <p class="rotulo">Para decidir</p>
-      <ul>
-        <li><a href="/cris-code/empreendimentos/simulador/">Simulador de exposição de caixa</a></li>
-        <li><a href="/cris-code/empreendimentos/permuta-de-terreno/">Vender, permutar ou incorporar um terreno</a></li>
-        <li><a href="/cris-code/ferramentas/radar/">Radar de estruturação</a></li>
-        <li><a href="/cris-code/metodo/">Método</a></li>
-        <li><a href="/cris-code/metodo/modelagem/">Modelagem: tudo conectado</a></li>
-        <li><a href="/cris-code/metodo/modelagens/">As nove modelagens</a></li>
-        <li><a href="/cris-code/inteligencia/">Inteligência</a></li>
-      </ul>
-    </nav>
-    <nav aria-label="Institucional">
-      <p class="rotulo">DALETH</p>
-      <ul>
-        <li><a href="/cris-code/como-comeca/">Como começa um trabalho</a></li>
-        <li><a href="/cris-code/sobre/">Sobre</a></li>
-        <li><a href="/cris-code/contato/">Contato</a></li>
-        <li><a href="/cris-code/privacidade/">Privacidade</a></li>
-      </ul>
-      
-      <p class="rodape-local">Belo Horizonte · atuação nacional</p>
-    </nav>
+
+<footer>
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="DALETH, voltar ao início"><svg fill-rule="evenodd" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="42 112 2082 550" aria-hidden="true" focusable="false"><path d="M64 134L237 134C353 134 422 184 422 282C422 373 342 439 238 439L64 439L64 436C93 433 105 425 105 400L105 174C105 148 92 140 64 137ZM174 172C174 151 177 145 200 145L236 145C308 145 352 210 352 282C352 365 302 430 230 430L207 430C180 430 174 426 174 405Z"/><path d="M406 439L406 435C425 431 434 422 443 414L606 135C608 132 611 132 613 135L752 397C766 424 776 432 796 435L796 439L676 439L676 435C693 431 692 424 686 411L580 209L466 414C458 425 462 431 481 435L481 439Z"/><path d="M820 136L969 136L969 139C939 142 929 152 929 180L929 401C929 421 934 429 958 429L996 429C1040 429 1073 406 1097 365L1081 439L820 439L820 436C849 433 859 422 859 399L859 177C859 151 849 141 820 139Z"/><path d="M1125 136L1370 136L1373 199L1370 199C1368 164 1349 149 1300 149L1245 149C1231 149 1228 154 1228 171L1228 278L1265 278C1304 278 1324 268 1331 237L1334 237L1334 337L1331 337C1324 305 1311 292 1265 292L1228 292L1228 399C1228 421 1234 429 1260 429L1295 429C1330 429 1357 411 1385 389L1376 439L1125 439L1125 436C1153 432 1164 422 1164 399L1164 175C1164 150 1152 141 1125 139Z"/><path d="M1419 136L1690 136L1698 206L1694 206C1671 163 1650 149 1607 149L1585 149L1585 399C1585 425 1598 433 1627 436L1627 439L1480 439L1480 436C1507 433 1519 424 1519 399L1519 149L1496 149C1454 149 1430 166 1412 206L1408 206Z"/><path d="M1721 136L1869 136L1869 139C1839 142 1827 152 1827 177L1827 276L1991 276L1991 177C1991 151 1981 141 1953 139L1953 136L2103 136L2103 139C2073 142 2060 152 2060 177L2060 399C2060 424 2072 433 2103 436L2103 439L1953 439L1953 436C1981 433 1991 424 1991 399L1991 289L1827 289L1827 399C1827 424 1839 433 1869 436L1869 439L1721 439L1721 436C1749 433 1759 424 1759 399L1759 177C1759 151 1749 141 1721 139Z"/><path fill="#B58A44" d="M580 321L645 439L512 439Z"/><path fill="#B58A44" d="M896 497L1305 497L1305 508L896 508Z"/><path d="M0.000 0.000L37.000 0.000L37.000 6.000L7.000 6.000L7.000 22.500L34.000 22.500L34.000 28.500L7.000 28.500L7.000 46.000L37.000 46.000L37.000 52.000L0.000 52.000Z" transform="translate(183 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(255 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(326 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(404 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(481 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(561 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(638 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(724 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(799 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(884 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(965 572) scale(1 1)"/><path d="M28.0 -1C43.463972999999996 -1 56 11.08831175 56 26.0C56 40.91168825 43.463972999999996 53 28.0 53C12.536027 53 0 40.91168825 0 26.0C0 11.08831175 12.536027 -1 28.0 -1ZM28.0 5C39.59797975 5 49 14.40202025 49 26.0C49 37.59797975 39.59797975 47 28.0 47C16.40202025 47 7 37.59797975 7 26.0C7 14.40202025 16.40202025 5 28.0 5Z" transform="translate(1049 572) scale(1 1)"/><path d="M0 0L19.6 0C39.2 0 49 10 49 26C49 42 39.2 52 19.6 52L0 52ZM7 6L19.6 6C34.3 6 42 14 42 26C42 38 34.3 46 19.6 46L7 46Z" transform="translate(1190 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1277 572) scale(1 1)"/><path d="M0.000 0.000L7.500 0.000L39.400 40.000L39.400 0.000L46.000 0.000L46.000 52.000L38.500 52.000L6.600 12.000L6.600 52.000L0.000 52.000Z" transform="translate(1397 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1485 572) scale(1 1)"/><path d="M49 7L44.5 12C38 6 32.34 5 26.46 5C11.76 5 7 13 7 26C7 39 11.76 47 26.46 47C34.3 47 40 45 42.4 42L42.4 31L26.950000000000003 31L26.950000000000003 25L49 25L49 45C40 51 36.26 53 25.48 53C8.33 53 0 42 0 26C0 10 8.33 -1 25.48 -1C36.26 -1 41 1 49 7Z" transform="translate(1556 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1641 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(1731 572) scale(1 1)"/><path d="M0.000 0.000L7.000 0.000L7.000 52.000L0.000 52.000Z" transform="translate(1816 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1862 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(1952 572) scale(1 1)"/><path d="M905 623L910 623L908 628C920 628 919 640 908 640L901 638L903 634C909 637 914 633 907 632L903 632Z"/><path d="M979 565C980 553 986 555 992 558C998 561 1000 561 1001 557L1006 557C1005 568 999 568 992 564C986 561 984 561 984 565Z"/><path d="M1663 564L1670 555L1679 555L1670 564Z"/></svg></a>
+    <span class="slogan">Ao seu lado na construção de sua história.</span>
+    <span>Estruturação de Negócios Imobiliários · Belo Horizonte</span>
   </div>
-  <div class="wrap"><div class="rodape-base">
-    <p>© 2026 DALETH. Os números das ferramentas são exemplos ilustrativos, e não leitura de um projeto real.</p>
-    
-  </div></div>
 </footer>
-<nav class="seletor-variantes" aria-label="Versões de texto"><span class="sv-rot">Texto</span><a href="/cris-code/" aria-current="page">Atual</a><a href="/cris-code/m1/">M1<span>Trajetória</span></a><a href="/cris-code/m2/">M2<span>Fachada</span></a><a href="/cris-code/m3/">M3<span>Passagem</span></a><a class="sv-caderno" href="/cris-code/variantes/">Comparar</a></nav>
+<script>
+(function(){
+  var F=[
+    {c:"Terreno",n:"Terreno",d:"Estruturar o terreno é definir a base jurídica, econômica e negocial sobre a qual todo o empreendimento será construído.",j:"A forma de acesso ao terreno define quem corre o risco e quando o caixa sai. Comprar à vista, permutar por unidades ou montar uma parceria são negócios diferentes sobre o mesmo lote.",p:"Qual forma de acesso ao terreno preserva caixa sem comprometer a segurança jurídica?",t:["Compra","Permuta","Opção","Parceria","Aporte","Prazo","Due diligence","Regularização"],m:[2,4,8]},
+    {c:"Produto",n:"Produto e mercado",d:"Estruturar o produto é transformar o potencial do terreno em uma oferta aderente à demanda, ao preço e à capacidade de absorção do mercado.",j:"O produto é a primeira decisão que muda todas as outras. Tipologia, mix e ticket definem o VGV, o custo e a velocidade de vendas.",p:"Que produto este terreno e este mercado absorvem no preço e no prazo que o negócio precisa?",t:["Público","Tipologia","Mix","Área","Ticket","Preço por m²","VGV","Demanda","Absorção","Lançamento"],m:[3,9,7]},
+    {c:"Técnica",n:"Técnica",d:"Estruturar tecnicamente é converter o produto idealizado em uma solução executável, eficiente e compatível com custo, prazo e qualidade.",j:"A solução técnica transforma o produto em custo e prazo. Implantação, sistema construtivo e fases determinam o orçamento e o cronograma que o caixa terá de suportar.",p:"Qual solução técnica entrega o produto com o custo e o prazo que o fluxo de caixa comporta?",t:["Implantação","Eficiência","Projetos","Sistema construtivo","Compatibilização","Infraestrutura","Fases","Orçamento","Cronograma"],m:[7,2,9]},
+    {c:"Jurídico",n:"Jurídico e regulatório",d:"Estruturar juridicamente é criar segurança para desenvolver, contratar, financiar, comercializar e concluir o empreendimento.",j:"Sem base jurídica, nenhuma frente se sustenta. Matrícula, licenças, memorial e contratos são o que permite registrar, financiar e vender.",p:"O empreendimento pode ser registrado, financiado e comercializado com segurança em cada etapa?",t:["Matrícula","Licenças","Incorporação","Memorial","Contratos","Permutas","Parcerias","Garantias","Registros"],m:[5,8,9]},
+    {c:"Societário",n:"Societário e governança",d:"Estruturar a sociedade é definir quem participa, quanto aporta, como decide, como assume riscos e como recebe resultados.",j:"A sociedade define quem decide, quem aporta e quem recebe. A escolha entre SPE, SCP e holding muda o risco, o tributo e o acesso ao capital.",p:"Que estrutura societária isola riscos, organiza aportes e distribui resultados com clareza?",t:["SPE","SCP","Holding","Sócios","Investidores","Participações","Aportes","Governança","Saída","Isolamento de risco"],m:[6,10,8]},
+    {c:"Tributário",n:"Tributário",d:"Estruturar a tributação é adequar a operação ao regime mais eficiente e coerente com o modelo societário, comercial e financeiro.",j:"O regime tributário acompanha a estrutura, não o contrário. RET, presumido ou real dependem do que foi decidido no societário, no comercial e no financeiro.",p:"Qual regime é mais eficiente e coerente com a forma como o negócio foi montado?",t:["RET","Presumido","Real","Afetação","Permuta","Integralização","Ganho de capital","Distribuição"],m:[7,5,1]},
+    {c:"Financeiro",n:"Econômico-financeiro",d:"Estruturar financeiramente é medir capital, retorno, exposição e sensibilidade para saber se o empreendimento cria valor e suporta seus riscos.",j:"Aqui todas as frentes aparecem em números. Fluxo de caixa, exposição e sensibilidade mostram se o empreendimento cria valor e aguenta seus riscos.",p:"Quanto capital o negócio exige, em que momento, e o que acontece se as premissas mudarem?",t:["Fluxo de caixa","Exposição","Capital necessário","Margem","TIR","VPL","Payback","Break-even","Sensibilidades","Cenários"],m:[8,9,10]},
+    {c:"Funding",n:"Capital e funding",d:"Estruturar o funding é combinar as fontes de capital certas, no momento certo, com custo, prazo, garantias e risco compatíveis com o projeto.",j:"Capital é meio, não fim. Capital próprio, sócios, investidor, banco e recebíveis entram em momentos diferentes, com custo e garantias diferentes.",p:"Que combinação de fontes financia a exposição do caixa com custo e risco compatíveis?",t:["Capital próprio","Sócios","Investidor","Equity","Dívida","Caixa","Bancos","Recebíveis","CRI","Mercado de capitais"],m:[10,4,7]},
+    {c:"Comercial",n:"Comercialização",d:"Estruturar a comercialização é transformar produto em receita, equilibrando preço, velocidade de vendas e geração de caixa.",j:"A comercialização transforma produto em receita e receita em caixa. Preço, tabela e velocidade de vendas decidem quanto capital externo o negócio pedirá.",p:"Que estratégia de vendas equilibra preço, velocidade e geração de caixa ao longo da obra?",t:["Preço","Tabela","Entrada","Parcelamento","Velocidade","Pré-venda","Associativo","Repasse","Estoque","Canais"],m:[7,8,2]},
+    {c:"Risco",n:"Risco e retorno",d:"Estruturar risco e retorno é equilibrar proteção, exposição e remuneração entre empreendedor, investidores, financiadores e demais partes.",j:"Toda estrutura distribui risco e retorno entre as partes. Garantias, covenants, preferências e waterfall dizem quem protege quem e em que ordem.",p:"Como proteção, exposição e remuneração ficam equilibradas entre empreendedor, investidores e financiadores?",t:["Riscos","Garantias","Covenants","Contingência","Participações","Preferência","Waterfall","Distribuição","Exit"],m:[5,8,4]}
+  ];
+  var NS="http://www.w3.org/2000/svg", abas=document.getElementById("abas"), rede=document.getElementById("rede"), painel=document.getElementById("painel");
+  var cx=240, cy=220, R=150, pos=F.map(function(_,i){var a=-Math.PI/2+i*2*Math.PI/10;return[cx+R*Math.cos(a),cy+R*Math.sin(a),a];});
+  function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+  var gR=el("g",{},rede), gL=el("g",{},rede), gN=el("g",{},rede), ligs=[], nos=[], rots=[];
+  pos.forEach(function(p){el("line",{class:"raio",x1:cx,y1:cy,x2:p[0],y2:p[1]},gR);});
+  F.forEach(function(f,i){f.m.forEach(function(j){var q=pos[j-1];ligs.push({a:i,b:j-1,e:el("line",{class:"liga",x1:pos[i][0],y1:pos[i][1],x2:q[0],y2:q[1]},gL)});});});
+  el("circle",{class:"miolo",cx:cx,cy:cy,r:38},gN);
+  var t1=el("text",{class:"miolo-t",x:cx,y:cy-2,"text-anchor":"middle"},gN);t1.textContent="EMPREEN-";
+  var t2=el("text",{class:"miolo-t",x:cx,y:cy+11,"text-anchor":"middle"},gN);t2.textContent="DIMENTO";
+  F.forEach(function(f,i){
+    var p=pos[i], c=el("circle",{class:"n",cx:p[0],cy:p[1],r:13},gN);
+    c.addEventListener("click",function(){sel(i,true);});
+    nos.push(c);
+    var lx=cx+(R+30)*Math.cos(p[2]), ly=cy+(R+30)*Math.sin(p[2])+4, an=Math.abs(Math.cos(p[2]))<.2?"middle":(Math.cos(p[2])>0?"start":"end");
+    if(an!=="middle"){lx=cx+(R+22)*Math.cos(p[2]);}
+    var t=el("text",{x:lx,y:ly,"text-anchor":an},gN);t.textContent=String(i+1).padStart(2,"0")+" "+f.c.toUpperCase();rots.push(t);
+    var b=document.createElement("button");b.type="button";b.id="aba-"+(i+1);b.setAttribute("role","tab");b.setAttribute("aria-controls","painel");
+    b.innerHTML="<span>"+String(i+1).padStart(2,"0")+"</span>"+f.c;
+    b.addEventListener("click",function(){sel(i,false);});
+    b.addEventListener("keydown",function(e){var k=e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0;if(k){e.preventDefault();var n=(i+k+10)%10;sel(n,false);abas.children[n].focus();}});
+    abas.appendChild(b);
+  });
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+  function sel(i){
+    var f=F[i], mv=f.m.map(function(j){return j-1;});
+    Array.prototype.forEach.call(abas.children,function(b,k){b.setAttribute("aria-selected",k===i?"true":"false");b.tabIndex=k===i?0:-1;b.classList.toggle("movido",mv.indexOf(k)>-1);});
+    nos.forEach(function(c,k){c.classList.toggle("sel",k===i);c.classList.toggle("movido",mv.indexOf(k)>-1);});
+    rots.forEach(function(t,k){t.classList.toggle("sel",k===i);t.classList.toggle("movido",mv.indexOf(k)>-1);});
+    ligs.forEach(function(l){l.e.classList.toggle("on",l.a===i);});
+    painel.setAttribute("aria-labelledby","aba-"+(i+1));
+    painel.innerHTML='<p class="sobre">Frente '+String(i+1).padStart(2,"0")+' de 10</p><h4>'+esc(f.n)+'</h4><p class="def">'+esc(f.d)+'</p><dl>'+
+      '<div><dt>A pergunta que a modelagem responde</dt><dd class="perg">'+esc(f.p)+'</dd></div>'+
+      '<div><dt>O que está em jogo</dt><dd>'+esc(f.j)+'</dd></div>'+
+      '<div><dt>Decisões desta frente</dt><dd class="tags">'+f.t.map(function(x){return"<span>"+esc(x)+"</span>";}).join("")+'</dd></div>'+
+      '<div><dt>Também move</dt><dd>'+mv.map(function(k){return esc(F[k].n);}).join(" · ")+'</dd></div></dl>';
+  }
+  sel(0);
+})();
+</script>
+<script>
+// Slogan digitado: as variações entram e saem sobre o tronco comum; a última fica.
+(function(){
+  var p=document.getElementById("assina"); if(!p) return;
+  var alvo=p.querySelector("span");
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var tronco="Ao seu lado na construção ";
+  var fins=["", "de seu projeto", "de seu empreendimento", "de seu legado", "de sua história."];
+  var i=0, texto=tronco, fim=fins[0];
+  p.classList.add("digitando"); alvo.textContent=texto;
+  function espera(ms,fn){ setTimeout(fn,ms); }
+  function digitar(){
+    var meta=tronco+fim;
+    if(texto.length<meta.length){ texto=meta.slice(0,texto.length+1); alvo.textContent=texto; return espera(38+Math.random()*40,digitar); }
+    if(i===fins.length-1){ return espera(900,function(){ p.classList.remove("digitando"); }); }
+    espera(fim?1100:700,apagar);
+  }
+  function apagar(){
+    if(texto.length>tronco.length){ texto=texto.slice(0,-1); alvo.textContent=texto; return espera(22,apagar); }
+    i++; fim=fins[i]; espera(260,digitar);
+  }
+  espera(500,digitar);
+})();
+</script>
 </body>
 </html>
