@@ -248,7 +248,7 @@
     var nomesIniciais = (tela.getAttribute("data-rotulos") || "").split("|").filter(Boolean);
     var modelagem = tipo === "modelagem";
     var cfg = { leve: leve, terreno: tipo !== "rede", torres: tipo !== "rede", denso: tipo === "rede", semente: 7,
-      rotulos: modelagem ? 9 : Math.max(6, Math.min(9, nomesIniciais.length)), amplo: modelagem };
+      rotulos: modelagem ? 10 : Math.max(6, Math.min(9, nomesIniciais.length)), amplo: modelagem };
     var geo = construir(cfg), rede = criarRede(cfg);
     var progPontos, progLinhas;
     try {
@@ -314,9 +314,11 @@
       var largo = tipo === "heroi" && !claro ? cssW >= 900 : asp > 1.3;
       var k = estado.rolagem, z = estado.z;
       if (tipo === "modelagem") {
-        var retrato = asp < 0.9;
-        return { ang: 0.6 + t * 0.045 + smx * 0.25, elev: (retrato ? 0.5 : 0.42) + smy * 0.06, dist: retrato ? 15.5 : 12.8,
-          alvo: [0, retrato ? 1.4 : 1.7, 0], desloc: [0, retrato ? 0.02 : -0.04], fov: 0.78 };
+        var retrato = asp < 0.9, largoM = asp > 1.5;
+        // data-lado="esquerda": a cena fica à esquerda do palco e deixa a direita para a ficha
+        var lado = tela.getAttribute("data-lado") === "esquerda" && largoM ? -0.28 : 0;
+        return { ang: 0.6 + t * 0.045 + smx * 0.25, elev: (retrato ? 0.5 : 0.42) + smy * 0.06, dist: retrato ? 15.5 : largoM ? 13.6 : 12.8,
+          alvo: [0, retrato ? 1.4 : 1.7, 0], desloc: [lado, retrato ? 0.02 : -0.04], fov: 0.78 };
       }
       if (tipo === "heroi") {
         var ang = 0.32 + t * 0.03 + smx * 0.22, elev = 0.4 + smy * 0.05 - k * 0.08;
@@ -425,7 +427,10 @@
         var dentro = sx > 8 && sx + 14 + lw < cssW - 4 && sy > 14 && sy < cssH - 14;
         if (largoR && !centro && tipo === "heroi" && !claro && !centrada && sx < cssW * 0.58) dentro = false;
         if (centrada && sy < cssH * 0.72) dentro = false;
-        if (modelagem && sy > cssH * (cssW > 700 ? 0.66 : 0.6)) dentro = false;   // a legenda ocupa o pé do palco
+        var reservaBaixo = parseFloat(tela.getAttribute("data-reserva-baixo")) || 0;   // fração do pé do palco ocupada por texto
+        var reservaDireita = parseFloat(tela.getAttribute("data-reserva-direita")) || 0;
+        if (modelagem && reservaBaixo && sy > cssH * (1 - reservaBaixo)) dentro = false;
+        if (modelagem && reservaDireita && cssW / cssH > 1.3 && sx + lw > cssW * (1 - reservaDireita)) dentro = false;
         if (largoR && !centro && tipo === "jornada" && sx > cssW * 0.5) dentro = false;
         var prof = Math.max(0, Math.min(1, (16 - c[3]) / 8));
         if (dentro) {
