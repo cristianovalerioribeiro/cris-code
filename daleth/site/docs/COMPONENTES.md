@@ -74,6 +74,10 @@ Todo `h2` precisa de `id` (vira o índice da página).
 `<section class="secao"><div class="wrap"><article class="artigo"> … h2/h3/p/ul … </article></div></section>`.
 `.artigo` limita a medida de leitura. Termine com links para 1 serviço + 1 ferramenta.
 
+**Cena 3D** (`assets/js/cena3d.js`): `<canvas data-cena="heroi|jornada|rede|modelagem" data-rotulos="A|B|C…">` dentro de um
+contêiner com `<div class="cena-rotulos"></div>`. A cena `modelagem` aceita até 9 rótulos e troca-os em tempo real
+com `canvas.cena3d.rotular([...])`; é a base da página /metodo/modelagem/ (`assets/js/modelagem.js`).
+
 ## Regras inegociáveis (o QA procura estes termos)
 
 - Slogan "Ao seu lado na construção da sua história." já sai no topo; não repita no corpo.

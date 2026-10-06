@@ -1,0 +1,69 @@
+<!--meta {
+  "caminho": "/metodo/modelagem/",
+  "titulo": "Modelagem: tudo conectado",
+  "descricao": "Oito frentes de um empreendimento, societária, documental, tributária, financeira, funding, terreno, técnica e produto, e por que mudar uma muda as outras.",
+  "migalhas": [["Método", "/metodo/"], ["Modelagem", "/metodo/modelagem/"]],
+  "momento": "empreendimento",
+  "scripts": ["modelagem.js"],
+  "fecho": {
+    "rotulo": "Do mapa ao seu caso",
+    "titulo": "Modelar o seu empreendimento começa com uma conversa",
+    "texto": "Conte o terreno, o produto ou a empresa. A primeira conversa é de enquadramento, sem custo, e já mostra por quais frentes o seu caso pede para começar.",
+    "botao": "Analisar meu caso",
+    "secundario": ["/empreendimentos/simulador/", "Ver o efeito no caixa, no simulador"]
+  }
+} -->
+<section class="abertura">
+  <div class="wrap">
+    <p class="rotulo">Método · 02 · Modelar</p>
+    <h1>Um empreendimento se decide em oito frentes ao mesmo tempo.</h1>
+    <p class="lead">Mudar uma muda as outras. Escolha uma frente e veja as decisões que ela carrega dentro da mesma rede.</p>
+  </div>
+</section>
+
+<section class="modelar" aria-labelledby="mod-t">
+  <div class="wrap">
+    <h2 id="mod-t" class="oculto">As oito frentes da modelagem</h2>
+    <div class="modelar-grade">
+      <div class="dim-botoes" role="group" aria-label="Frentes da modelagem">
+        <button type="button" data-frente="tudo" aria-pressed="true"><span class="n">00</span>Tudo conectado</button>
+        <button type="button" data-frente="societaria" aria-pressed="false"><span class="n">01</span>Societária</button>
+        <button type="button" data-frente="documental" aria-pressed="false"><span class="n">02</span>Documental</button>
+        <button type="button" data-frente="tributaria" aria-pressed="false"><span class="n">03</span>Tributária</button>
+        <button type="button" data-frente="financeira" aria-pressed="false"><span class="n">04</span>Financeira</button>
+        <button type="button" data-frente="funding" aria-pressed="false"><span class="n">05</span>Funding</button>
+        <button type="button" data-frente="terreno" aria-pressed="false"><span class="n">06</span>Terreno</button>
+        <button type="button" data-frente="tecnica" aria-pressed="false"><span class="n">07</span>Técnica</button>
+        <button type="button" data-frente="produto" aria-pressed="false"><span class="n">08</span>Produto e mercado</button>
+        <button type="button" id="frente-auto" class="dim-auto" aria-pressed="false">Passear pelas frentes</button>
+      </div>
+      <div class="modelar-palco">
+        <canvas data-cena="modelagem" data-rotulos="Societária|Documental|Tributária|Financeira|Funding|Terreno|Técnica|Produto e mercado" aria-hidden="true"></canvas>
+        <div class="cena-rotulos"></div>
+        <div class="frente-legenda" aria-live="polite">
+          <p class="rotulo" id="frente-nome">Tudo conectado</p>
+          <p id="frente-texto">Oito frentes, uma decisão. Mudar uma muda as outras. Por isso modelamos antes de escolher.</p>
+          <ul class="dim-chips" id="frente-palavras" aria-label="Decisões desta frente"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" aria-labelledby="por-que-t">
+  <div class="wrap duas-colunas solto">
+    <div>
+      <p class="rotulo">Por que modelar</p>
+      <h2 id="por-que-t">O mesmo terreno gera negócios diferentes, conforme a forma como é modelado</h2>
+    </div>
+    <div>
+      <p class="lead">Vender, permutar ou incorporar. SPE ou SCP. Uma torre ou duas fases. Crédito de obra ou investidor. Cada escolha move as outras, e todas aparecem no caixa.</p>
+      <p>Modelar é colocar os caminhos lado a lado, com premissas escritas, antes de comprometer capital. É o segundo movimento do método, e o que muda o resultado.</p>
+      <div class="linhas-link" style="margin-top:24px">
+        <a href="/empreendimentos/simulador/"><span class="t">Simulador de exposição de caixa</span><span class="d">O efeito de permuta, vendas e crédito no capital próprio exigido</span></a>
+        <a href="/empreendimentos/permuta-de-terreno/#comp-t"><span class="t">Vender, permutar ou incorporar</span><span class="d">Os três caminhos de um terreno, critério a critério</span></a>
+        <a href="/metodo/modelagens/"><span class="t">As nove modelagens</span><span class="d">O repertório técnico por baixo do método</span></a>
+      </div>
+    </div>
+  </div>
+</section>

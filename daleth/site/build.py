@@ -63,6 +63,9 @@ SUBMENUS = {
                           ("/empreendimentos/obra-parada/", "Obras paradas")],
     "/capital/": [("/capital/", "Crédito e capital"),
                   ("/capital/financiamento-a-producao/", "Financiamento à produção")],
+    "/metodo/": [("/metodo/", "Os quatro movimentos"),
+                 ("/metodo/modelagem/", "Modelagem: tudo conectado"),
+                 ("/metodo/modelagens/", "As nove modelagens")],
 }
 # Ferramentas no topo: decisão do Cristiano em 28/09 (são a prova mais forte do site).
 FERRAMENTAS = [
@@ -196,7 +199,7 @@ def bloco_cabecalho(pg):
             + ('ativo' if atual.startswith(("/ferramentas/", "/empreendimentos/simulador/")) else '')
             + '">Ferramentas</a><ul class="sub" aria-label="Ferramentas">'
             + "".join(f'<li><a href="{a}">{esc(r)}</a></li>' for a, r in FERRAMENTAS) + "</ul></li>")
-    apoio = ferr + "".join(item(a, r) for a, r in MENU_APOIO)
+    apoio = ferr + "".join(com_sub(a, r, SUBMENUS[a], "") if a in SUBMENUS else item(a, r) for a, r in MENU_APOIO)
     return f"""<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="topo" id="topo">
   <div class="wrap topo-linha">
@@ -356,6 +359,7 @@ def bloco_rodape():
         <li><a href="/empreendimentos/permuta-de-terreno/">Vender, permutar ou incorporar um terreno</a></li>
         <li><a href="/ferramentas/radar/">Radar de estruturação</a></li>
         <li><a href="/metodo/">Método</a></li>
+        <li><a href="/metodo/modelagem/">Modelagem: tudo conectado</a></li>
         <li><a href="/metodo/modelagens/">As nove modelagens</a></li>
         <li><a href="/inteligencia/">Inteligência</a></li>
       </ul>
