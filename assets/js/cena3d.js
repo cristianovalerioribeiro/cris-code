@@ -200,13 +200,15 @@
     return { pontos: new Float32Array(P), linhas: new Float32Array(L) };
   }
 
-  // rede de decisões: nós em órbita lenta; os seis primeiros carregam rótulo
+  // rede de decisões: nós em órbita lenta; os primeiros (6 a 9) carregam rótulo
   function criarRede(cfg) {
     var rnd = semente(31), nos = [];
     var n = cfg.denso ? (cfg.leve ? 34 : 64) : (cfg.leve ? 22 : 40);
+    var nRot = cfg.rotulos || 6, raio = cfg.amplo ? 4.4 : 3.6;
     for (var i = 0; i < n; i++) {
-      if (i < 6) {
-        nos.push({ r: 3.6 + (i % 2) * 0.5, th: i * Math.PI / 3 + 0.35, y: 2.0 + (i % 3) * 0.6, w: 0.03, fase: rnd() * 6, rot: true });
+      if (i < nRot) {
+        nos.push({ r: raio + (i % 2) * 0.6, th: i * Math.PI * 2 / nRot + 0.35, y: (cfg.amplo ? 1.4 : 2.0) + (i % 3) * 0.7,
+          w: 0.03, fase: rnd() * 6, rot: true });
       } else {
         nos.push({ r: 2.0 + rnd() * 3.8, th: rnd() * Math.PI * 2, y: 0.5 + rnd() * 3.8,
           w: (rnd() < 0.5 ? -1 : 1) * (0.015 + rnd() * 0.045), fase: rnd() * 6, rot: false });
@@ -243,7 +245,10 @@
     var gl = tela.getContext("webgl", { alpha: claro, premultipliedAlpha: false, antialias: !leve,
       powerPreference: "low-power", preserveDrawingBuffer: tela.hasAttribute("data-captura") });
     if (!gl) return null;
-    var cfg = { leve: leve, terreno: tipo !== "rede", torres: tipo !== "rede", denso: tipo === "rede", semente: 7 };
+    var nomesIniciais = (tela.getAttribute("data-rotulos") || "").split("|").filter(Boolean);
+    var modelagem = tipo === "modelagem";
+    var cfg = { leve: leve, terreno: tipo !== "rede", torres: tipo !== "rede", denso: tipo === "rede", semente: 7,
+      rotulos: modelagem ? 9 : Math.max(6, Math.min(9, nomesIniciais.length)), amplo: modelagem };
     var geo = construir(cfg), rede = criarRede(cfg);
     var progPontos, progLinhas;
     try {
@@ -264,15 +269,29 @@
 
     // rótulos HTML que acompanham os nós projetados
     var rotulos = [], caixaRot = tela.parentElement.querySelector(".cena-rotulos");
-    var nomes = (tela.getAttribute("data-rotulos") || "").split("|").filter(Boolean);
+    var nomes = nomesIniciais;
     if (caixaRot && claro) caixaRot.classList.add("claro");
     if (caixaRot && nomes.length) {
-      nomes.slice(0, 6).forEach(function (nome) {
+      for (var ri = 0; ri < cfg.rotulos; ri++) {
         var s = document.createElement("span");
-        s.textContent = nome;
+        s.textContent = nomes[ri] || "";
+        s.hidden = !nomes[ri];
         caixaRot.appendChild(s);
         rotulos.push(s);
+      }
+    }
+    // troca os rótulos em tempo real (página de modelagem): os nós continuam no lugar, as palavras mudam
+    function rotular(novos) {
+      rotulos.forEach(function (el, i) {
+        var nome = novos[i] || "";
+        el.hidden = !nome;
+        el.textContent = nome;
+        el._w = null;
+        el.classList.remove("troca");
+        void el.offsetWidth;
+        if (nome) el.classList.add("troca");
       });
+      if (!rodando) { ler(); desenhar(performance.now()); }
     }
 
     var DPR = Math.min(window.devicePixelRatio || 1, leve ? 1.5 : 1.75);
@@ -294,6 +313,11 @@
       // no celular (faixa acima do texto) fica centrada
       var largo = tipo === "heroi" && !claro ? cssW >= 900 : asp > 1.3;
       var k = estado.rolagem, z = estado.z;
+      if (tipo === "modelagem") {
+        var retrato = asp < 0.9;
+        return { ang: 0.6 + t * 0.045 + smx * 0.25, elev: (retrato ? 0.5 : 0.42) + smy * 0.06, dist: retrato ? 15.5 : 12.8,
+          alvo: [0, retrato ? 1.4 : 1.7, 0], desloc: [0, retrato ? 0.02 : -0.04], fov: 0.78 };
+      }
       if (tipo === "heroi") {
         var ang = 0.32 + t * 0.03 + smx * 0.22, elev = 0.4 + smy * 0.05 - k * 0.08;
         // telas largas mas não tanto (notebook pequeno, tablet deitado): afasta e empurra para a direita
@@ -332,6 +356,7 @@
           rede: suave(0.74, 0.98, z), anel: (t / 7) % 1 };
       }
       if (tipo === "rede") return { cresce: 0, fantasma: 0, rede: 1, anel: 0 };
+      if (tipo === "modelagem") return { cresce: reduzir ? 1 : suave(0.2, 2.0, t), fantasma: 0, rede: reduzir ? 1 : suave(0.8, 2.6, t), anel: (t / 7) % 1 };
       return { cresce: reduzir ? 1 : suave(0.25, 2.6, t), fantasma: 0, rede: reduzir ? 1 : suave(1.4, 3.6, t), anel: (t / 7) % 1 };
     }
 
@@ -391,7 +416,7 @@
       for (i = 0; i < rotulos.length; i++) {
         var c = aplicar(vp, pos[i]);
         var el = rotulos[i];
-        if (c[3] <= 0.1 || prm.rede < 0.05) { el.style.opacity = "0"; continue; }
+        if (el.hidden || c[3] <= 0.1 || prm.rede < 0.05) { el.style.opacity = "0"; continue; }
         var cam = camAtual.desloc;
         var nx = c[0] / c[3] + cam[0], ny = c[1] / c[3] + cam[1];
         var sx = (nx * 0.5 + 0.5) * cssW, sy = (1 - (ny * 0.5 + 0.5)) * cssH;
@@ -400,6 +425,7 @@
         var dentro = sx > 8 && sx + 14 + lw < cssW - 4 && sy > 14 && sy < cssH - 14;
         if (largoR && !centro && tipo === "heroi" && !claro && !centrada && sx < cssW * 0.58) dentro = false;
         if (centrada && sy < cssH * 0.72) dentro = false;
+        if (modelagem && sy > cssH * (cssW > 700 ? 0.66 : 0.6)) dentro = false;   // a legenda ocupa o pé do palco
         if (largoR && !centro && tipo === "jornada" && sx > cssW * 0.5) dentro = false;
         var prof = Math.max(0, Math.min(1, (16 - c[3]) / 8));
         if (dentro) {
@@ -508,10 +534,13 @@
     tela.addEventListener("webglcontextlost", function (e) {
       e.preventDefault(); desligar(); viva = false; host.classList.remove("cena-viva");
     });
-    return {
+    var api = {
       visivel: function (v) { visivel = v; if (v) ligar(); else desligar(); },
-      viva: function () { return viva; }
+      viva: function () { return viva; },
+      rotular: rotular
     };
+    tela.cena3d = api;
+    return api;
   }
 
   // ------------------------------------------------------------ montagem preguiçosa
@@ -535,7 +564,7 @@
     });
   }, { rootMargin: "120px 0px" });
   telas.forEach(function (t) {
-    if (t.getAttribute("data-cena") === "heroi") montar(t);
+    if (/^(heroi|modelagem)$/.test(t.getAttribute("data-cena"))) montar(t);
     obs.observe(t);
   });
 })();
