@@ -16,3 +16,13 @@ cena 3D da modelagem, método, FAQ, conversa) e publica em `/v3a/`, `/v3b/` e `/
 no peso dos capítulos: A direta (7), B narrativa com pontes e "Ao seu lado" (9), C com "o que você recebe" logo após
 a tese (8). Para mudar texto, edite o gerador e rode `python3 home/gerar_v3.py` antes do build. O acervo de frases
 retiradas está em `home/acervo/`.
+
+## v4 · a partir da mesa de decisão (07/10/2026)
+
+A mesa de decisão (artefato privado no claude.ai) registra, capítulo a capítulo, qual versão entra e o que mudar.
+A primeira rodada pediu: hero novo no topo ("Transformamos oportunidades imobiliárias em negócios estruturados para
+acontecer.") com os seis eixos como rótulos na cena 3D; barra de prova logo abaixo (R$ 524 mi · 40 operações ·
+6.320+ unidades · atuação nacional); tese em A; e a assinatura "Ao seu lado na construção…" movida para depois da
+tese, com a palavra construção como chave visual. O mesmo gerador produz `v4.html` (`VERSOES["v4"]`, com
+`css_extra`), publicado em `/v4/` (noindex). Os capítulos ainda sem decisão seguem a versão A. Os números da seção
+"Quem conduz" foram alinhados aos da barra de prova.

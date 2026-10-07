@@ -356,9 +356,98 @@ VERSOES = {
                    modelagem("Toda oportunidade guarda mais de um negócio."), metodo(com_recebe=False), quem(com_papeis=True), FAQ, CONVERSA]),
 }
 
+# ---------------------------------------------------------------- v4 (mesa de decisão, 07/10): hero novo + prova no topo; assinatura depois da tese
+CSS_V4 = """
+/* v4: hero com rótulos na cena, barra de prova, assinatura depois da tese */
+.heroi-v4{min-height:calc(100svh - 64px)}
+.heroi-v4::before{display:none}
+.heroi-v4 .palco-3d{z-index:-1}
+.heroi-v4 .palco-3d::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(8,37,56,.96) 0%,rgba(8,37,56,.84) 38%,rgba(8,37,56,.34) 70%,rgba(8,37,56,.18) 100%)}
+.heroi-v4 .palco-3d .cena-rotulos{z-index:1}
+.heroi-v4 .wrap{gap:22px;max-width:var(--larg)}
+.heroi-v4 h1{font-family:var(--f-disp);font-weight:800;font-size:clamp(34px,5.6vw,72px);line-height:1.04;letter-spacing:-.03em;color:var(--cap-txt);margin:0;max-width:14ch;text-wrap:balance}
+.heroi-v4 h1 em{font-style:normal;color:var(--ouro-cap)}
+.heroi-v4 .lead-h{font-size:clamp(16px,1.6vw,20px);line-height:1.5;color:var(--cap-txt-2);max-width:52ch;margin:0}
+.heroi-v4 .acoes{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.heroi-v4 .cena-rotulos span{font-size:11px}
+@media (max-width:860px){.heroi-v4{align-items:flex-end}.heroi-v4 .palco-3d::after{background:linear-gradient(180deg,rgba(8,37,56,.30) 0%,rgba(8,37,56,.62) 45%,rgba(8,37,56,.96) 100%)}.heroi-v4 .cena-rotulos{display:none}}
+/* prova: quatro números sob o hero */
+.prova{padding-block:0;background:var(--tinta);color:var(--papel);border-top:1px solid rgba(212,179,124,.35)}
+.prova .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 32px;padding-block:clamp(28px,3.5vw,44px)}
+.prova .num{font-family:var(--f-disp);font-weight:800;font-size:clamp(30px,3.6vw,46px);line-height:1;letter-spacing:-.02em;color:#D4B37C;font-variant-numeric:tabular-nums;margin:0}
+.prova .num small{font-size:.42em;font-weight:600;letter-spacing:0;margin-left:.2em;color:#D4B37C}
+.prova .leg{font:600 11px/1.5 var(--f-txt);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78);margin:10px 0 0}
+.prova .celula{min-width:0;padding-left:20px;border-left:1px solid rgba(255,255,255,.14)}
+.prova .celula:first-child{padding-left:0;border-left:0}
+.prova .celula.local .num{font-size:clamp(18px,1.8vw,22px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#D4B37C;line-height:1.3}
+@media (max-width:860px){.prova .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.prova .celula:nth-child(3){padding-left:0;border-left:0}}
+/* tese em segundo plano: título continua grande, mas é h2 */
+.tese2 .como-h1{font-size:clamp(36px,5vw,58px);font-weight:800;line-height:1.06;letter-spacing:-.025em;color:var(--tinta)}
+.tese2 .como-h1 em{font-style:normal;color:var(--ouro)}
+.tese2.fecha{padding-bottom:clamp(56px,8vw,96px)}
+/* assinatura: a palavra "construção" é a chave; traço dourado se ergue sob ela como uma viga */
+.assina-sec{min-height:min(78svh,720px);text-align:center;justify-content:center}
+.assina-sec .wrap{align-items:center}
+.assina-sec::before{background:linear-gradient(180deg,rgba(8,37,56,.90) 0%,rgba(8,37,56,.72) 50%,rgba(8,37,56,.92) 100%)}
+.assina-sec .assina-grande{align-items:center;font-size:clamp(34px,6vw,84px)}
+.assina-sec .chave{position:relative;display:inline-block;color:var(--ouro-cap);font-style:normal}
+.assina-sec .chave::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:.055em;background:var(--ouro-cap);transform-origin:left;transform:scaleX(0);animation:viga 1.1s .5s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes viga{to{transform:scaleX(1)}}
+.assina-sec .clareza{text-align:center;max-width:46ch}
+@media (prefers-reduced-motion:reduce){.assina-sec .chave::after{animation:none;transform:none}}
+"""
+
+HERO_V4 = '''<section class="cap abertura heroi-v4" id="inicio" aria-label="Abertura">
+  <div class="palco-3d" aria-hidden="true"><canvas data-cena="heroi" data-rotulos="Terreno|Produto|Viabilidade|Processos|Estrutura jurídica|Capital" data-reserva-baixo="0.12"></canvas><div class="cena-rotulos"></div></div>
+  <div class="wrap">
+    <p class="sobre">Estruturação de Negócios Imobiliários</p>
+    <h1>Transformamos oportunidades imobiliárias <em>em negócios estruturados para acontecer.</em></h1>
+    <p class="lead-h">Terreno, produto, viabilidade, processos, estrutura jurídica e capital integrados em uma única visão do negócio.</p>
+    <div class="acoes">
+      <a class="btn btn-tinta" href="#contato">Conversar sobre uma oportunidade</a>
+      <a class="btn btn-linha" href="#metodo">Conhecer como atuamos</a>
+    </div>
+  </div>
+</section>
+<section class="prova" aria-label="Números da trajetória">
+  <div class="wrap">
+    <div class="celula"><p class="num">R$ 524<small>milhões</small></p><p class="leg">VGV de operações trabalhadas</p></div>
+    <div class="celula"><p class="num">40</p><p class="leg">Operações de financiamento à produção</p></div>
+    <div class="celula"><p class="num">6.320+</p><p class="leg">Unidades estruturadas</p></div>
+    <div class="celula local"><p class="num">Atuação nacional</p><p class="leg">Base em Belo Horizonte</p></div>
+  </div>
+</section>
+'''
+
+ASSINATURA_V4 = '''<section class="cap abertura assina-sec" id="assinatura" aria-label="Assinatura">
+  <div class="palco-3d" aria-hidden="true"><canvas data-cena="rede"></canvas></div>
+  <div class="wrap">
+    <p class="sobre">Nossa assinatura</p>
+    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span class="l1" aria-hidden="true">Ao seu lado na <em class="chave">construção</em></span><span class="l2" aria-hidden="true"><em>de sua história.</em></span></p>
+    <p class="clareza">Construção é a palavra que une o que fazemos: do empreendimento, da empresa, do capital. E da história de quem decide.</p>
+    <a class="desce" href="#modelagem" aria-label="Descer para a modelagem"><i aria-hidden="true">↓</i><span>A modelagem</span></a>
+  </div>
+</section>
+'''
+
+TESE_V4 = (TESE.replace("<h1>", '<h2 class="como-h1">').replace("</h1>", "</h2>")
+           .replace('<section class="tese2" id="tese">', '<section class="tese2 fecha" id="tese">').replace("{PONTE}", ""))
+
+def quem_v4():
+    return (quem(com_papeis=True)
+            .replace("R$ 324 mi<small>", "R$ 524 mi<small>")
+            .replace(">30<small>operações", ">40<small>operações"))
+
+VERSOES["v4"] = dict(
+    nome="v4 · Mesa de decisão",
+    css_extra=CSS_V4,
+    nav=[("modelagem","O que fazemos"),("metodo","Como estruturamos"),("quem","Sobre a DALETH"),("perguntas","Perguntas")],
+    corpo=lambda: [HERO_V4, TESE_V4, ASSINATURA_V4, modelagem("Toda oportunidade guarda mais de um negócio."),
+                   metodo(recebe_longo=True), quem_v4(), FAQ, CONVERSA])
+
 for chave, v in VERSOES.items():
     corpo = "".join(v["corpo"]())
-    html = (HEAD.replace("</style>", CSS_V3 + "</style>")
+    html = (HEAD.replace("</style>", CSS_V3 + v.get("css_extra","") + "</style>")
             .replace("<title>DALETH · Estruturação de Negócios Imobiliários</title>", f"<title>DALETH · Estruturação de Negócios Imobiliários (teste {v['nome']})</title>")
             + "</head>\n<body>\n" + header(v["nav"]) + "\n<main id=\"main\">\n" + corpo + "</main>\n\n" + RODAPE + "\n" + CTA_MOVEL + SCRIPTS + JS_V3 + "</body>\n</html>\n")
     (AQUI / f"{chave}.html").write_text(html, encoding="utf-8")
