@@ -75,7 +75,15 @@ section{padding-block:clamp(64px,9vw,112px)}
 .btn-linha{border-color:var(--cap-linha);color:var(--cap-txt)}
 .btn-linha:hover{border-color:var(--ouro-cap)}
 .topo .btn{padding:9px 16px;font-size:14px}
-@media (max-width:860px){.topo nav{display:none}}
+.menu-bt{display:none;width:44px;height:44px;border:1px solid var(--linha);background:var(--papel);border-radius:2px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0}
+.menu-bt span{display:block;width:18px;height:2px;background:var(--tinta);transition:transform .2s,opacity .2s}
+.menu-bt[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-bt[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-bt[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.topo nav.menu-movel,.topo nav.menu-movel[hidden]{display:none;flex-direction:column;gap:0;border-top:1px solid var(--linha);background:var(--papel)}
+.menu-movel a{padding:14px var(--gut);text-decoration:none;color:var(--tinta);font-family:var(--f-disp);font-weight:600;font-size:16px;border-bottom:1px solid var(--linha)}
+.menu-movel a:last-child{color:var(--ouro);border-bottom:0}
+@media (max-width:860px){.topo nav:not(.menu-movel){display:none}.topo .btn{display:none}.menu-bt{display:flex}.topo nav.menu-movel:not([hidden]){display:flex}}
 
 /* abertura: o slogan é a primeira tela, grande, digitado sobre a cena 3D */
 .abertura{position:relative;isolation:isolate;min-height:calc(100svh - 64px);display:flex;align-items:center;overflow:hidden;padding-block:clamp(72px,10vw,120px)}
@@ -84,15 +92,18 @@ section{padding-block:clamp(64px,9vw,112px)}
 .abertura::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(8,37,56,.94) 0%,rgba(8,37,56,.72) 42%,rgba(8,37,56,.18) 100%)}
 .abertura:not(.cena-viva) .palco-3d{background:url(/assets/img/heroi-poster.jpg) right center/cover no-repeat}
 .abertura .wrap{width:100%;display:flex;flex-direction:column;gap:28px}
-.assina-grande{font-family:var(--f-disp);font-weight:800;font-size:clamp(40px,7vw,96px);line-height:1.02;letter-spacing:-.03em;color:var(--cap-txt);max-width:13ch;min-height:2.04em;margin:0}
+.assina-grande{font-family:var(--f-disp);font-weight:800;font-size:clamp(34px,6.4vw,88px);line-height:1.04;letter-spacing:-.03em;color:var(--cap-txt);margin:0;display:flex;flex-direction:column}
+.assina-grande .l1,.assina-grande .l2{display:block;white-space:nowrap}
+.assina-grande .l2{min-height:1.04em}
+@media (max-width:560px){.assina-grande .l1,.assina-grande .l2{white-space:normal}.assina-grande .l2{min-height:2.08em}}
 .assina-grande em{font-style:normal;color:var(--ouro-cap)}
-.assina-grande.digitando span::after{content:"";display:inline-block;width:.06em;height:.9em;margin-left:.06em;vertical-align:-.08em;background:var(--ouro-cap);animation:pisca 1s steps(1) infinite}
+.assina-grande.digitando .l2::after{content:"";display:inline-block;width:.06em;height:.9em;margin-left:.06em;vertical-align:-.08em;background:var(--ouro-cap);animation:pisca 1s steps(1) infinite}
 @keyframes pisca{50%{opacity:0}}
 .desce{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;margin-top:clamp(12px,3vw,36px);text-decoration:none;color:var(--cap-txt-2);font-family:var(--f-disp);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase}
 .desce i{font-style:normal;width:44px;height:44px;border-radius:50%;border:1px solid var(--ouro-cap);color:var(--ouro-cap);display:grid;place-items:center;font-size:18px;animation:desce 2.4s ease-in-out infinite}
 @keyframes desce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @media (max-width:860px){.abertura{min-height:calc(100svh - 64px)}.abertura::before{background:linear-gradient(180deg,rgba(8,37,56,.55) 0%,rgba(8,37,56,.86) 60%,rgba(8,37,56,.96) 100%)}}
-@media (prefers-reduced-motion:reduce){.desce i{animation:none}.assina-grande.digitando span::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.desce i{animation:none}.assina-grande.digitando .l2::after{animation:none}}
 
 /* hero (a tese), em papel claro logo depois da abertura */
 .hero{--cap-txt:var(--tinta);--cap-txt-2:var(--tinta-2);--cap-linha:var(--linha);--ouro-cap:var(--ouro);--cap-2:var(--papel-2);background:var(--papel);padding-block:clamp(56px,8vw,104px) 0}
@@ -375,15 +386,15 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 .tese2 h1{font-size:clamp(36px,5vw,58px);font-weight:800;line-height:1.06;letter-spacing:-.025em;color:var(--tinta)}
 .tese2 h1 em{font-style:normal;color:var(--ouro)}
 .tese2 .ponte{margin-top:clamp(40px,5vw,64px);margin-bottom:clamp(48px,7vw,80px)}
-.tres-caminhos{display:flex;flex-direction:column;gap:14px;padding-top:6px}
-.tc-lead{font-family:var(--f-disp);font-weight:700;font-size:clamp(20px,2vw,24px);line-height:1.25;color:var(--tinta)}
-.tres-caminhos .cam{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.tres-caminhos .cam article{padding:18px;gap:8px}
-.tres-caminhos .cam h4{font-size:18px}
-.tres-caminhos .cam p{font-size:14px}
-.tres-caminhos .nota{font-size:14px}
-@media (max-width:980px){.tese2-grade{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:560px){.tres-caminhos .cam{grid-template-columns:minmax(0,1fr)}}
+.tese2{--cap-2:var(--papel-2)}
+.tese2-grade{align-items:center}
+.tri-caixa{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}
+.tese2 .tri{max-width:460px}
+.tese2 .tri .no{fill:var(--papel)}
+.tese2 .tri .centro-t,.tese2 .tri .rot{fill:var(--tinta)}
+.tese2 .tri .sub{fill:var(--tinta-2)}
+.tri-legenda{font-size:15px;color:var(--tinta-2);text-align:center;max-width:42ch}
+@media (max-width:980px){.tese2-grade{grid-template-columns:minmax(0,1fr)}.tese2 .tri{max-width:360px}}
 .mesa2{background:var(--papel-2)}
 .falas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .fala{position:relative;display:flex;flex-direction:column;gap:14px;min-width:0;padding:26px 22px 20px;background:var(--papel);border:1px solid var(--linha);text-decoration:none;color:var(--tinta);transition:border-color .2s,transform .2s}
@@ -428,7 +439,11 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       <a href="#quem">Quem conduz</a>
     </nav>
     <a class="btn btn-tinta" href="#contato">Conversar</a>
+    <button type="button" class="menu-bt" aria-expanded="false" aria-controls="menu-movel" aria-label="Abrir o menu"><span></span><span></span><span></span></button>
   </div>
+  <nav class="menu-movel" id="menu-movel" aria-label="Seções" hidden>
+    <a href="#mesa">Sua mesa</a><a href="#modelagem">Modelagem</a><a href="#metodo">Como trabalhamos</a><a href="#ao-seu-lado">Ao seu lado</a><a href="#quem">Quem conduz</a><a href="#perguntas">Perguntas</a><a href="#contato">Conversar</a>
+  </nav>
 </header>
 
 <main>
@@ -436,7 +451,7 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
   <div class="palco-3d" aria-hidden="true"><canvas data-cena="heroi"></canvas></div>
   <div class="wrap">
     <p class="sobre">DALETH · Estruturação de Negócios Imobiliários</p>
-    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span aria-hidden="true">Ao seu lado na construção <em>de sua história.</em></span></p>
+    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span class="l1" aria-hidden="true">Ao seu lado na construção</span><span class="l2" aria-hidden="true"><em>de sua história.</em></span></p>
     <a class="desce" href="#tese" aria-label="Descer para a tese"><i aria-hidden="true">↓</i><span>A tese</span></a>
   </div>
 </section>
@@ -456,27 +471,29 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
           <a class="btn btn-linha" href="#modelagem">Ver a modelagem</a>
         </div>
       </div>
-      <div class="tres-caminhos" aria-labelledby="tc-t">
-        <p class="sobre" id="tc-t">O mesmo terreno, três negócios</p>
-        <p class="tc-lead">O terreno é o mesmo. O negócio, não.</p>
-<div class="cam">
-        <article>
-          <h4>Vender</h4>
-          <p>Recebe à vista e sai no primeiro dia.</p>
-          <div class="escala"><span>Captura de valor</span><span class="barra"><i class="on"></i><i></i><i></i></span><span>Exposição</span><span class="barra"><i class="on"></i><i></i><i></i></span></div>
-        </article>
-        <article>
-          <h4>Permutar</h4>
-          <p>Recebe unidades no lugar do preço. Assume risco de obra e de vendas, com caixa preservado.</p>
-          <div class="escala"><span>Captura de valor</span><span class="barra"><i class="on"></i><i class="on"></i><i></i></span><span>Exposição</span><span class="barra"><i class="on"></i><i class="on"></i><i></i></span></div>
-        </article>
-        <article>
-          <h4>Incorporar</h4>
-          <p>Assume o empreendimento inteiro.</p>
-          <div class="escala"><span>Captura de valor</span><span class="barra"><i class="on"></i><i class="on"></i><i class="on"></i></span><span>Exposição</span><span class="barra"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
-        </article>
-      </div>
-        <p class="nota">Comparamos os caminhos lado a lado, com premissas escritas, antes de escolher um. Os números são os do seu caso, nunca os de uma tabela.</p>
+      <div class="tri-caixa">
+    <svg class="tri" viewBox="0 0 420 400" role="img" aria-labelledby="tri-t">
+      <title id="tri-t">Empreendimento, empresa e capital ligados entre si, com uma decisão no centro</title>
+      <path class="aresta" d="M210 70 L70 320 L350 320 Z"/>
+      <path class="fluxo" d="M210 70 L70 320"/>
+      <path class="fluxo b" d="M70 320 L350 320"/>
+      <path class="fluxo c" d="M350 320 L210 70"/>
+      <line class="aresta" x1="210" y1="70" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <line class="aresta" x1="70" y1="320" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <line class="aresta" x1="350" y1="320" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <circle class="centro" cx="210" cy="236" r="7"/>
+      <text class="centro-t" x="210" y="262" text-anchor="middle">UMA DECISÃO</text>
+      <circle class="no" cx="210" cy="70" r="12"/>
+      <circle class="no" cx="70" cy="320" r="12"/>
+      <circle class="no" cx="350" cy="320" r="12"/>
+      <text class="rot" x="210" y="30" text-anchor="middle">EMPREENDIMENTO</text>
+      <text class="sub" x="210" y="48" text-anchor="middle">terreno · produto · obra</text>
+      <text class="rot" x="70" y="358" text-anchor="middle">CAPITAL</text>
+      <text class="sub" x="70" y="376" text-anchor="middle">próprio · sócios · banco</text>
+      <text class="rot" x="350" y="358" text-anchor="middle">EMPRESA</text>
+      <text class="sub" x="350" y="376" text-anchor="middle">construtora · sociedade</text>
+    </svg>
+        <p class="tri-legenda">Empreendimento, empresa e capital se decidem juntos. Mexer em um muda os outros dois. Estruturar é decidir os três de uma vez.</p>
       </div>
     </div>
     <a class="ponte" href="#mesa"><span>Antes de falar de nós, uma pergunta sobre você.</span><i aria-hidden="true">↓</i></a>
@@ -701,28 +718,26 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
   </div>
 </footer>
 <script>
-// Slogan digitado: as variações entram e saem sobre o tronco comum; a última fica.
+// Slogan digitado: a primeira linha fica parada; as variações entram e saem na segunda, e a última fica em dourado.
 (function(){
   var p=document.getElementById("assina"); if(!p) return;
-  var alvo=p.querySelector("span");
+  var alvo=p.querySelector(".l2");
   if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var tronco="Ao seu lado na construção ";
-  var fins=["", "de seu projeto", "de seu empreendimento", "de seu legado", "de sua história."];
-  var i=0, texto=tronco, fim=fins[0];
+  var fins=["de seu projeto", "de seu empreendimento", "de seu legado", "de sua história."];
+  var i=0, texto="", fim=fins[0];
   var final=alvo.innerHTML;
-  p.classList.add("digitando"); alvo.textContent=texto;
+  p.classList.add("digitando"); alvo.textContent="";
   function espera(ms,fn){ setTimeout(fn,ms); }
   function digitar(){
-    var meta=tronco+fim;
-    if(texto.length<meta.length){ texto=meta.slice(0,texto.length+1); alvo.textContent=texto; return espera(42+Math.random()*45,digitar); }
+    if(texto.length<fim.length){ texto=fim.slice(0,texto.length+1); alvo.textContent=texto; return espera(46+Math.random()*45,digitar); }
     if(i===fins.length-1){ return espera(1400,function(){ alvo.innerHTML=final; p.classList.remove("digitando"); }); }
-    espera(fim?1300:700,apagar);
+    espera(1300,apagar);
   }
   function apagar(){
-    if(texto.length>tronco.length){ texto=texto.slice(0,-1); alvo.textContent=texto; return espera(22,apagar); }
-    i++; fim=fins[i]; espera(260,digitar);
+    if(texto.length){ texto=texto.slice(0,-1); alvo.textContent=texto; return espera(22,apagar); }
+    i++; fim=fins[i]; espera(300,digitar);
   }
-  espera(500,digitar);
+  espera(900,digitar);
 })();
 </script>
 <script>
@@ -738,6 +753,16 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       if(history.replaceState) history.replaceState(null,"","#modelagem");
     });
   });
+})();
+</script>
+<script>
+// Menu do celular: abre em lista, fecha ao escolher uma seção ou com Esc
+(function(){
+  var bt=document.querySelector(".menu-bt"), menu=document.getElementById("menu-movel"); if(!bt||!menu) return;
+  function fechar(){ bt.setAttribute("aria-expanded","false"); menu.hidden=true; }
+  bt.addEventListener("click",function(){ var aberto=bt.getAttribute("aria-expanded")==="true"; if(aberto) fechar(); else { bt.setAttribute("aria-expanded","true"); menu.hidden=false; } });
+  menu.addEventListener("click",function(e){ if(e.target.tagName==="A") fechar(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") fechar(); });
 })();
 </script>
 </body>
