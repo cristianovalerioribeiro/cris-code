@@ -154,7 +154,7 @@
       ficha.classList.remove("troca"); void ficha.offsetWidth; ficha.classList.add("troca");
       preencherFicha(ficha, f);
       var b = botoes[FRENTES.indexOf(f)];
-      if (b && origem !== "auto" && b.scrollIntoView) b.scrollIntoView({ block: "nearest", inline: "center", behavior: reduzir ? "auto" : "smooth" });
+      if (b && origem !== "auto" && origem !== "inicio" && b.scrollIntoView) b.scrollIntoView({ block: "nearest", inline: "center", behavior: reduzir ? "auto" : "smooth" });
       if (origem === "ligacao" && window.innerWidth < 1024) ficha.scrollIntoView({ block: "nearest", behavior: reduzir ? "auto" : "smooth" });
     });
     mostrar("tudo", "inicio");
