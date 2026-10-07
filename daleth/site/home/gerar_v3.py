@@ -24,8 +24,12 @@ CSS_V3 = """
 :root{--foco:#7A5A2C}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--foco:#CAA972}}
 :root[data-theme="dark"]{--foco:#CAA972}
-.btn-linha{border-color:var(--linha);color:var(--tinta)}
-.cap .btn-linha,.modelar .btn-linha{border-color:var(--cap-linha);color:var(--cap-txt)}
+.btn-linha{border-color:var(--tinta-2);color:var(--tinta)}
+.cap .btn-linha,.modelar .btn-linha{border-color:var(--cap-txt-2);color:var(--cap-txt)}
+.cap,.modelar{--foco:#D4B37C}
+@media (max-width:1100px){.topo nav:not(.menu-movel){gap:16px;font-size:13px}}
+@media (max-width:1023px){.mp-palco{height:min(88vw,420px)}.mp-controles{order:0;margin:16px 0 0}.mp-ficha{order:1}.modelar-prancha .cab{order:-1}}
+
 .topo .btn{display:inline-flex}
 @media (max-width:860px){.topo .btn{display:inline-flex;padding:9px 14px;font-size:14px}.topo .wrap{gap:10px}}
 .abertura .clareza{font-size:clamp(15px,1.5vw,18px);color:var(--cap-txt-2);max-width:40ch;margin:0}
@@ -40,7 +44,7 @@ CSS_V3 = """
 .perguntas-frentes div{min-width:0}
 .perguntas-frentes h3{font-size:18px;font-weight:700;color:var(--m-branco);margin-bottom:10px}
 .perguntas-frentes p{display:flex;flex-wrap:wrap;gap:6px;margin:0}
-.perguntas-frentes button{font:500 12px/1 var(--f-txt);padding:7px 10px;border:1px solid rgba(212,179,124,.45);border-radius:999px;background:rgba(255,255,255,.04);color:var(--m-branco);cursor:pointer}
+.perguntas-frentes button{font:500 13px/1 var(--f-txt);min-height:44px;padding:0 14px;border:1px solid rgba(212,179,124,.45);border-radius:999px;background:rgba(255,255,255,.04);color:var(--m-branco);cursor:pointer}
 .perguntas-frentes button:hover{border-color:var(--m-dourado-claro)}
 .modelar .fecho-mod{margin-top:20px;color:var(--m-gelo);font-size:15px;max-width:62ch}
 @media (max-width:860px){.perguntas-frentes{grid-template-columns:minmax(0,1fr)}}
@@ -77,7 +81,7 @@ CSS_V3 = """
 def header(itens):
     nav = "".join(f'      <a href="#{a}">{t}</a>\n' for a, t in itens)
     movel = "".join(f'<a href="#{a}">{t}</a>' for a, t in itens) + '<a href="#contato">Conversar</a>'
-    return f'''<a class="pular" href="#tese">Ir para o conteúdo</a>
+    return f'''<a class="pular" href="#main">Ir para o conteúdo</a>
 <header class="topo">
   <div class="wrap">
     {LOGO}
@@ -97,7 +101,7 @@ ABERTURA = '''<section class="cap abertura" id="inicio" aria-label="Abertura">
   <div class="wrap">
     <p class="sobre">DALETH · Estruturação de Negócios Imobiliários</p>
     <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span class="l1" aria-hidden="true">Ao seu lado na construção</span><span class="l2" aria-hidden="true"><em>de sua história.</em></span></p>
-    <p class="clareza">Estruturamos empresas e empreendimentos imobiliários para quem decide construir mais.</p>
+    <p class="clareza">Estruturação de empresas e empreendimentos imobiliários: comparamos os caminhos antes da decisão e ficamos ao lado na implantação.</p>
     <a class="desce" href="#tese" aria-label="Descer para a tese"><i aria-hidden="true">↓</i><span>A tese</span></a>
   </div>
 </section>
@@ -118,7 +122,7 @@ TESE = f'''<section class="tese2" id="tese">
       </div>
       <div class="tri-caixa">
 {TRI}
-        <p class="tri-legenda">Empresa, empreendimento e capital se decidem juntos. Mexer em um muda os outros dois.</p>
+        <p class="tri-legenda">Empresa, empreendimento e capital se decidem juntos.</p>
       </div>
     </div>
     {{PONTE}}
@@ -126,7 +130,7 @@ TESE = f'''<section class="tese2" id="tese">
 </section>
 '''
 
-FICHA_ESTATICA = '''<p class="mf-num">00 · Modelagem do empreendimento</p><h3 class="mf-nome">Tudo conectado</h3><p class="mf-frase">Mudar uma frente muda as outras. Por isso comparamos antes de escolher.</p><ul class="mf-sub"><li>Terreno</li><li>Produto e mercado</li><li>Técnica</li><li>Jurídico</li><li>Societário</li><li>Tributário</li><li>Econômico-financeiro</li><li>Capital e funding</li><li>Comercialização</li><li>Risco e retorno</li></ul>'''
+FICHA_ESTATICA = '''<p class="mf-num">00 · Modelagem do empreendimento</p><h3 class="mf-nome">Tudo conectado</h3><p class="mf-frase">Mudar uma frente muda as outras. Cada caminho é comparado antes da escolha.</p><ul class="mf-sub"><li>Terreno</li><li>Produto e mercado</li><li>Técnica</li><li>Jurídico</li><li>Societário</li><li>Tributário</li><li>Econômico-financeiro</li><li>Capital e funding</li><li>Comercialização</li><li>Risco e retorno</li></ul>'''
 
 def modelagem(titulo, ponte=""):
     return f'''<section class="modelar modelar-prancha" id="modelagem" data-modelar="prancha" aria-labelledby="mod-t" tabindex="-1">
@@ -148,11 +152,11 @@ def modelagem(titulo, ponte=""):
       <button type="button" class="mp-seta" data-passo="1" aria-label="Próxima frente">→</button>
       <button type="button" class="mp-auto" aria-pressed="false">Percorrer as frentes</button>
     </div>
-    <p class="mp-dica">Setas percorrem as frentes. Os nomes em dourado levam a quem cada uma move. <a href="/assets/docs/DALETH-Modelagem-do-Empreendimento.pdf" download>Este capítulo em PDF</a>.</p>
+    <p class="mp-dica">Os nomes em dourado na ficha levam às frentes que cada uma move. <a href="/assets/docs/DALETH-Modelagem-do-Empreendimento.pdf" download>Este capítulo em PDF</a>.</p>
     <div class="perguntas-frentes" aria-label="As frentes, pela pergunta que respondem">
-      <div><h3>O que este terreno pode ser?</h3><p><button type="button" data-frente="terreno">Terreno e permutas</button><button type="button" data-frente="produto">Produto e mercado</button><button type="button" data-frente="tecnica">Técnica e projeto</button><button type="button" data-frente="comercial">Comercialização</button></p></div>
-      <div><h3>Em que forma o negócio existe?</h3><p><button type="button" data-frente="societario">Societário</button><button type="button" data-frente="juridico">Jurídico e documental</button><button type="button" data-frente="tributario">Tributário</button></p></div>
-      <div><h3>Como o dinheiro entra, sai e volta?</h3><p><button type="button" data-frente="financeiro">Fluxo e exposição</button><button type="button" data-frente="capital">Capital e funding</button><button type="button" data-frente="risco">Risco e retorno</button></p></div>
+      <div><h3>O que este terreno pode ser?</h3><p><button type="button" data-frente="terreno">Terreno</button><button type="button" data-frente="produto">Produto e mercado</button><button type="button" data-frente="tecnica">Técnica</button></p></div>
+      <div><h3>Em que forma o negócio existe?</h3><p><button type="button" data-frente="juridico">Jurídico e regulatório</button><button type="button" data-frente="societario">Societário e governança</button><button type="button" data-frente="tributario">Tributário</button></p></div>
+      <div><h3>Como o dinheiro entra, sai e volta?</h3><p><button type="button" data-frente="financeiro">Econômico-financeiro</button><button type="button" data-frente="capital">Capital e funding</button><button type="button" data-frente="comercial">Comercialização</button><button type="button" data-frente="risco">Risco e retorno</button></p></div>
     </div>
     <p class="fecho-mod">O projeto fica com o arquiteto, a empresa com o contador, o capital com o banco. Alguém precisa olhar os três juntos.</p>
     {ponte}
@@ -160,7 +164,7 @@ def modelagem(titulo, ponte=""):
 </section>
 '''
 
-def metodo(recebe_longo=False, ponte=""):
+def metodo(recebe_longo=False, ponte="", com_recebe=True):
     R = {
       "mapear": ("O retrato escrito: ativos, restrições, premissas e os caminhos que merecem comparação.",
                  "Um retrato escrito: ativos, recursos, restrições, riscos, premissas e oportunidades. As perguntas abertas, por urgência. Os caminhos que merecem comparação, e os que não, com o motivo."),
@@ -172,12 +176,13 @@ def metodo(recebe_longo=False, ponte=""):
                    "Presença nos pontos de controle definidos na estruturação. A cada ponto, uma leitura escrita do que mudou e do que fazer. A execução continua com a sua empresa."),
     }
     k = 1 if recebe_longo else 0
+    def rec(ch): return f'<p class="recebe"><b>Você recebe</b>{R[ch][k]}</p>' if com_recebe else ''
     return f'''<section class="metodo" id="metodo" aria-labelledby="met-t">
   <div class="wrap">
     <div class="cab">
       <p class="sobre">Como trabalhamos</p>
-      <h2 class="h2" id="met-t">Quatro movimentos. Cada um termina com algo escrito na sua mão.</h2>
-      <p class="lead">Começa com uma conversa sem custo. Cada movimento entrega algo escrito e pede uma decisão sua.</p>
+      <h2 class="h2" id="met-t">Quatro movimentos. Cada um termina com uma decisão sua.</h2>
+      <p class="lead">Começa com uma conversa sem custo. Nada avança sem algo escrito e lido com você.</p>
     </div>
     <ol class="passos">
       <li class="entrada">
@@ -186,12 +191,11 @@ def metodo(recebe_longo=False, ponte=""):
         <p class="recebe">Você conta o terreno, a empresa ou a necessidade de capital. Saímos sabendo se há caso e por onde ele começa.</p>
         <span class="selo">sem custo</span>
       </li>
-      <li><span class="num">01</span><h3>Mapear</h3><p class="para">para compreender</p><p class="frase">Mapear a situação real, antes de recomendar.</p><p class="recebe"><b>Você recebe</b>{R["mapear"][k]}</p></li>
-      <li><span class="num">02</span><h3>Modelar</h3><p class="para">para enxergar</p><p class="frase">Comparar os caminhos antes de comprometer o capital.</p><p class="recebe"><b>Você recebe</b>{R["modelar"][k]}</p></li>
-      <li><span class="num">03</span><h3>Estruturar</h3><p class="para">para tornar executável</p><p class="frase">Transformar o caminho escolhido em operação.</p><p class="recebe"><b>Você recebe</b>{R["estruturar"][k]}</p></li>
-      <li><span class="num">04</span><h3>Conduzir</h3><p class="para">para funcionar</p><p class="frase">Acompanhar a implantação ao lado de quem executa.</p><p class="recebe"><b>Você recebe</b>{R["conduzir"][k]}</p></li>
+      <li><span class="num">01</span><h3>Mapear</h3><p class="para">para compreender</p><p class="frase">Mapear a situação real, antes de recomendar.</p>{rec("mapear")}</li>
+      <li><span class="num">02</span><h3>Modelar</h3><p class="para">para enxergar</p><p class="frase">Comparar os caminhos antes de comprometer o capital.</p>{rec("modelar")}</li>
+      <li><span class="num">03</span><h3>Estruturar</h3><p class="para">para tornar executável</p><p class="frase">Transformar o caminho escolhido em operação.</p>{rec("estruturar")}</li>
+      <li><span class="num">04</span><h3>Conduzir</h3><p class="para">para funcionar</p><p class="frase">Acompanhar a implantação ao lado de quem executa.</p>{rec("conduzir")}</li>
     </ol>
-    <p class="nota" style="margin-top:24px">Escopo, prazo e valor de cada movimento ficam na proposta, caso a caso.</p>
     {ponte}
   </div>
 </section>
@@ -202,8 +206,8 @@ def entregas(fundo_papel=False, ponte=""):
   <div class="wrap">
     <div class="cab">
       <p class="sobre">O que você recebe</p>
-      <h2 class="h2" id="ent-t">O que fica na sua mão em cada movimento.</h2>
-      <p class="lead">Nada aqui tem nome de produto. Cada movimento termina com algo escrito, lido com você, e uma decisão sua.</p>
+      <h2 class="h2" id="ent-t">O que fica na sua mão, do primeiro retrato à obra.</h2>
+      <p class="lead">Quatro entregas, uma por movimento. Nenhuma delas é a obra.</p>
     </div>
     <div class="entregas-grade">
       <div class="entrega"><span class="num">01 · MAPEAR</span><h3>Um retrato escrito</h3><p>Ativos, recursos, restrições, riscos, premissas e oportunidades. As perguntas abertas, por urgência. Os caminhos que merecem comparação, e os que não, com o motivo. <b>Você decide se vale modelar.</b></p></div>
@@ -211,7 +215,6 @@ def entregas(fundo_papel=False, ponte=""):
       <div class="entrega"><span class="num">03 · ESTRUTURAR</span><h3>A operação por escrito</h3><p>Sociedade e passos de constituição, forma de aquisição do terreno, contratos com responsável por cada um, caixa alvo com pontos de controle, dossiê pronto para banco, investidor ou sócio. <b>Quem aprova é o financiador.</b></p></div>
       <div class="entrega"><span class="num">04 · CONDUZIR</span><h3>Presença nos pontos de controle</h3><p>Definidos na estruturação. A cada ponto, uma leitura escrita do que mudou em relação à premissa e do que fazer. <b>A execução continua com a sua empresa.</b></p></div>
     </div>
-    <p class="nota">Escopo, prazo e valor de cada movimento ficam na proposta, caso a caso.</p>
     {ponte}
   </div>
 </section>
@@ -261,7 +264,7 @@ def quem(com_papeis=False, ponte=""):
     <div class="txt">
       <p class="lead">Atuou nos dois lados do crédito imobiliário, analisando e estruturando operações. Acompanhou ciclos completos de incorporação, do terreno à entrega.</p>
       <div class="provas">
-        <p class="num">R$ 324 mi<small>em VGV de operações de financiamento à produção trabalhadas, na trajetória do fundador, via TRAL3.</small></p>
+        <p class="num">R$ 324 mi<small>em VGV (valor geral de vendas) de operações de financiamento à produção trabalhadas, na trajetória do fundador, via TRAL3.</small></p>
         <p class="num">30<small>operações de financiamento à produção.</small></p>
         <p class="num">19<small>construtoras e incorporadoras atendidas nessas operações.</small></p>
       </div>
@@ -284,9 +287,9 @@ FAQ = '''<section class="faq" id="perguntas" aria-labelledby="faq-t">
       <details><summary>Vocês decidem por mim?</summary><p>Não. Mostramos os caminhos lado a lado, com as consequências de cada um, e dizemos qual tomaríamos. A decisão é sua e fica registrada com a premissa que a sustenta.</p></details>
       <details><summary>Vocês recebem comissão do banco?</summary><p>Não. Não somos correspondentes bancários nem recebemos de instituição financeira. Isso nos deixa livres para comparar qualquer fonte de capital. Quem aprova o crédito é o financiador.</p></details>
       <details><summary>Já tenho contador, advogado e arquiteto. Faz sentido?</summary><p>Faz, e não substituímos nenhum deles. Trabalhamos ao lado do seu time. O que costuma faltar é alguém olhando empresa, empreendimento e capital juntos.</p></details>
-      <details><summary>Minha obra parou. É caso para vocês?</summary><p>Pode ser. Obra parada mexe nos três lados ao mesmo tempo e quase sempre começa pela frente jurídica. A conversa de enquadramento diz se há caminho e por onde ele começa.</p></details>
+      <details><summary>Minha obra parou. É caso para vocês?</summary><p>Pode ser. Obra parada mexe nos três lados ao mesmo tempo. A conversa de enquadramento diz se há caminho e qual seria o primeiro passo.</p></details>
       <details><summary>Atendem fora de Minas Gerais?</summary><p>Sim. A base é Belo Horizonte e a atuação é nacional, à distância, com presença quando o caso pede. Documentos e decisões circulam por escrito.</p></details>
-      <details><summary>O que vocês não fazem?</summary><p>Não captamos recursos, não damos curso, não fazemos BPO e não assumimos a execução. É estruturação.</p></details>
+      <details><summary>O que vocês não fazem?</summary><p>Não captamos recursos, não damos curso, não terceirizamos rotinas (BPO) e não assumimos a execução. É estruturação.</p></details>
     </div>
   </div>
 </section>
@@ -296,8 +299,8 @@ CONVERSA = '''<section class="cap contato" id="contato" aria-labelledby="conv-t"
   <div class="wrap">
     <div class="cab" style="margin-bottom:0">
       <p class="sobre">Começa com uma conversa</p>
-      <h2 id="conv-t">Conte o terreno, o produto ou a empresa.</h2>
-      <p class="lead">Você conta. Saímos sabendo se há caso e por onde ele começa. Escopo, prazo e valor ficam na proposta.</p>
+      <h2 id="conv-t">Conte o terreno, a empresa ou a obra.</h2>
+      <p class="lead">Uma conversa basta para saber se há caso. Se houver, a proposta diz escopo, prazo e valor.</p>
       <ol class="degraus">
         <li><b>Conversa de enquadramento</b><span>Sem custo e sem compromisso.</span></li>
         <li><b>Mapeamento</b><span>O primeiro trabalho, só se fizer sentido para os dois lados.</span></li>
@@ -305,9 +308,9 @@ CONVERSA = '''<section class="cap contato" id="contato" aria-labelledby="conv-t"
       </ol>
     </div>
     <div class="canal">
-      <b>Canal de contato</b>
-      <p>Em definição: e-mail, WhatsApp ou formulário. Este quadro sai quando o canal estiver escolhido.</p>
-      <p>Confidencial desde a primeira mensagem. Belo Horizonte · atuação nacional.</p>
+      <b>Canal de contato · em breve</b>
+      <p>A conversa de enquadramento já vale como está: sem custo e confidencial desde a primeira mensagem.</p>
+      <p>Belo Horizonte · atuação nacional</p>
     </div>
   </div>
 </section>
@@ -318,12 +321,12 @@ CTA_MOVEL = '''<div class="cta-movel" id="cta-movel" aria-hidden="true"><a class
 JS_V3 = '''<script>
 // Barra de CTA no celular: aparece depois da abertura, some perto do fecho
 (function(){
-  var barra=document.getElementById("cta-movel"), ab=document.getElementById("inicio"), fim=document.getElementById("contato");
+  var barra=document.getElementById("cta-movel"), ab=document.getElementById("tese"), fim=document.getElementById("contato");
   if(!barra||!ab||!fim||!("IntersectionObserver" in window)) return;
   document.body.classList.add("com-cta-movel");
   var passouAbertura=false, noFim=false;
   function ajustar(){ var v=passouAbertura&&!noFim; barra.classList.toggle("visivel",v); barra.setAttribute("aria-hidden",String(!v)); barra.querySelector("a").tabIndex=v?0:-1; }
-  new IntersectionObserver(function(es){ es.forEach(function(e){ passouAbertura=!e.isIntersecting; }); ajustar(); },{threshold:0.15}).observe(ab);
+  new IntersectionObserver(function(es){ es.forEach(function(e){ passouAbertura=!e.isIntersecting && e.boundingClientRect.bottom<0; }); ajustar(); },{threshold:0}).observe(ab);
   new IntersectionObserver(function(es){ es.forEach(function(e){ noFim=e.isIntersecting; }); ajustar(); },{threshold:0.1}).observe(fim);
 })();
 </script>
@@ -336,27 +339,27 @@ VERSOES = {
   "v3a": dict(
     nome="A · Direta",
     nav=[("modelagem","Modelagem"),("metodo","Como trabalhamos"),("quem","Quem conduz"),("perguntas","Perguntas")],
-    corpo=lambda: [ABERTURA, TESE.replace("{PONTE}",""), modelagem("Nenhuma frente de um empreendimento se decide sozinha."),
+    corpo=lambda: [ABERTURA, TESE.replace("{PONTE}",""), modelagem("Toda oportunidade guarda mais de um negócio."),
                    metodo(recebe_longo=True), quem(com_papeis=True), FAQ, CONVERSA]),
   "v3b": dict(
     nome="B · Narrativa",
     nav=[("modelagem","Modelagem"),("metodo","Como trabalhamos"),("entregas","O que você recebe"),("ao-seu-lado","Ao seu lado"),("quem","Quem conduz")],
-    corpo=lambda: [ABERTURA, TESE.replace("{PONTE}", ponte("modelagem","Se os três lados se movem juntos, como enxergar isso antes de decidir?")),
-                   modelagem("Toda oportunidade guarda mais de um negócio.", ponte("metodo","Comparar antes faz sentido. Qual é a sequência?")),
-                   metodo(ponte=ponte("entregas","E o que fica na minha mão em cada passo?")),
-                   entregas(fundo_papel=True, ponte=ponte("ao-seu-lado","Depois que eu escolher, vocês somem ou ficam?")),
+    corpo=lambda: [ABERTURA, TESE.replace("{PONTE}", ponte("modelagem","Como enxergar os três lados juntos antes de decidir.")),
+                   modelagem("Toda oportunidade guarda mais de um negócio.", ponte("metodo","A sequência, do primeiro retrato à obra.")),
+                   metodo(ponte=ponte("entregas","O que fica na sua mão em cada passo."), com_recebe=False),
+                   entregas(fundo_papel=True, ponte=ponte("ao-seu-lado","A decisão é sua. E depois dela?")),
                    lado(), quem(), FAQ, CONVERSA]),
   "v3c": dict(
     nome="C · Entregas primeiro",
     nav=[("entregas","O que você recebe"),("modelagem","Modelagem"),("metodo","Como trabalhamos"),("quem","Quem conduz")],
     corpo=lambda: [ABERTURA, TESE.replace("{PONTE}",""), entregas(),
-                   modelagem("Toda oportunidade guarda mais de um negócio."), metodo(), quem(com_papeis=True), FAQ, CONVERSA]),
+                   modelagem("Toda oportunidade guarda mais de um negócio."), metodo(com_recebe=False), quem(com_papeis=True), FAQ, CONVERSA]),
 }
 
 for chave, v in VERSOES.items():
     corpo = "".join(v["corpo"]())
     html = (HEAD.replace("</style>", CSS_V3 + "</style>")
             .replace("<title>DALETH · Estruturação de Negócios Imobiliários</title>", f"<title>DALETH · Estruturação de Negócios Imobiliários (teste {v['nome']})</title>")
-            + "</head>\n<body>\n" + header(v["nav"]) + "\n<main>\n" + corpo + "</main>\n\n" + RODAPE + "\n" + CTA_MOVEL + SCRIPTS + JS_V3 + "</body>\n</html>\n")
+            + "</head>\n<body>\n" + header(v["nav"]) + "\n<main id=\"main\">\n" + corpo + "</main>\n\n" + RODAPE + "\n" + CTA_MOVEL + SCRIPTS + JS_V3 + "</body>\n</html>\n")
     (AQUI / f"{chave}.html").write_text(html, encoding="utf-8")
     print(chave, len(html)//1024, "KB", "seções:", corpo.count("<section"))

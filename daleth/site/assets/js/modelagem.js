@@ -13,7 +13,7 @@
 
   var FRENTES = [
     { id: "tudo", num: "00", nome: "Tudo conectado", curto: "Tudo",
-      frase: "Mudar uma frente muda as outras. Por isso comparamos antes de escolher.",
+      frase: "Mudar uma frente muda as outras. Cada caminho é comparado antes da escolha.",
       sub: ["Terreno", "Produto e mercado", "Técnica", "Jurídico", "Societário", "Tributário", "Econômico-financeiro", "Capital e funding", "Comercialização", "Risco e retorno"],
       move: [] },
     { id: "terreno", num: "01", nome: "Terreno", curto: "Terreno",
@@ -124,15 +124,17 @@
     var espera = null, autoBtn = raiz.querySelector(".mp-auto");
     function parar() {
       if (espera) { clearInterval(espera); espera = null; }
-      if (autoBtn) { autoBtn.setAttribute("aria-pressed", "false"); autoBtn.textContent = "Passear pelas frentes"; }
+      ficha.setAttribute("aria-live", "polite");
+      if (autoBtn) { autoBtn.setAttribute("aria-pressed", "false"); autoBtn.textContent = "Percorrer as frentes"; }
     }
     function passear() {
       parar();
+      ficha.setAttribute("aria-live", "off");
       espera = setInterval(function () {
         var i = FRENTES.findIndex(function (f) { return f.id === atual; });
         mostrar(FRENTES[(i + 1) % FRENTES.length].id, "auto");
       }, 5000);
-      if (autoBtn) { autoBtn.setAttribute("aria-pressed", "true"); autoBtn.textContent = "Parar o passeio"; }
+      if (autoBtn) { autoBtn.setAttribute("aria-pressed", "true"); autoBtn.textContent = "Parar"; }
     }
     if (autoBtn) autoBtn.addEventListener("click", function () { if (espera) parar(); else passear(); });
     raiz.querySelectorAll("[data-passo]").forEach(function (seta) {
@@ -160,7 +162,7 @@
       if (origem === "ligacao" && window.innerWidth < 1024) ficha.scrollIntoView({ block: "nearest", behavior: reduzir ? "auto" : "smooth" });
     });
     mostrar("tudo", "inicio");
-    if (!reduzir && "IntersectionObserver" in window) {
+    if (!reduzir && window.innerWidth >= 1024 && "IntersectionObserver" in window) {
       var tocado = false;
       raiz.addEventListener("pointerdown", function () { tocado = true; }, { once: true });
       new IntersectionObserver(function (es) {
