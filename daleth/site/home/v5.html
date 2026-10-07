@@ -564,14 +564,14 @@ main > section:not(.heroi-v4):not(.prova):not(.assina-sec){padding-block:clamp(4
 .mp-dica{margin-top:14px}
 /* método em fluxo */
 .metodo-v5 .fluxo{position:relative;margin-top:clamp(28px,4vw,44px)}
-.metodo-v5 .fio{position:absolute;left:0;right:0;top:9px;height:22px;pointer-events:none}
-.metodo-v5 .fio line{stroke:var(--linha);stroke-width:2}
-.metodo-v5 .fio .fio-vivo{stroke:var(--ouro-marca);stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1)}
-.metodo-v5 .fluxo.visto .fio .fio-vivo{stroke-dashoffset:0}
-.metodo-v5 .fio circle{fill:var(--papel);stroke:var(--tinta);stroke-width:2;transition:fill .4s,stroke .4s}
-.metodo-v5 .fluxo.visto .fio circle{fill:var(--ouro-marca);stroke:var(--ouro-marca)}
-.metodo-v5 .fluxo.visto .fio circle:nth-of-type(2){transition-delay:.6s}.metodo-v5 .fluxo.visto .fio circle:nth-of-type(3){transition-delay:1.2s}.metodo-v5 .fluxo.visto .fio circle:nth-of-type(4){transition-delay:1.8s}
-.metodo-v5 .passos{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:44px}
+.metodo-v5 .fio{position:relative;height:14px;margin:0 0 30px}
+.metodo-v5 .fio-base,.metodo-v5 .fio-vivo{position:absolute;left:0;right:0;top:6px;height:2px;background:var(--linha)}
+.metodo-v5 .fio-vivo{background:var(--ouro-marca);transform-origin:left;transform:scaleX(0);transition:transform 2.4s cubic-bezier(.4,0,.2,1)}
+.metodo-v5 .fluxo.visto .fio-vivo{transform:scaleX(1)}
+.metodo-v5 .fio i{position:absolute;top:0;left:calc(var(--p) * 33.333%);width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--papel);border:2px solid var(--tinta);box-sizing:border-box;transition:background .4s calc(var(--p) * .6s),border-color .4s calc(var(--p) * .6s)}
+.metodo-v5 .fio i:last-child{left:100%}
+.metodo-v5 .fluxo.visto .fio i{background:var(--ouro-marca);border-color:var(--ouro-marca)}
+.metodo-v5 .passos{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:0}
 .metodo-v5 .passos li{gap:10px}
 .metodo-v5 .passos h3{font-size:24px}
 .metodo-v5 .passos .frase{font-size:17px;color:var(--tinta)}
@@ -582,7 +582,7 @@ main > section:not(.heroi-v4):not(.prova):not(.assina-sec){padding-block:clamp(4
 .metodo-v5 .pergunta{font-family:var(--f-disp);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ouro)}
 .metodo-v5 .papeis-linha{margin-top:clamp(28px,4vw,40px);font-size:clamp(18px,2vw,22px)}
 .metodo-v5 .papeis-linha em{color:var(--ouro)}
-@media (max-width:980px){.metodo-v5 .fio{display:none}.metodo-v5 .passos{padding-top:4px}}
+@media (max-width:980px){.metodo-v5 .fio{display:none}}
 /* assinatura à esquerda, depois do método, como clímax */
 .assina-sec.esquerda{text-align:left;justify-content:center;min-height:min(66svh,640px)}
 .assina-sec.esquerda .wrap{align-items:flex-start}
@@ -748,8 +748,7 @@ footer .slogan{display:none}
       <p class="lead">A porta de entrada é o negócio, não um produto. Podemos começar por um terreno, um empreendimento, uma empresa ou uma necessidade de capital. O mapeamento mostra quais frentes precisam ser estruturadas.</p>
     </div>
     <div class="fluxo" id="fluxo">
-      <svg class="fio" viewBox="0 0 1000 22" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="11" x2="1000" y2="11"/><line class="fio-vivo" x1="0" y1="11" x2="1000" y2="11"/></svg>
-      <svg class="fio" viewBox="0 0 1000 22" aria-hidden="true" style="overflow:visible"><circle cx="0" cy="11" r="6"/><circle cx="333" cy="11" r="6"/><circle cx="666" cy="11" r="6"/><circle cx="1000" cy="11" r="6"/></svg>
+      <div class="fio" aria-hidden="true"><span class="fio-base"></span><span class="fio-vivo"></span><i style="--p:0"></i><i style="--p:1"></i><i style="--p:2"></i><i style="--p:3"></i></div>
       <ol class="passos">
         <li><span class="num">01</span><h3>Mapear</h3><p class="pergunta">Onde estamos?</p><p class="frase">Entender o negócio como ele é.</p><p class="detalhe">Premissas, ativos, restrições, riscos, recursos e oportunidades.</p><p class="papel"><b>Você expõe o contexto.</b><em>A DALETH mapeia.</em></p></li>
         <li><span class="num">02</span><h3>Modelar</h3><p class="pergunta">Quais caminhos existem?</p><p class="frase">Comparar o que ele pode ser.</p><p class="detalhe">Cenários, caixa, capital, risco, retorno e impacto sobre a empresa.</p><p class="papel"><b>Você escolhe o caminho.</b><em>A DALETH compara.</em></p></li>
