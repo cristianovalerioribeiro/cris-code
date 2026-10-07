@@ -424,8 +424,12 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 :root{--foco:#7A5A2C}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--foco:#CAA972}}
 :root[data-theme="dark"]{--foco:#CAA972}
-.btn-linha{border-color:var(--linha);color:var(--tinta)}
-.cap .btn-linha,.modelar .btn-linha{border-color:var(--cap-linha);color:var(--cap-txt)}
+.btn-linha{border-color:var(--tinta-2);color:var(--tinta)}
+.cap .btn-linha,.modelar .btn-linha{border-color:var(--cap-txt-2);color:var(--cap-txt)}
+.cap,.modelar{--foco:#D4B37C}
+@media (max-width:1100px){.topo nav:not(.menu-movel){gap:16px;font-size:13px}}
+@media (max-width:1023px){.mp-palco{height:min(88vw,420px)}.mp-controles{order:0;margin:16px 0 0}.mp-ficha{order:1}.modelar-prancha .cab{order:-1}}
+
 .topo .btn{display:inline-flex}
 @media (max-width:860px){.topo .btn{display:inline-flex;padding:9px 14px;font-size:14px}.topo .wrap{gap:10px}}
 .abertura .clareza{font-size:clamp(15px,1.5vw,18px);color:var(--cap-txt-2);max-width:40ch;margin:0}
@@ -440,7 +444,7 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 .perguntas-frentes div{min-width:0}
 .perguntas-frentes h3{font-size:18px;font-weight:700;color:var(--m-branco);margin-bottom:10px}
 .perguntas-frentes p{display:flex;flex-wrap:wrap;gap:6px;margin:0}
-.perguntas-frentes button{font:500 12px/1 var(--f-txt);padding:7px 10px;border:1px solid rgba(212,179,124,.45);border-radius:999px;background:rgba(255,255,255,.04);color:var(--m-branco);cursor:pointer}
+.perguntas-frentes button{font:500 13px/1 var(--f-txt);min-height:44px;padding:0 14px;border:1px solid rgba(212,179,124,.45);border-radius:999px;background:rgba(255,255,255,.04);color:var(--m-branco);cursor:pointer}
 .perguntas-frentes button:hover{border-color:var(--m-dourado-claro)}
 .modelar .fecho-mod{margin-top:20px;color:var(--m-gelo);font-size:15px;max-width:62ch}
 @media (max-width:860px){.perguntas-frentes{grid-template-columns:minmax(0,1fr)}}
@@ -478,7 +482,7 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 <script src="/cris-code/assets/js/modelagem.js" defer></script>
 </head>
 <body>
-<a class="pular" href="#tese">Ir para o conteúdo</a>
+<a class="pular" href="#main">Ir para o conteúdo</a>
 <header class="topo">
   <div class="wrap">
     <a class="marca" href="#inicio" aria-label="DALETH, início"><svg fill-rule="evenodd" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="42 112 2082 550" aria-hidden="true" focusable="false"><path d="M64 134L237 134C353 134 422 184 422 282C422 373 342 439 238 439L64 439L64 436C93 433 105 425 105 400L105 174C105 148 92 140 64 137ZM174 172C174 151 177 145 200 145L236 145C308 145 352 210 352 282C352 365 302 430 230 430L207 430C180 430 174 426 174 405Z"/><path d="M406 439L406 435C425 431 434 422 443 414L606 135C608 132 611 132 613 135L752 397C766 424 776 432 796 435L796 439L676 439L676 435C693 431 692 424 686 411L580 209L466 414C458 425 462 431 481 435L481 439Z"/><path d="M820 136L969 136L969 139C939 142 929 152 929 180L929 401C929 421 934 429 958 429L996 429C1040 429 1073 406 1097 365L1081 439L820 439L820 436C849 433 859 422 859 399L859 177C859 151 849 141 820 139Z"/><path d="M1125 136L1370 136L1373 199L1370 199C1368 164 1349 149 1300 149L1245 149C1231 149 1228 154 1228 171L1228 278L1265 278C1304 278 1324 268 1331 237L1334 237L1334 337L1331 337C1324 305 1311 292 1265 292L1228 292L1228 399C1228 421 1234 429 1260 429L1295 429C1330 429 1357 411 1385 389L1376 439L1125 439L1125 436C1153 432 1164 422 1164 399L1164 175C1164 150 1152 141 1125 139Z"/><path d="M1419 136L1690 136L1698 206L1694 206C1671 163 1650 149 1607 149L1585 149L1585 399C1585 425 1598 433 1627 436L1627 439L1480 439L1480 436C1507 433 1519 424 1519 399L1519 149L1496 149C1454 149 1430 166 1412 206L1408 206Z"/><path d="M1721 136L1869 136L1869 139C1839 142 1827 152 1827 177L1827 276L1991 276L1991 177C1991 151 1981 141 1953 139L1953 136L2103 136L2103 139C2073 142 2060 152 2060 177L2060 399C2060 424 2072 433 2103 436L2103 439L1953 439L1953 436C1981 433 1991 424 1991 399L1991 289L1827 289L1827 399C1827 424 1839 433 1869 436L1869 439L1721 439L1721 436C1749 433 1759 424 1759 399L1759 177C1759 151 1749 141 1721 139Z"/><path fill="#B58A44" d="M580 321L645 439L512 439Z"/><path fill="#B58A44" d="M896 497L1305 497L1305 508L896 508Z"/><path d="M0.000 0.000L37.000 0.000L37.000 6.000L7.000 6.000L7.000 22.500L34.000 22.500L34.000 28.500L7.000 28.500L7.000 46.000L37.000 46.000L37.000 52.000L0.000 52.000Z" transform="translate(183 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(255 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(326 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(404 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(481 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(561 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(638 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(724 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(799 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(884 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(965 572) scale(1 1)"/><path d="M28.0 -1C43.463972999999996 -1 56 11.08831175 56 26.0C56 40.91168825 43.463972999999996 53 28.0 53C12.536027 53 0 40.91168825 0 26.0C0 11.08831175 12.536027 -1 28.0 -1ZM28.0 5C39.59797975 5 49 14.40202025 49 26.0C49 37.59797975 39.59797975 47 28.0 47C16.40202025 47 7 37.59797975 7 26.0C7 14.40202025 16.40202025 5 28.0 5Z" transform="translate(1049 572) scale(1 1)"/><path d="M0 0L19.6 0C39.2 0 49 10 49 26C49 42 39.2 52 19.6 52L0 52ZM7 6L19.6 6C34.3 6 42 14 42 26C42 38 34.3 46 19.6 46L7 46Z" transform="translate(1190 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1277 572) scale(1 1)"/><path d="M0.000 0.000L7.500 0.000L39.400 40.000L39.400 0.000L46.000 0.000L46.000 52.000L38.500 52.000L6.600 12.000L6.600 52.000L0.000 52.000Z" transform="translate(1397 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1485 572) scale(1 1)"/><path d="M49 7L44.5 12C38 6 32.34 5 26.46 5C11.76 5 7 13 7 26C7 39 11.76 47 26.46 47C34.3 47 40 45 42.4 42L42.4 31L26.950000000000003 31L26.950000000000003 25L49 25L49 45C40 51 36.26 53 25.48 53C8.33 53 0 42 0 26C0 10 8.33 -1 25.48 -1C36.26 -1 41 1 49 7Z" transform="translate(1556 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1641 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(1731 572) scale(1 1)"/><path d="M0.000 0.000L7.000 0.000L7.000 52.000L0.000 52.000Z" transform="translate(1816 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1862 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(1952 572) scale(1 1)"/><path d="M905 623L910 623L908 628C920 628 919 640 908 640L901 638L903 634C909 637 914 633 907 632L903 632Z"/><path d="M979 565C980 553 986 555 992 558C998 561 1000 561 1001 557L1006 557C1005 568 999 568 992 564C986 561 984 561 984 565Z"/><path d="M1663 564L1670 555L1679 555L1670 564Z"/></svg></a>
@@ -496,13 +500,13 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
   </nav>
 </header>
 
-<main>
+<main id="main">
 <section class="cap abertura" id="inicio" aria-label="Abertura">
   <div class="palco-3d" aria-hidden="true"><canvas data-cena="heroi"></canvas></div>
   <div class="wrap">
     <p class="sobre">DALETH · Estruturação de Negócios Imobiliários</p>
     <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span class="l1" aria-hidden="true">Ao seu lado na construção</span><span class="l2" aria-hidden="true"><em>de sua história.</em></span></p>
-    <p class="clareza">Estruturamos empresas e empreendimentos imobiliários para quem decide construir mais.</p>
+    <p class="clareza">Estruturação de empresas e empreendimentos imobiliários: comparamos os caminhos antes da decisão e ficamos ao lado na implantação.</p>
     <a class="desce" href="#tese" aria-label="Descer para a tese"><i aria-hidden="true">↓</i><span>A tese</span></a>
   </div>
 </section>
@@ -541,7 +545,7 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       <text class="rot" x="350" y="358" text-anchor="middle">EMPRESA</text>
       <text class="sub" x="350" y="376" text-anchor="middle">construtora · sociedade</text>
     </svg>
-        <p class="tri-legenda">Empresa, empreendimento e capital se decidem juntos. Mexer em um muda os outros dois.</p>
+        <p class="tri-legenda">Empresa, empreendimento e capital se decidem juntos.</p>
       </div>
     </div>
     
@@ -551,8 +555,8 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
   <div class="wrap">
     <div class="cab">
       <p class="sobre">O que você recebe</p>
-      <h2 class="h2" id="ent-t">O que fica na sua mão em cada movimento.</h2>
-      <p class="lead">Nada aqui tem nome de produto. Cada movimento termina com algo escrito, lido com você, e uma decisão sua.</p>
+      <h2 class="h2" id="ent-t">O que fica na sua mão, do primeiro retrato à obra.</h2>
+      <p class="lead">Quatro entregas, uma por movimento. Nenhuma delas é a obra.</p>
     </div>
     <div class="entregas-grade">
       <div class="entrega"><span class="num">01 · MAPEAR</span><h3>Um retrato escrito</h3><p>Ativos, recursos, restrições, riscos, premissas e oportunidades. As perguntas abertas, por urgência. Os caminhos que merecem comparação, e os que não, com o motivo. <b>Você decide se vale modelar.</b></p></div>
@@ -560,7 +564,6 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       <div class="entrega"><span class="num">03 · ESTRUTURAR</span><h3>A operação por escrito</h3><p>Sociedade e passos de constituição, forma de aquisição do terreno, contratos com responsável por cada um, caixa alvo com pontos de controle, dossiê pronto para banco, investidor ou sócio. <b>Quem aprova é o financiador.</b></p></div>
       <div class="entrega"><span class="num">04 · CONDUZIR</span><h3>Presença nos pontos de controle</h3><p>Definidos na estruturação. A cada ponto, uma leitura escrita do que mudou em relação à premissa e do que fazer. <b>A execução continua com a sua empresa.</b></p></div>
     </div>
-    <p class="nota">Escopo, prazo e valor de cada movimento ficam na proposta, caso a caso.</p>
     
   </div>
 </section>
@@ -575,7 +578,7 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       <canvas data-cena="modelagem" data-lado="esquerda" data-reserva-direita="0.36" data-reserva-baixo="0.06" data-rotulos="Terreno|Produto e mercado|Técnica|Jurídico|Societário|Tributário|Econômico-financeiro|Capital e funding|Comercialização|Risco e retorno" aria-hidden="true"></canvas>
       <div class="cena-rotulos"></div>
       <p class="mp-titulo">Modelagem do empreendimento</p>
-      <div class="mp-ficha" aria-live="polite"><p class="mf-num">00 · Modelagem do empreendimento</p><h3 class="mf-nome">Tudo conectado</h3><p class="mf-frase">Mudar uma frente muda as outras. Por isso comparamos antes de escolher.</p><ul class="mf-sub"><li>Terreno</li><li>Produto e mercado</li><li>Técnica</li><li>Jurídico</li><li>Societário</li><li>Tributário</li><li>Econômico-financeiro</li><li>Capital e funding</li><li>Comercialização</li><li>Risco e retorno</li></ul></div>
+      <div class="mp-ficha" aria-live="polite"><p class="mf-num">00 · Modelagem do empreendimento</p><h3 class="mf-nome">Tudo conectado</h3><p class="mf-frase">Mudar uma frente muda as outras. Cada caminho é comparado antes da escolha.</p><ul class="mf-sub"><li>Terreno</li><li>Produto e mercado</li><li>Técnica</li><li>Jurídico</li><li>Societário</li><li>Tributário</li><li>Econômico-financeiro</li><li>Capital e funding</li><li>Comercialização</li><li>Risco e retorno</li></ul></div>
     </div>
     <div class="mp-controles">
       <button type="button" class="mp-seta" data-passo="-1" aria-label="Frente anterior">←</button>
@@ -583,11 +586,11 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       <button type="button" class="mp-seta" data-passo="1" aria-label="Próxima frente">→</button>
       <button type="button" class="mp-auto" aria-pressed="false">Percorrer as frentes</button>
     </div>
-    <p class="mp-dica">Setas percorrem as frentes. Os nomes em dourado levam a quem cada uma move. <a href="/cris-code/assets/docs/DALETH-Modelagem-do-Empreendimento.pdf" download>Este capítulo em PDF</a>.</p>
+    <p class="mp-dica">Os nomes em dourado na ficha levam às frentes que cada uma move. <a href="/cris-code/assets/docs/DALETH-Modelagem-do-Empreendimento.pdf" download>Este capítulo em PDF</a>.</p>
     <div class="perguntas-frentes" aria-label="As frentes, pela pergunta que respondem">
-      <div><h3>O que este terreno pode ser?</h3><p><button type="button" data-frente="terreno">Terreno e permutas</button><button type="button" data-frente="produto">Produto e mercado</button><button type="button" data-frente="tecnica">Técnica e projeto</button><button type="button" data-frente="comercial">Comercialização</button></p></div>
-      <div><h3>Em que forma o negócio existe?</h3><p><button type="button" data-frente="societario">Societário</button><button type="button" data-frente="juridico">Jurídico e documental</button><button type="button" data-frente="tributario">Tributário</button></p></div>
-      <div><h3>Como o dinheiro entra, sai e volta?</h3><p><button type="button" data-frente="financeiro">Fluxo e exposição</button><button type="button" data-frente="capital">Capital e funding</button><button type="button" data-frente="risco">Risco e retorno</button></p></div>
+      <div><h3>O que este terreno pode ser?</h3><p><button type="button" data-frente="terreno">Terreno</button><button type="button" data-frente="produto">Produto e mercado</button><button type="button" data-frente="tecnica">Técnica</button></p></div>
+      <div><h3>Em que forma o negócio existe?</h3><p><button type="button" data-frente="juridico">Jurídico e regulatório</button><button type="button" data-frente="societario">Societário e governança</button><button type="button" data-frente="tributario">Tributário</button></p></div>
+      <div><h3>Como o dinheiro entra, sai e volta?</h3><p><button type="button" data-frente="financeiro">Econômico-financeiro</button><button type="button" data-frente="capital">Capital e funding</button><button type="button" data-frente="comercial">Comercialização</button><button type="button" data-frente="risco">Risco e retorno</button></p></div>
     </div>
     <p class="fecho-mod">O projeto fica com o arquiteto, a empresa com o contador, o capital com o banco. Alguém precisa olhar os três juntos.</p>
     
@@ -597,8 +600,8 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
   <div class="wrap">
     <div class="cab">
       <p class="sobre">Como trabalhamos</p>
-      <h2 class="h2" id="met-t">Quatro movimentos. Cada um termina com algo escrito na sua mão.</h2>
-      <p class="lead">Começa com uma conversa sem custo. Cada movimento entrega algo escrito e pede uma decisão sua.</p>
+      <h2 class="h2" id="met-t">Quatro movimentos. Cada um termina com uma decisão sua.</h2>
+      <p class="lead">Começa com uma conversa sem custo. Nada avança sem algo escrito e lido com você.</p>
     </div>
     <ol class="passos">
       <li class="entrada">
@@ -607,12 +610,11 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
         <p class="recebe">Você conta o terreno, a empresa ou a necessidade de capital. Saímos sabendo se há caso e por onde ele começa.</p>
         <span class="selo">sem custo</span>
       </li>
-      <li><span class="num">01</span><h3>Mapear</h3><p class="para">para compreender</p><p class="frase">Mapear a situação real, antes de recomendar.</p><p class="recebe"><b>Você recebe</b>O retrato escrito: ativos, restrições, premissas e os caminhos que merecem comparação.</p></li>
-      <li><span class="num">02</span><h3>Modelar</h3><p class="para">para enxergar</p><p class="frase">Comparar os caminhos antes de comprometer o capital.</p><p class="recebe"><b>Você recebe</b>Dois ou três caminhos lado a lado, com premissas, caixa, exposição e a decisão registrada.</p></li>
-      <li><span class="num">03</span><h3>Estruturar</h3><p class="para">para tornar executável</p><p class="frase">Transformar o caminho escolhido em operação.</p><p class="recebe"><b>Você recebe</b>A operação por escrito: sociedade, terreno, contratos, caixa alvo e dossiê para quem financia.</p></li>
-      <li><span class="num">04</span><h3>Conduzir</h3><p class="para">para funcionar</p><p class="frase">Acompanhar a implantação ao lado de quem executa.</p><p class="recebe"><b>Você recebe</b>Presença nos pontos de controle, com uma leitura escrita do que mudou e do que fazer.</p></li>
+      <li><span class="num">01</span><h3>Mapear</h3><p class="para">para compreender</p><p class="frase">Mapear a situação real, antes de recomendar.</p></li>
+      <li><span class="num">02</span><h3>Modelar</h3><p class="para">para enxergar</p><p class="frase">Comparar os caminhos antes de comprometer o capital.</p></li>
+      <li><span class="num">03</span><h3>Estruturar</h3><p class="para">para tornar executável</p><p class="frase">Transformar o caminho escolhido em operação.</p></li>
+      <li><span class="num">04</span><h3>Conduzir</h3><p class="para">para funcionar</p><p class="frase">Acompanhar a implantação ao lado de quem executa.</p></li>
     </ol>
-    <p class="nota" style="margin-top:24px">Escopo, prazo e valor de cada movimento ficam na proposta, caso a caso.</p>
     
   </div>
 </section>
@@ -626,7 +628,7 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
     <div class="txt">
       <p class="lead">Atuou nos dois lados do crédito imobiliário, analisando e estruturando operações. Acompanhou ciclos completos de incorporação, do terreno à entrega.</p>
       <div class="provas">
-        <p class="num">R$ 324 mi<small>em VGV de operações de financiamento à produção trabalhadas, na trajetória do fundador, via TRAL3.</small></p>
+        <p class="num">R$ 324 mi<small>em VGV (valor geral de vendas) de operações de financiamento à produção trabalhadas, na trajetória do fundador, via TRAL3.</small></p>
         <p class="num">30<small>operações de financiamento à produção.</small></p>
         <p class="num">19<small>construtoras e incorporadoras atendidas nessas operações.</small></p>
       </div>
@@ -647,9 +649,9 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       <details><summary>Vocês decidem por mim?</summary><p>Não. Mostramos os caminhos lado a lado, com as consequências de cada um, e dizemos qual tomaríamos. A decisão é sua e fica registrada com a premissa que a sustenta.</p></details>
       <details><summary>Vocês recebem comissão do banco?</summary><p>Não. Não somos correspondentes bancários nem recebemos de instituição financeira. Isso nos deixa livres para comparar qualquer fonte de capital. Quem aprova o crédito é o financiador.</p></details>
       <details><summary>Já tenho contador, advogado e arquiteto. Faz sentido?</summary><p>Faz, e não substituímos nenhum deles. Trabalhamos ao lado do seu time. O que costuma faltar é alguém olhando empresa, empreendimento e capital juntos.</p></details>
-      <details><summary>Minha obra parou. É caso para vocês?</summary><p>Pode ser. Obra parada mexe nos três lados ao mesmo tempo e quase sempre começa pela frente jurídica. A conversa de enquadramento diz se há caminho e por onde ele começa.</p></details>
+      <details><summary>Minha obra parou. É caso para vocês?</summary><p>Pode ser. Obra parada mexe nos três lados ao mesmo tempo. A conversa de enquadramento diz se há caminho e qual seria o primeiro passo.</p></details>
       <details><summary>Atendem fora de Minas Gerais?</summary><p>Sim. A base é Belo Horizonte e a atuação é nacional, à distância, com presença quando o caso pede. Documentos e decisões circulam por escrito.</p></details>
-      <details><summary>O que vocês não fazem?</summary><p>Não captamos recursos, não damos curso, não fazemos BPO e não assumimos a execução. É estruturação.</p></details>
+      <details><summary>O que vocês não fazem?</summary><p>Não captamos recursos, não damos curso, não terceirizamos rotinas (BPO) e não assumimos a execução. É estruturação.</p></details>
     </div>
   </div>
 </section>
@@ -657,8 +659,8 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
   <div class="wrap">
     <div class="cab" style="margin-bottom:0">
       <p class="sobre">Começa com uma conversa</p>
-      <h2 id="conv-t">Conte o terreno, o produto ou a empresa.</h2>
-      <p class="lead">Você conta. Saímos sabendo se há caso e por onde ele começa. Escopo, prazo e valor ficam na proposta.</p>
+      <h2 id="conv-t">Conte o terreno, a empresa ou a obra.</h2>
+      <p class="lead">Uma conversa basta para saber se há caso. Se houver, a proposta diz escopo, prazo e valor.</p>
       <ol class="degraus">
         <li><b>Conversa de enquadramento</b><span>Sem custo e sem compromisso.</span></li>
         <li><b>Mapeamento</b><span>O primeiro trabalho, só se fizer sentido para os dois lados.</span></li>
@@ -666,9 +668,9 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       </ol>
     </div>
     <div class="canal">
-      <b>Canal de contato</b>
-      <p>Em definição: e-mail, WhatsApp ou formulário. Este quadro sai quando o canal estiver escolhido.</p>
-      <p>Confidencial desde a primeira mensagem. Belo Horizonte · atuação nacional.</p>
+      <b>Canal de contato · em breve</b>
+      <p>A conversa de enquadramento já vale como está: sem custo e confidencial desde a primeira mensagem.</p>
+      <p>Belo Horizonte · atuação nacional</p>
     </div>
   </div>
 </section>
@@ -733,12 +735,12 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 <script>
 // Barra de CTA no celular: aparece depois da abertura, some perto do fecho
 (function(){
-  var barra=document.getElementById("cta-movel"), ab=document.getElementById("inicio"), fim=document.getElementById("contato");
+  var barra=document.getElementById("cta-movel"), ab=document.getElementById("tese"), fim=document.getElementById("contato");
   if(!barra||!ab||!fim||!("IntersectionObserver" in window)) return;
   document.body.classList.add("com-cta-movel");
   var passouAbertura=false, noFim=false;
   function ajustar(){ var v=passouAbertura&&!noFim; barra.classList.toggle("visivel",v); barra.setAttribute("aria-hidden",String(!v)); barra.querySelector("a").tabIndex=v?0:-1; }
-  new IntersectionObserver(function(es){ es.forEach(function(e){ passouAbertura=!e.isIntersecting; }); ajustar(); },{threshold:0.15}).observe(ab);
+  new IntersectionObserver(function(es){ es.forEach(function(e){ passouAbertura=!e.isIntersecting && e.boundingClientRect.bottom<0; }); ajustar(); },{threshold:0}).observe(ab);
   new IntersectionObserver(function(es){ es.forEach(function(e){ noFim=e.isIntersecting; }); ajustar(); },{threshold:0.1}).observe(fim);
 })();
 </script>
