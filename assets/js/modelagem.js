@@ -62,6 +62,8 @@
 
   var atual = "tudo";
   var ouvintes = [];
+  // outra parte da página pode pedir uma frente (ex.: cartões da "sua mesa" na home)
+  document.addEventListener("daleth:frente", function (e) { if (POR_ID[e.detail]) mostrar(e.detail, "ligacao"); });
   function mostrar(id, origem) {
     var f = POR_ID[id];
     if (!f) return;
