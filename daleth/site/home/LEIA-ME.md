@@ -36,3 +36,11 @@ arquiteto na modelagem, os números repetidos em "Quem" e o slogan no rodapé. "
 papéis: "O cliente decide. A empresa executa. A DALETH estrutura e acompanha." A assinatura fica à esquerda,
 depois do método, digita três variações e destaca a final. O CTA único leva a /contato/. Hero com rótulos em
 pílulas escuras e pinos à direita do texto. `VERSOES["v5"]` no mesmo gerador, publicado em `/v5/` (noindex).
+
+### Consolidação da v5 (auditoria especialista, 07/10 noite)
+
+Aplicado o checklist do PDF "DALETH_v5_Auditoria_Especialista": Tese sem CTA intermediário; ponte para a
+modelagem reduzida a uma frase com as três famílias (ativo e produto · estrutura da empresa e do negócio ·
+capital, caixa e retorno); movimentos com a DALETH primeiro e o cliente depois ("A DALETH compara. Você
+escolhe."); linha comercial no fim do método (conversa de enquadramento → proposta com escopo, prazo,
+responsabilidades e honorários); fundador com um parágrafo; CTA final mais curto; título público sem "teste".

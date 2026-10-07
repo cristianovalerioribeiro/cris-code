@@ -533,7 +533,10 @@ CSS_V5 = """
 .metodo-v5 .passos li{gap:10px}
 .metodo-v5 .passos h3{font-size:24px}
 .metodo-v5 .passos .frase{font-size:17px;color:var(--tinta)}
-.metodo-v5 .passos .detalhe{font-size:14px;color:var(--tinta-2)}
+.metodo-v5 .passos .detalhe{font-size:16px;line-height:1.5;color:var(--tinta)}
+.metodo-v5 .linha-comercial{margin-top:18px;padding-top:18px;border-top:1px solid var(--linha);font-size:15px;color:var(--tinta-2);max-width:72ch}
+.metodo-v5 .linha-comercial b{color:var(--tinta);font-weight:600}
+.modelar-v5 .cab .lead b{color:var(--m-branco);font-weight:600}
 .metodo-v5 .passos .papel{display:flex;flex-direction:column;gap:2px;margin-top:6px;padding-top:10px;border-top:1px solid var(--linha);font-size:13px;color:var(--tinta-2)}
 .metodo-v5 .passos .papel b{color:var(--tinta);font-weight:600}
 .metodo-v5 .passos .papel em{font-style:normal;color:var(--ouro)}
@@ -567,11 +570,11 @@ footer .slogan{display:none}
 """
 
 def modelagem_v5():
-    m = modelagem("Uma decisão imobiliária nunca movimenta uma única frente.")
+    m = modelagem("Uma decisão muda várias frentes ao mesmo tempo.")
     m = m.replace('<section class="modelar modelar-prancha"', '<section class="modelar modelar-prancha modelar-v5"')
     m = m.replace('O mesmo terreno pode ser vendido, permutado ou incorporado. Cada caminho muda risco, caixa e captura. Comparamos antes de escolher.',
-                  'Terreno, produto, técnica, estrutura jurídica, sociedade, tributação, caixa, capital e retorno se alteram mutuamente. Modelamos essas relações antes que uma decisão comprometa as demais.')
-    m = m.replace('<p class="sobre">Modelar · o centro do método</p>', '<p class="sobre">O que enxergamos e conectamos</p>')
+                  'É por isso que modelamos o negócio como um sistema: <b>ativo e produto</b>, <b>estrutura da empresa e do negócio</b>, <b>capital, caixa e retorno</b>. As dez frentes estão no componente abaixo.')
+    m = m.replace('<p class="sobre">Modelar · o centro do método</p>', '<p class="sobre">O que enxergamos</p>')
     a = m.index('    <div class="perguntas-frentes"'); b = m.index('</p>\n', m.index('<p class="fecho-mod">')) + 5
     m = m[:a] + m[b:]
     return m
@@ -586,13 +589,14 @@ METODO_V5 = """<section class="metodo metodo-v5" id="metodo" aria-labelledby="me
     <div class="fluxo" id="fluxo">
       <div class="fio" aria-hidden="true"><span class="fio-base"></span><span class="fio-vivo"></span><i style="--p:0"></i><i style="--p:1"></i><i style="--p:2"></i><i style="--p:3"></i></div>
       <ol class="passos">
-        <li><span class="num">01</span><h3>Mapear</h3><p class="pergunta">Onde estamos?</p><p class="frase">Entender o negócio como ele é.</p><p class="detalhe">Premissas, ativos, restrições, riscos, recursos e oportunidades.</p><p class="papel"><b>Você expõe o contexto.</b><em>A DALETH mapeia.</em></p></li>
-        <li><span class="num">02</span><h3>Modelar</h3><p class="pergunta">Quais caminhos existem?</p><p class="frase">Comparar o que ele pode ser.</p><p class="detalhe">Cenários, caixa, capital, risco, retorno e impacto sobre a empresa.</p><p class="papel"><b>Você escolhe o caminho.</b><em>A DALETH compara.</em></p></li>
-        <li><span class="num">03</span><h3>Estruturar</h3><p class="pergunta">Como o caminho vira operação?</p><p class="frase">Preparar o caminho escolhido.</p><p class="detalhe">Sociedade, contratos, funding, cronograma, responsabilidades e pontos de controle.</p><p class="papel"><b>Você aprova a estrutura.</b><em>A DALETH estrutura.</em></p></li>
-        <li><span class="num">04</span><h3>Acompanhar</h3><p class="pergunta">O que mudou no caminho?</p><p class="frase">Preservar a lógica na implantação.</p><p class="detalhe">Verificar se o realizado continua coerente com o que foi estruturado.</p><p class="papel"><b>Você decide os ajustes.</b><em>A DALETH acompanha.</em></p></li>
+        <li><span class="num">01</span><h3>Mapear</h3><p class="pergunta">Onde estamos?</p><p class="detalhe">Ler ativos, premissas, restrições, riscos, recursos e oportunidades.</p><p class="papel"><em>A DALETH mapeia.</em><b>Você valida o retrato.</b></p></li>
+        <li><span class="num">02</span><h3>Modelar</h3><p class="pergunta">Quais caminhos existem?</p><p class="detalhe">Comparar cenários, caixa, capital, risco, retorno e impacto sobre a empresa.</p><p class="papel"><em>A DALETH compara.</em><b>Você escolhe.</b></p></li>
+        <li><span class="num">03</span><h3>Estruturar</h3><p class="pergunta">Como o caminho vira operação?</p><p class="detalhe">Organizar sociedade, contratos, funding, cronograma, responsabilidades e pontos de controle.</p><p class="papel"><em>A DALETH estrutura.</em><b>Você aprova.</b></p></li>
+        <li><span class="num">04</span><h3>Acompanhar</h3><p class="pergunta">O que mudou no caminho?</p><p class="detalhe">Confrontar o realizado com o estruturado e sinalizar desvios relevantes.</p><p class="papel"><em>A DALETH acompanha.</em><b>Você decide os ajustes.</b></p></li>
       </ol>
     </div>
     <p class="papeis-linha">O cliente decide. A empresa executa. <em>A DALETH estrutura e acompanha.</em></p>
+    <p class="linha-comercial"><b>Começamos por uma conversa de enquadramento.</b> Se houver aderência, escopo, prazo, responsabilidades e honorários ficam definidos em proposta antes do início do trabalho.</p>
   </div>
 </section>
 """
@@ -612,7 +616,6 @@ QUEM_V5 = """<section class="quem quem-v5" id="quem" aria-labelledby="quem-t">
     </div>
     <div class="txt">
       <p class="lead">Experiência na estruturação de empreendimentos, financiamento à produção e organização de operações imobiliárias, atuando na interface entre empresa, empreendimento e capital.</p>
-      <p class="apoio">Atuou nos dois lados do crédito imobiliário, analisando e estruturando operações, e acompanhou ciclos completos de incorporação, do terreno à entrega.</p>
     </div>
   </div>
 </section>
@@ -622,9 +625,9 @@ CTA_V5 = """<section class="cap contato cta-final" id="contato" aria-labelledby=
   <div class="wrap">
     <p class="sobre">Toda oportunidade começa com uma decisão.</p>
     <h2 id="conv-t">Vamos entender qual negócio existe nela.</h2>
-    <p class="lead">Conte o terreno, o empreendimento, a empresa ou o desafio de capital. A primeira conversa serve para entender o cenário e identificar por onde a estruturação deve começar.</p>
+    <p class="lead">Conte o terreno, o empreendimento, a empresa ou o desafio de capital. A primeira conversa serve para entender o cenário e identificar por onde começar.</p>
     <div class="acoes"><a class="btn btn-tinta" href="/contato/">Conversar sobre uma oportunidade</a></div>
-    <p class="micro">Primeira conversa de enquadramento · confidencial · sem custo · Belo Horizonte, atuação nacional</p>
+    <p class="micro">Conversa de enquadramento · confidencial · sem custo · Belo Horizonte, atuação nacional</p>
   </div>
 </section>
 """
@@ -639,8 +642,12 @@ JS_V5 = """<script>
 </script>
 """
 
+a_=TESE_V4.index('        <div class="acoes">'); b_=TESE_V4.index('</p>\n', TESE_V4.index('<p class="micro apoio-cta">'))+5
+TESE_V5 = TESE_V4[:a_] + TESE_V4[b_:]
+
 VERSOES["v5"] = dict(
     nome="v5 · Reconstrução",
+    titulo_limpo=True,
     css_extra=CSS_V4 + CSS_V5,
     js_extra=JS_V5,
     nav=[("modelagem","O que fazemos"),("metodo","Como entramos"),("quem","Quem somos"),("contato","Conversa")],
@@ -649,7 +656,7 @@ VERSOES["v5"] = dict(
       ('alvo.innerHTML=final; p.classList.remove("digitando");', 'alvo.innerHTML=final; p.classList.remove("digitando"); p.classList.add("fixo");'),
       ('  espera(900,digitar);\n', '  if("IntersectionObserver" in window){ new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){ o.disconnect(); espera(500,digitar); } }); },{threshold:0.4}).observe(p); } else { espera(900,digitar); }\n'),
     ],
-    corpo=lambda: [HERO_V4, TESE_V4, modelagem_v5(), METODO_V5, ASSINATURA_V5, QUEM_V5, CTA_V5])
+    corpo=lambda: [HERO_V4, TESE_V5, modelagem_v5(), METODO_V5, ASSINATURA_V5, QUEM_V5, CTA_V5])
 
 for chave, v in VERSOES.items():
     corpo = "".join(v["corpo"]())
@@ -658,7 +665,7 @@ for chave, v in VERSOES.items():
         assert a in scripts, a
         scripts = scripts.replace(a, b)
     html = (HEAD.replace("</style>", CSS_V3 + v.get("css_extra","") + "</style>")
-            .replace("<title>DALETH · Estruturação de Negócios Imobiliários</title>", f"<title>DALETH · Estruturação de Negócios Imobiliários (teste {v['nome']})</title>")
+            .replace("<title>DALETH · Estruturação de Negócios Imobiliários</title>", "<title>DALETH · Estruturação de Negócios Imobiliários</title>" if v.get("titulo_limpo") else f"<title>DALETH · Estruturação de Negócios Imobiliários (teste {v['nome']})</title>")
             + "</head>\n<body>\n" + header(v["nav"]) + "\n<main id=\"main\">\n" + corpo + "</main>\n\n" + RODAPE + "\n" + CTA_MOVEL + scripts + JS_V3 + v.get("js_extra","") + "</body>\n</html>\n")
     (AQUI / f"{chave}.html").write_text(html, encoding="utf-8")
     print(chave, len(html)//1024, "KB", "seções:", corpo.count("<section"))
