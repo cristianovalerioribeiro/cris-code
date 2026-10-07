@@ -13,7 +13,7 @@
 
   var FRENTES = [
     { id: "tudo", num: "00", nome: "Tudo conectado", curto: "Tudo",
-      frase: "Dez frentes, uma decisão. Mudar uma muda as outras. Por isso modelamos antes de escolher.",
+      frase: "Mudar uma frente muda as outras. Por isso comparamos antes de escolher.",
       sub: ["Terreno", "Produto e mercado", "Técnica", "Jurídico", "Societário", "Tributário", "Econômico-financeiro", "Capital e funding", "Comercialização", "Risco e retorno"],
       move: [] },
     { id: "terreno", num: "01", nome: "Terreno", curto: "Terreno",

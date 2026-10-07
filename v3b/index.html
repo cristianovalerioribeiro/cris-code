@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DALETH · Estruturação de Negócios Imobiliários (teste B · Narrativa)</title>
+<meta name="description" content="DALETH · Estruturação de Negócios Imobiliários. Empreendimento, empresa e capital pensados juntos, antes da decisão. Belo Horizonte, atuação nacional.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://daleth.iajudite.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="DALETH">
+<meta property="og:title" content="DALETH · Estruturação de Negócios Imobiliários">
+<meta property="og:description" content="Empreendimento, empresa e capital pensados juntos, antes da decisão. Belo Horizonte, atuação nacional.">
+<meta property="og:url" content="https://daleth.iajudite.com.br/">
+<meta property="og:image" content="https://daleth.iajudite.com.br/assets/og.png">
+<meta name="theme-color" content="#082538">
+<link rel="icon" href="/cris-code/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/cris-code/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/cris-code/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Manrope";font-style:normal;font-weight:500 800;font-display:swap;src:url(/assets/fonts/manrope-latin.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url(/assets/fonts/inter-latin.woff2) format("woff2")}
+
+/* Layout: uma página em capítulos. Azul-tinta abre e fecha (topo, "ao seu lado", contato); papel claro na análise (vertentes, método, modelagem). Diagramas explicam relações. */
+:root{
+  --papel:#F4F6F7; --papel-2:#E9EEF1; --tinta:#082538; --tinta-2:#46596A; --linha:#D2DBE2;
+  --cap:#082538; --cap-2:#0D2F47; --cap-txt:#F4F6F8; --cap-txt-2:#B5C5D2; --cap-linha:#24445B;
+  --ouro:#7A5A2C; --ouro-cap:#CAA972; --ouro-marca:#B58A44; --foco:#B58A44;
+  --f-disp:"Manrope", "Segoe UI", Arial, sans-serif;
+  --f-txt:"Inter", "Segoe UI", Arial, sans-serif;
+  --larg:1160px; --gut:clamp(16px,4vw,40px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --papel:#071B29; --papel-2:#0B2536; --tinta:#E6EDF2; --tinta-2:#9DB0BF; --linha:#1E3A4E;
+  --cap:#0C2D44; --cap-2:#11384F; --cap-txt:#F4F6F8; --cap-txt-2:#B5C5D2; --cap-linha:#2B4B61;
+  --ouro:#CAA972; --ouro-cap:#CAA972; --ouro-marca:#B58A44; --foco:#CAA972; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --papel:#071B29; --papel-2:#0B2536; --tinta:#E6EDF2; --tinta-2:#9DB0BF; --linha:#1E3A4E;
+  --cap:#0C2D44; --cap-2:#11384F; --cap-txt:#F4F6F8; --cap-txt-2:#B5C5D2; --cap-linha:#2B4B61;
+  --ouro:#CAA972; --ouro-cap:#CAA972; --ouro-marca:#B58A44; --foco:#CAA972; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{background:var(--papel);color:var(--tinta);font-family:var(--f-txt);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--f-disp);text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--foco);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--larg);margin-inline:auto;padding-inline:var(--gut)}
+.sobre{font-family:var(--f-txt);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+.cap .sobre{color:var(--ouro-cap)}
+.h2{font-size:clamp(28px,3.6vw,40px);font-weight:700;line-height:1.15}
+.lead{font-size:clamp(17px,1.6vw,19px);color:var(--tinta-2);max-width:62ch}
+.cap .lead{color:var(--cap-txt-2)}
+section{padding-block:clamp(64px,9vw,112px)}
+.cab{display:flex;flex-direction:column;gap:16px;margin-bottom:clamp(36px,5vw,56px)}
+
+/* capítulos azuis */
+.cap{background:var(--cap);color:var(--cap-txt)}
+
+/* cabeçalho */
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--papel);border-bottom:1px solid var(--linha)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+.marca{display:flex;align-items:center;color:var(--tinta);text-decoration:none}
+.marca svg{height:30px;width:auto;display:block}
+.topo nav{display:flex;gap:26px;font-size:14px;font-weight:500}
+.topo nav a{text-decoration:none;color:var(--tinta-2)}
+.topo nav a:hover{color:var(--tinta)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-disp);font-weight:700;font-size:15px;text-decoration:none;padding:13px 22px;border-radius:2px;border:1px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn-tinta{background:var(--tinta);color:var(--papel)}
+.btn-tinta:hover{background:var(--ouro);color:var(--papel)}
+.btn-ouro{background:var(--ouro-cap);color:#082538}
+.btn-ouro:hover{background:var(--cap-txt)}
+.btn-linha{border-color:var(--cap-linha);color:var(--cap-txt)}
+.btn-linha:hover{border-color:var(--ouro-cap)}
+.topo .btn{padding:9px 16px;font-size:14px}
+.menu-bt{display:none;width:44px;height:44px;border:1px solid var(--linha);background:var(--papel);border-radius:2px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0}
+.menu-bt span{display:block;width:18px;height:2px;background:var(--tinta);transition:transform .2s,opacity .2s}
+.menu-bt[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-bt[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-bt[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.topo nav.menu-movel,.topo nav.menu-movel[hidden]{display:none;flex-direction:column;gap:0;border-top:1px solid var(--linha);background:var(--papel)}
+.menu-movel a{padding:14px var(--gut);text-decoration:none;color:var(--tinta);font-family:var(--f-disp);font-weight:600;font-size:16px;border-bottom:1px solid var(--linha)}
+.menu-movel a:last-child{color:var(--ouro);border-bottom:0}
+@media (max-width:860px){.topo nav:not(.menu-movel){display:none}.topo .btn{display:none}.menu-bt{display:flex}.topo nav.menu-movel:not([hidden]){display:flex}}
+
+/* abertura: o slogan é a primeira tela, grande, digitado sobre a cena 3D */
+.abertura{position:relative;isolation:isolate;min-height:calc(100svh - 64px);display:flex;align-items:center;overflow:hidden;padding-block:clamp(72px,10vw,120px)}
+.abertura .palco-3d{position:absolute;inset:0;z-index:-2}
+.abertura .palco-3d canvas{display:block;width:100%;height:100%}
+.abertura::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(8,37,56,.94) 0%,rgba(8,37,56,.72) 42%,rgba(8,37,56,.18) 100%)}
+.abertura:not(.cena-viva) .palco-3d{background:url(/assets/img/heroi-poster.jpg) right center/cover no-repeat}
+.abertura .wrap{width:100%;display:flex;flex-direction:column;gap:28px}
+.assina-grande{font-family:var(--f-disp);font-weight:800;font-size:clamp(34px,6.4vw,88px);line-height:1.04;letter-spacing:-.03em;color:var(--cap-txt);margin:0;display:flex;flex-direction:column}
+.assina-grande .l1,.assina-grande .l2{display:block;white-space:nowrap}
+.assina-grande .l2{min-height:1.04em}
+@media (max-width:560px){.assina-grande .l1,.assina-grande .l2{white-space:normal}.assina-grande .l2{min-height:2.08em}}
+.assina-grande em{font-style:normal;color:var(--ouro-cap)}
+.assina-grande.digitando .l2::after{content:"";display:inline-block;width:.06em;height:.9em;margin-left:.06em;vertical-align:-.08em;background:var(--ouro-cap);animation:pisca 1s steps(1) infinite}
+@keyframes pisca{50%{opacity:0}}
+.desce{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;margin-top:clamp(12px,3vw,36px);text-decoration:none;color:var(--cap-txt-2);font-family:var(--f-disp);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+.desce i{font-style:normal;width:44px;height:44px;border-radius:50%;border:1px solid var(--ouro-cap);color:var(--ouro-cap);display:grid;place-items:center;font-size:18px;animation:desce 2.4s ease-in-out infinite}
+@keyframes desce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media (max-width:860px){.abertura{min-height:calc(100svh - 64px)}.abertura::before{background:linear-gradient(180deg,rgba(8,37,56,.55) 0%,rgba(8,37,56,.86) 60%,rgba(8,37,56,.96) 100%)}}
+@media (prefers-reduced-motion:reduce){.desce i{animation:none}.assina-grande.digitando .l2::after{animation:none}}
+
+/* hero (a tese), em papel claro logo depois da abertura */
+.hero{--cap-txt:var(--tinta);--cap-txt-2:var(--tinta-2);--cap-linha:var(--linha);--ouro-cap:var(--ouro);--cap-2:var(--papel-2);background:var(--papel);padding-block:clamp(56px,8vw,104px) 0}
+.hero-nota{font-size:clamp(16px,1.5vw,18px);color:var(--tinta-2);max-width:56ch}
+.hero .ponte{margin-top:clamp(40px,5vw,64px);margin-bottom:clamp(48px,7vw,80px)}
+.hero .tri .no{fill:var(--papel)}
+.hero .tri .centro-t,.hero .tri .rot{fill:var(--tinta)}
+.hero .tri .sub{fill:var(--tinta-2)}
+
+/* tese */
+.tese .grande{font-family:var(--f-disp);font-size:clamp(26px,3.6vw,42px);font-weight:700;line-height:1.2;max-width:28ch;color:var(--cap-txt)}
+.tese-par{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,5vw,64px);border-top:1px solid var(--cap-linha);padding-top:clamp(28px,4vw,40px)}
+.tese-par>div{display:flex;flex-direction:column;gap:12px;min-width:0}
+.tese-par .p-txt{font-family:var(--f-disp);font-size:20px;font-weight:600;color:var(--cap-txt);line-height:1.4}
+.tese-par p{color:var(--cap-txt-2)}
+.vert .dito{font-family:var(--f-disp);font-weight:600;color:var(--ouro);font-size:15px}
+@media (max-width:760px){.tese-par{grid-template-columns:minmax(0,1fr)}}
+.hero-antigo{padding-block:clamp(56px,8vw,104px) clamp(56px,7vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero-txt{display:flex;flex-direction:column;gap:24px;min-width:0}
+.hero h1{font-size:clamp(36px,5.4vw,62px);font-weight:800;line-height:1.06;letter-spacing:-.025em;color:var(--cap-txt)}
+.hero h1 em{font-style:normal;color:var(--ouro-cap)}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.assina{font-family:var(--f-disp);font-size:15px;font-weight:600;color:var(--cap-txt-2);display:flex;align-items:center;gap:12px}
+.assina::before{content:"";width:28px;height:1px;background:var(--ouro-cap);flex:none}
+
+.tri{width:100%;max-width:440px;justify-self:center;display:block}
+.tri .aresta{stroke:var(--cap-linha);stroke-width:1.5;fill:none}
+.tri .fluxo{stroke:var(--ouro-cap);stroke-width:2;fill:none;stroke-dasharray:6 22;animation:flui 3.2s linear infinite}
+.tri .fluxo.b{animation-duration:3.8s;animation-direction:reverse}
+.tri .fluxo.c{animation-duration:4.4s}
+@keyframes flui{to{stroke-dashoffset:-112}}
+.tri .no{fill:var(--cap-2);stroke:var(--ouro-cap);stroke-width:1.5}
+.tri .rot{font-family:var(--f-disp);font-weight:700;font-size:15px;letter-spacing:.08em;fill:var(--cap-txt)}
+.tri .sub{font-family:var(--f-txt);font-size:12px;fill:var(--cap-txt-2)}
+.tri .centro{fill:var(--ouro-cap)}
+.tri .centro-t{font-family:var(--f-disp);font-weight:700;font-size:13px;fill:var(--cap-txt);letter-spacing:.06em}
+@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.tri{max-width:340px}}
+
+/* vertentes */
+.vert{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--linha)}
+.vert article{padding:28px 28px 32px 0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.vert article+article{padding-left:28px;border-left:1px solid var(--linha)}
+.vert h3{font-size:22px;font-weight:700}
+.vert .itens{font-size:14px;color:var(--tinta-2)}
+.lig{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.lig div{display:flex;flex-direction:column;gap:8px;min-width:0;padding-top:16px;border-top:2px solid var(--ouro-marca)}
+.lig b{font-family:var(--f-disp);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ouro)}
+.lig p{font-size:16px}
+.fecho{margin-top:40px;font-family:var(--f-disp);font-size:clamp(20px,2.2vw,24px);font-weight:600;max-width:40ch}
+@media (max-width:760px){.vert,.lig{grid-template-columns:minmax(0,1fr)}.vert article,.vert article+article{padding:24px 0;border-left:0;border-bottom:1px solid var(--linha)}}
+
+/* método */
+.metodo{background:var(--papel-2)}
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,.8fr) repeat(4,minmax(0,1fr));gap:0;position:relative}
+.passos li{display:flex;flex-direction:column;gap:12px;padding:0 22px 0 0;min-width:0;position:relative}
+.passos li+li{padding-left:22px;border-left:1px solid var(--linha)}
+.passos .num{font-family:var(--f-disp);font-weight:700;font-size:13px;color:var(--ouro);letter-spacing:.1em}
+.passos h3{font-size:26px;font-weight:800}
+.passos .para{font-size:14px;color:var(--tinta-2);margin-top:-8px}
+.passos .frase{font-family:var(--f-disp);font-weight:600;font-size:17px;line-height:1.35}
+.passos .recebe{font-size:14px;color:var(--tinta-2)}
+.passos .recebe b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta);margin-bottom:4px}
+.passos li.entrada h3{font-size:20px;font-weight:700}
+.selo{align-self:flex-start;font-size:12px;font-weight:600;padding:3px 10px;border:1px solid var(--ouro);color:var(--ouro);border-radius:20px}
+@media (max-width:980px){.passos{grid-template-columns:minmax(0,1fr)}.passos li,.passos li+li{padding:24px 0 24px 28px;border-left:2px solid var(--linha)}.passos li::before{content:"";position:absolute;left:-7px;top:30px;width:12px;height:12px;border-radius:50%;background:var(--papel-2);border:2px solid var(--ouro-marca)}}
+
+/* modelagem */
+.bloco{margin-top:clamp(48px,6vw,72px);display:flex;flex-direction:column;gap:20px}
+.bloco h3{font-size:clamp(22px,2.4vw,26px);font-weight:700}
+.cam{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.cam article{background:var(--papel-2);padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.cam h4{margin:0;font-family:var(--f-disp);font-size:20px;font-weight:700}
+.cam p{font-size:15px;color:var(--tinta-2)}
+.escala{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;font-size:12px;color:var(--tinta-2);margin-top:8px}
+.barra{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.barra i{height:6px;background:var(--linha)}
+.barra i.on{background:var(--ouro-marca)}
+.cadeia{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;font-family:var(--f-disp);font-weight:700;font-size:14px;letter-spacing:.08em}
+.cadeia span{padding:8px 14px;border:1px solid var(--linha);background:var(--papel)}
+.cadeia span.seta{border:0;padding:0;color:var(--ouro);background:none}
+.nota{font-size:15px;color:var(--tinta-2);max-width:70ch}
+
+.explorar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,48px);align-items:start;border-top:1px solid var(--linha);padding-top:28px}
+.abas{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.abas button{font-family:var(--f-txt);font-size:14px;font-weight:500;text-align:left;padding:10px 12px;border:1px solid var(--linha);background:var(--papel);color:var(--tinta-2);cursor:pointer;display:flex;gap:8px;align-items:baseline;min-width:0}
+.abas button span{font-family:var(--f-disp);font-weight:700;font-size:12px;color:var(--ouro)}
+.abas button[aria-selected="true"]{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.abas button[aria-selected="true"] span{color:var(--ouro-cap)}
+.abas button.movido{border-color:var(--ouro-marca);color:var(--tinta)}
+.rede{width:100%;max-width:470px;display:block;justify-self:center}
+.rede .liga{stroke:var(--linha);stroke-width:1}
+.rede .liga.on{stroke:var(--ouro-marca);stroke-width:2.2}
+.rede .raio{stroke:var(--linha);stroke-width:1;stroke-dasharray:2 4}
+.rede circle.n{fill:var(--papel);stroke:var(--tinta-2);stroke-width:1.4;cursor:pointer;transition:fill .2s}
+.rede circle.n.movido{stroke:var(--ouro-marca);stroke-width:2.4}
+.rede circle.n.sel{fill:var(--tinta);stroke:var(--tinta)}
+.rede text{font-family:var(--f-disp);font-size:12px;font-weight:700;fill:var(--tinta-2);letter-spacing:.06em;pointer-events:none}
+.rede text.sel,.rede text.movido{fill:var(--tinta)}
+.rede .miolo{fill:var(--tinta)}
+.rede .miolo-t{fill:var(--papel);font-size:10px;letter-spacing:.08em}
+.painel{display:flex;flex-direction:column;gap:18px;min-width:0}
+.painel h4{margin:0;font-family:var(--f-disp);font-size:clamp(24px,2.6vw,30px);font-weight:800}
+.painel .def{font-size:17px}
+.painel dl{margin:0;display:flex;flex-direction:column;gap:16px}
+.painel dt{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro);margin-bottom:6px}
+.painel dd{margin:0;font-size:15px;color:var(--tinta-2)}
+.painel dd.perg{font-family:var(--f-disp);font-weight:600;font-size:18px;color:var(--tinta);line-height:1.4}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:13px;padding:4px 10px;background:var(--papel-2);color:var(--tinta)}
+@media (max-width:900px){.explorar{grid-template-columns:minmax(0,1fr)}.abas{grid-template-columns:repeat(2,minmax(0,1fr))}.rede{max-width:340px}}
+@media (max-width:760px){.cam{grid-template-columns:minmax(0,1fr)}}
+
+.entregas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.entregas div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.entregas b{font-family:var(--f-disp);font-size:17px}
+.entregas p{font-size:14px;color:var(--tinta-2)}
+.entregas div::before{content:"";width:22px;height:2px;background:var(--ouro-marca)}
+@media (max-width:900px){.entregas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.entregas{grid-template-columns:minmax(0,1fr)}}
+
+/* ao seu lado */
+.lado .grande{font-family:var(--f-disp);font-size:clamp(26px,3.6vw,42px);font-weight:700;line-height:1.2;max-width:26ch;color:var(--cap-txt)}
+.papeis{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--cap-linha);border-bottom:1px solid var(--cap-linha)}
+.papeis div{padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.papeis div+div{padding-left:24px;border-left:1px solid var(--cap-linha)}
+.papeis b{font-family:var(--f-disp);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ouro-cap)}
+.papeis p{font-family:var(--f-disp);font-size:20px;font-weight:600}
+.papeis p small{display:block;font-family:var(--f-txt);font-size:14px;font-weight:400;color:var(--cap-txt-2);margin-top:6px}
+.comp{margin-top:clamp(40px,5vw,56px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,64px)}
+.comp ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;counter-reset:c}
+.comp li{counter-increment:c;display:grid;grid-template-columns:34px 1fr;gap:8px;padding-block:14px;border-bottom:1px solid var(--cap-linha);font-size:17px}
+.comp li::before{content:counter(c,decimal-leading-zero);font-family:var(--f-disp);font-weight:700;font-size:13px;color:var(--ouro-cap);padding-top:3px}
+.prop{display:flex;flex-direction:column;gap:14px}
+.prop p{color:var(--cap-txt-2)}
+.prop .p-txt{font-family:var(--f-disp);font-size:20px;font-weight:600;color:var(--cap-txt);line-height:1.4}
+@media (max-width:760px){.papeis,.comp{grid-template-columns:minmax(0,1fr)}.papeis div,.papeis div+div{padding:20px 0;border-left:0}.papeis div+div{border-top:1px solid var(--cap-linha)}}
+
+/* quem */
+.quem .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,64px);align-items:start}
+.quem .txt{display:flex;flex-direction:column;gap:16px}
+.quem .nome{font-family:var(--f-disp);font-size:22px;font-weight:700}
+.quem .num{font-family:var(--f-disp);font-size:clamp(34px,4vw,46px);font-weight:800;color:var(--tinta);font-variant-numeric:tabular-nums;line-height:1}
+.quem .num small{display:block;font-family:var(--f-txt);font-size:14px;font-weight:400;color:var(--tinta-2);margin-top:8px;line-height:1.5}
+@media (max-width:760px){.quem .wrap{grid-template-columns:minmax(0,1fr)}}
+
+/* contato */
+.contato .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:end}
+.contato h2{font-size:clamp(30px,4vw,46px);font-weight:800;line-height:1.1}
+.canal{border:1px dashed var(--ouro-cap);padding:22px;display:flex;flex-direction:column;gap:10px}
+.canal b{font-family:var(--f-disp);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ouro-cap)}
+.canal p{font-size:15px;color:var(--cap-txt-2)}
+@media (max-width:760px){.contato .wrap{grid-template-columns:minmax(0,1fr)}}
+
+footer{background:var(--cap);color:var(--cap-txt-2);border-top:1px solid var(--cap-linha);padding-block:32px;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+footer .marca{color:var(--cap-txt)}
+footer .marca svg{height:26px}
+footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
+
+/* conectores: o pé de cada seção aponta para a seguinte */
+.ponte{margin-top:clamp(48px,6vw,72px);padding-top:20px;border-top:1px solid var(--linha);display:flex;align-items:center;justify-content:space-between;gap:16px;
+  text-decoration:none;color:var(--tinta);font-family:var(--f-disp);font-weight:600;font-size:clamp(17px,1.8vw,20px)}
+.ponte i{flex:none;font-style:normal;width:40px;height:40px;border-radius:50%;border:1px solid var(--ouro-marca);color:var(--ouro);display:grid;place-items:center;font-size:18px;transition:transform .25s,background .25s,color .25s}
+.ponte:hover i{transform:translateY(4px);background:var(--ouro-marca);color:var(--papel)}
+.cap .ponte{border-top-color:var(--cap-linha);color:var(--cap-txt)}
+.cap .ponte i{color:var(--ouro-cap);border-color:var(--ouro-cap)}
+.modelar .ponte{border-top-color:#24465F;color:#FFFFFF}
+.modelar .ponte i{color:#D4B37C;border-color:#D4B37C}
+.modelar .ponte:hover i,.cap .ponte:hover i{background:var(--ouro-cap);color:#082538}
+
+/* conector 1: do terreno à decisão */
+.historia{padding-block:clamp(40px,5vw,56px) clamp(56px,8vw,96px)}
+.cred{list-style:none;margin:0 0 clamp(48px,6vw,72px);padding:0 0 24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;border-bottom:1px solid var(--linha)}
+.cred li{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cred b{font-family:var(--f-disp);font-size:15px}
+.cred span{font-size:13px;color:var(--tinta-2)}
+.trama{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,48px)}
+.trama li{display:flex;flex-direction:column;gap:12px;min-width:0;padding-top:20px;border-top:2px solid var(--tinta)}
+.trama li:last-child{border-top-color:var(--ouro-marca)}
+.trama .num{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+.trama h2{font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.2}
+.trama p{font-size:16px;color:var(--tinta-2)}
+@media (max-width:860px){.cred{grid-template-columns:repeat(2,minmax(0,1fr))}.trama{grid-template-columns:minmax(0,1fr)}}
+
+.vertentes{background:var(--papel-2)}
+.vert .fr{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.vert .fr span{font-size:12px;font-weight:500;padding:4px 9px;border:1px solid var(--linha);background:var(--papel);color:var(--tinta)}
+
+/* pergunta na mesa */
+.mesa-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,56px)}
+.mesa-col h3{font-size:20px;font-weight:700;padding-bottom:12px;border-bottom:2px solid var(--tinta)}
+.mesa-col ul{list-style:none;margin:0;padding:0}
+.mesa-col a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--linha);text-decoration:none;color:var(--tinta)}
+.mesa-col a span{font-size:16px;min-width:0}
+.mesa-col a em{flex:none;font-style:normal;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ouro)}
+.mesa-col a:hover span{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--ouro-marca)}
+@media (max-width:760px){.mesa-col{grid-template-columns:minmax(0,1fr)}}
+
+.lado .cab .lead{margin-top:4px}
+.quem .meta{font-size:14px;color:var(--tinta-2)}
+.quem .ponte{grid-column:1/-1}
+
+/* perguntas */
+.faq{background:var(--papel-2)}
+.faq-lista{max-width:820px;border-top:1px solid var(--linha)}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;position:relative;font-family:var(--f-disp);font-weight:700;font-size:18px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:16px;font-size:24px;font-weight:400;color:var(--ouro)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 20px;color:var(--tinta-2);max-width:68ch}
+
+.degraus{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;counter-reset:d}
+.degraus li{counter-increment:d;display:grid;grid-template-columns:34px 1fr;padding-block:10px;border-top:1px solid var(--cap-linha)}
+.degraus li::before{content:counter(d,decimal-leading-zero);grid-row:span 2;font-family:var(--f-disp);font-weight:700;font-size:13px;color:var(--ouro-cap);padding-top:3px}
+.degraus b{font-family:var(--f-disp);font-size:16px}
+.degraus span{font-size:14px;color:var(--cap-txt-2)}
+
+/* modelagem 3D (cena WebGL do cris-code). A cena pinta seu próprio fundo marinho, então este capítulo é azul nos dois temas. */
+.modelar{--m-marinho:#082538;--m-dourado:#B58A44;--m-dourado-claro:#D4B37C;--m-fio:#24465F;--m-gelo:#B9C8D4;--m-branco:#FFFFFF;
+  background:var(--m-marinho);color:var(--m-branco);outline:none;padding-block:clamp(64px,9vw,112px)}
+.modelar .cab .h2{color:var(--m-branco)}
+.modelar .cab .lead{color:var(--m-gelo)}
+.modelar .cab .sobre{color:var(--m-dourado-claro)}
+.modelar canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cena-rotulos{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.cena-rotulos span{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;will-change:transform,opacity;margin:-11px 0 0 12px;padding:6px 12px 6px 9px;border-radius:999px;
+  font:600 12px/1 var(--f-txt);letter-spacing:.12em;text-transform:uppercase;color:var(--m-branco);background:rgba(8,37,56,.74);border:1px solid rgba(212,179,124,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cena-rotulos span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--m-dourado-claro);margin-right:7px;vertical-align:1px}
+.cena-rotulos span.troca{animation:rotulo-entra .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes rotulo-entra{from{filter:blur(4px);letter-spacing:.3em}to{filter:none;letter-spacing:.12em}}
+@keyframes ficha-entra{from{opacity:.2;transform:translateX(12px)}to{opacity:1;transform:none}}
+.mf-num{font:600 11px/1.3 var(--f-txt);letter-spacing:.14em;text-transform:uppercase;color:var(--m-dourado-claro);margin:0 0 8px}
+.mf-nome{font:700 clamp(22px,2.4vw,30px)/1.15 var(--f-disp);color:var(--m-branco);margin:0 0 12px}
+.mf-frase{font:400 clamp(16px,1.4vw,18px)/1.5 var(--f-txt);color:var(--m-gelo);margin:0 0 16px}
+.mf-sub{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0;list-style:none}
+.mf-sub li{font:500 12px/1 var(--f-txt);letter-spacing:.04em;color:var(--m-branco);padding:7px 10px;border:1px solid rgba(212,179,124,.45);border-radius:999px;background:rgba(255,255,255,.04)}
+.mf-move{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0;padding-top:14px;border-top:1px solid var(--m-fio)}
+.mf-move-rot{font:600 11px/1.3 var(--f-txt);letter-spacing:.12em;text-transform:uppercase;color:var(--m-gelo);margin-right:4px}
+.mf-link{background:none;border:0;padding:4px 0;cursor:pointer;font:600 14px/1.3 var(--f-txt);color:var(--m-dourado-claro);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.mf-link:hover{color:var(--m-branco)}
+.mp-palco{position:relative;aspect-ratio:16/9;max-height:680px;min-height:420px;border:1px solid var(--m-fio);overflow:hidden;background:var(--m-marinho)}
+.modelar:not(.cena-viva) .mp-palco{background-image:radial-gradient(rgba(185,200,212,.28) 1px,transparent 1.3px);background-size:22px 22px}
+.mp-titulo{position:absolute;left:24px;top:20px;margin:0;z-index:2;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--m-gelo)}
+.mp-ficha{position:absolute;right:24px;top:24px;bottom:24px;width:min(34%,380px);padding:24px;overflow:auto;z-index:2;
+  background:rgba(8,37,56,.78);border:1px solid var(--m-fio);border-top:2px solid var(--m-dourado);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.mp-ficha.troca{animation:ficha-entra .45s cubic-bezier(.2,.7,.2,1)}
+.mp-controles{display:flex;align-items:center;gap:8px;margin-top:16px;min-width:0}
+.mp-trilho{flex:1;min-width:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.mp-trilho::-webkit-scrollbar{display:none}
+.mp-frente{flex:none;display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:1px solid var(--m-fio);border-radius:999px;background:transparent;color:var(--m-gelo);font:500 14px/1 var(--f-txt);cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s,color .15s}
+.mp-frente .n{font:700 12px/1 var(--f-disp);color:var(--m-dourado-claro);font-variant-numeric:tabular-nums}
+.mp-frente:hover{border-color:var(--m-gelo);color:var(--m-branco)}
+.mp-frente[aria-pressed=true]{background:var(--m-dourado);border-color:var(--m-dourado);color:var(--m-marinho);font-weight:600}
+.mp-frente[aria-pressed=true] .n{color:var(--m-marinho)}
+.mp-seta,.mp-auto{flex:none;min-height:44px;min-width:44px;padding:0 12px;border:1px solid var(--m-fio);border-radius:999px;background:transparent;color:var(--m-branco);font:600 14px/1 var(--f-txt);cursor:pointer}
+.mp-seta:hover,.mp-auto:hover{border-color:var(--m-gelo)}
+.mp-auto{border-style:dashed;padding:0 16px;color:var(--m-gelo)}
+.mp-auto[aria-pressed=true]{background:rgba(255,255,255,.08);color:var(--m-branco);border-style:solid}
+.mp-dica{color:var(--m-gelo);margin-top:12px;font-size:13px}
+.mp-dica a{color:var(--m-dourado-claro);text-underline-offset:4px}
+@media (max-width:1023px){
+  .mp-palco{aspect-ratio:auto;min-height:0;height:min(62vw,420px)}
+  .mp-ficha{position:static;width:auto;margin-top:20px;border-top:2px solid var(--m-dourado);background:transparent;border-left:0;border-right:0;border-bottom:0;padding:20px 0 0;backdrop-filter:none}
+  .mp-ficha.troca{animation:none}
+  .modelar-prancha .wrap{display:flex;flex-direction:column}
+  .mp-controles{order:-1;margin:0 0 16px}
+  .modelar-prancha .cab{order:-2}
+  .mp-auto,.mp-dica{display:none}
+}
+@media (max-width:767px){.mp-palco{margin-inline:calc(-1 * var(--gut));border-left:0;border-right:0}}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tri .fluxo{animation:none}}
+
+
+/* v2: tese com os três caminhos, mesa de falas, vertentes dentro da modelagem */
+.tese2{--cap-txt:var(--tinta);--cap-txt-2:var(--tinta-2);--cap-linha:var(--linha);--ouro-cap:var(--ouro);background:var(--papel);padding-block:clamp(56px,8vw,96px) 0}
+.tese2-grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:start}
+.tese2 h1{font-size:clamp(36px,5vw,58px);font-weight:800;line-height:1.06;letter-spacing:-.025em;color:var(--tinta)}
+.tese2 h1 em{font-style:normal;color:var(--ouro)}
+.tese2 .ponte{margin-top:clamp(40px,5vw,64px);margin-bottom:clamp(48px,7vw,80px)}
+.tese2{--cap-2:var(--papel-2)}
+.tese2-grade{align-items:center}
+.tri-caixa{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}
+.tese2 .tri{max-width:460px}
+.tese2 .tri .no{fill:var(--papel)}
+.tese2 .tri .centro-t,.tese2 .tri .rot{fill:var(--tinta)}
+.tese2 .tri .sub{fill:var(--tinta-2)}
+.tri-legenda{font-size:15px;color:var(--tinta-2);text-align:center;max-width:42ch}
+@media (max-width:980px){.tese2-grade{grid-template-columns:minmax(0,1fr)}.tese2 .tri{max-width:360px}}
+.entradas{background:var(--papel-2)}
+.vertices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.vertice{position:relative;display:flex;flex-direction:column;gap:12px;min-width:0;padding:28px 24px 22px;background:var(--papel);border:1px solid var(--linha);border-top:2px solid var(--tinta);text-decoration:none;color:var(--tinta);transition:border-color .2s,transform .2s}
+.vertice:nth-child(3){border-top-color:var(--ouro-marca)}
+.vertice:hover{transform:translateY(-2px);border-color:var(--ouro-marca)}
+.v-num{font-family:var(--f-disp);font-weight:700;font-size:12px;letter-spacing:.14em;color:var(--ouro)}
+.vertice h3{font-size:24px;font-weight:700}
+.vertice p{font-size:15px;color:var(--tinta-2);flex:1}
+.v-pe{padding-top:12px;border-top:1px solid var(--linha);font-size:13px;font-weight:600;color:var(--ouro)}
+.entradas .nota{margin-top:20px}
+@media (max-width:860px){.vertices{grid-template-columns:minmax(0,1fr)}}
+.vert-bloco{margin-top:clamp(40px,6vw,64px)}
+.modelar .vert{border-top-color:var(--m-fio);margin-top:16px}
+.modelar .vert article+article{border-left-color:var(--m-fio)}
+.modelar .vert h3{color:var(--m-branco)}
+.modelar .vert p{color:var(--m-gelo)}
+.modelar .vert .dito{color:var(--m-dourado-claro)}
+.modelar .vert .fr span{border-color:var(--m-fio);background:rgba(255,255,255,.04);color:var(--m-branco)}
+.modelar .vert-bloco .nota{color:var(--m-gelo);margin-top:20px}
+@media (max-width:760px){.modelar .vert article,.modelar .vert article+article{border-bottom-color:var(--m-fio)}}
+.provas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:8px}
+.provas .num{font-size:clamp(28px,3vw,40px)}
+.provas .num:first-child{grid-column:1/-1}
+@media (max-width:560px){.provas{grid-template-columns:minmax(0,1fr)}}
+
+/* v3: correções de contraste e foco, barra de CTA no celular, entregas, perguntas da modelagem */
+:root{--foco:#7A5A2C}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--foco:#CAA972}}
+:root[data-theme="dark"]{--foco:#CAA972}
+.btn-linha{border-color:var(--linha);color:var(--tinta)}
+.cap .btn-linha,.modelar .btn-linha{border-color:var(--cap-linha);color:var(--cap-txt)}
+.topo .btn{display:inline-flex}
+@media (max-width:860px){.topo .btn{display:inline-flex;padding:9px 14px;font-size:14px}.topo .wrap{gap:10px}}
+.abertura .clareza{font-size:clamp(15px,1.5vw,18px);color:var(--cap-txt-2);max-width:40ch;margin:0}
+@media (max-width:860px){.abertura{align-items:flex-end}.abertura::before{background:linear-gradient(180deg,rgba(8,37,56,.25) 0%,rgba(8,37,56,.55) 45%,rgba(8,37,56,.94) 100%)}}
+.tese2 .micro{font-size:13px;color:var(--tinta-2);margin-top:-8px}
+.apoio-cta{font-size:13px;color:var(--tinta-2)}
+.cap .apoio-cta{color:var(--cap-txt-2)}
+/* ficha estática (antes do JS) */
+.mp-ficha .mf-sub li{margin:0}
+/* perguntas que as frentes respondem */
+.perguntas-frentes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:clamp(28px,4vw,40px);padding-top:24px;border-top:1px solid var(--m-fio)}
+.perguntas-frentes div{min-width:0}
+.perguntas-frentes h3{font-size:18px;font-weight:700;color:var(--m-branco);margin-bottom:10px}
+.perguntas-frentes p{display:flex;flex-wrap:wrap;gap:6px;margin:0}
+.perguntas-frentes button{font:500 12px/1 var(--f-txt);padding:7px 10px;border:1px solid rgba(212,179,124,.45);border-radius:999px;background:rgba(255,255,255,.04);color:var(--m-branco);cursor:pointer}
+.perguntas-frentes button:hover{border-color:var(--m-dourado-claro)}
+.modelar .fecho-mod{margin-top:20px;color:var(--m-gelo);font-size:15px;max-width:62ch}
+@media (max-width:860px){.perguntas-frentes{grid-template-columns:minmax(0,1fr)}}
+/* entregas */
+.recebe-sec{background:var(--papel-2)}
+.recebe-sec.papel{background:var(--papel)}
+.entregas-grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 32px}
+.entrega{display:flex;flex-direction:column;gap:8px;min-width:0;padding-top:16px;border-top:2px solid var(--tinta)}
+.entrega:nth-child(2){border-top-color:var(--ouro-marca)}
+.entrega .num{font-family:var(--f-disp);font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--ouro)}
+.entrega h3{font-size:22px;font-weight:700}
+.entrega p{font-size:15px;color:var(--tinta-2)}
+.entrega p b{color:var(--tinta);font-weight:600}
+.recebe-sec .nota{margin-top:24px}
+@media (max-width:760px){.entregas-grade{grid-template-columns:minmax(0,1fr)}}
+/* passos: "você recebe" curto */
+.passos .recebe{font-size:14px}
+/* quem: papéis em linha */
+.papeis-linha{margin-top:20px;font-family:var(--f-disp);font-weight:600;font-size:17px;color:var(--tinta)}
+.papeis-linha em{font-style:normal;color:var(--ouro)}
+/* barra de CTA no celular, depois da abertura */
+.cta-movel{display:none}
+@media (max-width:860px){
+  .cta-movel{display:block;position:fixed;left:0;right:0;bottom:0;z-index:19;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom,0px));background:var(--papel);border-top:1px solid var(--linha);transform:translateY(110%);transition:transform .25s}
+  .cta-movel.visivel{transform:none}
+  .cta-movel .btn{width:100%;justify-content:center}
+  body.com-cta-movel{padding-bottom:72px}
+}
+.oculto{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pular{position:absolute;left:16px;top:-48px;z-index:30;background:var(--tinta);color:var(--papel);padding:10px 14px;border-radius:2px;text-decoration:none;font-weight:600}
+.pular:focus{top:12px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://daleth.iajudite.com.br/#org","name":"DALETH","description":"Estruturação de negócios imobiliários","url":"https://daleth.iajudite.com.br/","logo":"https://daleth.iajudite.com.br/assets/marca/vertical-color.svg","slogan":"Ao seu lado na construção da sua história.","areaServed":"BR","address":{"@type":"PostalAddress","addressLocality":"Belo Horizonte","addressRegion":"MG","addressCountry":"BR"}},{"@type":"Person","name":"Cristiano Valério Ribeiro","jobTitle":"Fundador","worksFor":{"@id":"https://daleth.iajudite.com.br/#org"}}]}</script>
+<script src="/cris-code/assets/js/cena3d.js" defer></script>
+<script src="/cris-code/assets/js/modelagem.js" defer></script>
+</head>
+<body>
+<a class="pular" href="#tese">Ir para o conteúdo</a>
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="DALETH, início"><svg fill-rule="evenodd" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="42 112 2082 550" aria-hidden="true" focusable="false"><path d="M64 134L237 134C353 134 422 184 422 282C422 373 342 439 238 439L64 439L64 436C93 433 105 425 105 400L105 174C105 148 92 140 64 137ZM174 172C174 151 177 145 200 145L236 145C308 145 352 210 352 282C352 365 302 430 230 430L207 430C180 430 174 426 174 405Z"/><path d="M406 439L406 435C425 431 434 422 443 414L606 135C608 132 611 132 613 135L752 397C766 424 776 432 796 435L796 439L676 439L676 435C693 431 692 424 686 411L580 209L466 414C458 425 462 431 481 435L481 439Z"/><path d="M820 136L969 136L969 139C939 142 929 152 929 180L929 401C929 421 934 429 958 429L996 429C1040 429 1073 406 1097 365L1081 439L820 439L820 436C849 433 859 422 859 399L859 177C859 151 849 141 820 139Z"/><path d="M1125 136L1370 136L1373 199L1370 199C1368 164 1349 149 1300 149L1245 149C1231 149 1228 154 1228 171L1228 278L1265 278C1304 278 1324 268 1331 237L1334 237L1334 337L1331 337C1324 305 1311 292 1265 292L1228 292L1228 399C1228 421 1234 429 1260 429L1295 429C1330 429 1357 411 1385 389L1376 439L1125 439L1125 436C1153 432 1164 422 1164 399L1164 175C1164 150 1152 141 1125 139Z"/><path d="M1419 136L1690 136L1698 206L1694 206C1671 163 1650 149 1607 149L1585 149L1585 399C1585 425 1598 433 1627 436L1627 439L1480 439L1480 436C1507 433 1519 424 1519 399L1519 149L1496 149C1454 149 1430 166 1412 206L1408 206Z"/><path d="M1721 136L1869 136L1869 139C1839 142 1827 152 1827 177L1827 276L1991 276L1991 177C1991 151 1981 141 1953 139L1953 136L2103 136L2103 139C2073 142 2060 152 2060 177L2060 399C2060 424 2072 433 2103 436L2103 439L1953 439L1953 436C1981 433 1991 424 1991 399L1991 289L1827 289L1827 399C1827 424 1839 433 1869 436L1869 439L1721 439L1721 436C1749 433 1759 424 1759 399L1759 177C1759 151 1749 141 1721 139Z"/><path fill="#B58A44" d="M580 321L645 439L512 439Z"/><path fill="#B58A44" d="M896 497L1305 497L1305 508L896 508Z"/><path d="M0.000 0.000L37.000 0.000L37.000 6.000L7.000 6.000L7.000 22.500L34.000 22.500L34.000 28.500L7.000 28.500L7.000 46.000L37.000 46.000L37.000 52.000L0.000 52.000Z" transform="translate(183 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(255 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(326 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(404 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(481 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(561 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(638 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(724 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(799 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(884 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(965 572) scale(1 1)"/><path d="M28.0 -1C43.463972999999996 -1 56 11.08831175 56 26.0C56 40.91168825 43.463972999999996 53 28.0 53C12.536027 53 0 40.91168825 0 26.0C0 11.08831175 12.536027 -1 28.0 -1ZM28.0 5C39.59797975 5 49 14.40202025 49 26.0C49 37.59797975 39.59797975 47 28.0 47C16.40202025 47 7 37.59797975 7 26.0C7 14.40202025 16.40202025 5 28.0 5Z" transform="translate(1049 572) scale(1 1)"/><path d="M0 0L19.6 0C39.2 0 49 10 49 26C49 42 39.2 52 19.6 52L0 52ZM7 6L19.6 6C34.3 6 42 14 42 26C42 38 34.3 46 19.6 46L7 46Z" transform="translate(1190 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1277 572) scale(1 1)"/><path d="M0.000 0.000L7.500 0.000L39.400 40.000L39.400 0.000L46.000 0.000L46.000 52.000L38.500 52.000L6.600 12.000L6.600 52.000L0.000 52.000Z" transform="translate(1397 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1485 572) scale(1 1)"/><path d="M49 7L44.5 12C38 6 32.34 5 26.46 5C11.76 5 7 13 7 26C7 39 11.76 47 26.46 47C34.3 47 40 45 42.4 42L42.4 31L26.950000000000003 31L26.950000000000003 25L49 25L49 45C40 51 36.26 53 25.48 53C8.33 53 0 42 0 26C0 10 8.33 -1 25.48 -1C36.26 -1 41 1 49 7Z" transform="translate(1556 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1641 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(1731 572) scale(1 1)"/><path d="M0.000 0.000L7.000 0.000L7.000 52.000L0.000 52.000Z" transform="translate(1816 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1862 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(1952 572) scale(1 1)"/><path d="M905 623L910 623L908 628C920 628 919 640 908 640L901 638L903 634C909 637 914 633 907 632L903 632Z"/><path d="M979 565C980 553 986 555 992 558C998 561 1000 561 1001 557L1006 557C1005 568 999 568 992 564C986 561 984 561 984 565Z"/><path d="M1663 564L1670 555L1679 555L1670 564Z"/></svg></a>
+    <nav aria-label="Seções">
+      <a href="#modelagem">Modelagem</a>
+      <a href="#metodo">Como trabalhamos</a>
+      <a href="#entregas">O que você recebe</a>
+      <a href="#ao-seu-lado">Ao seu lado</a>
+      <a href="#quem">Quem conduz</a>
+    </nav>
+    <a class="btn btn-tinta" href="#contato">Conversar</a>
+    <button type="button" class="menu-bt" aria-expanded="false" aria-controls="menu-movel" aria-label="Abrir o menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="menu-movel" id="menu-movel" aria-label="Seções, menu do celular" hidden>
+    <a href="#modelagem">Modelagem</a><a href="#metodo">Como trabalhamos</a><a href="#entregas">O que você recebe</a><a href="#ao-seu-lado">Ao seu lado</a><a href="#quem">Quem conduz</a><a href="#contato">Conversar</a>
+  </nav>
+</header>
+
+<main>
+<section class="cap abertura" id="inicio" aria-label="Abertura">
+  <div class="palco-3d" aria-hidden="true"><canvas data-cena="heroi"></canvas></div>
+  <div class="wrap">
+    <p class="sobre">DALETH · Estruturação de Negócios Imobiliários</p>
+    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span class="l1" aria-hidden="true">Ao seu lado na construção</span><span class="l2" aria-hidden="true"><em>de sua história.</em></span></p>
+    <p class="clareza">Estruturamos empresas e empreendimentos imobiliários para quem decide construir mais.</p>
+    <a class="desce" href="#tese" aria-label="Descer para a tese"><i aria-hidden="true">↓</i><span>A tese</span></a>
+  </div>
+</section>
+<section class="tese2" id="tese">
+  <div class="wrap">
+    <div class="tese2-grade">
+      <div class="hero-txt">
+        <p class="sobre">A tese</p>
+        <h1>A estrutura certa muda o tamanho do que você <em>pode construir.</em></h1>
+        <p class="hero-nota">Muitas construtoras crescem pela capacidade de executar. O próximo crescimento depende da capacidade de estruturar.</p>
+        <div class="acoes">
+          <a class="btn btn-tinta" href="#contato">Conversar sobre uma oportunidade</a>
+          <a class="btn btn-linha" href="#modelagem">Ver a modelagem</a>
+        </div>
+        <p class="micro apoio-cta">A primeira conversa não tem custo.</p>
+      </div>
+      <div class="tri-caixa">
+<svg class="tri" viewBox="0 0 420 400" role="img" aria-labelledby="tri-t">
+      <title id="tri-t">Empreendimento, empresa e capital ligados entre si, com uma decisão no centro</title>
+      <path class="aresta" d="M210 70 L70 320 L350 320 Z"/>
+      <path class="fluxo" d="M210 70 L70 320"/>
+      <path class="fluxo b" d="M70 320 L350 320"/>
+      <path class="fluxo c" d="M350 320 L210 70"/>
+      <line class="aresta" x1="210" y1="70" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <line class="aresta" x1="70" y1="320" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <line class="aresta" x1="350" y1="320" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <circle class="centro" cx="210" cy="236" r="7"/>
+      <text class="centro-t" x="210" y="262" text-anchor="middle">UMA DECISÃO</text>
+      <circle class="no" cx="210" cy="70" r="12"/>
+      <circle class="no" cx="70" cy="320" r="12"/>
+      <circle class="no" cx="350" cy="320" r="12"/>
+      <text class="rot" x="210" y="30" text-anchor="middle">EMPREENDIMENTO</text>
+      <text class="sub" x="210" y="48" text-anchor="middle">terreno · produto · obra</text>
+      <text class="rot" x="70" y="358" text-anchor="middle">CAPITAL</text>
+      <text class="sub" x="70" y="376" text-anchor="middle">próprio · sócios · banco</text>
+      <text class="rot" x="350" y="358" text-anchor="middle">EMPRESA</text>
+      <text class="sub" x="350" y="376" text-anchor="middle">construtora · sociedade</text>
+    </svg>
+        <p class="tri-legenda">Empresa, empreendimento e capital se decidem juntos. Mexer em um muda os outros dois.</p>
+      </div>
+    </div>
+    <a class="ponte" href="#modelagem"><span>Se os três lados se movem juntos, como enxergar isso antes de decidir?</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+<section class="modelar modelar-prancha" id="modelagem" data-modelar="prancha" aria-labelledby="mod-t" tabindex="-1">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Modelar · o centro do método</p>
+      <h2 class="h2" id="mod-t">Toda oportunidade guarda mais de um negócio.</h2>
+      <p class="lead">O mesmo terreno pode ser vendido, permutado ou incorporado. Cada caminho muda risco, caixa e captura. Comparamos antes de escolher.</p>
+    </div>
+    <div class="mp-palco">
+      <canvas data-cena="modelagem" data-lado="esquerda" data-reserva-direita="0.36" data-reserva-baixo="0.06" data-rotulos="Terreno|Produto e mercado|Técnica|Jurídico|Societário|Tributário|Econômico-financeiro|Capital e funding|Comercialização|Risco e retorno" aria-hidden="true"></canvas>
+      <div class="cena-rotulos"></div>
+      <p class="mp-titulo">Modelagem do empreendimento</p>
+      <div class="mp-ficha" aria-live="polite"><p class="mf-num">00 · Modelagem do empreendimento</p><h3 class="mf-nome">Tudo conectado</h3><p class="mf-frase">Mudar uma frente muda as outras. Por isso comparamos antes de escolher.</p><ul class="mf-sub"><li>Terreno</li><li>Produto e mercado</li><li>Técnica</li><li>Jurídico</li><li>Societário</li><li>Tributário</li><li>Econômico-financeiro</li><li>Capital e funding</li><li>Comercialização</li><li>Risco e retorno</li></ul></div>
+    </div>
+    <div class="mp-controles">
+      <button type="button" class="mp-seta" data-passo="-1" aria-label="Frente anterior">←</button>
+      <div class="mp-trilho" role="group" aria-label="Frentes da modelagem"></div>
+      <button type="button" class="mp-seta" data-passo="1" aria-label="Próxima frente">→</button>
+      <button type="button" class="mp-auto" aria-pressed="false">Percorrer as frentes</button>
+    </div>
+    <p class="mp-dica">Setas percorrem as frentes. Os nomes em dourado levam a quem cada uma move. <a href="/cris-code/assets/docs/DALETH-Modelagem-do-Empreendimento.pdf" download>Este capítulo em PDF</a>.</p>
+    <div class="perguntas-frentes" aria-label="As frentes, pela pergunta que respondem">
+      <div><h3>O que este terreno pode ser?</h3><p><button type="button" data-frente="terreno">Terreno e permutas</button><button type="button" data-frente="produto">Produto e mercado</button><button type="button" data-frente="tecnica">Técnica e projeto</button><button type="button" data-frente="comercial">Comercialização</button></p></div>
+      <div><h3>Em que forma o negócio existe?</h3><p><button type="button" data-frente="societario">Societário</button><button type="button" data-frente="juridico">Jurídico e documental</button><button type="button" data-frente="tributario">Tributário</button></p></div>
+      <div><h3>Como o dinheiro entra, sai e volta?</h3><p><button type="button" data-frente="financeiro">Fluxo e exposição</button><button type="button" data-frente="capital">Capital e funding</button><button type="button" data-frente="risco">Risco e retorno</button></p></div>
+    </div>
+    <p class="fecho-mod">O projeto fica com o arquiteto, a empresa com o contador, o capital com o banco. Alguém precisa olhar os três juntos.</p>
+    <a class="ponte" href="#metodo"><span>Comparar antes faz sentido. Qual é a sequência?</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+<section class="metodo" id="metodo" aria-labelledby="met-t">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Como trabalhamos</p>
+      <h2 class="h2" id="met-t">Quatro movimentos. Cada um termina com algo escrito na sua mão.</h2>
+      <p class="lead">Começa com uma conversa sem custo. Cada movimento entrega algo escrito e pede uma decisão sua.</p>
+    </div>
+    <ol class="passos">
+      <li class="entrada">
+        <span class="num">PORTA DE ENTRADA</span>
+        <h3>Conversa de enquadramento</h3>
+        <p class="recebe">Você conta o terreno, a empresa ou a necessidade de capital. Saímos sabendo se há caso e por onde ele começa.</p>
+        <span class="selo">sem custo</span>
+      </li>
+      <li><span class="num">01</span><h3>Mapear</h3><p class="para">para compreender</p><p class="frase">Mapear a situação real, antes de recomendar.</p><p class="recebe"><b>Você recebe</b>O retrato escrito: ativos, restrições, premissas e os caminhos que merecem comparação.</p></li>
+      <li><span class="num">02</span><h3>Modelar</h3><p class="para">para enxergar</p><p class="frase">Comparar os caminhos antes de comprometer o capital.</p><p class="recebe"><b>Você recebe</b>Dois ou três caminhos lado a lado, com premissas, caixa, exposição e a decisão registrada.</p></li>
+      <li><span class="num">03</span><h3>Estruturar</h3><p class="para">para tornar executável</p><p class="frase">Transformar o caminho escolhido em operação.</p><p class="recebe"><b>Você recebe</b>A operação por escrito: sociedade, terreno, contratos, caixa alvo e dossiê para quem financia.</p></li>
+      <li><span class="num">04</span><h3>Conduzir</h3><p class="para">para funcionar</p><p class="frase">Acompanhar a implantação ao lado de quem executa.</p><p class="recebe"><b>Você recebe</b>Presença nos pontos de controle, com uma leitura escrita do que mudou e do que fazer.</p></li>
+    </ol>
+    <p class="nota" style="margin-top:24px">Escopo, prazo e valor de cada movimento ficam na proposta, caso a caso.</p>
+    <a class="ponte" href="#entregas"><span>E o que fica na minha mão em cada passo?</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+<section class="recebe-sec papel" id="entregas" aria-labelledby="ent-t">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">O que você recebe</p>
+      <h2 class="h2" id="ent-t">O que fica na sua mão em cada movimento.</h2>
+      <p class="lead">Nada aqui tem nome de produto. Cada movimento termina com algo escrito, lido com você, e uma decisão sua.</p>
+    </div>
+    <div class="entregas-grade">
+      <div class="entrega"><span class="num">01 · MAPEAR</span><h3>Um retrato escrito</h3><p>Ativos, recursos, restrições, riscos, premissas e oportunidades. As perguntas abertas, por urgência. Os caminhos que merecem comparação, e os que não, com o motivo. <b>Você decide se vale modelar.</b></p></div>
+      <div class="entrega"><span class="num">02 · MODELAR</span><h3>Os caminhos lado a lado</h3><p>Premissas escritas, caixa e exposição de cada um, risco assumido, valor capturado, o que exigem da empresa. Nossa indicação e o porquê. <b>Você escolhe, e a escolha fica registrada.</b></p></div>
+      <div class="entrega"><span class="num">03 · ESTRUTURAR</span><h3>A operação por escrito</h3><p>Sociedade e passos de constituição, forma de aquisição do terreno, contratos com responsável por cada um, caixa alvo com pontos de controle, dossiê pronto para banco, investidor ou sócio. <b>Quem aprova é o financiador.</b></p></div>
+      <div class="entrega"><span class="num">04 · CONDUZIR</span><h3>Presença nos pontos de controle</h3><p>Definidos na estruturação. A cada ponto, uma leitura escrita do que mudou em relação à premissa e do que fazer. <b>A execução continua com a sua empresa.</b></p></div>
+    </div>
+    <p class="nota">Escopo, prazo e valor de cada movimento ficam na proposta, caso a caso.</p>
+    <a class="ponte" href="#ao-seu-lado"><span>Depois que eu escolher, vocês somem ou ficam?</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+<section class="cap lado" id="ao-seu-lado" aria-labelledby="lado-t">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Ao seu lado</p>
+      <h2 class="grande" id="lado-t">Uma coisa é dizer o que fazer. Outra é estar lá enquanto é feito.</h2>
+      <p class="lead">Mostramos os caminhos e dizemos qual tomaríamos. A decisão é sua. A obra é da sua empresa. A rota, acompanhamos juntos.</p>
+    </div>
+    <div class="papeis">
+      <div><b>O cliente</b><p>decide.<small>Com os caminhos e os números na mesa.</small></p></div>
+      <div><b>A empresa</b><p>executa.<small>Quem constrói continua construindo.</small></p></div>
+      <div><b>A DALETH</b><p>conduz.<small>Verifica, cobra o combinado e corrige a rota.</small></p></div>
+    </div>
+    <div class="comp">
+      <div class="prop">
+        <p class="sobre">Por que existimos</p>
+        <p class="p-txt">Dar estrutura para que bons empreendimentos imobiliários realizem seu potencial.</p>
+      </div>
+      <div>
+        <p class="sobre" style="margin-bottom:6px">Três compromissos</p>
+        <ol>
+          <li>Mapear a situação real antes de recomendar.</li>
+          <li>Mostrar os caminhos lado a lado, com as premissas escritas.</li>
+          <li>Dizer o que os números dizem, mesmo quando o caminho preferido não fecha.</li>
+        </ol>
+      </div>
+    </div>
+    
+  </div>
+</section>
+<section class="quem" id="quem" aria-labelledby="quem-t">
+  <div class="wrap">
+    <div class="cab" style="margin-bottom:0">
+      <p class="sobre">Quem conduz</p>
+      <h2 class="h2" id="quem-t">Cristiano Valério Ribeiro</h2>
+      <p class="meta">Engenharia de produção · Economia · MBA em gestão de negócios de incorporação e construção</p>
+    </div>
+    <div class="txt">
+      <p class="lead">Atuou nos dois lados do crédito imobiliário, analisando e estruturando operações. Acompanhou ciclos completos de incorporação, do terreno à entrega.</p>
+      <div class="provas">
+        <p class="num">R$ 324 mi<small>em VGV de operações de financiamento à produção trabalhadas, na trajetória do fundador, via TRAL3.</small></p>
+        <p class="num">30<small>operações de financiamento à produção.</small></p>
+        <p class="num">19<small>construtoras e incorporadoras atendidas nessas operações.</small></p>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+<section class="faq" id="perguntas" aria-labelledby="faq-t">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Antes de escrever</p>
+      <h2 class="h2" id="faq-t">O que costumam perguntar antes de escrever.</h2>
+      <p class="lead">Respostas curtas. O resto cabe na conversa de enquadramento.</p>
+    </div>
+    <div class="faq-lista">
+      <details><summary>Quanto custa?</summary><p>Caso a caso. O escopo sai da conversa de enquadramento, que não tem custo. Valor, prazo e entregas ficam escritos na proposta antes de qualquer trabalho começar.</p></details>
+      <details><summary>Vocês decidem por mim?</summary><p>Não. Mostramos os caminhos lado a lado, com as consequências de cada um, e dizemos qual tomaríamos. A decisão é sua e fica registrada com a premissa que a sustenta.</p></details>
+      <details><summary>Vocês recebem comissão do banco?</summary><p>Não. Não somos correspondentes bancários nem recebemos de instituição financeira. Isso nos deixa livres para comparar qualquer fonte de capital. Quem aprova o crédito é o financiador.</p></details>
+      <details><summary>Já tenho contador, advogado e arquiteto. Faz sentido?</summary><p>Faz, e não substituímos nenhum deles. Trabalhamos ao lado do seu time. O que costuma faltar é alguém olhando empresa, empreendimento e capital juntos.</p></details>
+      <details><summary>Minha obra parou. É caso para vocês?</summary><p>Pode ser. Obra parada mexe nos três lados ao mesmo tempo e quase sempre começa pela frente jurídica. A conversa de enquadramento diz se há caminho e por onde ele começa.</p></details>
+      <details><summary>Atendem fora de Minas Gerais?</summary><p>Sim. A base é Belo Horizonte e a atuação é nacional, à distância, com presença quando o caso pede. Documentos e decisões circulam por escrito.</p></details>
+      <details><summary>O que vocês não fazem?</summary><p>Não captamos recursos, não damos curso, não fazemos BPO e não assumimos a execução. É estruturação.</p></details>
+    </div>
+  </div>
+</section>
+<section class="cap contato" id="contato" aria-labelledby="conv-t">
+  <div class="wrap">
+    <div class="cab" style="margin-bottom:0">
+      <p class="sobre">Começa com uma conversa</p>
+      <h2 id="conv-t">Conte o terreno, o produto ou a empresa.</h2>
+      <p class="lead">Você conta. Saímos sabendo se há caso e por onde ele começa. Escopo, prazo e valor ficam na proposta.</p>
+      <ol class="degraus">
+        <li><b>Conversa de enquadramento</b><span>Sem custo e sem compromisso.</span></li>
+        <li><b>Mapeamento</b><span>O primeiro trabalho, só se fizer sentido para os dois lados.</span></li>
+        <li><b>Escopo escrito</b><span>Prazo, entregas e valor antes de começar.</span></li>
+      </ol>
+    </div>
+    <div class="canal">
+      <b>Canal de contato</b>
+      <p>Em definição: e-mail, WhatsApp ou formulário. Este quadro sai quando o canal estiver escolhido.</p>
+      <p>Confidencial desde a primeira mensagem. Belo Horizonte · atuação nacional.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="DALETH, voltar ao início"><svg fill-rule="evenodd" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="42 112 2082 550" aria-hidden="true" focusable="false"><path d="M64 134L237 134C353 134 422 184 422 282C422 373 342 439 238 439L64 439L64 436C93 433 105 425 105 400L105 174C105 148 92 140 64 137ZM174 172C174 151 177 145 200 145L236 145C308 145 352 210 352 282C352 365 302 430 230 430L207 430C180 430 174 426 174 405Z"/><path d="M406 439L406 435C425 431 434 422 443 414L606 135C608 132 611 132 613 135L752 397C766 424 776 432 796 435L796 439L676 439L676 435C693 431 692 424 686 411L580 209L466 414C458 425 462 431 481 435L481 439Z"/><path d="M820 136L969 136L969 139C939 142 929 152 929 180L929 401C929 421 934 429 958 429L996 429C1040 429 1073 406 1097 365L1081 439L820 439L820 436C849 433 859 422 859 399L859 177C859 151 849 141 820 139Z"/><path d="M1125 136L1370 136L1373 199L1370 199C1368 164 1349 149 1300 149L1245 149C1231 149 1228 154 1228 171L1228 278L1265 278C1304 278 1324 268 1331 237L1334 237L1334 337L1331 337C1324 305 1311 292 1265 292L1228 292L1228 399C1228 421 1234 429 1260 429L1295 429C1330 429 1357 411 1385 389L1376 439L1125 439L1125 436C1153 432 1164 422 1164 399L1164 175C1164 150 1152 141 1125 139Z"/><path d="M1419 136L1690 136L1698 206L1694 206C1671 163 1650 149 1607 149L1585 149L1585 399C1585 425 1598 433 1627 436L1627 439L1480 439L1480 436C1507 433 1519 424 1519 399L1519 149L1496 149C1454 149 1430 166 1412 206L1408 206Z"/><path d="M1721 136L1869 136L1869 139C1839 142 1827 152 1827 177L1827 276L1991 276L1991 177C1991 151 1981 141 1953 139L1953 136L2103 136L2103 139C2073 142 2060 152 2060 177L2060 399C2060 424 2072 433 2103 436L2103 439L1953 439L1953 436C1981 433 1991 424 1991 399L1991 289L1827 289L1827 399C1827 424 1839 433 1869 436L1869 439L1721 439L1721 436C1749 433 1759 424 1759 399L1759 177C1759 151 1749 141 1721 139Z"/><path fill="#B58A44" d="M580 321L645 439L512 439Z"/><path fill="#B58A44" d="M896 497L1305 497L1305 508L896 508Z"/><path d="M0.000 0.000L37.000 0.000L37.000 6.000L7.000 6.000L7.000 22.500L34.000 22.500L34.000 28.500L7.000 28.500L7.000 46.000L37.000 46.000L37.000 52.000L0.000 52.000Z" transform="translate(183 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(255 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(326 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(404 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(481 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(561 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(638 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(724 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(799 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(884 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(965 572) scale(1 1)"/><path d="M28.0 -1C43.463972999999996 -1 56 11.08831175 56 26.0C56 40.91168825 43.463972999999996 53 28.0 53C12.536027 53 0 40.91168825 0 26.0C0 11.08831175 12.536027 -1 28.0 -1ZM28.0 5C39.59797975 5 49 14.40202025 49 26.0C49 37.59797975 39.59797975 47 28.0 47C16.40202025 47 7 37.59797975 7 26.0C7 14.40202025 16.40202025 5 28.0 5Z" transform="translate(1049 572) scale(1 1)"/><path d="M0 0L19.6 0C39.2 0 49 10 49 26C49 42 39.2 52 19.6 52L0 52ZM7 6L19.6 6C34.3 6 42 14 42 26C42 38 34.3 46 19.6 46L7 46Z" transform="translate(1190 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1277 572) scale(1 1)"/><path d="M0.000 0.000L7.500 0.000L39.400 40.000L39.400 0.000L46.000 0.000L46.000 52.000L38.500 52.000L6.600 12.000L6.600 52.000L0.000 52.000Z" transform="translate(1397 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1485 572) scale(1 1)"/><path d="M49 7L44.5 12C38 6 32.34 5 26.46 5C11.76 5 7 13 7 26C7 39 11.76 47 26.46 47C34.3 47 40 45 42.4 42L42.4 31L26.950000000000003 31L26.950000000000003 25L49 25L49 45C40 51 36.26 53 25.48 53C8.33 53 0 42 0 26C0 10 8.33 -1 25.48 -1C36.26 -1 41 1 49 7Z" transform="translate(1556 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1641 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(1731 572) scale(1 1)"/><path d="M0.000 0.000L7.000 0.000L7.000 52.000L0.000 52.000Z" transform="translate(1816 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1862 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(1952 572) scale(1 1)"/><path d="M905 623L910 623L908 628C920 628 919 640 908 640L901 638L903 634C909 637 914 633 907 632L903 632Z"/><path d="M979 565C980 553 986 555 992 558C998 561 1000 561 1001 557L1006 557C1005 568 999 568 992 564C986 561 984 561 984 565Z"/><path d="M1663 564L1670 555L1679 555L1670 564Z"/></svg></a>
+    <span class="slogan">Ao seu lado na construção de sua história.</span>
+    <span>Estruturação de Negócios Imobiliários · Belo Horizonte</span>
+  </div>
+</footer>
+<div class="cta-movel" id="cta-movel" aria-hidden="true"><a class="btn btn-tinta" href="#contato" tabindex="-1">Conversar sobre uma oportunidade</a></div>
+<script>
+// Slogan digitado: a primeira linha fica parada; as variações entram e saem na segunda, e a última fica em dourado.
+(function(){
+  var p=document.getElementById("assina"); if(!p) return;
+  var alvo=p.querySelector(".l2");
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var fins=["de seu projeto", "de seu empreendimento", "de seu legado", "de sua história."];
+  var i=0, texto="", fim=fins[0];
+  var final=alvo.innerHTML;
+  p.classList.add("digitando"); alvo.textContent="";
+  function espera(ms,fn){ setTimeout(fn,ms); }
+  function digitar(){
+    if(texto.length<fim.length){ texto=fim.slice(0,texto.length+1); alvo.textContent=texto; return espera(46+Math.random()*45,digitar); }
+    if(i===fins.length-1){ return espera(1400,function(){ alvo.innerHTML=final; p.classList.remove("digitando"); }); }
+    espera(1300,apagar);
+  }
+  function apagar(){
+    if(texto.length){ texto=texto.slice(0,-1); alvo.textContent=texto; return espera(22,apagar); }
+    i++; fim=fins[i]; espera(300,digitar);
+  }
+  espera(900,digitar);
+})();
+</script>
+<script>
+// Vértices de entrada: rolam até a modelagem e abrem a frente indicada
+(function(){
+  document.querySelectorAll("[data-frente]").forEach(function(a){
+    a.addEventListener("click",function(e){
+      e.preventDefault();
+      var alvo=document.getElementById("modelagem"); if(!alvo) return;
+      var reduzir=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      alvo.scrollIntoView({behavior:reduzir?"auto":"smooth",block:"start"});
+      document.dispatchEvent(new CustomEvent("daleth:frente",{detail:a.dataset.frente}));
+      if(history.replaceState) history.replaceState(null,"","#modelagem");
+    });
+  });
+})();
+</script>
+<script>
+// Menu do celular: abre em lista, fecha ao escolher uma seção ou com Esc
+(function(){
+  var bt=document.querySelector(".menu-bt"), menu=document.getElementById("menu-movel"); if(!bt||!menu) return;
+  function fechar(){ bt.setAttribute("aria-expanded","false"); menu.hidden=true; }
+  bt.addEventListener("click",function(){ var aberto=bt.getAttribute("aria-expanded")==="true"; if(aberto) fechar(); else { bt.setAttribute("aria-expanded","true"); menu.hidden=false; } });
+  menu.addEventListener("click",function(e){ if(e.target.tagName==="A") fechar(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") fechar(); });
+})();
+</script>
+<script>
+// Barra de CTA no celular: aparece depois da abertura, some perto do fecho
+(function(){
+  var barra=document.getElementById("cta-movel"), ab=document.getElementById("inicio"), fim=document.getElementById("contato");
+  if(!barra||!ab||!fim||!("IntersectionObserver" in window)) return;
+  document.body.classList.add("com-cta-movel");
+  var passouAbertura=false, noFim=false;
+  function ajustar(){ var v=passouAbertura&&!noFim; barra.classList.toggle("visivel",v); barra.setAttribute("aria-hidden",String(!v)); barra.querySelector("a").tabIndex=v?0:-1; }
+  new IntersectionObserver(function(es){ es.forEach(function(e){ passouAbertura=!e.isIntersecting; }); ajustar(); },{threshold:0.15}).observe(ab);
+  new IntersectionObserver(function(es){ es.forEach(function(e){ noFim=e.isIntersecting; }); ajustar(); },{threshold:0.1}).observe(fim);
+})();
+</script>
+</body>
+</html>
