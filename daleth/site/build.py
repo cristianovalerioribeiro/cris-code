@@ -540,15 +540,16 @@ def montar(pg, local, raiz="/"):
     return reescrever_links(pagina, relativizador(base, local, raiz))
 
 
-def montar_home_solta(local, raiz="/"):
+def montar_home_solta(local, raiz="/", arquivo=None, caminho="/"):
     """A home é um arquivo pronto (home/index.html); aqui entram só robots, domínio, dados
-    estruturados e os links reescritos para o modo local ou para a raiz publicada."""
-    texto = HOME_SOLTA.read_text(encoding="utf-8")
-    robots = '<meta name="robots" content="noindex, nofollow">' if PREVIA else ""
-    pg = {"caminho": "/", "corpo": texto, "pessoa": True}
+    estruturados e os links reescritos para o modo local ou para a raiz publicada.
+    Outros arquivos em home/ (ex.: v2.html) saem em /v2/, sem indexação: versões de teste."""
+    texto = (arquivo or HOME_SOLTA).read_text(encoding="utf-8")
+    robots = '<meta name="robots" content="noindex, nofollow">' if (PREVIA or caminho != "/") else ""
+    pg = {"caminho": caminho, "corpo": texto, "pessoa": True}
     texto = (texto.replace("{{ROBOTS}}", robots).replace("{{DOMINIO}}", DOMINIO)
-                  .replace("{{JSON_LD}}", json_ld(pg, DOMINIO + "/")))
-    return reescrever_links(texto, relativizador("/", local, raiz))
+                  .replace("{{JSON_LD}}", json_ld(pg, DOMINIO + caminho)))
+    return reescrever_links(texto, relativizador(caminho, local, raiz))
 
 
 def paginas_de_redirecionamento(local, raiz):
@@ -609,6 +610,12 @@ def gerar(local=False, raiz="/"):
         destino.write_text(montar(pg, local, raiz), encoding="utf-8")
     if home_solta:
         (DIST / "index.html").write_text(montar_home_solta(local, raiz), encoding="utf-8")
+        for arq in sorted(HOME_SOLTA.parent.glob("*.html")):
+            if arq.name == "index.html":
+                continue
+            destino = DIST / arq.stem / "index.html"
+            destino.parent.mkdir(parents=True, exist_ok=True)
+            destino.write_text(montar_home_solta(local, raiz, arq, f"/{arq.stem}/"), encoding="utf-8")
     # arquivos de servidor (Netlify)
     for nome in ("_headers", "_redirects"):
         if (RAIZ / nome).exists():
