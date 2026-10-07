@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DALETH · Estruturação de Negócios Imobiliários (teste v4 · Mesa de decisão)</title>
+<title>DALETH · Estruturação de Negócios Imobiliários (teste v5 · Reconstrução)</title>
 <meta name="description" content="DALETH · Estruturação de Negócios Imobiliários. Empreendimento, empresa e capital pensados juntos, antes da decisão. Belo Horizonte, atuação nacional.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://daleth.iajudite.com.br/">
@@ -558,6 +558,54 @@ main > section:not(.heroi-v4):not(.prova):not(.assina-sec){padding-block:clamp(4
 @keyframes viga{to{transform:scaleX(1)}}
 .assina-sec .clareza{text-align:center;max-width:46ch}
 @media (prefers-reduced-motion:reduce){.assina-sec .chave::after{animation:none;transform:none}}
+
+/* v5: oito capítulos; método em fluxo; assinatura à esquerda depois do método; quem sem números; CTA único */
+.modelar-v5 .cab .lead{max-width:62ch}
+.mp-dica{margin-top:14px}
+/* método em fluxo */
+.metodo-v5 .fluxo{position:relative;margin-top:clamp(28px,4vw,44px)}
+.metodo-v5 .fio{position:absolute;left:0;right:0;top:9px;height:22px;pointer-events:none}
+.metodo-v5 .fio line{stroke:var(--linha);stroke-width:2}
+.metodo-v5 .fio .fio-vivo{stroke:var(--ouro-marca);stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1)}
+.metodo-v5 .fluxo.visto .fio .fio-vivo{stroke-dashoffset:0}
+.metodo-v5 .fio circle{fill:var(--papel);stroke:var(--tinta);stroke-width:2;transition:fill .4s,stroke .4s}
+.metodo-v5 .fluxo.visto .fio circle{fill:var(--ouro-marca);stroke:var(--ouro-marca)}
+.metodo-v5 .fluxo.visto .fio circle:nth-of-type(2){transition-delay:.6s}.metodo-v5 .fluxo.visto .fio circle:nth-of-type(3){transition-delay:1.2s}.metodo-v5 .fluxo.visto .fio circle:nth-of-type(4){transition-delay:1.8s}
+.metodo-v5 .passos{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:44px}
+.metodo-v5 .passos li{gap:10px}
+.metodo-v5 .passos h3{font-size:24px}
+.metodo-v5 .passos .frase{font-size:17px;color:var(--tinta)}
+.metodo-v5 .passos .detalhe{font-size:14px;color:var(--tinta-2)}
+.metodo-v5 .passos .papel{display:flex;flex-direction:column;gap:2px;margin-top:6px;padding-top:10px;border-top:1px solid var(--linha);font-size:13px;color:var(--tinta-2)}
+.metodo-v5 .passos .papel b{color:var(--tinta);font-weight:600}
+.metodo-v5 .passos .papel em{font-style:normal;color:var(--ouro)}
+.metodo-v5 .pergunta{font-family:var(--f-disp);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ouro)}
+.metodo-v5 .papeis-linha{margin-top:clamp(28px,4vw,40px);font-size:clamp(18px,2vw,22px)}
+.metodo-v5 .papeis-linha em{color:var(--ouro)}
+@media (max-width:980px){.metodo-v5 .fio{display:none}.metodo-v5 .passos{padding-top:4px}}
+/* assinatura à esquerda, depois do método, como clímax */
+.assina-sec.esquerda{text-align:left;justify-content:center;min-height:min(66svh,640px)}
+.assina-sec.esquerda .wrap{align-items:flex-start}
+.assina-sec.esquerda .assina-grande{align-items:flex-start;font-size:clamp(36px,6.2vw,92px)}
+.assina-sec.esquerda .clareza{text-align:left;max-width:52ch;font-size:clamp(16px,1.5vw,19px)}
+.assina-sec.esquerda::before{background:linear-gradient(90deg,rgba(8,37,56,.96) 0%,rgba(8,37,56,.82) 55%,rgba(8,37,56,.55) 100%)}
+.assina-sec .chave::after{animation:none;transform:scaleX(0)}
+.assina-sec .fixo .chave::after{animation:viga 1.1s .15s cubic-bezier(.2,.7,.2,1) forwards}
+.assina-sec .fixo .l2 em{animation:realce 1.4s .2s ease-out both}
+@keyframes realce{0%{text-shadow:0 0 0 rgba(212,179,124,0)}35%{text-shadow:0 0 28px rgba(212,179,124,.75)}100%{text-shadow:0 0 0 rgba(212,179,124,0)}}
+@media (prefers-reduced-motion:reduce){.assina-sec .chave::after{transform:none}.assina-sec .fixo .l2 em{animation:none}}
+/* quem está ao seu lado */
+.quem-v5 .txt .lead{font-size:clamp(18px,1.7vw,21px);max-width:60ch}
+.quem-v5 .meta{margin-top:10px}
+.quem-v5 .apoio{margin-top:14px;font-size:14px;color:var(--tinta-2);max-width:60ch}
+/* CTA final: uma ação */
+.cta-final .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:var(--larg)}
+.cta-final .wrap>*{max-width:880px}
+.cta-final h2{font-size:clamp(32px,4.6vw,56px);font-weight:800;line-height:1.06;letter-spacing:-.02em}
+.cta-final .lead{max-width:60ch}
+.cta-final .acoes{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:8px}
+.cta-final .micro{font-size:13px;color:var(--cap-txt-2)}
+footer .slogan{display:none}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://daleth.iajudite.com.br/#org","name":"DALETH","description":"Estruturação de negócios imobiliários","url":"https://daleth.iajudite.com.br/","logo":"https://daleth.iajudite.com.br/assets/marca/vertical-color.svg","slogan":"Ao seu lado na construção da sua história.","areaServed":"BR","address":{"@type":"PostalAddress","addressLocality":"Belo Horizonte","addressRegion":"MG","addressCountry":"BR"}},{"@type":"Person","name":"Cristiano Valério Ribeiro","jobTitle":"Fundador","worksFor":{"@id":"https://daleth.iajudite.com.br/#org"}}]}</script>
 <script src="/cris-code/assets/js/cena3d.js" defer></script>
@@ -570,15 +618,15 @@ main > section:not(.heroi-v4):not(.prova):not(.assina-sec){padding-block:clamp(4
     <a class="marca" href="#inicio" aria-label="DALETH, início"><svg fill-rule="evenodd" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="42 112 2082 550" aria-hidden="true" focusable="false"><path d="M64 134L237 134C353 134 422 184 422 282C422 373 342 439 238 439L64 439L64 436C93 433 105 425 105 400L105 174C105 148 92 140 64 137ZM174 172C174 151 177 145 200 145L236 145C308 145 352 210 352 282C352 365 302 430 230 430L207 430C180 430 174 426 174 405Z"/><path d="M406 439L406 435C425 431 434 422 443 414L606 135C608 132 611 132 613 135L752 397C766 424 776 432 796 435L796 439L676 439L676 435C693 431 692 424 686 411L580 209L466 414C458 425 462 431 481 435L481 439Z"/><path d="M820 136L969 136L969 139C939 142 929 152 929 180L929 401C929 421 934 429 958 429L996 429C1040 429 1073 406 1097 365L1081 439L820 439L820 436C849 433 859 422 859 399L859 177C859 151 849 141 820 139Z"/><path d="M1125 136L1370 136L1373 199L1370 199C1368 164 1349 149 1300 149L1245 149C1231 149 1228 154 1228 171L1228 278L1265 278C1304 278 1324 268 1331 237L1334 237L1334 337L1331 337C1324 305 1311 292 1265 292L1228 292L1228 399C1228 421 1234 429 1260 429L1295 429C1330 429 1357 411 1385 389L1376 439L1125 439L1125 436C1153 432 1164 422 1164 399L1164 175C1164 150 1152 141 1125 139Z"/><path d="M1419 136L1690 136L1698 206L1694 206C1671 163 1650 149 1607 149L1585 149L1585 399C1585 425 1598 433 1627 436L1627 439L1480 439L1480 436C1507 433 1519 424 1519 399L1519 149L1496 149C1454 149 1430 166 1412 206L1408 206Z"/><path d="M1721 136L1869 136L1869 139C1839 142 1827 152 1827 177L1827 276L1991 276L1991 177C1991 151 1981 141 1953 139L1953 136L2103 136L2103 139C2073 142 2060 152 2060 177L2060 399C2060 424 2072 433 2103 436L2103 439L1953 439L1953 436C1981 433 1991 424 1991 399L1991 289L1827 289L1827 399C1827 424 1839 433 1869 436L1869 439L1721 439L1721 436C1749 433 1759 424 1759 399L1759 177C1759 151 1749 141 1721 139Z"/><path fill="#B58A44" d="M580 321L645 439L512 439Z"/><path fill="#B58A44" d="M896 497L1305 497L1305 508L896 508Z"/><path d="M0.000 0.000L37.000 0.000L37.000 6.000L7.000 6.000L7.000 22.500L34.000 22.500L34.000 28.500L7.000 28.500L7.000 46.000L37.000 46.000L37.000 52.000L0.000 52.000Z" transform="translate(183 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(255 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(326 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(404 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(481 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(561 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(638 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(724 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(799 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(884 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(965 572) scale(1 1)"/><path d="M28.0 -1C43.463972999999996 -1 56 11.08831175 56 26.0C56 40.91168825 43.463972999999996 53 28.0 53C12.536027 53 0 40.91168825 0 26.0C0 11.08831175 12.536027 -1 28.0 -1ZM28.0 5C39.59797975 5 49 14.40202025 49 26.0C49 37.59797975 39.59797975 47 28.0 47C16.40202025 47 7 37.59797975 7 26.0C7 14.40202025 16.40202025 5 28.0 5Z" transform="translate(1049 572) scale(1 1)"/><path d="M0 0L19.6 0C39.2 0 49 10 49 26C49 42 39.2 52 19.6 52L0 52ZM7 6L19.6 6C34.3 6 42 14 42 26C42 38 34.3 46 19.6 46L7 46Z" transform="translate(1190 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1277 572) scale(1 1)"/><path d="M0.000 0.000L7.500 0.000L39.400 40.000L39.400 0.000L46.000 0.000L46.000 52.000L38.500 52.000L6.600 12.000L6.600 52.000L0.000 52.000Z" transform="translate(1397 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1485 572) scale(1 1)"/><path d="M49 7L44.5 12C38 6 32.34 5 26.46 5C11.76 5 7 13 7 26C7 39 11.76 47 26.46 47C34.3 47 40 45 42.4 42L42.4 31L26.950000000000003 31L26.950000000000003 25L49 25L49 45C40 51 36.26 53 25.48 53C8.33 53 0 42 0 26C0 10 8.33 -1 25.48 -1C36.26 -1 41 1 49 7Z" transform="translate(1556 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1641 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(1731 572) scale(1 1)"/><path d="M0.000 0.000L7.000 0.000L7.000 52.000L0.000 52.000Z" transform="translate(1816 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1862 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(1952 572) scale(1 1)"/><path d="M905 623L910 623L908 628C920 628 919 640 908 640L901 638L903 634C909 637 914 633 907 632L903 632Z"/><path d="M979 565C980 553 986 555 992 558C998 561 1000 561 1001 557L1006 557C1005 568 999 568 992 564C986 561 984 561 984 565Z"/><path d="M1663 564L1670 555L1679 555L1670 564Z"/></svg></a>
     <nav aria-label="Seções">
       <a href="#modelagem">O que fazemos</a>
-      <a href="#metodo">Como estruturamos</a>
-      <a href="#quem">Sobre a DALETH</a>
-      <a href="#perguntas">Perguntas</a>
+      <a href="#metodo">Como entramos</a>
+      <a href="#quem">Quem somos</a>
+      <a href="#contato">Conversa</a>
     </nav>
     <a class="btn btn-tinta" href="#contato">Conversar</a>
     <button type="button" class="menu-bt" aria-expanded="false" aria-controls="menu-movel" aria-label="Abrir o menu"><span></span><span></span><span></span></button>
   </div>
   <nav class="menu-movel" id="menu-movel" aria-label="Seções, menu do celular" hidden>
-    <a href="#modelagem">O que fazemos</a><a href="#metodo">Como estruturamos</a><a href="#quem">Sobre a DALETH</a><a href="#perguntas">Perguntas</a><a href="#contato">Conversar</a>
+    <a href="#modelagem">O que fazemos</a><a href="#metodo">Como entramos</a><a href="#quem">Quem somos</a><a href="#contato">Conversa</a><a href="#contato">Conversar</a>
   </nav>
 </header>
 
@@ -669,21 +717,12 @@ main > section:not(.heroi-v4):not(.prova):not(.assina-sec){padding-block:clamp(4
     
   </div>
 </section>
-<section class="cap abertura assina-sec" id="assinatura" aria-label="Assinatura">
-  <div class="palco-3d" aria-hidden="true"><canvas data-cena="rede"></canvas></div>
-  <div class="wrap">
-    <p class="sobre">Nossa assinatura</p>
-    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span class="l1" aria-hidden="true">Ao seu lado na <em class="chave">construção</em> de</span><span class="l2" aria-hidden="true"><em>sua história.</em></span></p>
-    <p class="clareza">Construção é a palavra que une o que fazemos: do empreendimento, da empresa, do capital. E da história de quem decide.</p>
-    <a class="desce" href="#modelagem" aria-label="Descer para a modelagem"><i aria-hidden="true">↓</i><span>A modelagem</span></a>
-  </div>
-</section>
-<section class="modelar modelar-prancha" id="modelagem" data-modelar="prancha" aria-labelledby="mod-t" tabindex="-1">
+<section class="modelar modelar-prancha modelar-v5" id="modelagem" data-modelar="prancha" aria-labelledby="mod-t" tabindex="-1">
   <div class="wrap">
     <div class="cab">
-      <p class="sobre">Modelar · o centro do método</p>
-      <h2 class="h2" id="mod-t">Toda oportunidade guarda mais de um negócio.</h2>
-      <p class="lead">O mesmo terreno pode ser vendido, permutado ou incorporado. Cada caminho muda risco, caixa e captura. Comparamos antes de escolher.</p>
+      <p class="sobre">O que enxergamos e conectamos</p>
+      <h2 class="h2" id="mod-t">Uma decisão imobiliária nunca movimenta uma única frente.</h2>
+      <p class="lead">Terreno, produto, técnica, estrutura jurídica, sociedade, tributação, caixa, capital e retorno se alteram mutuamente. Modelamos essas relações antes que uma decisão comprometa as demais.</p>
     </div>
     <div class="mp-palco">
       <canvas data-cena="modelagem" data-lado="esquerda" data-reserva-direita="0.36" data-reserva-baixo="0.06" data-rotulos="Terreno|Produto e mercado|Técnica|Jurídico|Societário|Tributário|Econômico-financeiro|Capital e funding|Comercialização|Risco e retorno" aria-hidden="true"></canvas>
@@ -698,91 +737,57 @@ main > section:not(.heroi-v4):not(.prova):not(.assina-sec){padding-block:clamp(4
       <button type="button" class="mp-auto" aria-pressed="false">Percorrer as frentes</button>
     </div>
     <p class="mp-dica">Os nomes em dourado na ficha levam às frentes que cada uma move. <a href="/cris-code/assets/docs/DALETH-Modelagem-do-Empreendimento.pdf" download>Este capítulo em PDF</a>.</p>
-    <div class="perguntas-frentes" aria-label="As frentes, pela pergunta que respondem">
-      <div><h3>O que este terreno pode ser?</h3><p><button type="button" data-frente="terreno">Terreno</button><button type="button" data-frente="produto">Produto e mercado</button><button type="button" data-frente="tecnica">Técnica</button></p></div>
-      <div><h3>Em que forma o negócio existe?</h3><p><button type="button" data-frente="juridico">Jurídico e regulatório</button><button type="button" data-frente="societario">Societário e governança</button><button type="button" data-frente="tributario">Tributário</button></p></div>
-      <div><h3>Como o dinheiro entra, sai e volta?</h3><p><button type="button" data-frente="financeiro">Econômico-financeiro</button><button type="button" data-frente="capital">Capital e funding</button><button type="button" data-frente="comercial">Comercialização</button><button type="button" data-frente="risco">Risco e retorno</button></p></div>
-    </div>
-    <p class="fecho-mod">O projeto fica com o arquiteto, a empresa com o contador, o capital com o banco. Alguém precisa olhar os três juntos.</p>
     
   </div>
 </section>
-<section class="metodo" id="metodo" aria-labelledby="met-t">
+<section class="metodo metodo-v5" id="metodo" aria-labelledby="met-t">
   <div class="wrap">
     <div class="cab">
-      <p class="sobre">Como trabalhamos</p>
-      <h2 class="h2" id="met-t">Quatro movimentos. Cada um termina com uma decisão sua.</h2>
-      <p class="lead">Começa com uma conversa sem custo. Nada avança sem algo escrito e lido com você.</p>
+      <p class="sobre">Como a DALETH entra</p>
+      <h2 class="h2" id="met-t">Do diagnóstico à implantação, em quatro movimentos.</h2>
+      <p class="lead">A porta de entrada é o negócio, não um produto. Podemos começar por um terreno, um empreendimento, uma empresa ou uma necessidade de capital. O mapeamento mostra quais frentes precisam ser estruturadas.</p>
     </div>
-    <ol class="passos">
-      <li class="entrada">
-        <span class="num">PORTA DE ENTRADA</span>
-        <h3>Conversa de enquadramento</h3>
-        <p class="recebe">Você conta o terreno, a empresa ou a necessidade de capital. Saímos sabendo se há caso e por onde ele começa.</p>
-        <span class="selo">sem custo</span>
-      </li>
-      <li><span class="num">01</span><h3>Mapear</h3><p class="para">para compreender</p><p class="frase">Mapear a situação real, antes de recomendar.</p><p class="recebe"><b>Você recebe</b>Um retrato escrito: ativos, recursos, restrições, riscos, premissas e oportunidades. As perguntas abertas, por urgência. Os caminhos que merecem comparação, e os que não, com o motivo.</p></li>
-      <li><span class="num">02</span><h3>Modelar</h3><p class="para">para enxergar</p><p class="frase">Comparar os caminhos antes de comprometer o capital.</p><p class="recebe"><b>Você recebe</b>Os caminhos lado a lado: premissas escritas, caixa e exposição de cada um, risco assumido, valor capturado, o que exigem da empresa. Nossa indicação e o porquê. A escolha fica registrada.</p></li>
-      <li><span class="num">03</span><h3>Estruturar</h3><p class="para">para tornar executável</p><p class="frase">Transformar o caminho escolhido em operação.</p><p class="recebe"><b>Você recebe</b>A operação por escrito: sociedade e passos de constituição, forma de aquisição do terreno, contratos com responsável por cada um, caixa alvo com pontos de controle, dossiê pronto para banco, investidor ou sócio. Quem aprova é o financiador.</p></li>
-      <li><span class="num">04</span><h3>Conduzir</h3><p class="para">para funcionar</p><p class="frase">Acompanhar a implantação ao lado de quem executa.</p><p class="recebe"><b>Você recebe</b>Presença nos pontos de controle definidos na estruturação. A cada ponto, uma leitura escrita do que mudou e do que fazer. A execução continua com a sua empresa.</p></li>
-    </ol>
-    
+    <div class="fluxo" id="fluxo">
+      <svg class="fio" viewBox="0 0 1000 22" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="11" x2="1000" y2="11"/><line class="fio-vivo" x1="0" y1="11" x2="1000" y2="11"/></svg>
+      <svg class="fio" viewBox="0 0 1000 22" aria-hidden="true" style="overflow:visible"><circle cx="0" cy="11" r="6"/><circle cx="333" cy="11" r="6"/><circle cx="666" cy="11" r="6"/><circle cx="1000" cy="11" r="6"/></svg>
+      <ol class="passos">
+        <li><span class="num">01</span><h3>Mapear</h3><p class="pergunta">Onde estamos?</p><p class="frase">Entender o negócio como ele é.</p><p class="detalhe">Premissas, ativos, restrições, riscos, recursos e oportunidades.</p><p class="papel"><b>Você expõe o contexto.</b><em>A DALETH mapeia.</em></p></li>
+        <li><span class="num">02</span><h3>Modelar</h3><p class="pergunta">Quais caminhos existem?</p><p class="frase">Comparar o que ele pode ser.</p><p class="detalhe">Cenários, caixa, capital, risco, retorno e impacto sobre a empresa.</p><p class="papel"><b>Você escolhe o caminho.</b><em>A DALETH compara.</em></p></li>
+        <li><span class="num">03</span><h3>Estruturar</h3><p class="pergunta">Como o caminho vira operação?</p><p class="frase">Preparar o caminho escolhido.</p><p class="detalhe">Sociedade, contratos, funding, cronograma, responsabilidades e pontos de controle.</p><p class="papel"><b>Você aprova a estrutura.</b><em>A DALETH estrutura.</em></p></li>
+        <li><span class="num">04</span><h3>Acompanhar</h3><p class="pergunta">O que mudou no caminho?</p><p class="frase">Preservar a lógica na implantação.</p><p class="detalhe">Verificar se o realizado continua coerente com o que foi estruturado.</p><p class="papel"><b>Você decide os ajustes.</b><em>A DALETH acompanha.</em></p></li>
+      </ol>
+    </div>
+    <p class="papeis-linha">O cliente decide. A empresa executa. <em>A DALETH estrutura e acompanha.</em></p>
   </div>
 </section>
-<section class="quem" id="quem" aria-labelledby="quem-t">
+<section class="cap abertura assina-sec esquerda" id="ao-seu-lado" aria-label="Ao seu lado">
+  <div class="palco-3d" aria-hidden="true"><canvas data-cena="rede"></canvas></div>
+  <div class="wrap">
+    <p class="sobre">Ao seu lado</p>
+    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span class="l1" aria-hidden="true">Ao seu lado na <em class="chave">construção</em> de</span><span class="l2" aria-hidden="true"><em>sua história.</em></span></p>
+    <p class="clareza">Estruturar define o caminho. Acompanhar ajuda a preservar sua lógica enquanto o negócio acontece.</p>
+  </div>
+</section>
+<section class="quem quem-v5" id="quem" aria-labelledby="quem-t">
   <div class="wrap">
     <div class="cab" style="margin-bottom:0">
-      <p class="sobre">Quem conduz</p>
+      <p class="sobre">Quem está ao seu lado</p>
       <h2 class="h2" id="quem-t">Cristiano Valério Ribeiro</h2>
       <p class="meta">Engenharia de produção · Economia · MBA em gestão de negócios de incorporação e construção</p>
     </div>
     <div class="txt">
-      <p class="lead">Atuou nos dois lados do crédito imobiliário, analisando e estruturando operações. Acompanhou ciclos completos de incorporação, do terreno à entrega.</p>
-      <div class="provas">
-        <p class="num">R$ 524 mi<small>em VGV (valor geral de vendas) de operações de financiamento à produção trabalhadas, na trajetória do fundador, via TRAL3.</small></p>
-        <p class="num">40<small>operações de financiamento à produção.</small></p>
-        <p class="num">19<small>construtoras e incorporadoras atendidas nessas operações.</small></p>
-      </div>
-      <p class="papeis-linha">O cliente decide. A empresa executa. <em>A DALETH conduz.</em></p>
-    </div>
-    
-  </div>
-</section>
-<section class="faq" id="perguntas" aria-labelledby="faq-t">
-  <div class="wrap">
-    <div class="cab">
-      <p class="sobre">Antes de escrever</p>
-      <h2 class="h2" id="faq-t">O que costumam perguntar antes de escrever.</h2>
-      <p class="lead">Respostas curtas. O resto cabe na conversa de enquadramento.</p>
-    </div>
-    <div class="faq-lista">
-      <details><summary>Quanto custa?</summary><p>Caso a caso. O escopo sai da conversa de enquadramento, que não tem custo. Valor, prazo e entregas ficam escritos na proposta antes de qualquer trabalho começar.</p></details>
-      <details><summary>Vocês decidem por mim?</summary><p>Não. Mostramos os caminhos lado a lado, com as consequências de cada um, e dizemos qual tomaríamos. A decisão é sua e fica registrada com a premissa que a sustenta.</p></details>
-      <details><summary>Vocês recebem comissão do banco?</summary><p>Não. Não somos correspondentes bancários nem recebemos de instituição financeira. Isso nos deixa livres para comparar qualquer fonte de capital. Quem aprova o crédito é o financiador.</p></details>
-      <details><summary>Já tenho contador, advogado e arquiteto. Faz sentido?</summary><p>Faz, e não substituímos nenhum deles. Trabalhamos ao lado do seu time. O que costuma faltar é alguém olhando empresa, empreendimento e capital juntos.</p></details>
-      <details><summary>Minha obra parou. É caso para vocês?</summary><p>Pode ser. Obra parada mexe nos três lados ao mesmo tempo. A conversa de enquadramento diz se há caminho e qual seria o primeiro passo.</p></details>
-      <details><summary>Atendem fora de Minas Gerais?</summary><p>Sim. A base é Belo Horizonte e a atuação é nacional, à distância, com presença quando o caso pede. Documentos e decisões circulam por escrito.</p></details>
-      <details><summary>O que vocês não fazem?</summary><p>Não captamos recursos, não damos curso, não terceirizamos rotinas (BPO) e não assumimos a execução. É estruturação.</p></details>
+      <p class="lead">Experiência na estruturação de empreendimentos, financiamento à produção e organização de operações imobiliárias, atuando na interface entre empresa, empreendimento e capital.</p>
+      <p class="apoio">Atuou nos dois lados do crédito imobiliário, analisando e estruturando operações, e acompanhou ciclos completos de incorporação, do terreno à entrega.</p>
     </div>
   </div>
 </section>
-<section class="cap contato" id="contato" aria-labelledby="conv-t">
+<section class="cap contato cta-final" id="contato" aria-labelledby="conv-t">
   <div class="wrap">
-    <div class="cab" style="margin-bottom:0">
-      <p class="sobre">Começa com uma conversa</p>
-      <h2 id="conv-t">Conte o terreno, a empresa ou a obra.</h2>
-      <p class="lead">Uma conversa basta para saber se há caso. Se houver, a proposta diz escopo, prazo e valor.</p>
-      <ol class="degraus">
-        <li><b>Conversa de enquadramento</b><span>Sem custo e sem compromisso.</span></li>
-        <li><b>Mapeamento</b><span>O primeiro trabalho, só se fizer sentido para os dois lados.</span></li>
-        <li><b>Escopo escrito</b><span>Prazo, entregas e valor antes de começar.</span></li>
-      </ol>
-    </div>
-    <div class="canal">
-      <b>Canal de contato · em breve</b>
-      <p>A conversa de enquadramento já vale como está: sem custo e confidencial desde a primeira mensagem.</p>
-      <p>Belo Horizonte · atuação nacional</p>
-    </div>
+    <p class="sobre">Toda oportunidade começa com uma decisão.</p>
+    <h2 id="conv-t">Vamos entender qual negócio existe nela.</h2>
+    <p class="lead">Conte o terreno, o empreendimento, a empresa ou o desafio de capital. A primeira conversa serve para entender o cenário e identificar por onde a estruturação deve começar.</p>
+    <div class="acoes"><a class="btn btn-tinta" href="/cris-code/contato/">Conversar sobre uma oportunidade</a></div>
+    <p class="micro">Primeira conversa de enquadramento · confidencial · sem custo · Belo Horizonte, atuação nacional</p>
   </div>
 </section>
 </main>
@@ -808,14 +813,14 @@ main > section:not(.heroi-v4):not(.prova):not(.assina-sec){padding-block:clamp(4
   function espera(ms,fn){ setTimeout(fn,ms); }
   function digitar(){
     if(texto.length<fim.length){ texto=fim.slice(0,texto.length+1); alvo.textContent=texto; return espera(46+Math.random()*45,digitar); }
-    if(i===fins.length-1){ return espera(1400,function(){ alvo.innerHTML=final; p.classList.remove("digitando"); }); }
+    if(i===fins.length-1){ return espera(1400,function(){ alvo.innerHTML=final; p.classList.remove("digitando"); p.classList.add("fixo"); }); }
     espera(1300,apagar);
   }
   function apagar(){
     if(texto.length){ texto=texto.slice(0,-1); alvo.textContent=texto; return espera(22,apagar); }
     i++; fim=fins[i]; espera(300,digitar);
   }
-  espera(900,digitar);
+  if("IntersectionObserver" in window){ new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){ o.disconnect(); espera(500,digitar); } }); },{threshold:0.4}).observe(p); } else { espera(900,digitar); }
 })();
 </script>
 <script>
@@ -853,6 +858,14 @@ main > section:not(.heroi-v4):not(.prova):not(.assina-sec){padding-block:clamp(4
   function ajustar(){ var v=passouAbertura&&!noFim; barra.classList.toggle("visivel",v); barra.setAttribute("aria-hidden",String(!v)); barra.querySelector("a").tabIndex=v?0:-1; }
   new IntersectionObserver(function(es){ es.forEach(function(e){ passouAbertura=!e.isIntersecting && e.boundingClientRect.bottom<0; }); ajustar(); },{threshold:0}).observe(ab);
   new IntersectionObserver(function(es){ es.forEach(function(e){ noFim=e.isIntersecting; }); ajustar(); },{threshold:0.1}).observe(fim);
+})();
+</script>
+<script>
+// Método: o fio dourado acende quando a seção entra na tela
+(function(){
+  var f=document.getElementById("fluxo"); if(!f) return;
+  if(!("IntersectionObserver" in window)){ f.classList.add("visto"); return; }
+  new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){ f.classList.add("visto"); o.disconnect(); } }); },{threshold:0.35}).observe(f);
 })();
 </script>
 </body>
