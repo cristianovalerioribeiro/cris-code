@@ -478,22 +478,30 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 .pular:focus{top:12px}
 
 /* v4: hero com rótulos na cena, barra de prova, assinatura depois da tese */
-.heroi-v4{min-height:calc(100svh - 64px)}
+.heroi-v4{min-height:0;height:clamp(600px,calc(100svh - 64px - 150px),860px);padding-block:clamp(48px,6vw,80px)}
+@media (max-width:860px){.heroi-v4{height:auto;min-height:calc(100svh - 64px - 120px)}}
 .heroi-v4::before{display:none}
 .heroi-v4 .palco-3d{z-index:-1}
 .heroi-v4 .palco-3d.foto{background:#082538;overflow:hidden}
 .heroi-v4 .foto-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 55%;transform-origin:68% 62%;animation:kb 38s ease-in-out infinite alternate}
 @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.10) translate(-1.6%,-1.2%)}}
-.heroi-v4 .tracos{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
-.heroi-v4 .tracos path{fill:none;stroke:rgba(212,179,124,.78);stroke-width:1.4;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:tracar 3s 1.1s cubic-bezier(.4,0,.2,1) forwards}
-.heroi-v4 .tracos path.pino{stroke-width:1;stroke-dasharray:900;stroke-dashoffset:900;animation-delay:3.4s;animation-duration:1.6s}
-.heroi-v4 .tracos path.topo-l{stroke-dasharray:4 7;stroke-dashoffset:1400;animation-delay:4.6s;animation-duration:1.8s;opacity:.85}
+.heroi-v4 .tracos{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;font-family:var(--f-txt)}
+.heroi-v4 .tracos .rede line{stroke:rgba(212,179,124,.42);stroke-width:1;stroke-dasharray:600;stroke-dashoffset:600;animation:tracar 2.2s 1.2s cubic-bezier(.4,0,.2,1) forwards}
+.heroi-v4 .tracos .lote{fill:rgba(212,179,124,.06);stroke:rgba(212,179,124,.85);stroke-width:1.5;stroke-linejoin:round;stroke-dasharray:1200;stroke-dashoffset:1200;animation:tracar 2.4s .6s cubic-bezier(.4,0,.2,1) forwards}
+.heroi-v4 .tracos .lote-l{fill:none;stroke:rgba(212,179,124,.55);stroke-width:1;stroke-dasharray:3 6;opacity:0;animation:surge 1.4s 2.6s forwards}
+.heroi-v4 .tracos .pino line{stroke:rgba(255,255,255,.75);stroke-width:1;stroke-dasharray:400;stroke-dashoffset:400;animation:tracar 1.1s calc(1.8s + var(--i) * .22s) cubic-bezier(.4,0,.2,1) forwards}
+.heroi-v4 .tracos .pino .ponto{fill:#FFE9B8}
+.heroi-v4 .tracos .pino .base{fill:url(#g-no);animation:pulsa 3.6s calc(2.4s + var(--i) * .5s) ease-in-out infinite}
+.heroi-v4 .tracos .pino .alto{fill:#fff}
+.heroi-v4 .tracos .pino text{fill:rgba(255,255,255,.92);font-size:13px;font-weight:600;letter-spacing:.14em}
+.heroi-v4 .tracos .pino .alto,.heroi-v4 .tracos .pino text{opacity:0;animation:surge .7s calc(2.7s + var(--i) * .22s) forwards}
 @keyframes tracar{to{stroke-dashoffset:0}}
-.heroi-v4 .tracos circle{fill:#D4B37C;opacity:0;animation:ponto .7s 5.2s ease-out forwards}
-@keyframes ponto{from{opacity:0;r:0}to{opacity:1;r:3.5}}
+@keyframes surge{to{opacity:1}}
+@keyframes pulsa{0%,100%{transform:scale(.7);opacity:.55}50%{transform:scale(1.25);opacity:1}}
+.heroi-v4 .tracos .pino .base{transform-box:fill-box;transform-origin:center}
 .heroi-v4 .palco-3d::after{z-index:1}
 @media (max-width:860px){.heroi-v4 .foto-img{object-position:center top;animation-duration:30s}.heroi-v4 .tracos{display:none}}
-@media (prefers-reduced-motion:reduce){.heroi-v4 .foto-img{animation:none}.heroi-v4 .tracos path{animation:none;stroke-dashoffset:0}.heroi-v4 .tracos circle{animation:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.heroi-v4 .foto-img{animation:none}.heroi-v4 .tracos *{animation:none!important;stroke-dashoffset:0;opacity:1}}
 .heroi-v4 .palco-3d::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(8,37,56,.98) 0%,rgba(8,37,56,.96) 30%,rgba(8,37,56,.70) 52%,rgba(8,37,56,.10) 100%)}
 .heroi-v4 .palco-3d .cena-rotulos{z-index:1}
 .heroi-v4 .wrap{gap:22px;max-width:var(--larg)}
@@ -503,6 +511,28 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 .heroi-v4 .acoes{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
 .heroi-v4 .cena-rotulos span{font-size:11px}
 @media (max-width:860px){.heroi-v4{align-items:flex-end}.heroi-v4 .palco-3d::after{background:linear-gradient(180deg,rgba(8,37,56,.30) 0%,rgba(8,37,56,.62) 45%,rgba(8,37,56,.96) 100%)}.heroi-v4 .cena-rotulos{display:none}}
+/* ritmo: seções mais curtas na v4 */
+main > section:not(.heroi-v4):not(.prova):not(.assina-sec){padding-block:clamp(48px,6.5vw,84px)}
+.tese2.fecha{padding-block:clamp(48px,6.5vw,84px)}
+.tese2 .hero-txt{gap:18px}
+@media (min-width:1024px){.modelar .mp-palco{aspect-ratio:16/8;max-height:540px;min-height:380px}}
+.modelar .perguntas-frentes{margin-top:24px;padding-top:18px}
+.modelar .fecho-mod{margin-top:14px}
+@media (max-width:860px){.modelar .perguntas-frentes{gap:10px;padding-top:14px}.modelar .perguntas-frentes h3{font-size:16px;margin-bottom:0}.modelar .perguntas-frentes p{display:none}}
+.faq summary{padding:14px 40px 14px 0;font-size:17px}
+.faq summary::after{top:10px}
+.faq details p{padding-bottom:14px}
+.passos h3{font-size:22px}
+.passos .frase{font-size:16px}
+@media (max-width:980px){
+  /* passos em trilho horizontal no celular: uma tela em vez de duas e meia */
+  .passos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:4px var(--gut) 14px;margin:0 calc(-1 * var(--gut));scrollbar-width:thin}
+  .passos li,.passos li+li{flex:0 0 min(78vw,320px);scroll-snap-align:start;padding:18px 18px 20px;border:1px solid var(--linha);border-left:3px solid var(--ouro-marca);background:var(--papel)}
+  .passos li::before{display:none}
+  .passos h3{font-size:20px}
+  .passos .frase{font-size:15px}
+  .passos .recebe{font-size:13px}
+}
 /* prova: quatro números sob o hero */
 .prova{padding-block:0;background:var(--tinta);color:var(--papel);border-top:1px solid rgba(212,179,124,.35)}
 .prova .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 32px;padding-block:clamp(28px,3.5vw,44px)}
@@ -518,7 +548,7 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 .tese2 .como-h1 em{font-style:normal;color:var(--ouro)}
 .tese2.fecha{padding-bottom:clamp(56px,8vw,96px)}
 /* assinatura: a palavra "construção" é a chave; traço dourado se ergue sob ela como uma viga */
-.assina-sec{min-height:min(78svh,720px);text-align:center;justify-content:center}
+.assina-sec{min-height:min(62svh,560px);padding-block:clamp(56px,7vw,88px);text-align:center;justify-content:center}
 .assina-sec .wrap{align-items:center}
 .assina-sec::before{background:linear-gradient(180deg,rgba(8,37,56,.90) 0%,rgba(8,37,56,.72) 50%,rgba(8,37,56,.92) 100%)}
 .assina-sec .assina-grande{align-items:center;font-size:clamp(34px,6vw,84px)}
@@ -554,12 +584,29 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 <main id="main">
 <section class="cap abertura heroi-v4" id="inicio" aria-label="Abertura">
   <div class="palco-3d foto" role="img" aria-label="Vista de uma cidade ao entardecer, com uma obra em andamento e plantas sobre a laje">
-    <picture><source media="(max-width:860px)" srcset="/cris-code/assets/img/heroi-foto-m.jpg"><img class="foto-img" src="/cris-code/assets/img/heroi-foto.jpg" srcset="/cris-code/assets/img/heroi-foto-1280.jpg 1280w, /assets/img/heroi-foto.jpg 1672w" sizes="100vw" alt="" fetchpriority="high" decoding="async"></picture>
+    <picture><source media="(max-width:860px)" srcset="/cris-code/assets/img/heroi-foto-m.jpg"><img class="foto-img" src="/cris-code/assets/img/heroi-foto.jpg" srcset="/cris-code/assets/img/heroi-foto-1280.jpg 1280w, /cris-code/assets/img/heroi-foto.jpg 1672w" sizes="100vw" alt="" fetchpriority="high" decoding="async"></picture>
     <svg class="tracos" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <path d="M870 642 L1182 586 L1292 652 L962 724 Z"/>
-      <path d="M870 642 L870 468 M1182 586 L1182 420 M1292 652 L1292 486 M962 724 L962 560" class="pino"/>
-      <path d="M870 468 L1182 420 L1292 486 L962 560 Z" class="topo-l"/>
-      <circle cx="870" cy="468" r="3.5"/><circle cx="1182" cy="420" r="3.5"/><circle cx="1292" cy="486" r="3.5"/><circle cx="962" cy="560" r="3.5"/>
+      <defs><radialGradient id="g-no"><stop offset="0" stop-color="#FFE9B8" stop-opacity="1"/><stop offset=".45" stop-color="#D4B37C" stop-opacity=".9"/><stop offset="1" stop-color="#D4B37C" stop-opacity="0"/></radialGradient></defs>
+      <g class="rede">
+        <line x1="748" y1="572" x2="884" y2="528"/>
+        <line x1="884" y1="528" x2="1012" y2="548"/>
+        <line x1="1012" y1="548" x2="1148" y2="566"/>
+        <line x1="1148" y1="566" x2="1286" y2="544"/>
+        <line x1="1286" y1="544" x2="1428" y2="520"/>
+        <line x1="748" y1="572" x2="1012" y2="548"/>
+        <line x1="884" y1="528" x2="1148" y2="566"/>
+        <line x1="1012" y1="548" x2="1286" y2="544"/>
+        <line x1="1148" y1="566" x2="1428" y2="520"/>
+        <line x1="884" y1="528" x2="1286" y2="544"/>
+      </g>
+      <path class="lote" d="M900 612 L1176 566 L1300 626 L1000 690 Z"/>
+      <path class="lote-l" d="M900 612 L900 470 M1176 566 L1176 424 M1300 626 L1300 484 M1000 690 L1000 548 M900 470 L1176 424 L1300 484 L1000 548 Z"/>
+      <g class="pino" style="--i:0"><line x1="748" y1="572" x2="748" y2="318"/><circle class="base" cx="748" cy="572" r="9"/><circle class="ponto" cx="748" cy="572" r="3"/><circle class="alto" cx="748" cy="318" r="2.5"/><text x="748" y="304" text-anchor="middle">TERRENO</text></g>
+      <g class="pino" style="--i:1"><line x1="884" y1="528" x2="884" y2="282"/><circle class="base" cx="884" cy="528" r="9"/><circle class="ponto" cx="884" cy="528" r="3"/><circle class="alto" cx="884" cy="282" r="2.5"/><text x="884" y="268" text-anchor="middle">PRODUTO</text></g>
+      <g class="pino" style="--i:2"><line x1="1012" y1="548" x2="1012" y2="300"/><circle class="base" cx="1012" cy="548" r="9"/><circle class="ponto" cx="1012" cy="548" r="3"/><circle class="alto" cx="1012" cy="300" r="2.5"/><text x="1012" y="286" text-anchor="middle">VIABILIDADE</text></g>
+      <g class="pino" style="--i:3"><line x1="1148" y1="566" x2="1148" y2="322"/><circle class="base" cx="1148" cy="566" r="9"/><circle class="ponto" cx="1148" cy="566" r="3"/><circle class="alto" cx="1148" cy="322" r="2.5"/><text x="1148" y="308" text-anchor="middle">PROCESSOS</text></g>
+      <g class="pino" style="--i:4"><line x1="1286" y1="544" x2="1286" y2="296"/><circle class="base" cx="1286" cy="544" r="9"/><circle class="ponto" cx="1286" cy="544" r="3"/><circle class="alto" cx="1286" cy="296" r="2.5"/><text x="1286" y="282" text-anchor="middle">ESTRUTURA JURÍDICA</text></g>
+      <g class="pino" style="--i:5"><line x1="1428" y1="520" x2="1428" y2="276"/><circle class="base" cx="1428" cy="520" r="9"/><circle class="ponto" cx="1428" cy="520" r="3"/><circle class="alto" cx="1428" cy="276" r="2.5"/><text x="1428" y="262" text-anchor="middle">CAPITAL</text></g>
     </svg>
   </div>
   <div class="wrap">
