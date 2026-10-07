@@ -26,3 +26,13 @@ acontecer.") com os seis eixos como rótulos na cena 3D; barra de prova logo aba
 tese, com a palavra construção como chave visual. O mesmo gerador produz `v4.html` (`VERSOES["v4"]`, com
 `css_extra`), publicado em `/v4/` (noindex). Os capítulos ainda sem decisão seguem a versão A. Os números da seção
 "Quem conduz" foram alinhados aos da barra de prova.
+
+## v5 · reconstrução (07/10/2026, noite)
+
+Segue o PDF "DALETH_Reconstrucao_Homepage_v4" (Drive, pasta 50 BRIEFING NOVO SITE) e os pedidos da mesa: oito
+capítulos, Hero → Prova → Tese → Modelagem → Como a DALETH entra → Ao seu lado → Quem está ao seu lado → CTA.
+Saem da home a FAQ, os blocos "você recebe", a "conversa de enquadramento" como quinto passo, o fecho do
+arquiteto na modelagem, os números repetidos em "Quem" e o slogan no rodapé. "Conduzir" vira "Acompanhar";
+papéis: "O cliente decide. A empresa executa. A DALETH estrutura e acompanha." A assinatura fica à esquerda,
+depois do método, digita três variações e destaca a final. O CTA único leva a /contato/. Hero com rótulos em
+pílulas escuras e pinos à direita do texto. `VERSOES["v5"]` no mesmo gerador, publicado em `/v5/` (noindex).

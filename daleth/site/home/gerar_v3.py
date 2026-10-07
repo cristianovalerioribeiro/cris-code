@@ -364,7 +364,7 @@ CSS_V4 = """
 .heroi-v4::before{display:none}
 .heroi-v4 .palco-3d{z-index:-1}
 .heroi-v4 .palco-3d.foto{background:#082538;overflow:hidden}
-.heroi-v4 .foto-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 55%;transform-origin:68% 62%;animation:kb 38s ease-in-out infinite alternate}
+.heroi-v4 .foto-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 55%;transform-origin:72% 62%;animation:kb 38s ease-in-out infinite alternate}
 @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.10) translate(-1.6%,-1.2%)}}
 .heroi-v4 .tracos{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;font-family:var(--f-txt)}
 .heroi-v4 .tracos .rede line{stroke:rgba(212,179,124,.42);stroke-width:1;stroke-dasharray:600;stroke-dashoffset:600;animation:tracar 2.2s 1.2s cubic-bezier(.4,0,.2,1) forwards}
@@ -374,8 +374,9 @@ CSS_V4 = """
 .heroi-v4 .tracos .pino .ponto{fill:#FFE9B8}
 .heroi-v4 .tracos .pino .base{fill:url(#g-no);animation:pulsa 3.6s calc(2.4s + var(--i) * .5s) ease-in-out infinite}
 .heroi-v4 .tracos .pino .alto{fill:#fff}
-.heroi-v4 .tracos .pino text{fill:rgba(255,255,255,.92);font-size:13px;font-weight:600;letter-spacing:.14em}
-.heroi-v4 .tracos .pino .alto,.heroi-v4 .tracos .pino text{opacity:0;animation:surge .7s calc(2.7s + var(--i) * .22s) forwards}
+.heroi-v4 .tracos .pino text{fill:#fff;font-size:12px;font-weight:600;letter-spacing:.12em}
+.heroi-v4 .tracos .pino .rot-fundo{fill:rgba(8,37,56,.78);stroke:rgba(212,179,124,.55);stroke-width:1}
+.heroi-v4 .tracos .pino .alto,.heroi-v4 .tracos .pino text,.heroi-v4 .tracos .pino .rot-fundo{opacity:0;animation:surge .7s calc(2.7s + var(--i) * .22s) forwards}
 @keyframes tracar{to{stroke-dashoffset:0}}
 @keyframes surge{to{opacity:1}}
 @keyframes pulsa{0%,100%{transform:scale(.7);opacity:.55}50%{transform:scale(1.25);opacity:1}}
@@ -446,25 +447,25 @@ HERO_V4 = '''<section class="cap abertura heroi-v4" id="inicio" aria-label="Aber
     <svg class="tracos" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs><radialGradient id="g-no"><stop offset="0" stop-color="#FFE9B8" stop-opacity="1"/><stop offset=".45" stop-color="#D4B37C" stop-opacity=".9"/><stop offset="1" stop-color="#D4B37C" stop-opacity="0"/></radialGradient></defs>
       <g class="rede">
-        <line x1="748" y1="572" x2="884" y2="528"/>
-        <line x1="884" y1="528" x2="1012" y2="548"/>
-        <line x1="1012" y1="548" x2="1148" y2="566"/>
-        <line x1="1148" y1="566" x2="1286" y2="544"/>
-        <line x1="1286" y1="544" x2="1428" y2="520"/>
-        <line x1="748" y1="572" x2="1012" y2="548"/>
-        <line x1="884" y1="528" x2="1148" y2="566"/>
-        <line x1="1012" y1="548" x2="1286" y2="544"/>
-        <line x1="1148" y1="566" x2="1428" y2="520"/>
-        <line x1="884" y1="528" x2="1286" y2="544"/>
+        <line x1="846" y1="588" x2="968" y2="540"/>
+        <line x1="968" y1="540" x2="1086" y2="556"/>
+        <line x1="1086" y1="556" x2="1206" y2="572"/>
+        <line x1="1206" y1="572" x2="1330" y2="548"/>
+        <line x1="1330" y1="548" x2="1456" y2="524"/>
+        <line x1="846" y1="588" x2="1086" y2="556"/>
+        <line x1="968" y1="540" x2="1206" y2="572"/>
+        <line x1="1086" y1="556" x2="1330" y2="548"/>
+        <line x1="1206" y1="572" x2="1456" y2="524"/>
+        <line x1="968" y1="540" x2="1330" y2="548"/>
       </g>
-      <path class="lote" d="M900 612 L1176 566 L1300 626 L1000 690 Z"/>
-      <path class="lote-l" d="M900 612 L900 470 M1176 566 L1176 424 M1300 626 L1300 484 M1000 690 L1000 548 M900 470 L1176 424 L1300 484 L1000 548 Z"/>
-      <g class="pino" style="--i:0"><line x1="748" y1="572" x2="748" y2="318"/><circle class="base" cx="748" cy="572" r="9"/><circle class="ponto" cx="748" cy="572" r="3"/><circle class="alto" cx="748" cy="318" r="2.5"/><text x="748" y="304" text-anchor="middle">TERRENO</text></g>
-      <g class="pino" style="--i:1"><line x1="884" y1="528" x2="884" y2="282"/><circle class="base" cx="884" cy="528" r="9"/><circle class="ponto" cx="884" cy="528" r="3"/><circle class="alto" cx="884" cy="282" r="2.5"/><text x="884" y="268" text-anchor="middle">PRODUTO</text></g>
-      <g class="pino" style="--i:2"><line x1="1012" y1="548" x2="1012" y2="300"/><circle class="base" cx="1012" cy="548" r="9"/><circle class="ponto" cx="1012" cy="548" r="3"/><circle class="alto" cx="1012" cy="300" r="2.5"/><text x="1012" y="286" text-anchor="middle">VIABILIDADE</text></g>
-      <g class="pino" style="--i:3"><line x1="1148" y1="566" x2="1148" y2="322"/><circle class="base" cx="1148" cy="566" r="9"/><circle class="ponto" cx="1148" cy="566" r="3"/><circle class="alto" cx="1148" cy="322" r="2.5"/><text x="1148" y="308" text-anchor="middle">PROCESSOS</text></g>
-      <g class="pino" style="--i:4"><line x1="1286" y1="544" x2="1286" y2="296"/><circle class="base" cx="1286" cy="544" r="9"/><circle class="ponto" cx="1286" cy="544" r="3"/><circle class="alto" cx="1286" cy="296" r="2.5"/><text x="1286" y="282" text-anchor="middle">ESTRUTURA JURÍDICA</text></g>
-      <g class="pino" style="--i:5"><line x1="1428" y1="520" x2="1428" y2="276"/><circle class="base" cx="1428" cy="520" r="9"/><circle class="ponto" cx="1428" cy="520" r="3"/><circle class="alto" cx="1428" cy="276" r="2.5"/><text x="1428" y="262" text-anchor="middle">CAPITAL</text></g>
+      <path class="lote" d="M980 622 L1250 574 L1372 636 L1080 702 Z"/>
+      <path class="lote-l" d="M980 622 L980 480 M1250 574 L1250 432 M1372 636 L1372 494 M1080 702 L1080 560 M980 480 L1250 432 L1372 494 L1080 560 Z"/>
+      <g class="pino" style="--i:0"><line x1="846" y1="588" x2="846" y2="334"/><circle class="base" cx="846" cy="588" r="9"/><circle class="ponto" cx="846" cy="588" r="3"/><circle class="alto" cx="846" cy="334" r="2.5"/><rect class="rot-fundo" x="801" y="302" width="89" height="22" rx="11"/><text x="846" y="317" text-anchor="middle">TERRENO</text></g>
+      <g class="pino" style="--i:1"><line x1="968" y1="540" x2="968" y2="292"/><circle class="base" cx="968" cy="540" r="9"/><circle class="ponto" cx="968" cy="540" r="3"/><circle class="alto" cx="968" cy="292" r="2.5"/><rect class="rot-fundo" x="923" y="260" width="89" height="22" rx="11"/><text x="968" y="275" text-anchor="middle">PRODUTO</text></g>
+      <g class="pino" style="--i:2"><line x1="1086" y1="556" x2="1086" y2="310"/><circle class="base" cx="1086" cy="556" r="9"/><circle class="ponto" cx="1086" cy="556" r="3"/><circle class="alto" cx="1086" cy="310" r="2.5"/><rect class="rot-fundo" x="1022" y="278" width="128" height="22" rx="11"/><text x="1086" y="293" text-anchor="middle">VIABILIDADE</text></g>
+      <g class="pino" style="--i:3"><line x1="1206" y1="572" x2="1206" y2="330"/><circle class="base" cx="1206" cy="572" r="9"/><circle class="ponto" cx="1206" cy="572" r="3"/><circle class="alto" cx="1206" cy="330" r="2.5"/><rect class="rot-fundo" x="1152" y="298" width="108" height="22" rx="11"/><text x="1206" y="313" text-anchor="middle">PROCESSOS</text></g>
+      <g class="pino" style="--i:4"><line x1="1330" y1="548" x2="1330" y2="300"/><circle class="base" cx="1330" cy="548" r="9"/><circle class="ponto" cx="1330" cy="548" r="3"/><circle class="alto" cx="1330" cy="300" r="2.5"/><rect class="rot-fundo" x="1233" y="268" width="195" height="22" rx="11"/><text x="1330" y="283" text-anchor="middle">ESTRUTURA JURÍDICA</text></g>
+      <g class="pino" style="--i:5"><line x1="1456" y1="524" x2="1456" y2="282"/><circle class="base" cx="1456" cy="524" r="9"/><circle class="ponto" cx="1456" cy="524" r="3"/><circle class="alto" cx="1456" cy="282" r="2.5"/><rect class="rot-fundo" x="1411" y="250" width="89" height="22" rx="11"/><text x="1456" y="265" text-anchor="middle">CAPITAL</text></g>
     </svg>
   </div>
   <div class="wrap">
@@ -514,6 +515,143 @@ VERSOES["v4"] = dict(
     corpo=lambda: [HERO_V4, TESE_V4, ASSINATURA_V4, modelagem("Toda oportunidade guarda mais de um negócio."),
                    metodo(recebe_longo=True), quem_v4(), FAQ, CONVERSA])
 
+# ---------------------------------------------------------------- v5 (PDF "Reconstrução da Homepage v4" + pedidos do Cristiano, 07/10 noite)
+CSS_V5 = """
+/* v5: oito capítulos; método em fluxo; assinatura à esquerda depois do método; quem sem números; CTA único */
+.modelar-v5 .cab .lead{max-width:62ch}
+.mp-dica{margin-top:14px}
+/* método em fluxo */
+.metodo-v5 .fluxo{position:relative;margin-top:clamp(28px,4vw,44px)}
+.metodo-v5 .fio{position:absolute;left:0;right:0;top:9px;height:22px;pointer-events:none}
+.metodo-v5 .fio line{stroke:var(--linha);stroke-width:2}
+.metodo-v5 .fio .fio-vivo{stroke:var(--ouro-marca);stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1)}
+.metodo-v5 .fluxo.visto .fio .fio-vivo{stroke-dashoffset:0}
+.metodo-v5 .fio circle{fill:var(--papel);stroke:var(--tinta);stroke-width:2;transition:fill .4s,stroke .4s}
+.metodo-v5 .fluxo.visto .fio circle{fill:var(--ouro-marca);stroke:var(--ouro-marca)}
+.metodo-v5 .fluxo.visto .fio circle:nth-of-type(2){transition-delay:.6s}.metodo-v5 .fluxo.visto .fio circle:nth-of-type(3){transition-delay:1.2s}.metodo-v5 .fluxo.visto .fio circle:nth-of-type(4){transition-delay:1.8s}
+.metodo-v5 .passos{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:44px}
+.metodo-v5 .passos li{gap:10px}
+.metodo-v5 .passos h3{font-size:24px}
+.metodo-v5 .passos .frase{font-size:17px;color:var(--tinta)}
+.metodo-v5 .passos .detalhe{font-size:14px;color:var(--tinta-2)}
+.metodo-v5 .passos .papel{display:flex;flex-direction:column;gap:2px;margin-top:6px;padding-top:10px;border-top:1px solid var(--linha);font-size:13px;color:var(--tinta-2)}
+.metodo-v5 .passos .papel b{color:var(--tinta);font-weight:600}
+.metodo-v5 .passos .papel em{font-style:normal;color:var(--ouro)}
+.metodo-v5 .pergunta{font-family:var(--f-disp);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ouro)}
+.metodo-v5 .papeis-linha{margin-top:clamp(28px,4vw,40px);font-size:clamp(18px,2vw,22px)}
+.metodo-v5 .papeis-linha em{color:var(--ouro)}
+@media (max-width:980px){.metodo-v5 .fio{display:none}.metodo-v5 .passos{padding-top:4px}}
+/* assinatura à esquerda, depois do método, como clímax */
+.assina-sec.esquerda{text-align:left;justify-content:center;min-height:min(66svh,640px)}
+.assina-sec.esquerda .wrap{align-items:flex-start}
+.assina-sec.esquerda .assina-grande{align-items:flex-start;font-size:clamp(36px,6.2vw,92px)}
+.assina-sec.esquerda .clareza{text-align:left;max-width:52ch;font-size:clamp(16px,1.5vw,19px)}
+.assina-sec.esquerda::before{background:linear-gradient(90deg,rgba(8,37,56,.96) 0%,rgba(8,37,56,.82) 55%,rgba(8,37,56,.55) 100%)}
+.assina-sec .chave::after{animation:none;transform:scaleX(0)}
+.assina-sec .fixo .chave::after{animation:viga 1.1s .15s cubic-bezier(.2,.7,.2,1) forwards}
+.assina-sec .fixo .l2 em{animation:realce 1.4s .2s ease-out both}
+@keyframes realce{0%{text-shadow:0 0 0 rgba(212,179,124,0)}35%{text-shadow:0 0 28px rgba(212,179,124,.75)}100%{text-shadow:0 0 0 rgba(212,179,124,0)}}
+@media (prefers-reduced-motion:reduce){.assina-sec .chave::after{transform:none}.assina-sec .fixo .l2 em{animation:none}}
+/* quem está ao seu lado */
+.quem-v5 .txt .lead{font-size:clamp(18px,1.7vw,21px);max-width:60ch}
+.quem-v5 .meta{margin-top:10px}
+.quem-v5 .apoio{margin-top:14px;font-size:14px;color:var(--tinta-2);max-width:60ch}
+/* CTA final: uma ação */
+.cta-final .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:var(--larg)}
+.cta-final .wrap>*{max-width:880px}
+.cta-final h2{font-size:clamp(32px,4.6vw,56px);font-weight:800;line-height:1.06;letter-spacing:-.02em}
+.cta-final .lead{max-width:60ch}
+.cta-final .acoes{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:8px}
+.cta-final .micro{font-size:13px;color:var(--cap-txt-2)}
+footer .slogan{display:none}
+"""
+
+def modelagem_v5():
+    m = modelagem("Uma decisão imobiliária nunca movimenta uma única frente.")
+    m = m.replace('<section class="modelar modelar-prancha"', '<section class="modelar modelar-prancha modelar-v5"')
+    m = m.replace('O mesmo terreno pode ser vendido, permutado ou incorporado. Cada caminho muda risco, caixa e captura. Comparamos antes de escolher.',
+                  'Terreno, produto, técnica, estrutura jurídica, sociedade, tributação, caixa, capital e retorno se alteram mutuamente. Modelamos essas relações antes que uma decisão comprometa as demais.')
+    m = m.replace('<p class="sobre">Modelar · o centro do método</p>', '<p class="sobre">O que enxergamos e conectamos</p>')
+    a = m.index('    <div class="perguntas-frentes"'); b = m.index('</p>\n', m.index('<p class="fecho-mod">')) + 5
+    m = m[:a] + m[b:]
+    return m
+
+METODO_V5 = """<section class="metodo metodo-v5" id="metodo" aria-labelledby="met-t">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Como a DALETH entra</p>
+      <h2 class="h2" id="met-t">Do diagnóstico à implantação, em quatro movimentos.</h2>
+      <p class="lead">A porta de entrada é o negócio, não um produto. Podemos começar por um terreno, um empreendimento, uma empresa ou uma necessidade de capital. O mapeamento mostra quais frentes precisam ser estruturadas.</p>
+    </div>
+    <div class="fluxo" id="fluxo">
+      <svg class="fio" viewBox="0 0 1000 22" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="11" x2="1000" y2="11"/><line class="fio-vivo" x1="0" y1="11" x2="1000" y2="11"/></svg>
+      <svg class="fio" viewBox="0 0 1000 22" aria-hidden="true" style="overflow:visible"><circle cx="0" cy="11" r="6"/><circle cx="333" cy="11" r="6"/><circle cx="666" cy="11" r="6"/><circle cx="1000" cy="11" r="6"/></svg>
+      <ol class="passos">
+        <li><span class="num">01</span><h3>Mapear</h3><p class="pergunta">Onde estamos?</p><p class="frase">Entender o negócio como ele é.</p><p class="detalhe">Premissas, ativos, restrições, riscos, recursos e oportunidades.</p><p class="papel"><b>Você expõe o contexto.</b><em>A DALETH mapeia.</em></p></li>
+        <li><span class="num">02</span><h3>Modelar</h3><p class="pergunta">Quais caminhos existem?</p><p class="frase">Comparar o que ele pode ser.</p><p class="detalhe">Cenários, caixa, capital, risco, retorno e impacto sobre a empresa.</p><p class="papel"><b>Você escolhe o caminho.</b><em>A DALETH compara.</em></p></li>
+        <li><span class="num">03</span><h3>Estruturar</h3><p class="pergunta">Como o caminho vira operação?</p><p class="frase">Preparar o caminho escolhido.</p><p class="detalhe">Sociedade, contratos, funding, cronograma, responsabilidades e pontos de controle.</p><p class="papel"><b>Você aprova a estrutura.</b><em>A DALETH estrutura.</em></p></li>
+        <li><span class="num">04</span><h3>Acompanhar</h3><p class="pergunta">O que mudou no caminho?</p><p class="frase">Preservar a lógica na implantação.</p><p class="detalhe">Verificar se o realizado continua coerente com o que foi estruturado.</p><p class="papel"><b>Você decide os ajustes.</b><em>A DALETH acompanha.</em></p></li>
+      </ol>
+    </div>
+    <p class="papeis-linha">O cliente decide. A empresa executa. <em>A DALETH estrutura e acompanha.</em></p>
+  </div>
+</section>
+"""
+
+ASSINATURA_V5 = ASSINATURA_V4.replace('class="cap abertura assina-sec" id="assinatura" aria-label="Assinatura"', 'class="cap abertura assina-sec esquerda" id="ao-seu-lado" aria-label="Ao seu lado"') \
+    .replace('<p class="sobre">Nossa assinatura</p>', '<p class="sobre">Ao seu lado</p>') \
+    .replace('Construção é a palavra que une o que fazemos: do empreendimento, da empresa, do capital. E da história de quem decide.',
+             'Estruturar define o caminho. Acompanhar ajuda a preservar sua lógica enquanto o negócio acontece.') \
+    .replace('    <a class="desce" href="#modelagem" aria-label="Descer para a modelagem"><i aria-hidden="true">↓</i><span>A modelagem</span></a>\n', '')
+
+QUEM_V5 = """<section class="quem quem-v5" id="quem" aria-labelledby="quem-t">
+  <div class="wrap">
+    <div class="cab" style="margin-bottom:0">
+      <p class="sobre">Quem está ao seu lado</p>
+      <h2 class="h2" id="quem-t">Cristiano Valério Ribeiro</h2>
+      <p class="meta">Engenharia de produção · Economia · MBA em gestão de negócios de incorporação e construção</p>
+    </div>
+    <div class="txt">
+      <p class="lead">Experiência na estruturação de empreendimentos, financiamento à produção e organização de operações imobiliárias, atuando na interface entre empresa, empreendimento e capital.</p>
+      <p class="apoio">Atuou nos dois lados do crédito imobiliário, analisando e estruturando operações, e acompanhou ciclos completos de incorporação, do terreno à entrega.</p>
+    </div>
+  </div>
+</section>
+"""
+
+CTA_V5 = """<section class="cap contato cta-final" id="contato" aria-labelledby="conv-t">
+  <div class="wrap">
+    <p class="sobre">Toda oportunidade começa com uma decisão.</p>
+    <h2 id="conv-t">Vamos entender qual negócio existe nela.</h2>
+    <p class="lead">Conte o terreno, o empreendimento, a empresa ou o desafio de capital. A primeira conversa serve para entender o cenário e identificar por onde a estruturação deve começar.</p>
+    <div class="acoes"><a class="btn btn-tinta" href="/contato/">Conversar sobre uma oportunidade</a></div>
+    <p class="micro">Primeira conversa de enquadramento · confidencial · sem custo · Belo Horizonte, atuação nacional</p>
+  </div>
+</section>
+"""
+
+JS_V5 = """<script>
+// Método: o fio dourado acende quando a seção entra na tela
+(function(){
+  var f=document.getElementById("fluxo"); if(!f) return;
+  if(!("IntersectionObserver" in window)){ f.classList.add("visto"); return; }
+  new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){ f.classList.add("visto"); o.disconnect(); } }); },{threshold:0.35}).observe(f);
+})();
+</script>
+"""
+
+VERSOES["v5"] = dict(
+    nome="v5 · Reconstrução",
+    css_extra=CSS_V4 + CSS_V5,
+    js_extra=JS_V5,
+    nav=[("modelagem","O que fazemos"),("metodo","Como entramos"),("quem","Quem somos"),("contato","Conversa")],
+    scripts_sub=[
+      ('var fins=["de seu projeto", "de seu empreendimento", "de seu legado", "de sua história."];', 'var fins=["seu projeto", "seu empreendimento", "sua história."];'),
+      ('alvo.innerHTML=final; p.classList.remove("digitando");', 'alvo.innerHTML=final; p.classList.remove("digitando"); p.classList.add("fixo");'),
+      ('  espera(900,digitar);\n', '  if("IntersectionObserver" in window){ new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){ o.disconnect(); espera(500,digitar); } }); },{threshold:0.4}).observe(p); } else { espera(900,digitar); }\n'),
+    ],
+    corpo=lambda: [HERO_V4, TESE_V4, modelagem_v5(), METODO_V5, ASSINATURA_V5, QUEM_V5, CTA_V5])
+
 for chave, v in VERSOES.items():
     corpo = "".join(v["corpo"]())
     scripts = SCRIPTS
@@ -522,6 +660,6 @@ for chave, v in VERSOES.items():
         scripts = scripts.replace(a, b)
     html = (HEAD.replace("</style>", CSS_V3 + v.get("css_extra","") + "</style>")
             .replace("<title>DALETH · Estruturação de Negócios Imobiliários</title>", f"<title>DALETH · Estruturação de Negócios Imobiliários (teste {v['nome']})</title>")
-            + "</head>\n<body>\n" + header(v["nav"]) + "\n<main id=\"main\">\n" + corpo + "</main>\n\n" + RODAPE + "\n" + CTA_MOVEL + scripts + JS_V3 + "</body>\n</html>\n")
+            + "</head>\n<body>\n" + header(v["nav"]) + "\n<main id=\"main\">\n" + corpo + "</main>\n\n" + RODAPE + "\n" + CTA_MOVEL + scripts + JS_V3 + v.get("js_extra","") + "</body>\n</html>\n")
     (AQUI / f"{chave}.html").write_text(html, encoding="utf-8")
     print(chave, len(html)//1024, "KB", "seções:", corpo.count("<section"))
