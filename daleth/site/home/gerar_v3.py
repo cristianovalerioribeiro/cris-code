@@ -362,7 +362,9 @@ CSS_V4 = """
 .heroi-v4{min-height:calc(100svh - 64px)}
 .heroi-v4::before{display:none}
 .heroi-v4 .palco-3d{z-index:-1}
-.heroi-v4 .palco-3d::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(8,37,56,.96) 0%,rgba(8,37,56,.84) 38%,rgba(8,37,56,.34) 70%,rgba(8,37,56,.18) 100%)}
+.heroi-v4 .palco-3d.foto{background:#082538 url(/assets/img/heroi-foto.jpg) right center/cover no-repeat}
+@media (max-width:860px){.heroi-v4 .palco-3d.foto{background-image:url(/assets/img/heroi-foto-m.jpg);background-position:center top}}
+.heroi-v4 .palco-3d::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(8,37,56,.98) 0%,rgba(8,37,56,.96) 30%,rgba(8,37,56,.70) 52%,rgba(8,37,56,.10) 100%)}
 .heroi-v4 .palco-3d .cena-rotulos{z-index:1}
 .heroi-v4 .wrap{gap:22px;max-width:var(--larg)}
 .heroi-v4 h1{font-family:var(--f-disp);font-weight:800;font-size:clamp(34px,5.6vw,72px);line-height:1.04;letter-spacing:-.03em;color:var(--cap-txt);margin:0;max-width:14ch;text-wrap:balance}
@@ -398,7 +400,7 @@ CSS_V4 = """
 """
 
 HERO_V4 = '''<section class="cap abertura heroi-v4" id="inicio" aria-label="Abertura">
-  <div class="palco-3d" aria-hidden="true"><canvas data-cena="heroi" data-rotulos="Terreno|Produto|Viabilidade|Processos|Estrutura jurídica|Capital" data-reserva-baixo="0.12"></canvas><div class="cena-rotulos"></div></div>
+  <div class="palco-3d foto" role="img" aria-label="Vista de uma cidade ao entardecer, com obra em andamento e plantas sobre a mesa"></div>
   <div class="wrap">
     <p class="sobre">Estruturação de Negócios Imobiliários</p>
     <h1>Transformamos oportunidades imobiliárias <em>em negócios estruturados para acontecer.</em></h1>
@@ -423,7 +425,7 @@ ASSINATURA_V4 = '''<section class="cap abertura assina-sec" id="assinatura" aria
   <div class="palco-3d" aria-hidden="true"><canvas data-cena="rede"></canvas></div>
   <div class="wrap">
     <p class="sobre">Nossa assinatura</p>
-    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span class="l1" aria-hidden="true">Ao seu lado na <em class="chave">construção</em></span><span class="l2" aria-hidden="true"><em>de sua história.</em></span></p>
+    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span class="l1" aria-hidden="true">Ao seu lado na <em class="chave">construção</em> de</span><span class="l2" aria-hidden="true"><em>sua história.</em></span></p>
     <p class="clareza">Construção é a palavra que une o que fazemos: do empreendimento, da empresa, do capital. E da história de quem decide.</p>
     <a class="desce" href="#modelagem" aria-label="Descer para a modelagem"><i aria-hidden="true">↓</i><span>A modelagem</span></a>
   </div>
@@ -441,14 +443,19 @@ def quem_v4():
 VERSOES["v4"] = dict(
     nome="v4 · Mesa de decisão",
     css_extra=CSS_V4,
+    scripts_sub=[('var fins=["de seu projeto", "de seu empreendimento", "de seu legado", "de sua história."];', 'var fins=["seu projeto", "seu empreendimento", "sua história."];')],
     nav=[("modelagem","O que fazemos"),("metodo","Como estruturamos"),("quem","Sobre a DALETH"),("perguntas","Perguntas")],
     corpo=lambda: [HERO_V4, TESE_V4, ASSINATURA_V4, modelagem("Toda oportunidade guarda mais de um negócio."),
                    metodo(recebe_longo=True), quem_v4(), FAQ, CONVERSA])
 
 for chave, v in VERSOES.items():
     corpo = "".join(v["corpo"]())
+    scripts = SCRIPTS
+    for a, b in v.get("scripts_sub", []):
+        assert a in scripts, a
+        scripts = scripts.replace(a, b)
     html = (HEAD.replace("</style>", CSS_V3 + v.get("css_extra","") + "</style>")
             .replace("<title>DALETH · Estruturação de Negócios Imobiliários</title>", f"<title>DALETH · Estruturação de Negócios Imobiliários (teste {v['nome']})</title>")
-            + "</head>\n<body>\n" + header(v["nav"]) + "\n<main id=\"main\">\n" + corpo + "</main>\n\n" + RODAPE + "\n" + CTA_MOVEL + SCRIPTS + JS_V3 + "</body>\n</html>\n")
+            + "</head>\n<body>\n" + header(v["nav"]) + "\n<main id=\"main\">\n" + corpo + "</main>\n\n" + RODAPE + "\n" + CTA_MOVEL + scripts + JS_V3 + "</body>\n</html>\n")
     (AQUI / f"{chave}.html").write_text(html, encoding="utf-8")
     print(chave, len(html)//1024, "KB", "seções:", corpo.count("<section"))
