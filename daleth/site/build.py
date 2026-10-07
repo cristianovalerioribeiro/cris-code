@@ -160,8 +160,18 @@ def relativizador(caminho, local, raiz="/"):
 
 
 def reescrever_links(texto, rel):
-    return re.sub(r'(href|src|action|srcset)="(/[^"]*)"',
-                  lambda m: f'{m.group(1)}="{rel(m.group(2))}"', texto)
+    def troca(m):
+        if m.group(1) == "srcset":
+            # cada candidato ("/url 1280w, /url2 1672w") é reescrito separadamente
+            partes = [c.strip() for c in m.group(2).split(",")]
+            novas = []
+            for c in partes:
+                url, _, desc = c.partition(" ")
+                url = rel(url) if url.startswith("/") else url
+                novas.append((url + " " + desc).strip())
+            return f'srcset="{", ".join(novas)}"'
+        return f'{m.group(1)}="{rel(m.group(2))}"'
+    return re.sub(r'(href|src|action|srcset)="(/[^"]*)"', troca, texto)
 
 
 # ---------------------------------------------------------------- blocos
