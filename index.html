@@ -41,7 +41,7 @@
   --ouro:#CAA972; --ouro-cap:#CAA972; --ouro-marca:#B58A44; --foco:#CAA972; color-scheme:dark}
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{background:var(--papel);color:var(--tinta);font-family:var(--f-txt);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:var(--f-disp);text-wrap:balance;margin:0;letter-spacing:-.01em}
 p{margin:0}
@@ -77,8 +77,40 @@ section{padding-block:clamp(64px,9vw,112px)}
 .topo .btn{padding:9px 16px;font-size:14px}
 @media (max-width:860px){.topo nav{display:none}}
 
-/* hero */
-.hero{padding-block:clamp(56px,8vw,104px) clamp(56px,7vw,96px)}
+/* abertura: o slogan é a primeira tela, grande, digitado sobre a cena 3D */
+.abertura{position:relative;isolation:isolate;min-height:calc(100svh - 64px);display:flex;align-items:center;overflow:hidden;padding-block:clamp(72px,10vw,120px)}
+.abertura .palco-3d{position:absolute;inset:0;z-index:-2}
+.abertura .palco-3d canvas{display:block;width:100%;height:100%}
+.abertura::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(8,37,56,.94) 0%,rgba(8,37,56,.72) 42%,rgba(8,37,56,.18) 100%)}
+.abertura:not(.cena-viva) .palco-3d{background:url(/assets/img/heroi-poster.jpg) right center/cover no-repeat}
+.abertura .wrap{width:100%;display:flex;flex-direction:column;gap:28px}
+.assina-grande{font-family:var(--f-disp);font-weight:800;font-size:clamp(40px,7vw,96px);line-height:1.02;letter-spacing:-.03em;color:var(--cap-txt);max-width:13ch;min-height:2.04em;margin:0}
+.assina-grande em{font-style:normal;color:var(--ouro-cap)}
+.assina-grande.digitando span::after{content:"";display:inline-block;width:.06em;height:.9em;margin-left:.06em;vertical-align:-.08em;background:var(--ouro-cap);animation:pisca 1s steps(1) infinite}
+@keyframes pisca{50%{opacity:0}}
+.desce{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;margin-top:clamp(12px,3vw,36px);text-decoration:none;color:var(--cap-txt-2);font-family:var(--f-disp);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+.desce i{font-style:normal;width:44px;height:44px;border-radius:50%;border:1px solid var(--ouro-cap);color:var(--ouro-cap);display:grid;place-items:center;font-size:18px;animation:desce 2.4s ease-in-out infinite}
+@keyframes desce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media (max-width:860px){.abertura{min-height:calc(100svh - 64px)}.abertura::before{background:linear-gradient(180deg,rgba(8,37,56,.55) 0%,rgba(8,37,56,.86) 60%,rgba(8,37,56,.96) 100%)}}
+@media (prefers-reduced-motion:reduce){.desce i{animation:none}.assina-grande.digitando span::after{animation:none}}
+
+/* hero (a tese), em papel claro logo depois da abertura */
+.hero{--cap-txt:var(--tinta);--cap-txt-2:var(--tinta-2);--cap-linha:var(--linha);--ouro-cap:var(--ouro);--cap-2:var(--papel-2);background:var(--papel);padding-block:clamp(56px,8vw,104px) 0}
+.hero-nota{font-size:clamp(16px,1.5vw,18px);color:var(--tinta-2);max-width:56ch}
+.hero .ponte{margin-top:clamp(40px,5vw,64px);margin-bottom:clamp(48px,7vw,80px)}
+.hero .tri .no{fill:var(--papel)}
+.hero .tri .centro-t,.hero .tri .rot{fill:var(--tinta)}
+.hero .tri .sub{fill:var(--tinta-2)}
+
+/* tese */
+.tese .grande{font-family:var(--f-disp);font-size:clamp(26px,3.6vw,42px);font-weight:700;line-height:1.2;max-width:28ch;color:var(--cap-txt)}
+.tese-par{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,5vw,64px);border-top:1px solid var(--cap-linha);padding-top:clamp(28px,4vw,40px)}
+.tese-par>div{display:flex;flex-direction:column;gap:12px;min-width:0}
+.tese-par .p-txt{font-family:var(--f-disp);font-size:20px;font-weight:600;color:var(--cap-txt);line-height:1.4}
+.tese-par p{color:var(--cap-txt-2)}
+.vert .dito{font-family:var(--f-disp);font-weight:600;color:var(--ouro);font-size:15px}
+@media (max-width:760px){.tese-par{grid-template-columns:minmax(0,1fr)}}
+.hero-antigo{padding-block:clamp(56px,8vw,104px) clamp(56px,7vw,96px)}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,72px);align-items:center}
 .hero-txt{display:flex;flex-direction:column;gap:24px;min-width:0}
 .hero h1{font-size:clamp(36px,5.4vw,62px);font-weight:800;line-height:1.06;letter-spacing:-.025em;color:var(--cap-txt)}
@@ -86,9 +118,7 @@ section{padding-block:clamp(64px,9vw,112px)}
 .hero .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
 .assina{font-family:var(--f-disp);font-size:15px;font-weight:600;color:var(--cap-txt-2);display:flex;align-items:center;gap:12px}
 .assina::before{content:"";width:28px;height:1px;background:var(--ouro-cap);flex:none}
-.assina span{min-height:1.4em}
-.assina.digitando span::after{content:"";display:inline-block;width:2px;height:1em;margin-left:3px;vertical-align:-.15em;background:var(--ouro-cap);animation:pisca 1s steps(1) infinite}
-@keyframes pisca{50%{opacity:0}}
+
 .tri{width:100%;max-width:440px;justify-self:center;display:block}
 .tri .aresta{stroke:var(--cap-linha);stroke-width:1.5;fill:none}
 .tri .fluxo{stroke:var(--ouro-cap);stroke-width:2;fill:none;stroke-dasharray:6 22;animation:flui 3.2s linear infinite}
@@ -336,7 +366,7 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 }
 @media (max-width:767px){.mp-palco{margin-inline:calc(-1 * var(--gut));border-left:0;border-right:0}}
 
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tri .fluxo{animation:none}.assina.digitando span::after{animation:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tri .fluxo{animation:none}}
 
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://daleth.iajudite.com.br/#org","name":"DALETH","description":"Estruturação de negócios imobiliários","url":"https://daleth.iajudite.com.br/","logo":"https://daleth.iajudite.com.br/assets/marca/vertical-color.svg","slogan":"Ao seu lado na construção da sua história.","areaServed":"BR","address":{"@type":"PostalAddress","addressLocality":"Belo Horizonte","addressRegion":"MG","addressCountry":"BR"}},{"@type":"Person","name":"Cristiano Valério Ribeiro","jobTitle":"Fundador","worksFor":{"@id":"https://daleth.iajudite.com.br/#org"}}]}</script>
@@ -359,16 +389,25 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
 </header>
 
 <main>
-<section class="cap hero" id="inicio">
+<section class="cap abertura" id="inicio" aria-label="Abertura">
+  <div class="palco-3d" aria-hidden="true"><canvas data-cena="heroi"></canvas></div>
+  <div class="wrap">
+    <p class="sobre">DALETH · Estruturação de Negócios Imobiliários</p>
+    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção de sua história."><span aria-hidden="true">Ao seu lado na construção <em>de sua história.</em></span></p>
+    <a class="desce" href="#frase" aria-label="Descer para a apresentação"><i aria-hidden="true">↓</i><span>A tese</span></a>
+  </div>
+</section>
+
+<section class="hero" id="frase">
   <div class="wrap">
     <div class="hero-txt">
-      <p class="sobre">Estruturação de Negócios Imobiliários</p>
+      <p class="sobre">A tese</p>
       <h1>A estrutura certa muda o tamanho do que você <em>pode construir.</em></h1>
       <div class="acoes">
-        <a class="btn btn-ouro" href="#contato">Começar pela conversa</a>
+        <a class="btn btn-tinta" href="#contato">Começar pela conversa</a>
         <a class="btn btn-linha" href="#modelagem">Ver a modelagem</a>
       </div>
-      <p class="assina" id="assina" aria-label="Ao seu lado na construção de sua história."><span aria-hidden="true">Ao seu lado na construção de sua história.</span></p>
+      <p class="hero-nota">Estrutura é o que liga empreendimento, empresa e capital numa mesma decisão. É o que decide quanto cabe no caixa, quanto risco se corre e até onde o projeto chega.</p>
     </div>
     <svg class="tri" viewBox="0 0 420 400" role="img" aria-labelledby="tri-t">
       <title id="tri-t">Empreendimento, empresa e capital ligados entre si, com uma decisão no centro</title>
@@ -392,10 +431,37 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       <text class="sub" x="350" y="376" text-anchor="middle">construtora · sociedade</text>
     </svg>
   </div>
+  <div class="wrap"><a class="ponte" href="#tese"><span>Por que a estrutura, e não a obra, decide o tamanho.</span><i aria-hidden="true">↓</i></a></div>
 </section>
 
-<section class="historia" id="historia" aria-label="Do terreno à decisão">
+<section class="cap tese" id="tese">
   <div class="wrap">
+    <div class="cab">
+      <p class="sobre">O ponto de partida</p>
+      <p class="grande">Muitas construtoras crescem pela capacidade de executar. O próximo crescimento depende da capacidade de estruturar.</p>
+    </div>
+    <div class="tese-par">
+      <div>
+        <p class="sobre">O que fazemos</p>
+        <p class="p-txt">Executar levou você até aqui. Estruturar leva além.</p>
+        <p>A DALETH integra empresa, empreendimento e capital para modelar, estruturar e sustentar negócios imobiliários, da oportunidade à implantação.</p>
+      </div>
+      <div>
+        <p class="sobre">O que não somos</p>
+        <p class="p-txt">Não é crédito, não é curso, não é BPO. Não assumimos a execução.</p>
+        <p>É estruturação: o trabalho que acontece antes da decisão e continua ao lado de quem executa, até a estrutura se sustentar sozinha.</p>
+      </div>
+    </div>
+    <a class="ponte" href="#historia"><span>Como isso aparece num terreno.</span><i aria-hidden="true">↓</i></a>
+  </div>
+</section>
+
+<section class="historia" id="historia" aria-labelledby="hist-t">
+  <div class="wrap">
+    <div class="cab" style="margin-bottom:clamp(28px,4vw,40px)">
+      <p class="sobre">Do terreno à decisão</p>
+      <h2 class="h2" id="hist-t">Toda história de empreendimento tem três capítulos antes da obra.</h2>
+    </div>
     <ul class="cred" aria-label="Repertório">
       <li><b>Engenharia e economia</b><span>Técnica e número na mesma leitura</span></li>
       <li><b>Incorporação</b><span>Ciclos completos, do terreno à entrega</span></li>
@@ -431,7 +497,7 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       <button type="button" class="mp-auto" aria-pressed="false">Passear pelas frentes</button>
     </div>
     <p class="mp-dica">Use as setas do teclado para percorrer as frentes. Os nomes em dourado na ficha levam às frentes que esta move. <a href="/cris-code/assets/docs/DALETH-Modelagem-do-Empreendimento.pdf" download>Este capítulo em PDF, para levar à mesa</a>.</p>
-    <a class="ponte" href="#modelar"><span>Na prática, modelar é comparar caminhos pelos mesmos critérios.</span><i aria-hidden="true">↓</i></a>
+    <a class="ponte" href="#modelar"><span>Na prática, modelar é comparar caminhos pelos mesmos critérios, antes de gastar.</span><i aria-hidden="true">↓</i></a>
   </div>
 </section>
 
@@ -507,16 +573,19 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
       <article>
         <h3>Empreendimento</h3>
         <p>O que vai ser construído, onde, para quem e por quanto.</p>
+        <p class="dito">Cada escolha move as outras.</p>
         <p class="fr"><span>01 Terreno</span><span>02 Produto e mercado</span><span>03 Técnica</span><span>09 Comercialização</span></p>
       </article>
       <article>
         <h3>Empresa</h3>
         <p>Quem constrói, com qual sociedade e com que fôlego.</p>
+        <p class="dito">A estrutura precisa crescer junto com a empresa.</p>
         <p class="fr"><span>04 Jurídico e regulatório</span><span>05 Societário e governança</span><span>06 Tributário</span></p>
       </article>
       <article>
         <h3>Capital</h3>
         <p>De onde vem o dinheiro, quando entra e quanto custa.</p>
+        <p class="dito">Primeiro o negócio. Depois o capital.</p>
         <p class="fr"><span>07 Econômico-financeiro</span><span>08 Capital e funding</span><span>10 Risco e retorno</span></p>
       </article>
     </div>
@@ -595,14 +664,14 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
         <p class="recebe"><b>Você recebe</b>Presença nas decisões da obra: verificar, cobrar o combinado e corrigir a rota.</p>
       </li>
     </ol>
-    <a class="ponte" href="#ao-seu-lado"><span>O quarto movimento é o que mais nos diferencia.</span><i aria-hidden="true">↓</i></a>
+    <a class="ponte" href="#ao-seu-lado"><span>O quarto movimento é o que dá sentido ao nosso slogan.</span><i aria-hidden="true">↓</i></a>
   </div>
 </section>
 
 <section class="cap lado" id="ao-seu-lado">
   <div class="wrap">
     <div class="cab">
-      <p class="sobre">Depois da recomendação</p>
+      <p class="sobre">Ao seu lado</p>
       <p class="grande">Uma coisa é dizer o que fazer. Outra é estar lá enquanto é feito.</p>
       <p class="lead">A execução continua com a sua empresa e os seus fornecedores. Formulários e checklists ajudam, mas quem constrói precisa de alguém ao lado quando a decisão aparece.</p>
     </div>
@@ -752,13 +821,14 @@ footer .slogan{font-family:var(--f-disp);font-weight:600;color:var(--cap-txt)}
   var tronco="Ao seu lado na construção ";
   var fins=["", "de seu projeto", "de seu empreendimento", "de seu legado", "de sua história."];
   var i=0, texto=tronco, fim=fins[0];
+  var final=alvo.innerHTML;
   p.classList.add("digitando"); alvo.textContent=texto;
   function espera(ms,fn){ setTimeout(fn,ms); }
   function digitar(){
     var meta=tronco+fim;
-    if(texto.length<meta.length){ texto=meta.slice(0,texto.length+1); alvo.textContent=texto; return espera(38+Math.random()*40,digitar); }
-    if(i===fins.length-1){ return espera(900,function(){ p.classList.remove("digitando"); }); }
-    espera(fim?1100:700,apagar);
+    if(texto.length<meta.length){ texto=meta.slice(0,texto.length+1); alvo.textContent=texto; return espera(42+Math.random()*45,digitar); }
+    if(i===fins.length-1){ return espera(1400,function(){ alvo.innerHTML=final; p.classList.remove("digitando"); }); }
+    espera(fim?1300:700,apagar);
   }
   function apagar(){
     if(texto.length>tronco.length){ texto=texto.slice(0,-1); alvo.textContent=texto; return espera(22,apagar); }
