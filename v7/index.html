@@ -312,7 +312,6 @@ footer .slogan{color:var(--ouro-cap);font-weight:600}
 <section class="tese" id="tese" aria-labelledby="tese-t">
   <div class="wrap">
     <div class="txt">
-      <p class="sobre">A tese</p>
       <h2 id="tese-t">A estrutura certa muda o tamanho do que você <em>pode construir.</em></h2>
       <p class="lead">Muitas construtoras crescem pela capacidade de executar. O próximo crescimento depende da capacidade de estruturar.</p>
     </div>
@@ -470,9 +469,7 @@ footer .slogan{color:var(--ouro-cap);font-weight:600}
     caixa.appendChild(el("h3","mf-nome",f.nome));
     caixa.appendChild(el("p","mf-frase",f.frase));
     var ul=el("ul","mf-sub");f.sub.forEach(function(s){ul.appendChild(el("li",null,s))});caixa.appendChild(ul);
-    if(f.move.length){var mv=el("p","mf-move");mv.appendChild(el("span","mf-move-rot","Também move"));
-      f.move.forEach(function(id){var b=el("button","mf-link",POR[id].nome);b.type="button";b.addEventListener("click",function(){mostrar(id,"ligacao")});b.addEventListener("mouseenter",function(){realce(id,true)});b.addEventListener("mouseleave",function(){realce(id,false)});mv.appendChild(b)});
-      caixa.appendChild(mv)}}
+  }
 
   if(MODO==="prancha"){
     var palco=raiz.querySelector(".mp-palco"), fx=raiz.querySelector(".ficha"), grupos=raiz.querySelector(".mp-grupos"), botoes=[];
