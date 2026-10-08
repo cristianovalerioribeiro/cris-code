@@ -234,6 +234,39 @@ footer .slogan{color:var(--ouro-cap);font-weight:600}
 .linha-comercial b{color:var(--tinta)}
 @media (max-width:980px){.fio{display:none}.passos{grid-template-columns:minmax(0,1fr)}.passos li,.passos li:first-child{padding:22px 0 22px 28px;border-left:2px solid var(--linha)}.passos li::before{content:"";position:absolute;left:-7px;top:26px;width:12px;height:12px;border-radius:50%;background:var(--papel-2);border:2px solid var(--ouro-marca)}}
 
+/* v7c · Como a DALETH entra: três etapas em cartões leves sobre um fio dourado + bloco "Acompanhar" */
+.metodo.ds{background:linear-gradient(140deg,#F8FAFB,#E9EEF1)}
+.ds-titulo{font-size:clamp(34px,4.6vw,60px);line-height:1.06;letter-spacing:-.03em}
+.ds .cab .lead{max-width:62ch}
+.ds-etapas{list-style:none;margin:clamp(12px,2vw,24px) 0 0;padding:31px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;border-top:2px solid var(--ouro-marca)}
+.ds-etapa{position:relative;min-width:0;padding:24px 24px 30px;background:rgba(255,255,255,.6);border:1px solid #DDE5EA;border-radius:4px}
+.ds-etapa::before{content:"";position:absolute;top:-41px;left:24px;width:15px;height:15px;border:2px solid var(--ouro-marca);border-radius:50%;background:#F4F6F7;box-shadow:0 0 0 5px #F4F6F7}
+.ds-num{display:block;font:700 13px/1 var(--f-disp);letter-spacing:.12em;color:var(--ouro);margin-bottom:16px}
+.ds-etapa h3{font-size:clamp(28px,2.8vw,38px);line-height:1.1;letter-spacing:-.025em;margin:0 0 10px}
+.ds-chamada{font:600 18px/1.4 var(--f-disp);color:var(--ouro);margin:0 0 18px}
+.ds-texto{font-size:16px;line-height:1.62;color:var(--tinta-2);margin:0}
+.ds-acompanha{display:grid;grid-template-columns:minmax(300px,.62fr) minmax(0,1.38fr);gap:40px;align-items:center;margin-top:24px;padding:31px;border:1px solid var(--linha);border-radius:4px;background:rgba(255,255,255,.4)}
+.ds-acompanha-cab{border-right:1px solid var(--linha);padding-right:26px}
+.ds-acompanha .sobre{font-size:11px;letter-spacing:.16em;margin-bottom:12px}
+.ds-acompanha .sobre::before{width:22px}
+.ds-acompanha h3{font-size:clamp(30px,3.2vw,42px);line-height:1.1;letter-spacing:-.025em;margin:0}
+.ds-acompanha > p{font-size:18px;line-height:1.58;margin:0;color:var(--tinta)}
+@media (max-width:900px){
+  .ds-etapas{grid-template-columns:minmax(0,1fr);gap:15px;border-top:0;border-left:2px solid var(--ouro-marca);padding:0 0 0 22px;margin-left:7px}
+  .ds-etapa{padding:22px}
+  .ds-etapa::before{left:-33px;top:28px}
+  .ds-acompanha{grid-template-columns:minmax(0,1fr);gap:18px}
+  .ds-acompanha-cab{border-right:0;border-bottom:1px solid var(--linha);padding:0 0 16px}
+}
+@media (max-width:560px){
+  .ds-titulo{font-size:clamp(32px,9vw,44px)}
+  .ds-etapa h3{font-size:30px}
+  .ds-chamada{font-size:17px;margin-bottom:14px}
+  .ds-texto{font-size:15px}
+  .ds-acompanha{padding:22px 19px}
+  .ds-acompanha > p{font-size:16px}
+}
+
 /* v7b · Ao seu lado: CONSTRUÇÃO em dourado desde o início; a segunda linha é digitada; no fim, "DA SUA HISTÓRIA" também em dourado */
 .assina-grande{max-width:none;font-size:clamp(30px,4.8vw,64px);line-height:1.08;display:flex;flex-direction:column}
 .assina-grande .chave{text-decoration:none;color:#D4B37C;letter-spacing:.01em}
@@ -386,21 +419,21 @@ footer .slogan{color:var(--ouro-cap);font-weight:600}
     </div>
   </div>
 </section>
-<section class="metodo" id="metodo" aria-labelledby="met-t">
+<section class="metodo ds" id="metodo" aria-labelledby="met-t">
   <div class="wrap">
     <div class="cab">
       <p class="sobre">Como a DALETH entra</p>
-      <h2 class="h2" id="met-t">Do diagnóstico à implantação, em quatro movimentos.</h2>
-      <p class="lead">A porta de entrada pode ser uma empresa, um empreendimento, uma necessidade de capital ou uma decisão estratégica.</p>
+      <h2 class="h2 ds-titulo" id="met-t">Entender. Modelar. Estruturar.</h2>
+      <p class="lead">A partir de um empreendimento, de uma empresa ou de uma necessidade de capital, avaliamos o cenário, desenvolvemos alternativas e estruturamos o caminho para viabilizar o negócio.</p>
     </div>
-    <div class="fluxo" id="fluxo">
-      <div class="fio" aria-hidden="true"><span class="base"></span><span class="vivo"></span><i style="--p:0"></i><i style="--p:1"></i><i style="--p:2"></i><i style="--p:3"></i></div>
-      <ol class="passos">
-        <li><span class="num">01</span><h3>Mapear</h3><p class="pergunta">Onde estamos?</p><p class="detalhe">Diagnóstico do potencial da empresa e do empreendimento, leitura das premissas atuais, restrições, riscos, recursos e oportunidades. Identificação dos principais ajustes necessários e dos pontos que precisam ser aprofundados para alcançar o resultado pretendido.</p></li>
-        <li><span class="num">02</span><h3>Modelar</h3><p class="pergunta">Quais caminhos existem?</p><p class="detalhe">Comparação de cenários, caixa, capital, risco, retorno e viabilidade. Modelagem mercadológica, econômica, financeira e de processos para entender como diferentes decisões alteram o resultado do empreendimento e a capacidade da empresa.</p></li>
-        <li><span class="num">03</span><h3>Estruturar</h3><p class="pergunta">Como transformar o caminho escolhido em uma operação viável?</p><p class="detalhe">Organização da estrutura jurídica, societária, financeira e operacional necessária para colocar o modelo em prática. Definição de responsabilidades, cronogramas, contratos, estratégia de capital e pontos de controle, compatibilizando o empreendimento com a capacidade da empresa.</p></li>
-        <li><span class="num">04</span><h3>Acompanhar</h3><p class="pergunta">Como preservar a lógica do negócio durante a implantação?</p><p class="detalhe">Acompanhamento dos principais marcos e premissas definidos na estruturação. Leitura das mudanças de cenário, desvios e novas decisões, mantendo empresa, empreendimento e capital coerentes com o caminho planejado ao longo da implantação.</p></li>
-      </ol>
+    <ol class="ds-etapas">
+      <li class="ds-etapa"><span class="ds-num">01</span><h3>Mapear</h3><p class="ds-chamada">Entender o cenário.</p><p class="ds-texto">Analisamos o potencial, as premissas e os desafios da empresa e do empreendimento para identificar oportunidades, riscos e prioridades.</p></li>
+      <li class="ds-etapa"><span class="ds-num">02</span><h3>Modelar</h3><p class="ds-chamada">Construir os caminhos.</p><p class="ds-texto">Integramos mercado, produto, viabilidade, finanças, capital e riscos para comparar cenários e definir a estrutura mais adequada ao negócio.</p></li>
+      <li class="ds-etapa"><span class="ds-num">03</span><h3>Estruturar</h3><p class="ds-chamada">Preparar para acontecer.</p><p class="ds-texto">Organizamos as estruturas societária, jurídica, financeira e operacional, alinhando recursos, responsabilidades e condições para implantação.</p></li>
+    </ol>
+    <div class="ds-acompanha">
+      <div class="ds-acompanha-cab"><p class="sobre">Acompanhamento na implantação</p><h3>Acompanhar</h3></div>
+      <p>Acompanhamos marcos, decisões e ajustes para manter a implantação alinhada à estrutura definida, ao lado da empresa e de seus especialistas.</p>
     </div>
   </div>
 </section>
