@@ -234,6 +234,37 @@ footer .slogan{color:var(--ouro-cap);font-weight:600}
 .linha-comercial b{color:var(--tinta)}
 @media (max-width:980px){.fio{display:none}.passos{grid-template-columns:minmax(0,1fr)}.passos li,.passos li:first-child{padding:22px 0 22px 28px;border-left:2px solid var(--linha)}.passos li::before{content:"";position:absolute;left:-7px;top:26px;width:12px;height:12px;border-radius:50%;background:var(--papel-2);border:2px solid var(--ouro-marca)}}
 
+/* v7b · Ao seu lado: CONSTRUÇÃO em dourado desde o início; a segunda linha é digitada; no fim, "DA SUA HISTÓRIA" também em dourado */
+.assina-grande{max-width:none;font-size:clamp(30px,4.8vw,64px);line-height:1.08;display:flex;flex-direction:column}
+.assina-grande .chave{text-decoration:none;color:#D4B37C;letter-spacing:.01em}
+.assina-grande .l2{min-height:1.08em;color:#fff}
+.assina-grande .dig.fim{color:#D4B37C;letter-spacing:.01em}
+.assina-grande .dig.cursor::after{content:"";display:inline-block;width:.06em;height:.82em;margin-left:.06em;vertical-align:-.06em;background:#D4B37C;animation:pisca .9s steps(1) infinite}
+@keyframes pisca{50%{opacity:0}}
+.assina-sec .wrap{width:100%}
+@media (max-width:600px){.assina-grande .l2{min-height:2.16em}}
+
+/* v7b · modelagem por abas: quatro abas coladas no palco; ficha em lista curta */
+.abas{display:flex;flex-wrap:wrap;gap:0;border:1px solid #24465F;border-bottom:0;width:max-content;max-width:100%}
+.aba{position:relative;background:transparent;border:0;border-right:1px solid #24465F;color:#B9C8D4;cursor:pointer;font:600 14px/1 var(--f-txt);padding:15px 20px;transition:color .25s,background .25s}
+.aba:last-child{border-right:0}
+.aba:hover{color:#fff}
+.aba[aria-pressed="true"]{color:#082538;background:#D4B37C}
+.passeando .aba[aria-pressed="true"]::after{content:"";position:absolute;left:0;bottom:0;height:3px;background:#082538;opacity:.35;animation:progresso 7s linear}
+@keyframes progresso{from{width:0}to{width:100%}}
+.mf-lista{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:0}
+.mf-lista li{padding:11px 0;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:3px}
+.mf-lista b{font:600 15px/1.3 var(--f-disp);color:#fff}
+.mf-lista span{font-size:14px;line-height:1.45;color:#B9C8D4}
+.mp-palco .ficha{overflow:auto}
+@media (max-width:1023px){
+  .abas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:auto;border-bottom:0}
+  .aba{padding:14px 12px;text-align:center;border-bottom:1px solid #24465F}
+  .aba:nth-child(2n){border-right:0}
+  .ficha-fora{margin-top:0;border-top:0}
+}
+@media (max-width:767px){.abas{margin-inline:calc(-1 * var(--gut));border-left:0;border-right:0}.mp-palco{height:min(72vw,320px)}}
+
 /* v7 · tese: triângulo maior, sem legenda */
 .tri{max-width:520px}
 .tri .rot{font-size:18px}
@@ -347,20 +378,12 @@ footer .slogan{color:var(--ouro-cap);font-weight:600}
       <h2 class="h2" id="mod-t">Várias decisões. Um único negócio.</h2>
       <p class="lead" style="color:#B9C8D4">Cada decisão afeta outras frentes do empreendimento. A modelagem integra essas relações antes que uma escolha comprometa o conjunto.</p>
     </div>
+    <div class="abas" role="group" aria-label="Famílias da modelagem"></div>
     <div class="palco mp-palco">
       <canvas data-cena="modelagem" data-lado="esquerda" data-reserva-direita="0.38" data-reserva-baixo="0.06" data-rotulos="Terreno|Produto e mercado|Técnica|Jurídico|Societário|Tributário|Econômico-financeiro|Capital e funding|Comercialização|Risco e retorno" aria-hidden="true"></canvas>
       <div class="cena-rotulos"></div>
       <div class="ficha" aria-live="polite"></div>
     </div>
-    <div class="mp-barra">
-      <p class="mp-dica">Escolha uma frente para ver o que ela move.</p>
-      <div class="mp-controles">
-        <button type="button" class="mp-seta" data-passo="-1" aria-label="Frente anterior">←</button>
-        <button type="button" class="mp-seta" data-passo="1" aria-label="Próxima frente">→</button>
-        <button type="button" class="mp-auto" aria-pressed="false">Percorrer as frentes</button>
-      </div>
-    </div>
-    <div class="mp-grupos" role="group" aria-label="Frentes da modelagem"></div>
   </div>
 </section>
 <section class="metodo" id="metodo" aria-labelledby="met-t">
@@ -385,7 +408,7 @@ footer .slogan{color:var(--ouro-cap);font-weight:600}
   <div class="palco-3d" aria-hidden="true"><canvas data-cena="rede"></canvas></div>
   <div class="wrap">
     <p class="sobre">Ao seu lado</p>
-    <p class="assina-grande">Ao seu lado na <em class="chave">construção</em> de <em>sua história.</em></p>
+    <p class="assina-grande" id="assina" aria-label="Ao seu lado na construção da sua história."><span class="l1" aria-hidden="true">Ao seu lado na <em class="chave">CONSTRUÇÃO</em></span><span class="l2" aria-hidden="true"><span class="dig fim">DA SUA HISTÓRIA.</span></span></p>
     <p class="clareza">Estruturar define o caminho. Estar ao lado ajuda a preservar sua lógica enquanto o negócio acontece.</p>
   </div>
 </section>
@@ -414,13 +437,30 @@ footer .slogan{color:var(--ouro-cap);font-weight:600}
 <footer>
   <div class="wrap">
     <a class="marca" href="#inicio" aria-label="DALETH, voltar ao início"><svg fill-rule="evenodd" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="42 112 2082 550" aria-hidden="true" focusable="false"><path d="M64 134L237 134C353 134 422 184 422 282C422 373 342 439 238 439L64 439L64 436C93 433 105 425 105 400L105 174C105 148 92 140 64 137ZM174 172C174 151 177 145 200 145L236 145C308 145 352 210 352 282C352 365 302 430 230 430L207 430C180 430 174 426 174 405Z"/><path d="M406 439L406 435C425 431 434 422 443 414L606 135C608 132 611 132 613 135L752 397C766 424 776 432 796 435L796 439L676 439L676 435C693 431 692 424 686 411L580 209L466 414C458 425 462 431 481 435L481 439Z"/><path d="M820 136L969 136L969 139C939 142 929 152 929 180L929 401C929 421 934 429 958 429L996 429C1040 429 1073 406 1097 365L1081 439L820 439L820 436C849 433 859 422 859 399L859 177C859 151 849 141 820 139Z"/><path d="M1125 136L1370 136L1373 199L1370 199C1368 164 1349 149 1300 149L1245 149C1231 149 1228 154 1228 171L1228 278L1265 278C1304 278 1324 268 1331 237L1334 237L1334 337L1331 337C1324 305 1311 292 1265 292L1228 292L1228 399C1228 421 1234 429 1260 429L1295 429C1330 429 1357 411 1385 389L1376 439L1125 439L1125 436C1153 432 1164 422 1164 399L1164 175C1164 150 1152 141 1125 139Z"/><path d="M1419 136L1690 136L1698 206L1694 206C1671 163 1650 149 1607 149L1585 149L1585 399C1585 425 1598 433 1627 436L1627 439L1480 439L1480 436C1507 433 1519 424 1519 399L1519 149L1496 149C1454 149 1430 166 1412 206L1408 206Z"/><path d="M1721 136L1869 136L1869 139C1839 142 1827 152 1827 177L1827 276L1991 276L1991 177C1991 151 1981 141 1953 139L1953 136L2103 136L2103 139C2073 142 2060 152 2060 177L2060 399C2060 424 2072 433 2103 436L2103 439L1953 439L1953 436C1981 433 1991 424 1991 399L1991 289L1827 289L1827 399C1827 424 1839 433 1869 436L1869 439L1721 439L1721 436C1749 433 1759 424 1759 399L1759 177C1759 151 1749 141 1721 139Z"/><path fill="#B58A44" d="M580 321L645 439L512 439Z"/><path fill="#B58A44" d="M896 497L1305 497L1305 508L896 508Z"/><path d="M0.000 0.000L37.000 0.000L37.000 6.000L7.000 6.000L7.000 22.500L34.000 22.500L34.000 28.500L7.000 28.500L7.000 46.000L37.000 46.000L37.000 52.000L0.000 52.000Z" transform="translate(183 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(255 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(326 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(404 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(481 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(561 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(638 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(724 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(799 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(884 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(965 572) scale(1 1)"/><path d="M28.0 -1C43.463972999999996 -1 56 11.08831175 56 26.0C56 40.91168825 43.463972999999996 53 28.0 53C12.536027 53 0 40.91168825 0 26.0C0 11.08831175 12.536027 -1 28.0 -1ZM28.0 5C39.59797975 5 49 14.40202025 49 26.0C49 37.59797975 39.59797975 47 28.0 47C16.40202025 47 7 37.59797975 7 26.0C7 14.40202025 16.40202025 5 28.0 5Z" transform="translate(1049 572) scale(1 1)"/><path d="M0 0L19.6 0C39.2 0 49 10 49 26C49 42 39.2 52 19.6 52L0 52ZM7 6L19.6 6C34.3 6 42 14 42 26C42 38 34.3 46 19.6 46L7 46Z" transform="translate(1190 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1277 572) scale(1 1)"/><path d="M0.000 0.000L7.500 0.000L39.400 40.000L39.400 0.000L46.000 0.000L46.000 52.000L38.500 52.000L6.600 12.000L6.600 52.000L0.000 52.000Z" transform="translate(1397 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1485 572) scale(1 1)"/><path d="M49 7L44.5 12C38 6 32.34 5 26.46 5C11.76 5 7 13 7 26C7 39 11.76 47 26.46 47C34.3 47 40 45 42.4 42L42.4 31L26.950000000000003 31L26.950000000000003 25L49 25L49 45C40 51 36.26 53 25.48 53C8.33 53 0 42 0 26C0 10 8.33 -1 25.48 -1C36.26 -1 41 1 49 7Z" transform="translate(1556 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1641 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(1731 572) scale(1 1)"/><path d="M0.000 0.000L7.000 0.000L7.000 52.000L0.000 52.000Z" transform="translate(1816 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1862 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(1952 572) scale(1 1)"/><path d="M905 623L910 623L908 628C920 628 919 640 908 640L901 638L903 634C909 637 914 633 907 632L903 632Z"/><path d="M979 565C980 553 986 555 992 558C998 561 1000 561 1001 557L1006 557C1005 568 999 568 992 564C986 561 984 561 984 565Z"/><path d="M1663 564L1670 555L1679 555L1670 564Z"/></svg></a>
-    <span class="slogan">Ao seu lado na construção de sua história.</span>
+    <span class="slogan">Ao seu lado na construção da sua história.</span>
     <span>Estruturação de Negócios Imobiliários · Belo Horizonte</span>
   </div>
 </footer>
 <div class="cta-movel" id="cta-movel" aria-hidden="true"><a class="btn btn-tinta" href="#contato" tabindex="-1">Conversar sobre uma oportunidade</a></div>
 <script src="/cris-code/assets/js/cena3d.js" defer></script>
 <script>
+// Ao seu lado: "do seu projeto." -> "do seu empreendimento." -> "DA SUA HISTÓRIA." (a última fica em dourado)
+(function(){
+  var p=document.getElementById("assina"); if(!p) return;
+  var alvo=p.querySelector(".dig"); if(!alvo) return;
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var fins=["do seu projeto.","do seu empreendimento.","DA SUA HISTÓRIA."], i=0, txt="";
+  alvo.classList.remove("fim"); alvo.classList.add("cursor"); alvo.textContent="";
+  function depois(ms,fn){setTimeout(fn,ms)}
+  function digitar(){var fim=fins[i];
+    if(txt.length<fim.length){txt=fim.slice(0,txt.length+1);alvo.textContent=txt;return depois(55+Math.random()*45,digitar)}
+    if(i===fins.length-1){alvo.classList.add("fim");return depois(1600,function(){alvo.classList.remove("cursor")})}
+    depois(1400,apagar)}
+  function apagar(){if(txt.length){txt=txt.slice(0,-1);alvo.textContent=txt;return depois(24,apagar)} i++; depois(320,digitar)}
+  if("IntersectionObserver" in window){new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){o.disconnect();depois(600,digitar)}})},{threshold:0.5}).observe(p)}
+  else depois(900,digitar);
+})();
+
 // Menu do celular
 (function(){
   var bt=document.querySelector(".menu-bt"),menu=document.getElementById("menu-movel");if(!bt||!menu)return;
@@ -447,51 +487,36 @@ footer .slogan{color:var(--ouro-cap);font-weight:600}
   alvos.forEach(function(a){o.observe(a)});
 })();
 
-// Modelagem: dez frentes na mesma rede. Trocar de frente troca as palavras nos nós da cena 3D.
+// Modelagem: quatro abas logo acima do palco. Trocar de aba troca as palavras nos nós da rede 3D e a ficha.
 (function(){
-  var FRENTES=[{"id": "tudo", "num": "00", "nome": "Tudo conectado", "curto": "Tudo", "fam": "", "frase": "Mudar uma frente muda as outras. Comparamos os caminhos antes da escolha.", "sub": ["Terreno", "Produto e mercado", "Técnica", "Jurídico", "Societário", "Tributário", "Econômico-financeiro", "Capital e funding", "Comercialização", "Risco e retorno"], "move": []}, {"id": "terreno", "num": "01", "nome": "Terreno", "curto": "Terreno", "fam": "ativo", "frase": "Como o terreno entra no negócio: compra, permuta, parceria ou opção.", "sub": ["Compra", "Permuta", "Opção", "Parceria", "Due diligence"], "move": ["produto", "juridico", "capital"]}, {"id": "produto", "num": "02", "nome": "Produto e mercado", "curto": "Produto", "fam": "ativo", "frase": "O que o terreno comporta e o que o mercado absorve, a que preço.", "sub": ["Público", "Tipologia", "Mix", "Preço por m²", "VGV"], "move": ["tecnica", "comercial", "financeiro"]}, {"id": "tecnica", "num": "03", "nome": "Técnica", "curto": "Técnica", "fam": "ativo", "frase": "Como o produto vira obra com custo, prazo e qualidade compatíveis.", "sub": ["Implantação", "Projetos", "Sistema construtivo", "Orçamento", "Cronograma"], "move": ["financeiro", "produto", "comercial"]}, {"id": "comercial", "num": "04", "nome": "Comercialização", "curto": "Comercial", "fam": "ativo", "frase": "Preço, velocidade de vendas e geração de caixa na mesma conta.", "sub": ["Tabela", "Pré-venda", "Repasse", "Estoque", "Canais"], "move": ["financeiro", "capital", "produto"]}, {"id": "juridico", "num": "05", "nome": "Jurídico e regulatório", "curto": "Jurídico", "fam": "estrutura", "frase": "A segurança para contratar, financiar, vender e concluir.", "sub": ["Matrícula", "Licenças", "Incorporação", "Contratos", "Garantias"], "move": ["societario", "capital", "comercial"]}, {"id": "societario", "num": "06", "nome": "Societário e governança", "curto": "Societário", "fam": "estrutura", "frase": "Quem participa, quanto aporta, como decide e como recebe.", "sub": ["SPE", "SCP", "Holding", "Governança", "Saída"], "move": ["tributario", "risco", "capital"]}, {"id": "tributario", "num": "07", "nome": "Tributário", "curto": "Tributário", "fam": "estrutura", "frase": "O regime coerente com a sociedade, a venda e o caixa.", "sub": ["RET", "Presumido", "Afetação", "Permuta", "Distribuição"], "move": ["financeiro", "societario", "terreno"]}, {"id": "financeiro", "num": "08", "nome": "Econômico-financeiro", "curto": "Financeiro", "fam": "capital", "frase": "Quanto capital o negócio pede e quanto devolve, em cada cenário.", "sub": ["Fluxo de caixa", "Exposição", "Margem", "TIR", "Sensibilidades"], "move": ["capital", "comercial", "risco"]}, {"id": "capital", "num": "09", "nome": "Capital e funding", "curto": "Funding", "fam": "capital", "frase": "As fontes certas, no momento certo, com custo e garantias compatíveis.", "sub": ["Capital próprio", "Sócios", "Banco", "Recebíveis", "CRI"], "move": ["risco", "juridico", "financeiro"]}, {"id": "risco", "num": "10", "nome": "Risco e retorno", "curto": "Risco", "fam": "capital", "frase": "Como proteção, exposição e remuneração se dividem entre as partes.", "sub": ["Garantias", "Covenants", "Participações", "Waterfall", "Exit"], "move": ["societario", "capital", "juridico"]}], FAM={"ativo": "Ativo e produto", "estrutura": "Estrutura da empresa e do negócio", "capital": "Capital, caixa e retorno"}, MODO="prancha";
-  var raiz=document.getElementById("modelagem"), tela=document.querySelector('canvas[data-cena="modelagem"]');
+  var ABAS=[{"id": "tudo", "aba": "Visão geral", "num": "Visão geral", "nome": "Tudo conectado", "frase": "Mudar uma frente muda as outras. Comparamos os caminhos antes da escolha.", "rot": ["Terreno", "Produto e mercado", "Técnica", "Jurídico", "Societário", "Tributário", "Econômico-financeiro", "Capital e funding", "Comercialização", "Risco e retorno"], "itens": [{"t": "Ativo e produto", "d": "Terreno · Produto e mercado · Técnica · Comercialização"}, {"t": "Estrutura da empresa e do negócio", "d": "Jurídico e regulatório · Societário e governança · Tributário"}, {"t": "Capital, caixa e retorno", "d": "Econômico-financeiro · Capital e funding · Risco e retorno"}]}, {"id": "ativo", "aba": "Ativo e produto", "num": "01 · Família", "nome": "Ativo e produto", "frase": "O que o terreno comporta, o que o mercado absorve e como isso vira obra e venda.", "rot": ["Terreno", "Permuta", "Produto e mercado", "Tipologia", "VGV", "Técnica", "Orçamento", "Comercialização", "Pré-venda", "Repasse"], "itens": [{"t": "Terreno", "d": "Como o terreno entra no negócio: compra, permuta, parceria ou opção."}, {"t": "Produto e mercado", "d": "O que o terreno comporta e o que o mercado absorve, a que preço."}, {"t": "Técnica", "d": "Como o produto vira obra com custo, prazo e qualidade compatíveis."}, {"t": "Comercialização", "d": "Preço, velocidade de vendas e geração de caixa na mesma conta."}]}, {"id": "estrutura", "aba": "Estrutura", "num": "02 · Família", "nome": "Estrutura da empresa e do negócio", "frase": "Quem participa, sob quais contratos e em qual regime, com segurança para financiar e vender.", "rot": ["Jurídico", "Matrícula", "Incorporação", "Contratos", "Societário", "SPE", "Governança", "Tributário", "RET", "Afetação"], "itens": [{"t": "Jurídico e regulatório", "d": "A segurança para contratar, financiar, vender e concluir."}, {"t": "Societário e governança", "d": "Quem participa, quanto aporta, como decide e como recebe."}, {"t": "Tributário", "d": "O regime coerente com a sociedade, a venda e o caixa."}]}, {"id": "capital", "aba": "Capital", "num": "03 · Família", "nome": "Capital, caixa e retorno", "frase": "Quanto capital o negócio pede, de onde ele vem e como risco e retorno se dividem.", "rot": ["Econômico-financeiro", "Fluxo de caixa", "Exposição", "TIR", "Capital e funding", "Sócios", "Banco", "CRI", "Risco e retorno", "Garantias"], "itens": [{"t": "Econômico-financeiro", "d": "Quanto capital o negócio pede e quanto devolve, em cada cenário."}, {"t": "Capital e funding", "d": "As fontes certas, no momento certo, com custo e garantias compatíveis."}, {"t": "Risco e retorno", "d": "Como proteção, exposição e remuneração se dividem entre as partes."}]}];
+  var raiz=document.getElementById("modelagem"), tela=raiz&&raiz.querySelector('canvas[data-cena="modelagem"]');
   if(!raiz||!tela)return;
-  var POR={};FRENTES.forEach(function(f){POR[f.id]=f});
   var reduzir=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var atual="tudo", ouvintes=[];
+  var palco=raiz.querySelector(".mp-palco"), fx=raiz.querySelector(".ficha"), barra=raiz.querySelector(".abas"), botoes=[], atual=0;
+  var estreita=window.matchMedia("(max-width:1023px)"), fora=document.createElement("div"); fora.className="ficha-fora";
   function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
-  function mostrar(id,origem){var f=POR[id];if(!f)return;atual=id;
-    if(tela.cena3d)tela.cena3d.rotular(f.sub);else tela.setAttribute("data-rotulos",f.sub.join("|"));
-    ouvintes.forEach(function(fn){fn(f,origem)})}
-  function realce(id,on){raiz.querySelectorAll('.mp-frente[data-frente="'+id+'"]').forEach(function(b){b.classList.toggle("foco",on)})}
-  function ficha(caixa,f){caixa.innerHTML="";
-    caixa.appendChild(el("p","mf-num",f.num+" · "+(f.id==="tudo"?"Modelagem do empreendimento":(FAM[f.fam]||"Frente"))));
-    caixa.appendChild(el("h3","mf-nome",f.nome));
-    caixa.appendChild(el("p","mf-frase",f.frase));
-    var ul=el("ul","mf-sub");f.sub.forEach(function(s){ul.appendChild(el("li",null,s))});caixa.appendChild(ul);
-  }
-
-  if(MODO==="prancha"){
-    var palco=raiz.querySelector(".mp-palco"), fx=raiz.querySelector(".ficha"), grupos=raiz.querySelector(".mp-grupos"), botoes=[];
-    var estreita=window.matchMedia("(max-width:1023px)"), fora=el("div","ficha-fora");
-    function acomodar(){if(estreita.matches){if(fx.parentNode!==fora){fora.appendChild(fx);palco.parentNode.insertBefore(fora,palco.nextSibling)}}
-      else if(fx.parentNode!==palco){palco.appendChild(fx);if(fora.parentNode)fora.parentNode.removeChild(fora)}}
-    acomodar();estreita.addEventListener&&estreita.addEventListener("change",acomodar);
-    function botao(f){var b=el("button","mp-frente");b.type="button";b.dataset.frente=f.id;b.setAttribute("aria-pressed","false");
-      b.appendChild(el("span","n",f.num));b.appendChild(el("span","t",f.curto));
-      b.addEventListener("click",function(){parar();mostrar(f.id,"botao")});botoes.push(b);return b}
-    var g0=el("div","mp-grupo");g0.appendChild(el("p",null,"Visão geral"));var l0=el("div","mp-frentes");l0.appendChild(botao(FRENTES[0]));g0.appendChild(l0);grupos.appendChild(g0);
-    Object.keys(FAM).forEach(function(k){var g=el("div","mp-grupo");g.appendChild(el("p",null,FAM[k]));var l=el("div","mp-frentes");
-      FRENTES.filter(function(f){return f.fam===k}).forEach(function(f){l.appendChild(botao(f))});g.appendChild(l);grupos.appendChild(g)});
-    var espera=null, autoBtn=raiz.querySelector(".mp-auto");
-    function parar(){if(espera){clearInterval(espera);espera=null}fx.setAttribute("aria-live","polite");if(autoBtn){autoBtn.setAttribute("aria-pressed","false");autoBtn.textContent="Percorrer as frentes"}}
-    function passear(){parar();fx.setAttribute("aria-live","off");espera=setInterval(function(){var i=FRENTES.findIndex(function(f){return f.id===atual});mostrar(FRENTES[(i+1)%FRENTES.length].id,"auto")},6500);if(autoBtn){autoBtn.setAttribute("aria-pressed","true");autoBtn.textContent="Parar"}}
-    if(autoBtn)autoBtn.addEventListener("click",function(){if(espera)parar();else passear()});
-    raiz.querySelectorAll("[data-passo]").forEach(function(s){s.addEventListener("click",function(){parar();var i=FRENTES.findIndex(function(f){return f.id===atual});mostrar(FRENTES[(i+parseInt(s.dataset.passo,10)+FRENTES.length)%FRENTES.length].id,"seta")})});
-    ouvintes.push(function(f,origem){botoes.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.frente===f.id));b.classList.toggle("ligada",f.move.indexOf(b.dataset.frente)>=0);b.classList.remove("foco")});if(origem!=="inicio"&&!reduzir){palco.classList.remove("pulso");void palco.offsetWidth;palco.classList.add("pulso")}
-      fx.classList.remove("troca");void fx.offsetWidth;fx.classList.add("troca");ficha(fx,f);
-      if(origem==="ligacao"&&estreita.matches)fx.scrollIntoView({block:"nearest",behavior:reduzir?"auto":"smooth"})});
-    mostrar("tudo","inicio");
-    if(!reduzir&&!estreita.matches&&"IntersectionObserver" in window){var tocado=false;raiz.addEventListener("pointerdown",function(){tocado=true},{once:true});
-      new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!espera&&!tocado)passear();if(!e.isIntersecting&&espera)parar()})},{threshold:0.35}).observe(palco)}
-  }
-
+  function acomodar(){if(estreita.matches){if(fx.parentNode!==fora){fora.appendChild(fx);palco.parentNode.insertBefore(fora,palco.nextSibling)}}
+    else if(fx.parentNode!==palco){palco.appendChild(fx);if(fora.parentNode)fora.parentNode.removeChild(fora)}}
+  acomodar(); if(estreita.addEventListener)estreita.addEventListener("change",acomodar);
+  function preencher(a){fx.innerHTML="";
+    fx.appendChild(el("p","mf-num",a.num)); fx.appendChild(el("h3","mf-nome",a.nome)); fx.appendChild(el("p","mf-frase",a.frase));
+    var ul=el("ul","mf-lista"); a.itens.forEach(function(it){var li=el("li");li.appendChild(el("b",null,it.t));li.appendChild(el("span",null,it.d));ul.appendChild(li)}); fx.appendChild(ul)}
+  function mostrar(i,origem){var a=ABAS[i]; atual=i;
+    if(tela.cena3d)tela.cena3d.rotular(a.rot); else tela.setAttribute("data-rotulos",a.rot.join("|"));
+    botoes.forEach(function(b,k){b.setAttribute("aria-pressed",String(k===i))});
+    fx.classList.remove("troca");void fx.offsetWidth;fx.classList.add("troca"); preencher(a);
+    if(origem!=="inicio"&&!reduzir){palco.classList.remove("pulso");void palco.offsetWidth;palco.classList.add("pulso")}}
+  ABAS.forEach(function(a,i){var b=el("button","aba");b.type="button";b.setAttribute("aria-pressed","false");
+    b.appendChild(el("span",null,a.aba)); b.addEventListener("click",function(){parar();mostrar(i,"aba")}); barra.appendChild(b); botoes.push(b)});
+  // passeio automático só no desktop, sem botão: para no primeiro toque ou clique
+  var espera=null, tocado=false;
+  function parar(){if(espera){clearInterval(espera);espera=null}tocado=true;raiz.classList.remove("passeando")}
+  function passear(){if(espera||tocado)return;raiz.classList.add("passeando");espera=setInterval(function(){mostrar((atual+1)%ABAS.length,"auto")},7000)}
+  mostrar(0,"inicio");
+  if(!reduzir&&!estreita.matches&&"IntersectionObserver" in window){
+    palco.addEventListener("pointerdown",parar,{once:true});
+    new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)passear();else if(espera){clearInterval(espera);espera=null;raiz.classList.remove("passeando")}})},{threshold:0.4}).observe(palco)}
 })();
 </script>
 </body></html>
