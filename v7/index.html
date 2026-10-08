@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<title>DALETH · Estruturação de Negócios Imobiliários</title>
+<meta name="description" content="Transformamos oportunidades imobiliárias em negócios estruturados para acontecer. Empreendimento, empresa e capital estruturados em conjunto.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="DALETH · Estruturação de Negócios Imobiliários">
+<meta property="og:description" content="Transformamos oportunidades imobiliárias em negócios estruturados para acontecer. Empreendimento, empresa e capital estruturados em conjunto.">
+<meta property="og:image" content="/cris-code/assets/img/heroi-foto-1280.jpg">
+<link rel="icon" href="/cris-code/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/cris-code/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/cris-code/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Manrope";font-style:normal;font-weight:500 800;font-display:swap;src:url(/cris-code/assets/fonts/manrope-latin.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url(/cris-code/assets/fonts/inter-latin.woff2) format("woff2")}
+</style>
+<style>
+
+:root{
+  --papel:#F4F6F7; --papel-2:#E9EEF1; --tinta:#082538; --tinta-2:#46596A; --linha:#D2DBE2;
+  --cap:#082538; --cap-2:#0D2F47; --cap-txt:#F4F6F8; --cap-txt-2:#B5C5D2; --cap-linha:#24445B;
+  --ouro:#7A5A2C; --ouro-cap:#CAA972; --ouro-marca:#B58A44; --ouro-claro:#D4B37C; --gelo:#B9C8D4;
+  --f-disp:"Manrope","Segoe UI",Arial,sans-serif; --f-txt:"Inter","Segoe UI",Arial,sans-serif;
+  --larg:1160px; --gut:clamp(16px,4vw,40px); color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--f-txt);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--f-disp);text-wrap:balance;margin:0;letter-spacing:-.015em}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--ouro-marca);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--larg);margin-inline:auto;padding-inline:var(--gut)}
+.pular{position:absolute;left:-999px;top:8px;background:var(--tinta);color:#fff;padding:8px 12px;z-index:50}
+.pular:focus{left:8px}
+
+/* marcador de seção: traço dourado + rótulo — a mesma âncora visual em toda quebra */
+.sobre{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+.sobre::before{content:"";width:28px;height:2px;background:var(--ouro-marca);flex:none}
+.cap .sobre{color:var(--ouro-cap)}
+.h2{font-size:clamp(28px,3.6vw,42px);font-weight:700;line-height:1.12}
+.lead{font-size:clamp(17px,1.5vw,19px);color:var(--tinta-2);max-width:60ch}
+.cap .lead{color:var(--cap-txt-2)}
+section{padding-block:clamp(64px,9vw,112px)}
+.cab{display:flex;flex-direction:column;gap:18px;margin-bottom:clamp(32px,5vw,56px)}
+.cap{background:var(--cap);color:var(--cap-txt)}
+.ponte{margin-top:clamp(36px,5vw,56px);padding-top:24px;border-top:1px solid var(--linha);font-family:var(--f-disp);font-weight:600;font-size:clamp(18px,1.8vw,22px);line-height:1.4;color:var(--tinta);max-width:52ch}
+.ponte em{font-style:normal;color:var(--ouro)}
+.cap .ponte{border-color:var(--cap-linha);color:var(--cap-txt)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--f-disp);font-weight:700;font-size:15px;text-decoration:none;padding:14px 22px;border-radius:2px;border:1px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s;white-space:nowrap}
+.btn-tinta{background:var(--tinta);color:#fff}
+.btn-tinta:hover{background:var(--ouro-marca);color:#fff}
+.btn-ouro{background:var(--ouro-claro);color:#082538}
+.btn-ouro:hover{background:#fff}
+.btn-linha{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(8,37,56,.25)}
+.btn-linha:hover{border-color:var(--ouro-claro);color:var(--ouro-claro)}
+.acoes{display:flex;flex-wrap:wrap;gap:12px}
+
+/* cabeçalho */
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(244,246,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+.marca{display:flex;align-items:center;color:var(--tinta);text-decoration:none}
+.marca svg{height:30px;width:auto;display:block}
+.topo nav{display:flex;gap:26px;font-size:14px;font-weight:500}
+.topo nav a{text-decoration:none;color:var(--tinta-2)}
+.topo nav a:hover{color:var(--tinta)}
+.topo .btn{padding:9px 16px;font-size:14px}
+.menu-bt{display:none;width:44px;height:44px;border:1px solid var(--linha);background:transparent;border-radius:2px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0}
+.menu-bt span{display:block;width:18px;height:2px;background:var(--tinta);transition:transform .2s,opacity .2s}
+.menu-bt[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-bt[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-bt[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+[hidden]{display:none!important}
+.topo nav.menu-movel{display:none;flex-direction:column;gap:0;border-top:1px solid var(--linha);background:var(--papel)}
+.menu-movel a{padding:14px var(--gut);text-decoration:none;font-weight:500;border-bottom:1px solid var(--linha)}
+@media (max-width:860px){.topo nav:not(.menu-movel){display:none}.menu-bt{display:flex}.topo nav.menu-movel:not([hidden]){display:flex}.topo .btn{padding:9px 14px}}
+
+/* faixa de números: cores fixas, não dependem do tema */
+.prova{padding-block:0;background:#082538;color:#F4F6F8;border-top:1px solid rgba(212,179,124,.4);border-bottom:1px solid rgba(212,179,124,.25)}
+.prova .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 32px;padding-block:clamp(28px,3.5vw,44px)}
+.prova .num{font-family:var(--f-disp);font-weight:800;font-size:clamp(30px,3.4vw,44px);line-height:1;letter-spacing:-.02em;color:#D4B37C;font-variant-numeric:tabular-nums}
+.prova .num small{font-size:.42em;font-weight:600;letter-spacing:0;margin-left:.2em}
+.prova .leg{font-size:13px;line-height:1.4;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.88);margin-top:10px;text-wrap:balance}
+.prova .celula{min-width:0;padding-left:20px;border-left:1px solid rgba(255,255,255,.16)}
+.prova .celula:first-child{padding-left:0;border-left:0}
+.prova .local .num{font-size:clamp(18px,1.7vw,22px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1.3}
+@media (max-width:860px){.prova .wrap{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}.prova .celula:nth-child(3){padding-left:0;border-left:0}}
+
+/* tese: triângulo */
+.tese .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,72px);align-items:center}
+.tese h2{font-size:clamp(34px,4.6vw,60px);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+.tese h2 em{font-style:normal;color:var(--ouro)}
+.tese .txt{display:flex;flex-direction:column;gap:22px}
+.tri-caixa{display:flex;flex-direction:column;align-items:center;gap:14px}
+.tri{width:100%;max-width:440px;height:auto;font-family:var(--f-txt)}
+.tri .aresta{fill:none;stroke:var(--linha);stroke-width:1.5}
+.tri .fluxo{fill:none;stroke:var(--ouro-marca);stroke-width:2;stroke-dasharray:6 10;animation:corre 6s linear infinite}
+.tri .fluxo.b{animation-delay:-2s}.tri .fluxo.c{animation-delay:-4s}
+.tri .no{fill:var(--papel);stroke:var(--ouro-marca);stroke-width:2}
+.tri .centro{fill:var(--ouro)}
+.tri .centro-t{font-size:12px;font-weight:700;letter-spacing:.1em;fill:var(--tinta)}
+.tri .rot{font-size:15px;font-weight:700;letter-spacing:.08em;fill:var(--tinta)}
+.tri .sub{font-size:12px;fill:var(--tinta-2)}
+.tri-legenda{font-size:15px;color:var(--tinta-2);text-align:center}
+@keyframes corre{to{stroke-dashoffset:-96}}
+@media (max-width:860px){.tese .wrap{grid-template-columns:minmax(0,1fr)}.tri{max-width:340px}}
+
+/* modelagem: palco, rótulos 3D, ficha */
+.modelagem{background:#082538;color:#fff}
+.palco{position:relative;overflow:hidden;background:#082538 radial-gradient(rgba(185,200,212,.22) 1px,transparent 1.3px);background-size:22px 22px;border:1px solid #24465F}
+.palco canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cena-rotulos{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.cena-rotulos span{position:absolute;left:0;top:0;white-space:nowrap;font:600 11px/1 var(--f-txt);letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:7px 11px;border-radius:999px;background:rgba(8,37,56,.74);border:1px solid rgba(212,179,124,.55);transition:opacity .4s;will-change:transform}
+.cena-rotulos span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#D4B37C;margin-right:7px;vertical-align:1px}
+.cena-rotulos span.troca{animation:rotulo-entra .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes rotulo-entra{from{filter:blur(4px);letter-spacing:.3em}to{filter:none;letter-spacing:.12em}}
+.ficha{display:flex;flex-direction:column;gap:12px}
+.ficha.troca{animation:ficha-entra .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes ficha-entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.mf-num{font:600 11px/1.3 var(--f-txt);letter-spacing:.14em;text-transform:uppercase;color:#D4B37C}
+.mf-nome{font:700 clamp(22px,2.4vw,30px)/1.15 var(--f-disp);color:#fff}
+.mf-frase{font:400 clamp(16px,1.4vw,18px)/1.5 var(--f-txt);color:#C9D6E0}
+.mf-sub{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 0;padding:0;list-style:none}
+.mf-sub li{font:500 12px/1 var(--f-txt);letter-spacing:.04em;color:#fff;padding:7px 10px;border:1px solid rgba(212,179,124,.45);border-radius:999px;background:rgba(255,255,255,.04)}
+.mf-move{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:0;padding-top:14px;border-top:1px solid #24465F}
+.mf-move-rot{font:600 11px/1.3 var(--f-txt);letter-spacing:.12em;text-transform:uppercase;color:#B9C8D4;margin-right:4px}
+.mf-link{background:none;border:0;padding:4px 0;cursor:pointer;font:600 14px/1.3 var(--f-txt);color:#D4B37C;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.mf-link:hover{color:#fff}
+
+/* ao seu lado */
+.assina-sec{position:relative;isolation:isolate;overflow:hidden;min-height:min(70svh,560px);display:flex;align-items:center}
+.assina-sec .palco-3d{position:absolute;inset:0;z-index:-1}
+.assina-sec .palco-3d canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.assina-sec::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(8,37,56,.9) 0%,rgba(8,37,56,.55) 55%,rgba(8,37,56,.2) 100%)}
+.assina-grande{font-family:var(--f-disp);font-weight:700;font-size:clamp(34px,5.4vw,72px);line-height:1.05;letter-spacing:-.02em;color:#fff;margin:22px 0 24px;max-width:16ch}
+.assina-grande em{font-style:normal;color:#D4B37C}
+.assina-grande .chave{text-decoration:underline;text-decoration-color:#D4B37C;text-decoration-thickness:3px;text-underline-offset:10px}
+.clareza{font-size:clamp(16px,1.5vw,18px);color:var(--cap-txt-2);max-width:48ch}
+
+/* quem */
+.quem .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.quem h2{font-size:clamp(30px,3.6vw,44px);line-height:1.1;margin-top:18px}
+.quem .meta{margin-top:14px;font-size:14px;color:var(--tinta-2);line-height:1.6}
+.quem .txt{padding-top:6px}
+@media (max-width:860px){.quem .wrap{grid-template-columns:minmax(0,1fr)}}
+
+/* contato */
+.contato{background:var(--cap);color:var(--cap-txt);text-align:center}
+.contato .wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
+.contato .sobre{color:var(--ouro-cap)}
+.contato h2{font-size:clamp(30px,4vw,50px);line-height:1.08;max-width:18ch}
+.contato .lead{color:var(--cap-txt-2);text-align:center;max-width:56ch}
+.contato .micro{font-size:13px;color:var(--cap-txt-2);letter-spacing:.02em}
+footer{background:var(--cap);color:var(--cap-txt-2);border-top:1px solid var(--cap-linha);padding-block:28px;font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px}
+footer .marca{color:#fff}
+footer .marca svg{height:26px}
+footer .slogan{color:var(--ouro-cap);font-weight:600}
+
+/* barra de CTA no celular */
+.cta-movel{position:fixed;left:0;right:0;bottom:0;z-index:15;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));background:rgba(244,246,247,.94);border-top:1px solid var(--linha);transform:translateY(110%);transition:transform .3s;display:none}
+.cta-movel .btn{width:100%}
+.cta-movel.visivel{transform:none}
+@media (max-width:860px){.cta-movel{display:block}body.com-cta-movel{padding-bottom:72px}}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+/* A · hero com foto: texto à esquerda, foto respira à direita; nada desenhado por cima */
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:calc(100svh - 64px);display:flex;align-items:flex-end;padding:clamp(72px,10vw,120px) 0 clamp(44px,6vw,72px);background:#082538;color:#fff}
+.hero .foto{position:absolute;inset:0;z-index:-2}
+.hero .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%;transform-origin:70% 60%;animation:kb 40s ease-in-out infinite alternate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(8,37,56,.96) 0%,rgba(8,37,56,.82) 38%,rgba(8,37,56,.28) 72%,rgba(8,37,56,.12) 100%),linear-gradient(180deg,rgba(8,37,56,.1) 0%,rgba(8,37,56,0) 40%,rgba(8,37,56,.7) 100%)}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.09) translate(-1.4%,-1%)}}
+.hero .wrap{width:100%;display:flex;flex-direction:column;gap:26px}
+.hero .sobre{color:var(--ouro-cap)}
+.hero h1{font-size:clamp(34px,4.6vw,62px);font-weight:700;line-height:1.04;letter-spacing:-.025em;max-width:17ch}
+.hero h1 em{font-style:normal;color:#D4B37C}
+.hero .lead-h{font-size:clamp(17px,1.6vw,21px);color:#DCE5EC;max-width:46ch;line-height:1.5}
+.hero .acoes{margin-top:6px}
+@media (max-width:860px){.hero{min-height:calc(100svh - 64px);padding-top:clamp(48px,14vw,80px)}.hero::before{background:linear-gradient(180deg,rgba(8,37,56,.35) 0%,rgba(8,37,56,.7) 45%,rgba(8,37,56,.96) 100%)}.hero .foto img{object-position:62% 50%}.hero .acoes .btn{width:100%}}
+
+/* A · modelagem em prancha: palco largo com ficha ancorada à direita; frentes em grupos embaixo */
+.mp-palco{aspect-ratio:16/9;max-height:620px;min-height:420px}
+.mp-palco .ficha{position:absolute;right:24px;top:24px;bottom:24px;width:min(38%,400px);padding:24px;background:rgba(8,37,56,.82);backdrop-filter:blur(6px);border:1px solid #24465F;border-top:2px solid #D4B37C;overflow:auto;z-index:2}
+.mp-titulo{position:absolute;left:22px;top:20px;z-index:2;font:600 11px/1.3 var(--f-txt);letter-spacing:.14em;text-transform:uppercase;color:#B9C8D4}
+.mp-grupos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:22px}
+.mp-grupo{border-top:1px solid #24465F;padding-top:12px}
+.mp-grupo p{font:600 11px/1.3 var(--f-txt);letter-spacing:.12em;text-transform:uppercase;color:#B9C8D4;margin-bottom:10px}
+.mp-frentes{display:flex;flex-wrap:wrap;gap:8px}
+.mp-frente{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;border:1px solid #24465F;background:transparent;color:#fff;cursor:pointer;font:600 13px/1 var(--f-txt);transition:border-color .2s,background .2s,color .2s}
+.mp-frente .n{font:700 11px/1 var(--f-disp);color:#D4B37C;letter-spacing:.06em}
+.mp-frente:hover{border-color:#D4B37C}
+.mp-frente[aria-pressed="true"]{background:#D4B37C;border-color:#D4B37C;color:#082538}
+.mp-frente[aria-pressed="true"] .n{color:#082538}
+.mp-controles{display:flex;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}
+.mp-seta{width:40px;height:40px;border-radius:50%;border:1px solid #24465F;background:transparent;color:#fff;cursor:pointer;font-size:16px}
+.mp-seta:hover,.mp-auto:hover{border-color:#D4B37C}
+.mp-auto{padding:10px 16px;border-radius:999px;border:1px solid #24465F;background:transparent;color:#fff;cursor:pointer;font:600 13px/1 var(--f-txt)}
+.mp-auto[aria-pressed="true"]{background:#fff;color:#082538;border-color:#fff}
+.mp-dica{margin-top:16px;font-size:14px;color:#B9C8D4}
+.mp-dica a{color:#D4B37C}
+@media (max-width:1023px){.mp-palco{aspect-ratio:auto;height:min(64vw,440px);min-height:0}.mp-palco .ficha{position:static;width:auto;background:transparent;backdrop-filter:none;border:0;padding:0}.ficha-fora{margin-top:22px;padding:22px;border:1px solid #24465F;border-top:2px solid #D4B37C;background:rgba(255,255,255,.03)}.mp-grupos{grid-template-columns:minmax(0,1fr);gap:12px}}
+@media (max-width:767px){.mp-palco{margin-inline:calc(-1 * var(--gut));border-left:0;border-right:0;height:min(90vw,420px)}}
+
+/* A · quatro movimentos em linha, com o fio dourado */
+.metodo{background:var(--papel-2)}
+.fluxo{position:relative;margin-top:8px}
+.fio{position:relative;height:14px;margin:0 0 28px}
+.fio .base{position:absolute;left:0;right:0;top:6px;height:2px;background:var(--linha)}
+.fio .vivo{position:absolute;left:0;top:6px;height:2px;width:0;background:var(--ouro-marca);transition:width 1.6s cubic-bezier(.4,0,.2,1)}
+.fluxo.visto .fio .vivo{width:100%}
+.fio i{position:absolute;top:0;width:14px;height:14px;border-radius:50%;background:var(--papel-2);border:2px solid var(--ouro-marca);left:calc((100% - 14px) * var(--p) / 3);transform:scale(.6);opacity:.4;transition:transform .4s calc(.4s * var(--p) + .3s),opacity .4s calc(.4s * var(--p) + .3s)}
+.fluxo.visto .fio i{transform:none;opacity:1}
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.passos li{position:relative;padding:0 24px 0 0;border-left:1px solid var(--linha);padding-left:22px}
+.passos li:first-child{border-left:0;padding-left:0}
+.passos .num{font:700 12px/1 var(--f-disp);color:var(--ouro);letter-spacing:.12em}
+.passos h3{font-size:clamp(22px,2vw,26px);margin:14px 0 10px}
+.passos .pergunta{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ouro);margin-bottom:10px}
+.passos .detalhe{font-size:16px;color:var(--tinta);line-height:1.55}
+.passos .papel{margin-top:16px;padding-top:12px;border-top:1px solid var(--linha);font-size:14px;line-height:1.5}
+.passos .papel em{display:block;font-style:normal;color:var(--ouro)}
+.passos .papel b{display:block;color:var(--tinta)}
+.papeis-linha{margin-top:clamp(36px,5vw,56px);font-family:var(--f-disp);font-weight:600;font-size:clamp(19px,2vw,24px);line-height:1.35}
+.papeis-linha em{font-style:normal;color:var(--ouro)}
+.linha-comercial{margin-top:18px;padding-top:18px;border-top:1px solid var(--linha);max-width:66ch;font-size:16px;color:var(--tinta-2)}
+.linha-comercial b{color:var(--tinta)}
+@media (max-width:980px){.fio{display:none}.passos{grid-template-columns:minmax(0,1fr)}.passos li,.passos li:first-child{padding:22px 0 22px 28px;border-left:2px solid var(--linha)}.passos li::before{content:"";position:absolute;left:-7px;top:26px;width:12px;height:12px;border-radius:50%;background:var(--papel-2);border:2px solid var(--ouro-marca)}}
+
+/* v7 · tese: triângulo maior, sem legenda */
+.tri{max-width:520px}
+.tri .rot{font-size:18px}
+.tri .sub{font-size:16px}
+.tri .centro-t{font-size:14px}
+@media (max-width:860px){.tese .tri{max-width:420px}}
+/* v7 · modelagem: palco maior, ficha integrada ao palco, controles discretos, sem cara de painel */
+.mp-palco{aspect-ratio:16/8.6;max-height:660px}
+.mp-palco .ficha{top:0;right:0;bottom:0;width:min(36%,380px);padding:32px 28px;background:linear-gradient(90deg,rgba(8,37,56,.55),rgba(8,37,56,.9) 22%);backdrop-filter:none;border:0;border-left:1px solid rgba(212,179,124,.3)}
+.mp-palco::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(circle at 32% 58%,rgba(212,179,124,.20),transparent 55%);opacity:0}
+.mp-palco.pulso::after{animation:pulso 1s ease-out}
+@keyframes pulso{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+.mp-barra{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;margin-top:20px}
+.mp-dica{margin:0;font-size:14px;color:#B9C8D4}
+.mp-controles{margin:0;gap:8px}
+.mp-seta{width:34px;height:34px;font-size:14px;border-color:rgba(255,255,255,.18)}
+.mp-auto{padding:8px 12px;font-size:12px;letter-spacing:.04em;border-color:rgba(255,255,255,.18)}
+.mp-grupos{margin-top:18px;gap:24px;grid-template-columns:auto repeat(3,minmax(0,1fr))}
+.mp-grupo{border-top-color:rgba(255,255,255,.1)}
+.mp-grupo p{color:#8FA2B3;font-size:10.5px}
+.mp-frente{border-color:rgba(255,255,255,.14);padding:8px 11px;font-weight:500;transition:border-color .3s,background .3s,color .3s,box-shadow .45s}
+.mp-frente.ligada{border-color:rgba(212,179,124,.8);box-shadow:0 0 0 3px rgba(212,179,124,.14)}
+.mp-frente.foco{background:rgba(212,179,124,.18)}
+@media (max-width:1023px){.mp-palco{aspect-ratio:auto}.mp-palco::after{display:none}.mp-grupos{grid-template-columns:minmax(0,1fr);gap:12px}.mp-barra{flex-direction:column;align-items:flex-start}}
+/* v7 · método: pergunta em frase normal, texto técnico em tom secundário, fecho em duas colunas */
+.passos h3{margin:12px 0 8px}
+.passos .pergunta{font:600 16px/1.35 var(--f-disp);letter-spacing:0;text-transform:none;color:var(--tinta);margin-bottom:12px;text-wrap:balance}
+.passos .detalhe{font-size:15px;line-height:1.6;color:var(--tinta-2)}
+.metodo-pe{margin-top:clamp(36px,5vw,56px);padding-top:24px;border-top:1px solid var(--linha);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px 48px;align-items:start}
+.metodo-pe .papeis-linha{margin:0;font-size:clamp(18px,1.7vw,21px)}
+.metodo-pe .linha-comercial{margin:0;padding:0;border:0;font-size:15px}
+@media (max-width:860px){.metodo-pe{grid-template-columns:minmax(0,1fr)}}
+
+</style>
+</head>
+<body>
+<a class="pular" href="#main">Ir para o conteúdo</a>
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="DALETH, início"><svg fill-rule="evenodd" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="42 112 2082 550" aria-hidden="true" focusable="false"><path d="M64 134L237 134C353 134 422 184 422 282C422 373 342 439 238 439L64 439L64 436C93 433 105 425 105 400L105 174C105 148 92 140 64 137ZM174 172C174 151 177 145 200 145L236 145C308 145 352 210 352 282C352 365 302 430 230 430L207 430C180 430 174 426 174 405Z"/><path d="M406 439L406 435C425 431 434 422 443 414L606 135C608 132 611 132 613 135L752 397C766 424 776 432 796 435L796 439L676 439L676 435C693 431 692 424 686 411L580 209L466 414C458 425 462 431 481 435L481 439Z"/><path d="M820 136L969 136L969 139C939 142 929 152 929 180L929 401C929 421 934 429 958 429L996 429C1040 429 1073 406 1097 365L1081 439L820 439L820 436C849 433 859 422 859 399L859 177C859 151 849 141 820 139Z"/><path d="M1125 136L1370 136L1373 199L1370 199C1368 164 1349 149 1300 149L1245 149C1231 149 1228 154 1228 171L1228 278L1265 278C1304 278 1324 268 1331 237L1334 237L1334 337L1331 337C1324 305 1311 292 1265 292L1228 292L1228 399C1228 421 1234 429 1260 429L1295 429C1330 429 1357 411 1385 389L1376 439L1125 439L1125 436C1153 432 1164 422 1164 399L1164 175C1164 150 1152 141 1125 139Z"/><path d="M1419 136L1690 136L1698 206L1694 206C1671 163 1650 149 1607 149L1585 149L1585 399C1585 425 1598 433 1627 436L1627 439L1480 439L1480 436C1507 433 1519 424 1519 399L1519 149L1496 149C1454 149 1430 166 1412 206L1408 206Z"/><path d="M1721 136L1869 136L1869 139C1839 142 1827 152 1827 177L1827 276L1991 276L1991 177C1991 151 1981 141 1953 139L1953 136L2103 136L2103 139C2073 142 2060 152 2060 177L2060 399C2060 424 2072 433 2103 436L2103 439L1953 439L1953 436C1981 433 1991 424 1991 399L1991 289L1827 289L1827 399C1827 424 1839 433 1869 436L1869 439L1721 439L1721 436C1749 433 1759 424 1759 399L1759 177C1759 151 1749 141 1721 139Z"/><path fill="#B58A44" d="M580 321L645 439L512 439Z"/><path fill="#B58A44" d="M896 497L1305 497L1305 508L896 508Z"/><path d="M0.000 0.000L37.000 0.000L37.000 6.000L7.000 6.000L7.000 22.500L34.000 22.500L34.000 28.500L7.000 28.500L7.000 46.000L37.000 46.000L37.000 52.000L0.000 52.000Z" transform="translate(183 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(255 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(326 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(404 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(481 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(561 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(638 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(724 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(799 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(884 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(965 572) scale(1 1)"/><path d="M28.0 -1C43.463972999999996 -1 56 11.08831175 56 26.0C56 40.91168825 43.463972999999996 53 28.0 53C12.536027 53 0 40.91168825 0 26.0C0 11.08831175 12.536027 -1 28.0 -1ZM28.0 5C39.59797975 5 49 14.40202025 49 26.0C49 37.59797975 39.59797975 47 28.0 47C16.40202025 47 7 37.59797975 7 26.0C7 14.40202025 16.40202025 5 28.0 5Z" transform="translate(1049 572) scale(1 1)"/><path d="M0 0L19.6 0C39.2 0 49 10 49 26C49 42 39.2 52 19.6 52L0 52ZM7 6L19.6 6C34.3 6 42 14 42 26C42 38 34.3 46 19.6 46L7 46Z" transform="translate(1190 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1277 572) scale(1 1)"/><path d="M0.000 0.000L7.500 0.000L39.400 40.000L39.400 0.000L46.000 0.000L46.000 52.000L38.500 52.000L6.600 12.000L6.600 52.000L0.000 52.000Z" transform="translate(1397 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1485 572) scale(1 1)"/><path d="M49 7L44.5 12C38 6 32.34 5 26.46 5C11.76 5 7 13 7 26C7 39 11.76 47 26.46 47C34.3 47 40 45 42.4 42L42.4 31L26.950000000000003 31L26.950000000000003 25L49 25L49 45C40 51 36.26 53 25.48 53C8.33 53 0 42 0 26C0 10 8.33 -1 25.48 -1C36.26 -1 41 1 49 7Z" transform="translate(1556 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1641 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(1731 572) scale(1 1)"/><path d="M0.000 0.000L7.000 0.000L7.000 52.000L0.000 52.000Z" transform="translate(1816 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1862 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(1952 572) scale(1 1)"/><path d="M905 623L910 623L908 628C920 628 919 640 908 640L901 638L903 634C909 637 914 633 907 632L903 632Z"/><path d="M979 565C980 553 986 555 992 558C998 561 1000 561 1001 557L1006 557C1005 568 999 568 992 564C986 561 984 561 984 565Z"/><path d="M1663 564L1670 555L1679 555L1670 564Z"/></svg></a>
+    <nav aria-label="Seções">
+      <a href="#modelagem">O que fazemos</a>
+      <a href="#metodo">Como entramos</a>
+      <a href="#quem">Quem somos</a>
+      <a href="#contato">Conversa</a>
+    </nav>
+    <a class="btn btn-tinta" href="#contato">Conversar</a>
+    <button type="button" class="menu-bt" aria-expanded="false" aria-controls="menu-movel" aria-label="Abrir o menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="menu-movel" id="menu-movel" aria-label="Seções, menu do celular" hidden>
+    <a href="#modelagem">O que fazemos</a><a href="#metodo">Como entramos</a><a href="#quem">Quem somos</a><a href="#contato">Conversa</a>
+  </nav>
+</header>
+<main id="main">
+<section class="hero" id="inicio" aria-label="Abertura">
+  <div class="foto" role="img" aria-label="Vista de uma cidade ao entardecer, com uma obra em andamento">
+    <picture><source media="(max-width:860px)" srcset="/cris-code/assets/img/heroi-foto-m.jpg"><img src="/cris-code/assets/img/heroi-foto.jpg" srcset="/cris-code/assets/img/heroi-foto-1280.jpg 1280w, /cris-code/assets/img/heroi-foto.jpg 1672w" sizes="100vw" alt="" fetchpriority="high" decoding="async"></picture>
+  </div>
+  <div class="wrap">
+    <p class="sobre">Estruturação de Negócios Imobiliários</p>
+    <h1>Transformamos oportunidades imobiliárias <em>em negócios estruturados para acontecer.</em></h1>
+    <div class="acoes">
+      <a class="btn btn-ouro" href="#contato">Conversar sobre uma oportunidade</a>
+      <a class="btn btn-linha" href="#metodo">Como atuamos</a>
+    </div>
+  </div>
+</section>
+<section class="prova" aria-label="Números da trajetória">
+  <div class="wrap">
+    <div class="celula"><p class="num">R$ 524<small>milhões</small></p><p class="leg">VGV de operações trabalhadas</p></div>
+    <div class="celula"><p class="num">40</p><p class="leg">Operações de financiamento à produção</p></div>
+    <div class="celula"><p class="num">6.320+</p><p class="leg">Unidades estruturadas</p></div>
+    <div class="celula local"><p class="num">Atuação nacional</p><p class="leg">Base em Belo Horizonte</p></div>
+  </div>
+</section>
+<section class="tese" id="tese" aria-labelledby="tese-t">
+  <div class="wrap">
+    <div class="txt">
+      <p class="sobre">A tese</p>
+      <h2 id="tese-t">A estrutura certa muda o tamanho do que você <em>pode construir.</em></h2>
+      <p class="lead">Muitas construtoras crescem pela capacidade de executar. O próximo crescimento depende da capacidade de estruturar.</p>
+    </div>
+    <div class="tri-caixa">
+      <svg class="tri" viewBox="-50 0 520 412" role="img" aria-labelledby="tri-t">
+      <title id="tri-t">Empreendimento, empresa e capital ligados entre si, com uma decisão no centro</title>
+      <path class="aresta" d="M210 70 L70 320 L350 320 Z"/>
+      <path class="fluxo" d="M210 70 L70 320"/>
+      <path class="fluxo b" d="M70 320 L350 320"/>
+      <path class="fluxo c" d="M350 320 L210 70"/>
+      <line class="aresta" x1="210" y1="70" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <line class="aresta" x1="70" y1="320" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <line class="aresta" x1="350" y1="320" x2="210" y2="236" stroke-dasharray="2 5"/>
+      <circle class="centro" cx="210" cy="236" r="7"/>
+      <text class="centro-t" x="210" y="262" text-anchor="middle">UMA DECISÃO</text>
+      <circle class="no" cx="210" cy="70" r="12"/>
+      <circle class="no" cx="70" cy="320" r="12"/>
+      <circle class="no" cx="350" cy="320" r="12"/>
+      <text class="rot" x="210" y="30" text-anchor="middle">EMPREENDIMENTO</text>
+      <text class="sub" x="210" y="50" text-anchor="middle">projeto · produto · obra</text>
+      <text class="rot" x="70" y="358" text-anchor="middle">CAPITAL</text>
+      <text class="sub" x="70" y="381" text-anchor="middle">próprio · investidores<tspan x="70" dy="20">funding</tspan></text>
+      <text class="rot" x="350" y="358" text-anchor="middle">EMPRESA</text>
+      <text class="sub" x="350" y="381" text-anchor="middle">construtora · sociedade<tspan x="350" dy="20">planejamento</tspan></text>
+    </svg>
+    </div>
+  </div>
+</section>
+<section class="modelagem" id="modelagem" aria-labelledby="mod-t" tabindex="-1">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre" style="color:#D4B37C">Modelagem</p>
+      <h2 class="h2" id="mod-t">Várias decisões. Um único negócio.</h2>
+      <p class="lead" style="color:#B9C8D4">Cada decisão afeta outras frentes do empreendimento. A modelagem integra essas relações antes que uma escolha comprometa o conjunto.</p>
+    </div>
+    <div class="palco mp-palco">
+      <canvas data-cena="modelagem" data-lado="esquerda" data-reserva-direita="0.38" data-reserva-baixo="0.06" data-rotulos="Terreno|Produto e mercado|Técnica|Jurídico|Societário|Tributário|Econômico-financeiro|Capital e funding|Comercialização|Risco e retorno" aria-hidden="true"></canvas>
+      <div class="cena-rotulos"></div>
+      <div class="ficha" aria-live="polite"></div>
+    </div>
+    <div class="mp-barra">
+      <p class="mp-dica">Escolha uma frente para ver o que ela move.</p>
+      <div class="mp-controles">
+        <button type="button" class="mp-seta" data-passo="-1" aria-label="Frente anterior">←</button>
+        <button type="button" class="mp-seta" data-passo="1" aria-label="Próxima frente">→</button>
+        <button type="button" class="mp-auto" aria-pressed="false">Percorrer as frentes</button>
+      </div>
+    </div>
+    <div class="mp-grupos" role="group" aria-label="Frentes da modelagem"></div>
+  </div>
+</section>
+<section class="metodo" id="metodo" aria-labelledby="met-t">
+  <div class="wrap">
+    <div class="cab">
+      <p class="sobre">Como a DALETH entra</p>
+      <h2 class="h2" id="met-t">Do diagnóstico à implantação, em quatro movimentos.</h2>
+      <p class="lead">A porta de entrada pode ser uma empresa, um empreendimento, uma necessidade de capital ou uma decisão estratégica.</p>
+    </div>
+    <div class="fluxo" id="fluxo">
+      <div class="fio" aria-hidden="true"><span class="base"></span><span class="vivo"></span><i style="--p:0"></i><i style="--p:1"></i><i style="--p:2"></i><i style="--p:3"></i></div>
+      <ol class="passos">
+        <li><span class="num">01</span><h3>Mapear</h3><p class="pergunta">Onde estamos?</p><p class="detalhe">Diagnóstico do potencial da empresa e do empreendimento, leitura das premissas atuais, restrições, riscos, recursos e oportunidades. Identificação dos principais ajustes necessários e dos pontos que precisam ser aprofundados para alcançar o resultado pretendido.</p></li>
+        <li><span class="num">02</span><h3>Modelar</h3><p class="pergunta">Quais caminhos existem?</p><p class="detalhe">Comparação de cenários, caixa, capital, risco, retorno e viabilidade. Modelagem mercadológica, econômica, financeira e de processos para entender como diferentes decisões alteram o resultado do empreendimento e a capacidade da empresa.</p></li>
+        <li><span class="num">03</span><h3>Estruturar</h3><p class="pergunta">Como transformar o caminho escolhido em uma operação viável?</p><p class="detalhe">Organização da estrutura jurídica, societária, financeira e operacional necessária para colocar o modelo em prática. Definição de responsabilidades, cronogramas, contratos, estratégia de capital e pontos de controle, compatibilizando o empreendimento com a capacidade da empresa.</p></li>
+        <li><span class="num">04</span><h3>Acompanhar</h3><p class="pergunta">Como preservar a lógica do negócio durante a implantação?</p><p class="detalhe">Acompanhamento dos principais marcos e premissas definidos na estruturação. Leitura das mudanças de cenário, desvios e novas decisões, mantendo empresa, empreendimento e capital coerentes com o caminho planejado ao longo da implantação.</p></li>
+      </ol>
+    </div>
+    <div class="metodo-pe">
+      <p class="papeis-linha">A DALETH estrutura o caminho e acompanha os pontos que podem mudar o negócio. <em>A execução permanece com a sua empresa e seus especialistas.</em></p>
+      <p class="linha-comercial"><b>Começamos por uma conversa de enquadramento.</b> Se houver aderência, escopo, prazo, responsabilidades e honorários ficam definidos em proposta antes do início do trabalho.</p>
+    </div>
+  </div>
+</section>
+<section class="cap assina-sec" id="ao-seu-lado" aria-label="Ao seu lado">
+  <div class="palco-3d" aria-hidden="true"><canvas data-cena="rede"></canvas></div>
+  <div class="wrap">
+    <p class="sobre">Ao seu lado</p>
+    <p class="assina-grande">Ao seu lado na <em class="chave">construção</em> de <em>sua história.</em></p>
+    <p class="clareza">Estruturar define o caminho. Estar ao lado ajuda a preservar sua lógica enquanto o negócio acontece.</p>
+  </div>
+</section>
+<section class="quem" id="quem" aria-labelledby="quem-t">
+  <div class="wrap">
+    <div>
+      <p class="sobre">Quem está ao seu lado</p>
+      <h2 id="quem-t">Cristiano Valério Ribeiro</h2>
+      <p class="meta">Engenharia de produção · Economia · MBA em gestão de negócios de incorporação e construção</p>
+    </div>
+    <div class="txt">
+      <p class="lead">Experiência na estruturação de empreendimentos, financiamento à produção e organização de operações imobiliárias, atuando na interface entre empresa, empreendimento e capital.</p>
+    </div>
+  </div>
+</section>
+<section class="cap contato" id="contato" aria-labelledby="conv-t">
+  <div class="wrap">
+    <p class="sobre">Toda oportunidade começa com uma leitura</p>
+    <h2 id="conv-t">Vamos entender qual negócio existe na sua oportunidade.</h2>
+    <p class="lead">Conte o empreendimento, a empresa ou o desafio de capital. A primeira conversa serve para entender o cenário e identificar por onde começar.</p>
+    <div class="acoes"><a class="btn btn-ouro" href="/cris-code/contato/">Conversar sobre uma oportunidade</a></div>
+    <p class="micro">Conversa de enquadramento · confidencial · sem custo · Belo Horizonte, atuação nacional</p>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="DALETH, voltar ao início"><svg fill-rule="evenodd" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="42 112 2082 550" aria-hidden="true" focusable="false"><path d="M64 134L237 134C353 134 422 184 422 282C422 373 342 439 238 439L64 439L64 436C93 433 105 425 105 400L105 174C105 148 92 140 64 137ZM174 172C174 151 177 145 200 145L236 145C308 145 352 210 352 282C352 365 302 430 230 430L207 430C180 430 174 426 174 405Z"/><path d="M406 439L406 435C425 431 434 422 443 414L606 135C608 132 611 132 613 135L752 397C766 424 776 432 796 435L796 439L676 439L676 435C693 431 692 424 686 411L580 209L466 414C458 425 462 431 481 435L481 439Z"/><path d="M820 136L969 136L969 139C939 142 929 152 929 180L929 401C929 421 934 429 958 429L996 429C1040 429 1073 406 1097 365L1081 439L820 439L820 436C849 433 859 422 859 399L859 177C859 151 849 141 820 139Z"/><path d="M1125 136L1370 136L1373 199L1370 199C1368 164 1349 149 1300 149L1245 149C1231 149 1228 154 1228 171L1228 278L1265 278C1304 278 1324 268 1331 237L1334 237L1334 337L1331 337C1324 305 1311 292 1265 292L1228 292L1228 399C1228 421 1234 429 1260 429L1295 429C1330 429 1357 411 1385 389L1376 439L1125 439L1125 436C1153 432 1164 422 1164 399L1164 175C1164 150 1152 141 1125 139Z"/><path d="M1419 136L1690 136L1698 206L1694 206C1671 163 1650 149 1607 149L1585 149L1585 399C1585 425 1598 433 1627 436L1627 439L1480 439L1480 436C1507 433 1519 424 1519 399L1519 149L1496 149C1454 149 1430 166 1412 206L1408 206Z"/><path d="M1721 136L1869 136L1869 139C1839 142 1827 152 1827 177L1827 276L1991 276L1991 177C1991 151 1981 141 1953 139L1953 136L2103 136L2103 139C2073 142 2060 152 2060 177L2060 399C2060 424 2072 433 2103 436L2103 439L1953 439L1953 436C1981 433 1991 424 1991 399L1991 289L1827 289L1827 399C1827 424 1839 433 1869 436L1869 439L1721 439L1721 436C1749 433 1759 424 1759 399L1759 177C1759 151 1749 141 1721 139Z"/><path fill="#B58A44" d="M580 321L645 439L512 439Z"/><path fill="#B58A44" d="M896 497L1305 497L1305 508L896 508Z"/><path d="M0.000 0.000L37.000 0.000L37.000 6.000L7.000 6.000L7.000 22.500L34.000 22.500L34.000 28.500L7.000 28.500L7.000 46.000L37.000 46.000L37.000 52.000L0.000 52.000Z" transform="translate(183 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(255 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(326 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(404 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(481 572) scale(1 1)"/><path d="M0.000 0.000L43.000 0.000L43.000 6.000L25.000 6.000L25.000 52.000L18.000 52.000L18.000 6.000L0.000 6.000Z" transform="translate(561 572) scale(1 1)"/><path d="M0 0L7 0L7 31C7 42 12.15 47 22.5 47C32.85 47 38 42 38 31L38 0L45 0L45 31C45 46 36.9 53 22.5 53C8.1 53 0 46 0 31Z" transform="translate(638 572) scale(1 1)"/><path d="M0 0L21.32 0C34.85 0 41 5 41 15C41 24 34.03 28 27.880000000000003 29L41 52L33 52L19.27 30L7 30L7 52L0 52ZM7 6L7 24L20.91 24C31.57 24 34 21 34 15C34 9 31.57 6 20.91 6Z" transform="translate(724 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(799 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(884 572) scale(1 1)"/><path d="M0.000 52.000L22.525 0.000L30.475 0.000L53.000 52.000L45.500 52.000L39.750 38.000L13.250 38.000L7.500 52.000ZM15.900 32.000L37.100 32.000L26.500 8.000Z" transform="translate(965 572) scale(1 1)"/><path d="M28.0 -1C43.463972999999996 -1 56 11.08831175 56 26.0C56 40.91168825 43.463972999999996 53 28.0 53C12.536027 53 0 40.91168825 0 26.0C0 11.08831175 12.536027 -1 28.0 -1ZM28.0 5C39.59797975 5 49 14.40202025 49 26.0C49 37.59797975 39.59797975 47 28.0 47C16.40202025 47 7 37.59797975 7 26.0C7 14.40202025 16.40202025 5 28.0 5Z" transform="translate(1049 572) scale(1 1)"/><path d="M0 0L19.6 0C39.2 0 49 10 49 26C49 42 39.2 52 19.6 52L0 52ZM7 6L19.6 6C34.3 6 42 14 42 26C42 38 34.3 46 19.6 46L7 46Z" transform="translate(1190 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1277 572) scale(1 1)"/><path d="M0.000 0.000L7.500 0.000L39.400 40.000L39.400 0.000L46.000 0.000L46.000 52.000L38.500 52.000L6.600 12.000L6.600 52.000L0.000 52.000Z" transform="translate(1397 572) scale(1 1)"/><path d="M0.000 0.000L36.000 0.000L36.000 6.000L7.000 6.000L7.000 22.500L33.000 22.500L33.000 28.500L7.000 28.500L7.000 46.000L36.000 46.000L36.000 52.000L0.000 52.000Z" transform="translate(1485 572) scale(1 1)"/><path d="M49 7L44.5 12C38 6 32.34 5 26.46 5C11.76 5 7 13 7 26C7 39 11.76 47 26.46 47C34.3 47 40 45 42.4 42L42.4 31L26.950000000000003 31L26.950000000000003 25L49 25L49 45C40 51 36.26 53 25.48 53C8.33 53 0 42 0 26C0 10 8.33 -1 25.48 -1C36.26 -1 41 1 49 7Z" transform="translate(1556 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1641 572) scale(1 1)"/><path d="M48 7L43.5 12C37 6 31.68 5 25.92 5C11.52 5 7 13 7 26C7 39 11.52 47 25.92 47C33.599999999999994 47 38 44 43.5 39L48 44C39 51 35.519999999999996 53 24.96 53C8.16 53 0 42 0 26C0 10 8.16 -1 24.96 -1C35.519999999999996 -1 40 1 48 7Z" transform="translate(1731 572) scale(1 1)"/><path d="M0.000 0.000L7.000 0.000L7.000 52.000L0.000 52.000Z" transform="translate(1816 572) scale(1 1)"/><path d="M27.5 -1C42.687830625000004 -1 55 11.08831175 55 26.0C55 40.91168825 42.687830625000004 53 27.5 53C12.312169375 53 0 40.91168825 0 26.0C0 11.08831175 12.312169375 -1 27.5 -1ZM27.5 5C38.821837375 5 48 14.40202025 48 26.0C48 37.59797975 38.821837375 47 27.5 47C16.178162625 47 7 37.59797975 7 26.0C7 14.40202025 16.178162625 5 27.5 5Z" transform="translate(1862 572) scale(1 1)"/><path d="M36 5L32.5 10C21 2 7 3 7 13C7 19 12 20 20.900000000000002 22C34 26 38 29 38 38C38 49 30 54 17.86 54C10 54 3 50 0 46L4.5 41C12 48 31 53 31 39C31 33 25.46 31 16.72 29C5 25 0 22 0 14C0 4 8 -1 19.0 -1C30 -1 35 2 36 5Z" transform="translate(1952 572) scale(1 1)"/><path d="M905 623L910 623L908 628C920 628 919 640 908 640L901 638L903 634C909 637 914 633 907 632L903 632Z"/><path d="M979 565C980 553 986 555 992 558C998 561 1000 561 1001 557L1006 557C1005 568 999 568 992 564C986 561 984 561 984 565Z"/><path d="M1663 564L1670 555L1679 555L1670 564Z"/></svg></a>
+    <span class="slogan">Ao seu lado na construção de sua história.</span>
+    <span>Estruturação de Negócios Imobiliários · Belo Horizonte</span>
+  </div>
+</footer>
+<div class="cta-movel" id="cta-movel" aria-hidden="true"><a class="btn btn-tinta" href="#contato" tabindex="-1">Conversar sobre uma oportunidade</a></div>
+<script src="/cris-code/assets/js/cena3d.js" defer></script>
+<script>
+// Menu do celular
+(function(){
+  var bt=document.querySelector(".menu-bt"),menu=document.getElementById("menu-movel");if(!bt||!menu)return;
+  function fechar(){bt.setAttribute("aria-expanded","false");menu.hidden=true}
+  bt.addEventListener("click",function(){var ab=bt.getAttribute("aria-expanded")==="true";if(ab)fechar();else{bt.setAttribute("aria-expanded","true");menu.hidden=false}});
+  menu.addEventListener("click",function(e){if(e.target.tagName==="A")fechar()});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")fechar()});
+})();
+// Barra de CTA no celular: aparece depois do hero, some no fecho
+(function(){
+  var barra=document.getElementById("cta-movel"),ab=document.getElementById("inicio"),fim=document.getElementById("contato");
+  if(!barra||!ab||!fim||!("IntersectionObserver" in window))return;
+  document.body.classList.add("com-cta-movel");
+  var passou=false,noFim=false;
+  function ajustar(){var v=passou&&!noFim;barra.classList.toggle("visivel",v);barra.setAttribute("aria-hidden",String(!v));barra.querySelector("a").tabIndex=v?0:-1}
+  new IntersectionObserver(function(es){es.forEach(function(e){passou=!e.isIntersecting&&e.boundingClientRect.bottom<0});ajustar()},{threshold:0}).observe(ab);
+  new IntersectionObserver(function(es){es.forEach(function(e){noFim=e.isIntersecting});ajustar()},{threshold:0.1}).observe(fim);
+})();
+// Método: acende quando entra na tela
+(function(){
+  var alvos=document.querySelectorAll("#fluxo, .trilha li");if(!alvos.length)return;
+  if(!("IntersectionObserver" in window)){alvos.forEach(function(a){a.classList.add("visto")});return}
+  var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("visto");o.unobserve(e.target)}})},{threshold:0.35});
+  alvos.forEach(function(a){o.observe(a)});
+})();
+
+// Modelagem: dez frentes na mesma rede. Trocar de frente troca as palavras nos nós da cena 3D.
+(function(){
+  var FRENTES=[{"id": "tudo", "num": "00", "nome": "Tudo conectado", "curto": "Tudo", "fam": "", "frase": "Mudar uma frente muda as outras. Comparamos os caminhos antes da escolha.", "sub": ["Terreno", "Produto e mercado", "Técnica", "Jurídico", "Societário", "Tributário", "Econômico-financeiro", "Capital e funding", "Comercialização", "Risco e retorno"], "move": []}, {"id": "terreno", "num": "01", "nome": "Terreno", "curto": "Terreno", "fam": "ativo", "frase": "Como o terreno entra no negócio: compra, permuta, parceria ou opção.", "sub": ["Compra", "Permuta", "Opção", "Parceria", "Due diligence"], "move": ["produto", "juridico", "capital"]}, {"id": "produto", "num": "02", "nome": "Produto e mercado", "curto": "Produto", "fam": "ativo", "frase": "O que o terreno comporta e o que o mercado absorve, a que preço.", "sub": ["Público", "Tipologia", "Mix", "Preço por m²", "VGV"], "move": ["tecnica", "comercial", "financeiro"]}, {"id": "tecnica", "num": "03", "nome": "Técnica", "curto": "Técnica", "fam": "ativo", "frase": "Como o produto vira obra com custo, prazo e qualidade compatíveis.", "sub": ["Implantação", "Projetos", "Sistema construtivo", "Orçamento", "Cronograma"], "move": ["financeiro", "produto", "comercial"]}, {"id": "comercial", "num": "04", "nome": "Comercialização", "curto": "Comercial", "fam": "ativo", "frase": "Preço, velocidade de vendas e geração de caixa na mesma conta.", "sub": ["Tabela", "Pré-venda", "Repasse", "Estoque", "Canais"], "move": ["financeiro", "capital", "produto"]}, {"id": "juridico", "num": "05", "nome": "Jurídico e regulatório", "curto": "Jurídico", "fam": "estrutura", "frase": "A segurança para contratar, financiar, vender e concluir.", "sub": ["Matrícula", "Licenças", "Incorporação", "Contratos", "Garantias"], "move": ["societario", "capital", "comercial"]}, {"id": "societario", "num": "06", "nome": "Societário e governança", "curto": "Societário", "fam": "estrutura", "frase": "Quem participa, quanto aporta, como decide e como recebe.", "sub": ["SPE", "SCP", "Holding", "Governança", "Saída"], "move": ["tributario", "risco", "capital"]}, {"id": "tributario", "num": "07", "nome": "Tributário", "curto": "Tributário", "fam": "estrutura", "frase": "O regime coerente com a sociedade, a venda e o caixa.", "sub": ["RET", "Presumido", "Afetação", "Permuta", "Distribuição"], "move": ["financeiro", "societario", "terreno"]}, {"id": "financeiro", "num": "08", "nome": "Econômico-financeiro", "curto": "Financeiro", "fam": "capital", "frase": "Quanto capital o negócio pede e quanto devolve, em cada cenário.", "sub": ["Fluxo de caixa", "Exposição", "Margem", "TIR", "Sensibilidades"], "move": ["capital", "comercial", "risco"]}, {"id": "capital", "num": "09", "nome": "Capital e funding", "curto": "Funding", "fam": "capital", "frase": "As fontes certas, no momento certo, com custo e garantias compatíveis.", "sub": ["Capital próprio", "Sócios", "Banco", "Recebíveis", "CRI"], "move": ["risco", "juridico", "financeiro"]}, {"id": "risco", "num": "10", "nome": "Risco e retorno", "curto": "Risco", "fam": "capital", "frase": "Como proteção, exposição e remuneração se dividem entre as partes.", "sub": ["Garantias", "Covenants", "Participações", "Waterfall", "Exit"], "move": ["societario", "capital", "juridico"]}], FAM={"ativo": "Ativo e produto", "estrutura": "Estrutura da empresa e do negócio", "capital": "Capital, caixa e retorno"}, MODO="prancha";
+  var raiz=document.getElementById("modelagem"), tela=document.querySelector('canvas[data-cena="modelagem"]');
+  if(!raiz||!tela)return;
+  var POR={};FRENTES.forEach(function(f){POR[f.id]=f});
+  var reduzir=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var atual="tudo", ouvintes=[];
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function mostrar(id,origem){var f=POR[id];if(!f)return;atual=id;
+    if(tela.cena3d)tela.cena3d.rotular(f.sub);else tela.setAttribute("data-rotulos",f.sub.join("|"));
+    ouvintes.forEach(function(fn){fn(f,origem)})}
+  function realce(id,on){raiz.querySelectorAll('.mp-frente[data-frente="'+id+'"]').forEach(function(b){b.classList.toggle("foco",on)})}
+  function ficha(caixa,f){caixa.innerHTML="";
+    caixa.appendChild(el("p","mf-num",f.num+" · "+(f.id==="tudo"?"Modelagem do empreendimento":(FAM[f.fam]||"Frente"))));
+    caixa.appendChild(el("h3","mf-nome",f.nome));
+    caixa.appendChild(el("p","mf-frase",f.frase));
+    var ul=el("ul","mf-sub");f.sub.forEach(function(s){ul.appendChild(el("li",null,s))});caixa.appendChild(ul);
+    if(f.move.length){var mv=el("p","mf-move");mv.appendChild(el("span","mf-move-rot","Também move"));
+      f.move.forEach(function(id){var b=el("button","mf-link",POR[id].nome);b.type="button";b.addEventListener("click",function(){mostrar(id,"ligacao")});b.addEventListener("mouseenter",function(){realce(id,true)});b.addEventListener("mouseleave",function(){realce(id,false)});mv.appendChild(b)});
+      caixa.appendChild(mv)}}
+
+  if(MODO==="prancha"){
+    var palco=raiz.querySelector(".mp-palco"), fx=raiz.querySelector(".ficha"), grupos=raiz.querySelector(".mp-grupos"), botoes=[];
+    var estreita=window.matchMedia("(max-width:1023px)"), fora=el("div","ficha-fora");
+    function acomodar(){if(estreita.matches){if(fx.parentNode!==fora){fora.appendChild(fx);palco.parentNode.insertBefore(fora,palco.nextSibling)}}
+      else if(fx.parentNode!==palco){palco.appendChild(fx);if(fora.parentNode)fora.parentNode.removeChild(fora)}}
+    acomodar();estreita.addEventListener&&estreita.addEventListener("change",acomodar);
+    function botao(f){var b=el("button","mp-frente");b.type="button";b.dataset.frente=f.id;b.setAttribute("aria-pressed","false");
+      b.appendChild(el("span","n",f.num));b.appendChild(el("span","t",f.curto));
+      b.addEventListener("click",function(){parar();mostrar(f.id,"botao")});botoes.push(b);return b}
+    var g0=el("div","mp-grupo");g0.appendChild(el("p",null,"Visão geral"));var l0=el("div","mp-frentes");l0.appendChild(botao(FRENTES[0]));g0.appendChild(l0);grupos.appendChild(g0);
+    Object.keys(FAM).forEach(function(k){var g=el("div","mp-grupo");g.appendChild(el("p",null,FAM[k]));var l=el("div","mp-frentes");
+      FRENTES.filter(function(f){return f.fam===k}).forEach(function(f){l.appendChild(botao(f))});g.appendChild(l);grupos.appendChild(g)});
+    var espera=null, autoBtn=raiz.querySelector(".mp-auto");
+    function parar(){if(espera){clearInterval(espera);espera=null}fx.setAttribute("aria-live","polite");if(autoBtn){autoBtn.setAttribute("aria-pressed","false");autoBtn.textContent="Percorrer as frentes"}}
+    function passear(){parar();fx.setAttribute("aria-live","off");espera=setInterval(function(){var i=FRENTES.findIndex(function(f){return f.id===atual});mostrar(FRENTES[(i+1)%FRENTES.length].id,"auto")},6500);if(autoBtn){autoBtn.setAttribute("aria-pressed","true");autoBtn.textContent="Parar"}}
+    if(autoBtn)autoBtn.addEventListener("click",function(){if(espera)parar();else passear()});
+    raiz.querySelectorAll("[data-passo]").forEach(function(s){s.addEventListener("click",function(){parar();var i=FRENTES.findIndex(function(f){return f.id===atual});mostrar(FRENTES[(i+parseInt(s.dataset.passo,10)+FRENTES.length)%FRENTES.length].id,"seta")})});
+    ouvintes.push(function(f,origem){botoes.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.frente===f.id));b.classList.toggle("ligada",f.move.indexOf(b.dataset.frente)>=0);b.classList.remove("foco")});if(origem!=="inicio"&&!reduzir){palco.classList.remove("pulso");void palco.offsetWidth;palco.classList.add("pulso")}
+      fx.classList.remove("troca");void fx.offsetWidth;fx.classList.add("troca");ficha(fx,f);
+      if(origem==="ligacao"&&estreita.matches)fx.scrollIntoView({block:"nearest",behavior:reduzir?"auto":"smooth"})});
+    mostrar("tudo","inicio");
+    if(!reduzir&&!estreita.matches&&"IntersectionObserver" in window){var tocado=false;raiz.addEventListener("pointerdown",function(){tocado=true},{once:true});
+      new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!espera&&!tocado)passear();if(!e.isIntersecting&&espera)parar()})},{threshold:0.35}).observe(palco)}
+  }
+
+})();
+</script>
+</body></html>
