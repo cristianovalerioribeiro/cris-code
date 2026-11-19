@@ -1,2 +1,5 @@
 _previa_*
 _livro.html
+build/fetch.log
+build/nohup.out
+build/__pycache__/
