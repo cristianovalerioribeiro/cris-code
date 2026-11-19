@@ -16,12 +16,12 @@ def search(q, n=8):
     url = ("https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrnamespace=6&gsrlimit=%d"
            "&prop=imageinfo&iiprop=url|extmetadata|size|mime&gsrsearch=%s" % (n, urllib.parse.quote(q)))
     pages = {}
-    for attempt in range(5):
+    for attempt in range(14):
         raw = curl(url)
         try:
             pages = json.loads(raw).get("query", {}).get("pages", {}); break
         except Exception:
-            time.sleep(50 + 20 * attempt)
+            time.sleep(11)
     time.sleep(4)
     res = []
     for p in sorted(pages.values(), key=lambda p: p.get("index", 99)):
