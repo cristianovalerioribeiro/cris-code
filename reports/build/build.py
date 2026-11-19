@@ -11,8 +11,14 @@ def slug(s):
     s = re.sub(r"[^a-z0-9à-ú]+", "-", s).strip("-")
     return s[:60]
 
+ONLY = sys.argv[1] if len(sys.argv) > 1 else None  # prévia de um capítulo: python3 build.py 04_runas
+if ONLY:
+    OUT_HTML = os.path.join(REPORTS, f"_previa_{ONLY}.html")
+    OUT_PDF = os.path.join(REPORTS, f"_previa_{ONLY}.pdf")
 chapters, toc, n = [], [], 0
 for path in sorted(glob.glob(os.path.join(HERE, "chapters", "*.html"))):
+    if ONLY and ONLY not in os.path.basename(path):
+        continue
     body = open(path, encoding="utf-8").read()
     n += 1
     def h1(m):
