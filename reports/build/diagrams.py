@@ -250,14 +250,14 @@ def tres_camadas():
     body += f'<rect x="{dx+dw-36}" y="{dy+dh-22}" width="26" height="18" rx="3" fill="#2a7f86" opacity=".9"/>'
     body += text(dx + dw - 23, dy + dh - 9, "sal", 8.5, "#fff", weight="bold")
     body += label(14, 80, 222, "1. REPELIR — lado de fora", [
-        "Um único guardião, voltado para fora:", "planta (espada-de-são-jorge, arruda,", "guiné) ou amuleto aberto (figa,",
-        "hamsa, olho grego, ferradura)."], "#34495e")
+        "Um único guardião, voltado para fora:", "planta (espada-de-são-jorge, arruda,", "guiné) ou amuleto aberto",
+        "(hamsa, olho grego)."], "#34495e")
     body += label(14, 250, 222, "2. PURIFICAR — na soleira", [
-        "Um gesto repetido, não um objeto:", "sal grosso trocado toda semana,", "defumação periódica, lavar a soleira.",
+        "Um gesto repetido, não um objeto:", "sal grosso renovado com regularidade,", "defumação periódica, lavar a soleira.",
         "O que não se renova vira enfeite."], "#2a7f86")
     body += label(544, 80, 222, "3. CONVIDAR — verga e interior", [
-        "Uma única bênção, na tradição do", "morador: giz da Epifania, mezuzá", "(casa judaica), frase própria.",
-        "Prosperidade fica do lado de dentro."], GOLD)
+        "Uma única bênção, na tradição do", "morador: giz da Epifania na verga,", "mezuzá no umbral (casa judaica),",
+        "frase própria. Figa: por dentro."], GOLD)
     body += label(544, 250, 222, "FORA DA SÍNTESE", [
         "Práticas que pedem pertença ou", "consagração: mezuzá em casa não", "judaica, ponto riscado, tronqueira,",
         "ofuda, fulu. E símbolos de ódio."], RED)

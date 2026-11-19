@@ -1,21 +1,8 @@
 [
  {
-  "file": "mjolnir.jpg",
-  "topic": "Pingente Mjölnir",
-  "caption_pt": "Pingente Mjölnir",
-  "commons_title": "File:Amulet Thor's hammer (copy of find from Skåne) 2010-07-10.jpg",
-  "commons_desc": "Amulet of Thor's hammer (Mjolnir) worn by a Swedish practioner of Forn Sed and member of Forn Sed Sweden (former Swedish Asatru Assembly).The hammer is a commercial copy of an archaeological find from Skåne, Sweden. The original hammer is of silver with filigree ornamentation and was found in an unk",
-  "author": "Gunnar Creutz",
-  "license": "Public domain",
-  "license_url": "",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Amulet_Thor%27s_hammer_(copy_of_find_from_Sk%C3%A5ne)_2010-07-10.jpg",
-  "width": 1108,
-  "height": 1372
- },
- {
   "file": "mezuza_umbral.jpg",
   "topic": "Mezuzá afixada no umbral",
-  "caption_pt": "Mezuzá afixada no umbral",
+  "caption_pt": "Mezuzá samaritana: placa de pedra inscrita fixada à parede, no Monte Gerizim. Segundo a descrição do Commons, a primeira linha diz “Bendito aquele que disse” e as seguintes citam Levítico 26:9 e Deuteronômio 28:12.",
   "commons_title": "File:Mezuzah IMG 2124.JPG",
   "commons_desc": "Samaritan Mezuzah, Mount Gerizim. 1st line reads: \"Blessed is he who said\"; following lines cite Leviticus 26:9 and Deuteronomy 28:12; last line mentions the builder: \"Hanun ben Uda ben Lutfi (Yosef)\".",
   "author": "Deror_avi",
@@ -28,7 +15,7 @@
  {
   "file": "mezuza_pergaminho.jpg",
   "topic": "Pergaminho (klaf) da mezuzá",
-  "caption_pt": "Pergaminho (klaf) da mezuzá",
+  "caption_pt": "Pergaminho (klaf) de mezuzá aberto, visto pela face do texto, em escrita de escriba.",
   "commons_title": "File:Mezuzah scroll arizal real front.JPG",
   "commons_desc": "This is one of many beautiful Mezuzah photos of an Authentic Gallery taken all over Israel seen at mezuzahscrolls.wordpress.com If you are using this photo thank you for mentioning the source: \"Mezuzah Scrolls\" Thank you.",
   "author": "Mezuzah Scrolls",
@@ -41,7 +28,7 @@
  {
   "file": "hamsa.jpg",
   "topic": "Hamsa",
-  "caption_pt": "Hamsa",
+  "caption_pt": "Dois chaveiros em forma de hamsa: um com estrela de seis pontas, outro com inscrição em hebraico.",
   "commons_title": "File:Хамса амулет - Hamsa amulet - חמסה.jpg",
   "commons_desc": "Hamsa amulet with Hebrew inscription",
   "author": "PretoriaTravel",
@@ -54,20 +41,21 @@
  {
   "file": "hamsa_porta.jpg",
   "topic": "Aldrava em forma de mão",
-  "caption_pt": "Aldrava em forma de mão",
+  "caption_pt": "Aldrava em forma de mão numa porta da medina antiga de Tânger, Marrocos (recorte da fotografia original).",
   "commons_title": "File:Ancien Medina, Tangier, Morocco - panoramio (9).jpg",
   "commons_desc": "Ancien Medina, Tangier, Morocco",
   "author": "logopop",
   "license": "CC BY-SA 3.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source_url": "https://commons.wikimedia.org/wiki/File:Ancien_Medina,_Tangier,_Morocco_-_panoramio_(9).jpg",
-  "width": 1280,
-  "height": 1920
+  "width": 704,
+  "height": 903,
+  "nota": "recortada para excluir transeuntes"
  },
  {
   "file": "nazar.jpg",
   "topic": "Nazar (olho turco)",
-  "caption_pt": "Nazar (olho turco)",
+  "caption_pt": "Olhos azuis de vidro (nazar) à venda como proteção contra o mau-olhado.",
   "commons_title": "File:Blue eyes.JPG",
   "commons_desc": "Blue eyes, sold as protection against the evil eye.",
   "author": "FocalPoint",
@@ -78,22 +66,9 @@
   "height": 960
  },
  {
-  "file": "nomes72.jpg",
-  "topic": "Tabela dos 72 Nomes",
-  "caption_pt": "Tabela dos 72 Nomes",
-  "commons_title": "File:Tetragrammaton benediction.png",
-  "commons_desc": "Portion of writing on silver scroll with the \"Priestly Benediction\" (Numbers 6:24-26) in which the tetragrammaton can be seen. Earliest depiction of the tetragrammaton - dated around 600 B.C.E. \"May YHWH bless you and keep you; may YHWH cause his face to shine upon you and be gracious to you; may YH",
-  "author": "pvasiliadis",
-  "license": "Public domain",
-  "license_url": "",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Tetragrammaton_benediction.png",
-  "width": 550,
-  "height": 210
- },
- {
   "file": "shiviti.jpg",
   "topic": "Shiviti",
-  "caption_pt": "Shiviti",
+  "caption_pt": "Placa de shiviti ricamente ornamentada, do acervo do Museu Judaico Húngaro.",
   "commons_title": "File:Shiviti plaque, Hungarian Jewish Museum.jpg",
   "commons_desc": "",
   "author": "Own work",
@@ -106,7 +81,7 @@
  {
   "file": "cornicello.jpg",
   "topic": "Cornicello",
-  "caption_pt": "Cornicello",
+  "caption_pt": "Cornicello, amuleto italiano ou ítalo-americano em forma de chifre.",
   "commons_title": "File:CornicelloCharm.jpg",
   "commons_desc": "An Italian or Italian-American cornicello good luck charm.",
   "author": "Antonio Cavallo",
@@ -117,22 +92,9 @@
   "height": 1070
  },
  {
-  "file": "figa.jpg",
-  "topic": "Figa",
-  "caption_pt": "Figa",
-  "commons_title": "File:Gömörfüge07.JPG",
-  "commons_desc": "Gömörfüge - községi hivatal",
-  "author": "Szeder László",
-  "license": "CC BY-SA 4.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:G%C3%B6m%C3%B6rf%C3%BCge07.JPG",
-  "width": 1280,
-  "height": 960
- },
- {
   "file": "pedra_runica.jpg",
   "topic": "Pedra rúnica",
-  "caption_pt": "Pedra rúnica",
+  "caption_pt": "Inscrição rúnica da pedra de Björketorp, no município de Ronneby, Suécia.",
   "commons_title": "File:Björketorpsstenen runor.jpg",
   "commons_desc": "Björketorpsstenen (Björketorp Stone) at Björketorp, municipality of Ronneby",
   "author": "Sendelbach (talk)",
@@ -145,7 +107,7 @@
  {
   "file": "bracteata.jpg",
   "topic": "Bracteata com runas",
-  "caption_pt": "Bracteata com runas",
+  "caption_pt": "Bracteata de ouro achada na Fiônia, Dinamarca (DR BR42), com inscrição rúnica na borda; Museu Nacional da Dinamarca.",
   "commons_title": "File:Bracteate from Funen, Denmark (DR BR42).jpg",
   "commons_desc": "The Funen bracteate (DR BR42 = DR IK58), found in Funen, Denmark. The runic inscription is read as: houaz laþu aaduaaaliia a-- or alternatively houaz / laþu aa duaaalii(a) / al(u) According to the display at the National Museum of Denmark, houaz is interpreted as \"The High One\", a name of Odin.",
   "author": "Bloodofox",
@@ -158,7 +120,7 @@
  {
   "file": "aegishjalmur.jpg",
   "topic": "Ægishjálmur",
-  "caption_pt": "Ægishjálmur",
+  "caption_pt": "Página do manuscrito islandês Lbs 2413 8vo (c. 1800), da Biblioteca Nacional e Universitária da Islândia, com sinais do tipo Ægishjálmur.",
   "commons_title": "File:Lbs 2413 8vo-65-0031v (Ægishjálmur).jpg",
   "commons_desc": "Sida 66 ur manuskriptet LBS 2413 8vo (ca 1800) hos Islands national- och universitetsbiblioteket. Texten i mitten lyder: \"Detta äro 9 nya \"agahjälmar\" som ingen må än vara från (*som vill hantera kunskap och var en skall brukas 99 gånger).",
   "author": "Unknown authorUnknown author",
@@ -171,7 +133,7 @@
  {
   "file": "witch_marks.jpg",
   "topic": "Marcas apotropaicas entalhadas",
-  "caption_pt": "Marcas apotropaicas entalhadas",
+  "caption_pt": "Marcas apotropaicas riscadas num prato de estanho, no Castelo de Ormond: um hexafólio (“margarida”) completo e outro incompleto.",
   "commons_title": "File:Apotropaic marks on pewter plate.jpg",
   "commons_desc": "Apotropaic marks (one complete and one incomplete \"daisy\") on a pewter plate at Ormond Castle. The plate also had the initials GW on it and was not originally from the castle.",
   "author": "A.-K. D.",
@@ -184,7 +146,7 @@
  {
   "file": "garrafa_bruxa.jpg",
   "topic": "Garrafa de bruxa",
-  "caption_pt": "Garrafa de bruxa",
+  "caption_pt": "Garrafa de bruxa contemporânea em jarro de grés do tipo Bellarmine (Bartmann), de coleção particular.",
   "commons_title": "File:Bellarmine Stoneware Witch Bottle II.jpg",
   "commons_desc": "Pagan Alter &amp; Witchcraft tools Contemporary Bellarmine Stoneware Witch Bottle From Mal Corvus Witchcraft &amp; Folklore artefact private collection owned by Malcolm Lidbury (aka Pink Pasty) https://www.youtube.com/watch?v=5ii3_OgxiVQ",
   "author": "Malcolm Lidbury (aka Pinkpasty)",
@@ -197,7 +159,7 @@
  {
   "file": "ferradura_porta.jpg",
   "topic": "Ferradura sobre porta",
-  "caption_pt": "Ferradura sobre porta",
+  "caption_pt": "Ferraduras “da sorte” pregadas na porta de um celeiro, numa aldeia da Polônia.",
   "commons_title": "File:Podkowa.jpg",
   "commons_desc": "Horseshoe believed to bring good luck, nailed to a barn door. A village in Poland. Podkowy przynoszące szczęście Autor: Mohylek 16:18, 2 November 2006 (UTC)",
   "author": "No machine-readable author provided. Mohylek assumed (based on copyright claims).",
@@ -210,7 +172,7 @@
  {
   "file": "hex_sign.jpg",
   "topic": "Hex sign em celeiro",
-  "caption_pt": "Hex sign em celeiro",
+  "caption_pt": "Celeiro com hex sign na fachada, no oeste do condado de Chester, Pensilvânia.",
   "commons_title": "File:Barn with Hex.JPG",
   "commons_desc": "Barn with a hex sign in western Chester County, PA, Northwest of Ercildoun on Wilmington Road",
   "author": "Smallbones",
@@ -223,7 +185,7 @@
  {
   "file": "cruz_brigida.jpg",
   "topic": "Cruz de Santa Brígida",
-  "caption_pt": "Cruz de Santa Brígida",
+  "caption_pt": "Cruz de Santa Brígida de quatro braços, trançada com juncos do condado de Down.",
   "commons_title": "File:Saint Brigid's cross.jpg",
   "commons_desc": "Saint Brigid's cross, made from rushes from County Down. Sony P-200 and Jasc Paint Shop Pro 9",
   "author": "Culnacreann",
@@ -236,7 +198,7 @@
  {
   "file": "triskelion_newgrange.jpg",
   "topic": "Espirais de Newgrange",
-  "caption_pt": "Espirais de Newgrange",
+  "caption_pt": "Espiral tripla gravada em pedra em Newgrange, Irlanda.",
   "commons_title": "File:Newgrange Triple Spiral.jpg",
   "commons_desc": "Newgrange",
   "author": "Christopher Holt",
@@ -249,7 +211,7 @@
  {
   "file": "giz_epifania.jpg",
   "topic": "Giz da Epifania",
-  "caption_pt": "Giz da Epifania",
+  "caption_pt": "Inscrição a giz “20+C+M+B+21” acima da porta de um apartamento, no tempo da Epifania de 2021.",
   "commons_title": "File:Epiphany Season door chalking.jpg",
   "commons_desc": "2021 Epiphany Season door chalking on my apartment door",
   "author": "Bmbaker88",
@@ -260,22 +222,9 @@
   "height": 2276
  },
  {
-  "file": "giz_epifania2.jpg",
-  "topic": "Giz da Epifania (outra porta)",
-  "caption_pt": "Giz da Epifania (outra porta)",
-  "commons_title": "File:St Laserian's Cathedral - door.jpg",
-  "commons_desc": "This picture was uploaded via app \"Wiki Loves Monuments Ireland\".",
-  "author": "A.-K._D.",
-  "license": "CC BY-SA 4.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:St_Laserian%27s_Cathedral_-_door.jpg",
-  "width": 1280,
-  "height": 1707
- },
- {
   "file": "medalha_sao_bento.jpg",
   "topic": "Medalha de São Bento",
-  "caption_pt": "Medalha de São Bento",
+  "caption_pt": "Medalha de São Bento, as duas faces: à esquerda, a do santo; à direita, a da cruz com as iniciais. Diâmetro original: 1,5 cm.",
   "commons_title": "File:Saint Benedict Medal.jpg",
   "commons_desc": "Medal of Saint Benedict. Verso recto Taille originale ⌀=1.5cm",
   "author": "Gec00",
@@ -288,7 +237,7 @@
  {
   "file": "agua_benta.jpg",
   "topic": "Pia de água benta",
-  "caption_pt": "Pia de água benta",
+  "caption_pt": "Pia de água benta no canto do pórtico de entrada da igreja de All Saints, em Gimingham, Norfolk (Inglaterra).",
   "commons_title": "File:-2022-02-26 Holy water stoup, All Saints parish church, Gimingham, Norfolk.JPG",
   "commons_desc": "A Holy water stoup in the corner of the entrance porch of All Saints in the village of Gimingham, Norfolk.",
   "author": "Kolforn (Kolforn) I'd appreciate if you could mail me (Kolforn@gmail.com) if you want to use this picture out of the Wik",
@@ -299,22 +248,9 @@
   "height": 1707
  },
  {
-  "file": "sagrado_coracao.jpg",
-  "topic": "Sagrado Coração",
-  "caption_pt": "Sagrado Coração",
-  "commons_title": "File:Sacred Heart Church, door and plaques, 2020 Göd.jpg",
-  "commons_desc": ": Sacred Heart Church, SW side, door and plaques.- Bozóky Gyula Square, Felsőgöd neighborhood, Göd, Pest County, Hungary.",
-  "author": "Globetrotter19",
-  "license": "CC BY-SA 3.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Sacred_Heart_Church,_door_and_plaques,_2020_G%C3%B6d.jpg",
-  "width": 1280,
-  "height": 960
- },
- {
   "file": "exu.jpg",
   "topic": "Exu",
-  "caption_pt": "Exu",
+  "caption_pt": "Assentamento de Exu (ferramenta de ferro em vaso) do Centro Espírita Nossa Senhora da Guia, fotografado e publicado pela própria casa.",
   "commons_title": "File:Assentamento de Exu, Centro Espírita Nossa Senhora da Guia (58) (2).jpg",
   "commons_desc": "Assentamento de Exu elaborado pelas matriarcas da Casa",
   "author": "Centro Espírita Nossa Senhora da Guia",
@@ -325,22 +261,9 @@
   "height": 1840
  },
  {
-  "file": "ponto_pemba.jpg",
-  "topic": "Pemba",
-  "caption_pt": "Pemba",
-  "commons_title": "File:East Africa Protectorate and Uganda (1898).png",
-  "commons_desc": "East Africa Protectorate and Uganda (1898)",
-  "author": "Unknown authorUnknown author",
-  "license": "Public domain",
-  "license_url": "",
-  "source_url": "https://commons.wikimedia.org/wiki/File:East_Africa_Protectorate_and_Uganda_(1898).png",
-  "width": 1280,
-  "height": 1180
- },
- {
   "file": "espada_sao_jorge.jpg",
   "topic": "Espada-de-são-jorge",
-  "caption_pt": "Espada-de-são-jorge",
+  "caption_pt": "Espada-de-são-jorge (Sansevieria) em vaso.",
   "commons_title": "File:Sansevieria in pot.jpg",
   "commons_desc": "​虎尾兰",
   "author": "Mokkie",
@@ -353,7 +276,7 @@
  {
   "file": "arruda.jpg",
   "topic": "Arruda",
-  "caption_pt": "Arruda",
+  "caption_pt": "Arruda (Ruta graveolens): ramos secos com cápsulas e sementes, exemplar de coleção botânica (MHNT).",
   "commons_title": "File:Ruta graveolens MHNT.BOT.2005.0.973.jpg",
   "commons_desc": "Common Rue, Capsules and seeds",
   "author": "Didier Descouens",
@@ -366,7 +289,7 @@
  {
   "file": "guine.jpg",
   "topic": "Guiné",
-  "caption_pt": "Guiné",
+  "caption_pt": "Guiné (Petiveria): folhas e espigas.",
   "commons_title": "File:Petiveria. Guiné..JPG",
   "commons_desc": "Petiveria. Guiné.",
   "author": "Toluaye",
@@ -379,7 +302,7 @@
  {
   "file": "comigo_ninguem_pode.jpg",
   "topic": "Comigo-ninguém-pode",
-  "caption_pt": "Comigo-ninguém-pode",
+  "caption_pt": "Comigo-ninguém-pode (Dieffenbachia seguine) em ambiente natural, em Guadalupe.",
   "commons_title": "File:Dieffenbachia seguine kz08.jpg",
   "commons_desc": "Dieffenbachia seguine on Trace des Ruisseaux at Bras David on Guadeloupe",
   "author": "Krzysztof Ziarnek, Kenraiz",
@@ -392,7 +315,7 @@
  {
   "file": "fitas_bonfim.jpg",
   "topic": "Fitas do Senhor do Bonfim",
-  "caption_pt": "Fitas do Senhor do Bonfim",
+  "caption_pt": "Fitas do Senhor do Bonfim amarradas com nós, em Salvador, Bahia.",
   "commons_title": "File:Nós nas fitas de Nosso Senhor do Bonfim.jpg",
   "commons_desc": "Nosso Senhor do Bonfim e seus nós em Salvador, Bahia",
   "author": "Boaventuravinicius",
@@ -403,48 +326,9 @@
   "height": 479
  },
  {
-  "file": "balangandan.jpg",
-  "topic": "Penca de balangandãs",
-  "caption_pt": "Penca de balangandãs",
-  "commons_title": "File:Praça Balangandã, Osório, Vista da Praça.jpg",
-  "commons_desc": "Praça Balangandã, Osório, Vista da Praça",
-  "author": "Ricardo de Sampaio Dagnino",
-  "license": "CC BY-SA 4.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Pra%C3%A7a_Balangand%C3%A3,_Os%C3%B3rio,_Vista_da_Pra%C3%A7a.jpg",
-  "width": 1280,
-  "height": 960
- },
- {
-  "file": "defumador.jpg",
-  "topic": "Defumação",
-  "caption_pt": "Defumação",
-  "commons_title": "File:Smoke and incense burner in Lugang Mazu Temple 20190714.jpg",
-  "commons_desc": "It was taken in Tianhou temple, Lugang. People were preparing for a festival as you can see in right side of the picture.",
-  "author": "Bell5163",
-  "license": "CC BY-SA 4.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Smoke_and_incense_burner_in_Lugang_Mazu_Temple_20190714.jpg",
-  "width": 1280,
-  "height": 853
- },
- {
-  "file": "sal_grosso.jpg",
-  "topic": "Sal grosso",
-  "caption_pt": "Sal grosso",
-  "commons_title": "File:Balsa de sal em Areia Branca. - panoramio (1).jpg",
-  "commons_desc": "Balsa de sal em Areia Branca.",
-  "author": "Pablo Soares",
-  "license": "CC BY-SA 3.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Balsa_de_sal_em_Areia_Branca._-_panoramio_(1).jpg",
-  "width": 1280,
-  "height": 960
- },
- {
   "file": "sator.jpg",
   "topic": "Quadrado SATOR",
-  "caption_pt": "Quadrado SATOR",
+  "caption_pt": "Quadrado SATOR gravado em pedra em Oppède, França; as letras S e N aparecem invertidas.",
   "commons_title": "File:Sator Square at Oppède.jpg",
   "commons_desc": "Sator square Sator Arepo Tenet Opera Rotas (word square, palindrome) in Oppède (France). The letters S and N are reversed as in an ambigram.",
   "author": "M Disdero",
@@ -457,7 +341,7 @@
  {
   "file": "pantaculo_salomao.jpg",
   "topic": "Pantáculo da Chave de Salomão",
-  "caption_pt": "Pantáculo da Chave de Salomão",
+  "caption_pt": "Pantáculos de Saturno: prancha II de The Key of Solomon the King, na edição de S. L. MacGregor Mathers (1888).",
   "commons_title": "File:Pentacles of Saturn (Plate II, The Key of Solomon the King, 1888).png",
   "commons_desc": "Pentacles of Saturn as found in The Key of Solomon the King, Plate II (Mathers, 1888).",
   "author": "Samuel Liddell MacGregor Mathers (translator of original work by anonymous occultist(s))",
@@ -470,7 +354,7 @@
  {
   "file": "pentagrama_agrippa.jpg",
   "topic": "Pentagrama de Agrippa",
-  "caption_pt": "Pentagrama de Agrippa",
+  "caption_pt": "Corpo humano inscrito no pentagrama, com os sinais dos planetas, do De occulta philosophia libri tres de Agrippa.",
   "commons_title": "File:Pentagram and human body (Agrippa).jpg",
   "commons_desc": "Image of a human body in a pentagram from Heinrich Cornelius Agrippa's Libri tres de occulta philosophia. Symbols of the sun and moon are in center, while the other five classical \"planets\" are around the edge.",
   "author": "Heinrich Cornelius Agrippa",
@@ -481,22 +365,9 @@
   "height": 913
  },
  {
-  "file": "tetragrammaton_levi.jpg",
-  "topic": "Pentagrama de Lévi",
-  "caption_pt": "Pentagrama de Lévi",
-  "commons_title": "File:The Protocols of the Elders of Zion by Nilus (1912) - cleaned.jpg",
-  "commons_desc": "Front page illustration from 1911 edition of Sergei Nilus' book The Great in the Small that contained The Protocols of the Elders of Zion. The captions (among occult symbols and the Eliphas Levi version of the \"Chariot\" Tarot card) read: \"Thus we shall win\", \"Mark of antichrist\" (labeling a Tetragra",
-  "author": "Unknown authorUnknown author",
-  "license": "Public domain",
-  "license_url": "",
-  "source_url": "https://commons.wikimedia.org/wiki/File:The_Protocols_of_the_Elders_of_Zion_by_Nilus_(1912)_-_cleaned.jpg",
-  "width": 610,
-  "height": 890
- },
- {
   "file": "udjat.jpg",
   "topic": "Amuleto udjat",
-  "caption_pt": "Amuleto udjat",
+  "caption_pt": "Amuleto egípcio de faiança com o olho udjat; Metropolitan Museum of Art (MET).",
   "commons_title": "File:Faience Wedjat-eye amulet MET DP121843.jpg",
   "commons_desc": "Egyptian; Amulet, eye, Udjati; Gold and Silver",
   "author": "",
@@ -507,22 +378,9 @@
   "height": 960
  },
  {
-  "file": "bes.jpg",
-  "topic": "Bes",
-  "caption_pt": "Bes",
-  "commons_title": "File:Amulet depicting the god Bes, Egyptian blue - Museo Egizio, Turin C 663 p02.jpg",
-  "commons_desc": "",
-  "author": "",
-  "license": "CC0",
-  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Amulet_depicting_the_god_Bes,_Egyptian_blue_-_Museo_Egizio,_Turin_C_663_p02.jpg",
-  "width": 1280,
-  "height": 1521
- },
- {
   "file": "abracadabra.jpg",
   "topic": "Abracadabra",
-  "caption_pt": "Abracadabra",
+  "caption_pt": "O triângulo do Abracadabra, em reconstituição gráfica moderna.",
   "commons_title": "File:Амулет против чумы.png",
   "commons_desc": "The first known mention of the word abracadabra was in the third century AD in a book called Liber Medicinalis (sometimes known as De Medicina Praecepta Saluberrima) by Quintus Serenus Sammonicus, physician to the Roman emperor Caracalla, who in chapter 51 prescribed that malaria sufferers wear an a",
   "author": "Il Dottore",
@@ -535,7 +393,7 @@
  {
   "file": "gorgoneion.jpg",
   "topic": "Gorgoneion",
-  "caption_pt": "Gorgoneion",
+  "caption_pt": "Antefixa de terracota com gorgoneion (cabeça de Medusa), grega do sul da Itália (Tarento); Metropolitan Museum of Art (MET).",
   "commons_title": "File:Terracotta gorgoneion antefix (roof tile) MET DP233548.jpg",
   "commons_desc": "Greek, South Italian, Tarentine; Antefix, head of Medusa; Terracottas",
   "author": "",
@@ -548,7 +406,7 @@
  {
   "file": "sigillum_dei.jpg",
   "topic": "Sigillum Dei Aemeth",
-  "caption_pt": "Sigillum Dei Aemeth",
+  "caption_pt": "Sigillum Dei (“Selo de Deus”) de John Dee: disco de cera que servia de apoio à sua pedra de vidência.",
   "commons_title": "File:John Dee's Seal of God.jpg",
   "commons_desc": "A large, elaborately-decorated wax \"Seal of God\", used to support John Dee's \"shew-stone\", the crystal ball used for scrying",
   "author": "user:geni",
@@ -561,7 +419,7 @@
  {
   "file": "radiestesia.jpg",
   "topic": "Radiestesia",
-  "caption_pt": "Radiestesia",
+  "caption_pt": "Forquilha de aveleira para radiestesia, Inglaterra, início do século XX; acervo do Horniman Museum (n.º 70172).",
   "commons_title": "File:English Hazel Dowsing Rod in the Horniman Museum.jpg",
   "commons_desc": "A hazel dowsing rod from early twentieth-century England. Part of the Horniman Museum collection (70172).",
   "author": "Ethan Doyle White",
@@ -572,35 +430,9 @@
   "height": 670
  },
  {
-  "file": "radionica.jpg",
-  "topic": "Aparelho radiônico",
-  "caption_pt": "Aparelho radiônico",
-  "commons_title": "File:Sinclair Research X1 FM Radio (front).jpg",
-  "commons_desc": "Image of the front of a Sinclair Research FM Radi,o the X1 (cir. 1997).",
-  "author": "Quatermass",
-  "license": "CC BY 3.0",
-  "license_url": "https://creativecommons.org/licenses/by/3.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Sinclair_Research_X1_FM_Radio_(front).jpg",
-  "width": 1280,
-  "height": 1128
- },
- {
-  "file": "menshen.jpg",
-  "topic": "Deuses da porta (Menshen)",
-  "caption_pt": "Deuses da porta (Menshen)",
-  "commons_title": "File:Dragon Door Gods.jpg",
-  "commons_desc": "Exquisite traditional paintings and sculptures exist in Taiwanese temples There will be guards at the entrance and exit of the temple Different temples have different performances of Door Gods",
-  "author": "Laxthree",
-  "license": "CC BY-SA 4.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Dragon_Door_Gods.jpg",
-  "width": 1280,
-  "height": 848
- },
- {
   "file": "menshen2.jpg",
   "topic": "Deuses da porta em templo",
-  "caption_pt": "Deuses da porta em templo",
+  "caption_pt": "Deuses da porta (Menshen) pintados nas folhas das portas de um templo de tradição chinesa.",
   "commons_title": "File:興仁懋靈殿 (28)門神.jpg",
   "commons_desc": "​興仁懋靈殿，主祀朱府王爺。",
   "author": "舟集 Toadboat",
@@ -613,7 +445,7 @@
  {
   "file": "fu_invertido.jpg",
   "topic": "Caractere Fu invertido",
-  "caption_pt": "Caractere Fu invertido",
+  "caption_pt": "Decoração de Ano Novo chinês com o caractere Fu de cabeça para baixo ao centro, entre duas tiras de dísticos; Englewood, Colorado (EUA), 2005.",
   "commons_title": "File:Chinese New Year decorations 2005.jpg",
   "commons_desc": "Chinese New Year decorations at Western Union's headquarters in Englewood, CO, February 3, 2005. Note that the center character Fú (福) is upside down.",
   "author": "Helanhuaren",
@@ -626,7 +458,7 @@
  {
   "file": "chunlian.jpg",
   "topic": "Dísticos de primavera",
-  "caption_pt": "Dísticos de primavera",
+  "caption_pt": "Chunlian (dístico de primavera) em tira vertical vermelha, afixado num apartamento.",
   "commons_title": "File:Chunlian.jpg",
   "commons_desc": "Chunlian (Spring couplets) in an apartment. Normally the installation is at the both sides (and top) of one (normally main) door. Here depth impression is used as a stylistic choice. The left one has a meaning like 'In the year of the dragon your family will be prosperous'. The right one like 'Peace",
   "author": "Aaaatu",
@@ -639,7 +471,7 @@
  {
   "file": "leoes_guardioes.jpg",
   "topic": "Leões guardiões",
-  "caption_pt": "Leões guardiões",
+  "caption_pt": "Leão guardião de metal junto ao Salão da Suprema Harmonia, na Cidade Proibida, Pequim.",
   "commons_title": "File:Beijing Forbidden City Imperial Guardian Lions.jpg",
   "commons_desc": "Self-made Apr. 2005 Forbidden City, Beijing, P.R.China Contents 1 Permission 2 Summary 3 Licensing 4 Original upload log Permission Free domain Summary A guardian lion (copper) in the Forbidden City Location: Hall of Supreme Harmony",
   "author": "Tang Zu-Ming at English Wikipedia",
@@ -652,7 +484,7 @@
  {
   "file": "leao_femea.jpg",
   "topic": "Leoa guardiã com filhote",
-  "caption_pt": "Leoa guardiã com filhote",
+  "caption_pt": "Leoa guardiã com o filhote sob a pata, em cloisonné; China, dinastia Qing, século XVII.",
   "commons_title": "File:Female guardian lion with cub, Cloisonne, Qing Dynasty China 17th century CE.jpg",
   "commons_desc": "Female guardian lion with cub, Cloisonne, Qing Dynasty China 17th century CE",
   "author": "Mary Harrsch",
@@ -665,7 +497,7 @@
  {
   "file": "espelho_bagua.jpg",
   "topic": "Espelho bagua",
-  "caption_pt": "Espelho bagua",
+  "caption_pt": "Espelho bagua acima da porta de entrada de uma casa em Münster, Alemanha.",
   "commons_title": "File:Münster, Hollenbeckerstraße 24, Feng-Shui-Bagua-Spiegel -- 2026 -- 0573.jpg",
   "commons_desc": "Feng Shui Bagua mirror above the front door of the house at Hollenbeckerstraße 24, Münster, North Rhine-Westphalia, Germany",
   "author": "Dietmar Rabich",
@@ -676,22 +508,9 @@
   "height": 1280
  },
  {
-  "file": "shigandang.jpg",
-  "topic": "Shigandang",
-  "caption_pt": "Shigandang",
-  "commons_title": "File:Shigandang vs Monsterwolf.jpg",
-  "commons_desc": "​《石敢当大战恶狼精》。 泰山皮影戏。东岳大街泰山皮影戏剧场。拍摄征得表演者同意。",
-  "author": "Huangchenhai",
-  "license": "CC BY-SA 4.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Shigandang_vs_Monsterwolf.jpg",
-  "width": 1280,
-  "height": 853
- },
- {
   "file": "pixiu.jpg",
   "topic": "Pixiu",
-  "caption_pt": "Pixiu",
+  "caption_pt": "Estátua de Pixiu no templo Xixin Chan.",
   "commons_title": "File:Statue of Pixiu, Xixin Chan Temple.jpg",
   "commons_desc": "A statue of Pixiu at Xixin Chan Temple.",
   "author": "Huangdan2060",
@@ -704,7 +523,7 @@
  {
   "file": "jin_chan.jpg",
   "topic": "Jin Chan",
-  "caption_pt": "Jin Chan",
+  "caption_pt": "Jin Chan, o “sapo do dinheiro”, sobre moedas e com uma moeda na boca.",
   "commons_title": "File:Chan Chu.JPG",
   "commons_desc": "A money frog",
   "author": "Рыцарь поля",
@@ -717,7 +536,7 @@
  {
   "file": "zhong_kui.jpg",
   "topic": "Zhong Kui",
-  "caption_pt": "Zhong Kui",
+  "caption_pt": "Zhong Kui, o subjugador de demônios, com cinco morcegos; pintura de autor anônimo, tradicionalmente atribuída a Wu Wei (1459–1508).",
   "commons_title": "File:Zhong Kui the Demon Queller with Five Bats.jpg",
   "commons_desc": "\"Zhong Kui, the Demon Queller, has been a popular subject in figure painting from as early as the Tang dynasty (AD 618-907). The early Zhong Kui portraits were hung at the end of the year to drive away evil spirits. The pine trees, rocks, and river in this painting imply that Zhong is standing in a ",
   "author": "Anonymous Note: It has been traditionally attributed to Wu Wei (1459 - 1508), but it was probably painted by an anonymou",
@@ -730,7 +549,7 @@
  {
   "file": "kolam.jpg",
   "topic": "Kolam",
-  "caption_pt": "Kolam",
+  "caption_pt": "Rangoli colorido feito para um casamento em Karur, no Sul da Índia.",
   "commons_title": "File:A Beautiful Rangoli.jpg",
   "commons_desc": "A Beautiful Rangoli - Captured By Sreeram Kalyanasundaram (சிறீராம் கல்யாணசுந்தரம்) At Karur Marriage - This is a featured picture on the Tamil language Wikipedia (இன்றைய சிறப்புப் படம்) and is considered one of the finest images.",
   "author": "SreeramKalyan",
@@ -743,7 +562,7 @@
  {
   "file": "rangoli.jpg",
   "topic": "Rangoli",
-  "caption_pt": "Rangoli",
+  "caption_pt": "Rangoli com lamparinas à entrada de uma residência indiana, durante o Diwali.",
   "commons_title": "File:Rangoli and Divas.jpg",
   "commons_desc": "Rangoli decoration at the entrance of Indian resident during Diwali festival",
   "author": "Ramesh lalwani",
@@ -756,7 +575,7 @@
  {
   "file": "nimbu_mirchi.jpg",
   "topic": "Nimbu-mirchi",
-  "caption_pt": "Nimbu-mirchi",
+  "caption_pt": "Nimbu-mirchi em Jaipur: limões e pimentas verdes num fio, aqui sob uma máscara de rosto feroz, diante de uma loja.",
   "commons_title": "File:Nimbu-Mirchi Totka à Jaipur (3).jpg",
   "commons_desc": "Nimbu-Mirchi Totka à Jaipur. Objet de superstition constitué de citrons (1) et de piments verts (généralement 7) suspendus à un fil devant les maisons ou les magasins pour éloigner le mauvais oeil.",
   "author": "Ji-Elle",
@@ -767,22 +586,9 @@
   "height": 1920
  },
  {
-  "file": "drishti_bommai.jpg",
-  "topic": "Drishti bommai",
-  "caption_pt": "Drishti bommai",
-  "commons_title": "File:It's a boy - Khol Kajal kanmashi kan mai eyeliner infants evil eye Buri nazar drishti bommai काजल கண் மை surma Tamil Nadu village India Documentary Featur story jpg photo IMG 3192 signed.jpg",
-  "commons_desc": "Khol Kajal kanmashi kan mai eyeliner infants evil eye Buri nazar drishti bommai काजल கண் மை surma Tamil Nadu village India Documentary Featur story jpg photo by Etan Doronne www.myindiaexperience.com It's a boy ! despite the 'piggy tails' and makeup. Indian mothers place these evil-eye protecting do",
-  "author": "Etan Doronne",
-  "license": "CC BY-SA 3.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:It%27s_a_boy_-_Khol_Kajal_kanmashi_kan_mai_eyeliner_infants_evil_eye_Buri_nazar_drishti_bommai_%E0%A4%95%E0%A4%BE%E0%A4%9C%E0%A4%B2_%E0%AE%95%E0%AE%A3%E0%AF%8D_%E0%AE%AE%E0%AF%88_surma_Tamil_Nadu_village_India_Documentary_Featur_story_jpg_photo_IMG_3192_signed.jpg",
-  "width": 1280,
-  "height": 987
- },
- {
   "file": "sri_yantra.jpg",
   "topic": "Sri Yantra",
-  "caption_pt": "Sri Yantra",
+  "caption_pt": "Sri Yantra em relevo sobre placa de cobre.",
   "commons_title": "File:A Sri Yantra copper relief.jpg",
   "commons_desc": "A derivative work on wikimedia image Sri Yantra copper.jpg",
   "author": "Ms Sarah Welch",
@@ -795,7 +601,7 @@
  {
   "file": "bandeiras_oracao.jpg",
   "topic": "Bandeiras de oração",
-  "caption_pt": "Bandeiras de oração",
+  "caption_pt": "Bandeiras de oração no Nepal.",
   "commons_title": "File:Prayer flags in Nepal.jpg",
   "commons_desc": "Prayer flags in Nepal",
   "author": "Jules Henze",
@@ -806,22 +612,9 @@
   "height": 1937
  },
  {
-  "file": "kalachakra.jpg",
-  "topic": "Monograma do Kalachakra",
-  "caption_pt": "Monograma do Kalachakra",
-  "commons_title": "File:Cholin Monestary, Ghum, Darjeeling 100.jpg",
-  "commons_desc": "Cholin Monestary, Ghum, Darjeeling",
-  "author": "PP Yoonus",
-  "license": "CC BY-SA 3.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:Cholin_Monestary,_Ghum,_Darjeeling_100.jpg",
-  "width": 1280,
-  "height": 960
- },
- {
   "file": "ofuda.jpg",
   "topic": "Ofuda",
-  "caption_pt": "Ofuda",
+  "caption_pt": "Ofuda de papel afixado junto à porta de uma casa.",
   "commons_title": "File:Ōharaeshiki Shugo-fuda - 大祓式守護札.jpg",
   "commons_desc": "Ofuda posted by the door of a house.",
   "author": "Pat457",
@@ -834,7 +627,7 @@
  {
   "file": "shimenawa.jpg",
   "topic": "Shimenawa",
-  "caption_pt": "Shimenawa",
+  "caption_pt": "Shimenawa monumental do santuário de Izumo (Izumo Taisha), Japão.",
   "commons_title": "File:Izumooyashiro89.JPG",
   "commons_desc": "出雲大社注連縄",
   "author": "日:Jnn",
@@ -847,7 +640,7 @@
  {
   "file": "kadomatsu.jpg",
   "topic": "Kadomatsu",
-  "caption_pt": "Kadomatsu",
+  "caption_pt": "Par de kadomatsu diante de uma entrada em Kadoma, Japão, 2024.",
   "commons_title": "File:Kadomatsu at Kadoma 2024.jpg",
   "commons_desc": "Kadomatsu at Kadoma 2024",
   "author": "Mr.ちゅらさん",
@@ -858,22 +651,9 @@
   "height": 960
  },
  {
-  "file": "morijio.jpg",
-  "topic": "Morijio",
-  "caption_pt": "Morijio",
-  "commons_title": "File:ごつ盛り塩焼きそばIMG 20220131 03.jpg",
-  "commons_desc": "ごつ盛り塩焼きそばの画像",
-  "author": "経済特区",
-  "license": "CC BY-SA 4.0",
-  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source_url": "https://commons.wikimedia.org/wiki/File:%E3%81%94%E3%81%A4%E7%9B%9B%E3%82%8A%E5%A1%A9%E7%84%BC%E3%81%8D%E3%81%9D%E3%81%B0IMG_20220131_03.jpg",
-  "width": 1280,
-  "height": 720
- },
- {
   "file": "maneki_neko.jpg",
   "topic": "Maneki-neko",
-  "caption_pt": "Maneki-neko",
+  "caption_pt": "Maneki-neko (gatos da sorte) numa loja japonesa.",
   "commons_title": "File:Maneki-neko, lucky cats.jpg",
   "commons_desc": "Maneki-neko, lucky cats, in Japanese shop",
   "author": "Su--May",
@@ -886,7 +666,7 @@
  {
   "file": "shisa.jpg",
   "topic": "Shisa",
-  "caption_pt": "Shisa",
+  "caption_pt": "Shisa de Okinawa em versão moderna e estilizada.",
   "commons_title": "File:Okinawan Shisa Dog Ryukyu festival.jpg",
   "commons_desc": "A Shisa dog is a Ryukyu tradition. This Shisa (or pair of Shisa) is usually placed in the front of doorways to ward off evil spirits. Okinawa features many Shisa making in a staple of the Okinawa prefecture. Because of its modern popularity, many new versions of Shisa (like the one in the image) act",
   "author": "Cruzzin78c",
@@ -899,7 +679,7 @@
  {
   "file": "jano.jpg",
   "topic": "Jano",
-  "caption_pt": "Jano",
+  "caption_pt": "Moeda de prata com a cabeça de duas faces de Jano no anverso; achado de Askerswell, Dorset (Inglaterra), em 2017.",
   "commons_title": "File:Context 103 Spit 3. Silver coin cleaned for ID October 2017. Worn and scratched. Ob Janus masks. Rv a manic scene apparently involving 2 sets of bagpipes but possibly some trophies. (FindID 863568-634329).jpg",
   "commons_desc": "Askerswell, Dorset Report for HM Coroner Circumstances of discovery Found by metal-detector users at a commercial rally on ploughed land in the parish of Askerswell, West Dorset, on 2nd September 2017. The find was brought to the attention of the Finds Liaison Officer Ciorstaidh Hayward Trevarthen, ",
   "author": "The British Museum, Pippa Pearce, 2017-10-23 15:56:45",
@@ -912,7 +692,7 @@
  {
   "file": "herma.jpg",
   "topic": "Herma",
-  "caption_pt": "Herma",
+  "caption_pt": "Herma dupla com os retratos de Heródoto e Tucídides: molde de gesso (Galeria de Arte Clássica de Hostinné) de original do Museu Arqueológico Nacional de Nápoles; arquétipo de 400–350 a.C.",
   "commons_title": "File:Herma of Herodotus and Thucydides, Plaster cast, Hostinné, 188445.jpg",
   "commons_desc": "Portrait double (twin) herma of Herodotus and Thucydides, archetype from 400-350 BC. Plaster cast. Gallery of Classical Art in Hostinné. Original: Naples, Museo Archeologico Nazionale di Napoli (inv. 6239).",
   "author": "Zde",
@@ -925,7 +705,7 @@
  {
   "file": "lamassu.jpg",
   "topic": "Lamassu",
-  "caption_pt": "Lamassu",
+  "caption_pt": "Touros alados com cabeça humana (lamassu) do palácio de Sargão II em Khorsabad; Museu do Louvre.",
   "commons_title": "File:Human-headed Winged Bulls Gate Khorsabad - Louvre 02a.jpg",
   "commons_desc": "King Sargon II and a Dignatary-AO 19873-AO 19874 Winged bull with human head-AO 19857 Winged bull with human head-AO 19858 Dignitary-AO 19875 Servants carrying a wheeled throne-AO 19882",
   "author": "Vania Teofilo",
@@ -938,7 +718,7 @@
  {
   "file": "pascoa_umbrais.jpg",
   "topic": "Sangue nos umbrais (Êxodo 12)",
-  "caption_pt": "Sangue nos umbrais (Êxodo 12)",
+  "caption_pt": "A refeição da Páscoa e a décima praga do Egito; à esquerda, um homem marca a verga da porta. Gravura da série Historia plagarum in Aegypto (Thesaurus sacrarum historiarum veteris testamenti); Rijksmuseum, RP-P-1995-25-72.",
   "commons_title": "File:Pesachfeest en de tiende plaag van Egypte Geschiedenis van Mozes voor de Exodus (serietitel) Historia plagarum in Aegijpto (serietitel) Thesaurus sacrarum historiarum veteris testamenti, elegantiss, RP-P-1995-25-72.jpg",
   "commons_desc": "IdentificatieTitel(s): Pesachfeest en de tiende plaag van Egypte. Geschiedenis van Mozes voor de Exodus (serietitel). Historia plagarum in Aegijpto (...) (serietitel). Thesaurus sacrarum historiaru[m] veteris testame[n]ti, elega[n]tissimis imaginibus expressu[m] excelle[n]tissimoru[m] in hac arte vi",
   "author": "Rijksmuseum",
