@@ -3,3 +3,4 @@ _livro.html
 build/fetch.log
 build/nohup.out
 build/__pycache__/
+build/candidates.json

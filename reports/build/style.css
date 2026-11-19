@@ -63,3 +63,4 @@ tr{break-inside:avoid} tbody tr:nth-child(even) td{background:#faf6ee}
 .toc a{color:inherit}
 .legend{display:flex;flex-wrap:wrap;gap:.4em .9em;font-size:8.4pt;font-family:"DejaVu Sans",sans-serif;margin:.5em 0}
 .cols2{columns:2;column-gap:7mm}
+.fontes ol{margin-left:2.2em}
