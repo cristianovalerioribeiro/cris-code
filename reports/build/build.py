@@ -44,8 +44,8 @@ if os.path.exists(mpath):
     rows = []
     for it in json.load(open(mpath, encoding="utf-8")):
         if f'assets/{it["file"]}' in used:
-            rows.append("<tr><td>{}</td><td>{}</td><td>{}</td><td><a href=\"{}\">Commons</a></td></tr>".format(
-                html.escape(it.get("caption_pt", it["file"])[:110]), html.escape(re.sub(r"<[^>]+>", "", str(it.get("author", "")))[:70]),
+            rows.append("<tr><td>{}</td><td>{}</td><td>{}</td><td><a style=\"word-break:normal;white-space:nowrap\" href=\"{}\">Commons</a></td></tr>".format(
+                html.escape(it.get("caption_pt", it["file"])[:110]), html.escape(("autor desconhecido" if str(it.get("author", "")).lower().startswith("unknown") or not it.get("author") else re.sub(r"<[^>]+>", "", str(it.get("author", ""))))[:70]),
                 html.escape(str(it.get("license", ""))), html.escape(it.get("source_url", ""))))
     if rows:
         n += 1
