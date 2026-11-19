@@ -4,10 +4,11 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__)); ASSETS = os.path.join(HERE, "..", "assets")
 UA = "DoorSymbolsBook/1.0 (educational research)"
 OK = re.compile(r"^(public domain|pd|cc0|cc[ -]by([ -]sa)?([ -]\d\.\d)?( \w+)?)", re.I)
-TOPICS = json.load(open(os.path.join(HERE, "image_topics.json"), encoding="utf-8"))
+TOPICS = json.load(open(os.path.join(HERE, os.environ.get("TOPICS_FILE", "image_topics.json")), encoding="utf-8"))
+NCAND = int(os.environ.get("NCAND", "1"))
 mpath = os.path.join(ASSETS, "manifest.json")
 manifest = {m["file"]: m for m in (json.load(open(mpath, encoding="utf-8")) if os.path.exists(mpath) else [])}
-cpath = os.path.join(HERE, "candidates.json")
+cpath = os.path.join(HERE, os.environ.get("CAND_FILE", "candidates.json"))
 cands = json.load(open(cpath)) if os.path.exists(cpath) else {}
 
 def curl(url, out=None):
@@ -52,7 +53,7 @@ for i in range(0, len(alltitles), 40):
     print("meta lote", i, code, len(info), flush=True); time.sleep(3)
 # 3) download
 for k in todo:
-    pick = TOPICS[k].get("pick", 0); n = 0; got = False
+    pick = TOPICS[k].get("pick", 0); n = 0; got = False; saved = 0
     for t in cands.get(k, []):
         ii = info.get(t.replace("_", " ")) or info.get(t)
         if not ii: continue
@@ -64,7 +65,8 @@ for k in todo:
         if ii["width"] > 1280:
             m = re.match(r"(https://upload\.wikimedia\.org/wikipedia/commons)/(./../)(.+)$", url)
             url = f"{m.group(1)}/thumb/{m.group(2)}{m.group(3)}/1280px-{m.group(3)}"
-        dest = os.path.join(ASSETS, k + ".jpg")
+        name = k + ("" if saved == 0 else f"_{saved+1}") + ".jpg"
+        dest = os.path.join(ASSETS, name)
         curl(url, dest)
         try:
             im = Image.open(dest); im.load(); im = im.convert("RGB")
@@ -72,9 +74,11 @@ for k in todo:
             time.sleep(3); continue
         if im.width > 1280: im = im.resize((1280, int(im.height * 1280 / im.width)))
         im.save(dest, "JPEG", quality=80, optimize=True)
-        manifest[k + ".jpg"] = dict(file=k + ".jpg", topic=TOPICS[k]["topic"], caption_pt=TOPICS[k]["topic"], commons_title=t,
+        manifest[name] = dict(file=name, topic=TOPICS[k]["topic"], caption_pt=TOPICS[k]["topic"], commons_title=t,
             commons_desc=strip(md.get("ImageDescription", {}).get("value", ""))[:300], author=strip(md.get("Artist", {}).get("value", ""))[:120],
             license=lic, license_url=md.get("LicenseUrl", {}).get("value", ""), source_url=ii.get("descriptionurl", ""), width=im.width, height=im.height)
-        got = True; break
+        got = True; saved += 1
+        if saved >= NCAND: break
+        time.sleep(2)
     print("OK   " if got else "FALHA", k, "|", manifest.get(k + ".jpg", {}).get("commons_title", "") if got else "", flush=True)
     json.dump(list(manifest.values()), open(mpath, "w", encoding="utf-8"), ensure_ascii=False, indent=1); time.sleep(1.5)
