@@ -1,0 +1,1791 @@
+[
+ {
+  "id": "G1",
+  "title": "Convenção de respostas",
+  "file": "G1.svg",
+  "kind": "leque",
+  "items": [
+   "Não posso ou não devo responder",
+   "Não",
+   "Neutro, nenhuma das anteriores",
+   "Sim",
+   "Pronto para a pergunta"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G2",
+  "title": "Biômetro de percentual (0 a 100)",
+  "file": "G2.svg",
+  "kind": "escala",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G3",
+  "title": "Biômetro de Bovis (0 a 10.000)",
+  "file": "G3.svg",
+  "kind": "escala",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G4",
+  "title": "Escala bipolar (−100 a +100)",
+  "file": "G4.svg",
+  "kind": "escala",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G5",
+  "title": "Sete chakras",
+  "file": "G5.svg",
+  "kind": "leque",
+  "items": [
+   "1 Básico (Muladhara)",
+   "2 Sacral (Svadhisthana)",
+   "3 Plexo solar (Manipura)",
+   "4 Cardíaco (Anahata)",
+   "5 Laríngeo (Vishuddha)",
+   "6 Frontal (Ajna)",
+   "7 Coronário (Sahasrara)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G6",
+  "title": "Silhueta com chakras e réguas (frente)",
+  "file": "G6.svg",
+  "kind": "silhueta",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G6b",
+  "title": "Silhueta com aspectos posteriores (costas)",
+  "file": "G6b.svg",
+  "kind": "silhueta",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G7",
+  "title": "Formas do movimento",
+  "file": "G7.svg",
+  "kind": "leque",
+  "items": [
+   "Círculo horário",
+   "Círculo anti-horário",
+   "Elipse à direita",
+   "Elipse à esquerda",
+   "Vertical",
+   "Horizontal",
+   "Errático",
+   "Parado"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G8",
+  "title": "Biômetro de causas",
+  "file": "G8.svg",
+  "kind": "leque",
+  "items": [
+   "Emocional",
+   "Mental e psicológica",
+   "Física e de saúde",
+   "Energética (interferência)",
+   "Ambiental",
+   "Transgeracional e ancestral",
+   "Espiritual e existencial",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G9",
+  "title": "Sessenta emoções (Emotion Code)",
+  "file": "G9.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G10",
+  "title": "Famílias de crença",
+  "file": "G10.svg",
+  "kind": "leque",
+  "items": [
+   "Não sou bom o bastante, não mereço",
+   "Não estou seguro, o mundo é perigoso",
+   "Não tenho controle, sou impotente",
+   "Não posso confiar",
+   "Não pertenço, estou só",
+   "Não posso me expressar",
+   "Preciso ser perfeito ou agradar",
+   "É minha culpa, devo pagar",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G11",
+  "title": "Cinco feridas de infância",
+  "file": "G11.svg",
+  "kind": "leque",
+  "items": [
+   "Rejeição (fugitivo)",
+   "Abandono (dependente)",
+   "Humilhação (masoquista)",
+   "Traição (controlador)",
+   "Injustiça (rígido)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G12",
+  "title": "Sistemas do corpo (referência)",
+  "file": "G12.svg",
+  "kind": "leque",
+  "items": [
+   "Auditivo",
+   "Cardíaco",
+   "Circulatório",
+   "Digestivo",
+   "Endócrino",
+   "Esquelético",
+   "Imunológico",
+   "Linfático",
+   "Muscular",
+   "Nervoso central",
+   "Nervoso periférico",
+   "Psicológico",
+   "Reprodutor feminino",
+   "Reprodutor masculino",
+   "Respiratório",
+   "Urinário",
+   "Visual",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G13",
+  "title": "Órgãos na silhueta",
+  "file": "G13.svg",
+  "kind": "silhueta",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G15",
+  "title": "Interferências energéticas",
+  "file": "G15.svg",
+  "kind": "leque",
+  "items": [
+   "Miasma",
+   "Egrégora negativa",
+   "Larva astral",
+   "Forma- pensamento",
+   "Cordão ou vínculo",
+   "Implante",
+   "Programa (medo, controle)",
+   "Portal aberto",
+   "Entidade ou obsessor",
+   "Energia densa de lugar/objeto",
+   "Inveja, \"olho gordo\"",
+   "Magia ou trabalho",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G16",
+  "title": "Fontes de ambiente",
+  "file": "G16.svg",
+  "kind": "leque",
+  "items": [
+   "Linha Hartmann",
+   "Cruzamento Hartmann",
+   "Linha Curry",
+   "Cruzamento Curry",
+   "Zona Benker",
+   "Veio d'água",
+   "Falha (seca, úmida)",
+   "Rede elétrica",
+   "Wi-Fi e roteador",
+   "Celular",
+   "Torre ou transformador",
+   "Histórico do imóvel",
+   "Vizinhança",
+   "Objeto herdado",
+   "Presente",
+   "Objeto antigo",
+   "Planta ou animal",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G17",
+  "title": "Linhagem (anéis)",
+  "file": "G17.svg",
+  "kind": "anéis",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G18",
+  "title": "Tema espiritual",
+  "file": "G18.svg",
+  "kind": "leque",
+  "items": [
+   "Propósito",
+   "Fé e confiança na vida",
+   "Conexão",
+   "Perdão",
+   "Sentido",
+   "Pertencimento",
+   "Entrega",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G19",
+  "title": "Origem da causa",
+  "file": "G19.svg",
+  "kind": "leque",
+  "items": [
+   "Própria",
+   "Absorvida",
+   "Compartilhada",
+   "Herdada",
+   "Pré-natal",
+   "Pré-concepção",
+   "Coletiva"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G20b",
+  "title": "Ano exato (0 a 90)",
+  "file": "G20b.svg",
+  "kind": "régua",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G21",
+  "title": "Contexto",
+  "file": "G21.svg",
+  "kind": "leque",
+  "items": [
+   "Família",
+   "Parceiro",
+   "Trabalho",
+   "Saúde",
+   "Morte",
+   "Dinheiro",
+   "Lugar",
+   "Corpo",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G22",
+  "title": "Biômetro de harmonização",
+  "file": "G22.svg",
+  "kind": "leque",
+  "items": [
+   "Comando de neutralização",
+   "Liberação pelo Vaso Governador",
+   "Pêndulo Hebraico",
+   "Gráfico radiônico",
+   "Cromoterapia",
+   "Cristal",
+   "Floral",
+   "Afirmação",
+   "Som e frequência",
+   "Aromaterapia",
+   "Reiki ou imposição",
+   "Prática corporal",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G23",
+  "title": "Tempo e dose (relógio radiestésico)",
+  "file": "G23.svg",
+  "kind": "relógio",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G25",
+  "title": "Cômodo e posição",
+  "file": "G25.svg",
+  "kind": "leque",
+  "items": [
+   "Quarto: cabeceira",
+   "Quarto: pés da cama",
+   "Quarto: lado da cama",
+   "Posto de trabalho",
+   "Sala",
+   "Cozinha",
+   "Entrada",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G27",
+  "title": "Conflito biológico",
+  "file": "G27.svg",
+  "kind": "leque",
+  "items": [
+   "\"Bocado\" (endoderma)",
+   "Ataque ou ninho (mesoderma antigo)",
+   "Desvalorização (mesoderma novo)",
+   "Separação, território, identidade (ectoderma)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G28",
+  "title": "Origem da interferência",
+  "file": "G28.svg",
+  "kind": "leque",
+  "items": [
+   "Própria",
+   "Externa: pessoa",
+   "Externa: lugar",
+   "Externa: objeto",
+   "Herdada"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G29",
+  "title": "Chakras secundários",
+  "file": "G29.svg",
+  "kind": "silhueta",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G30",
+  "title": "Estado do paciente (referência)",
+  "file": "G30.svg",
+  "kind": "leque",
+  "items": [
+   "Saúde normal",
+   "Enfermo",
+   "Muito enfermo",
+   "Grave",
+   "Agonizante",
+   "Crítico",
+   "Estado terminal",
+   "Processo de morte"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G32",
+  "title": "Causas físicas (referência)",
+  "file": "G32.svg",
+  "kind": "leque",
+  "items": [
+   "Alimentação deficiente",
+   "Alimentação abusiva",
+   "Cansaço físico",
+   "Doenças hereditárias",
+   "Doenças genéticas",
+   "Distúrbios hormonais",
+   "Sedentarismo",
+   "Excesso de exercício",
+   "Sono de má qualidade",
+   "Sobrecarga de estudos",
+   "Sobrecarga de trabalho",
+   "Sobrecarga de vida social",
+   "TPM",
+   "Envelhecimento",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G33",
+  "title": "Repertório psicológico e emocional (referência)",
+  "file": "G33.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G34",
+  "title": "Causas espirituais (referência)",
+  "file": "G34.svg",
+  "kind": "leque",
+  "items": [
+   "Obsessão espiritual",
+   "Missão espiritual",
+   "Vampirismo de encarnado",
+   "Vampirismo de desencarnado",
+   "Autoobsessão",
+   "Desequilíbrio espiritual",
+   "Falta de fé, desconexão",
+   "Falta de proteção",
+   "Atividades durante o sono",
+   "Automagia",
+   "Ataque espiritual",
+   "Mau olhado",
+   "Miasmas, larvas astrais",
+   "Negativismo",
+   "Resgate de vidas passadas",
+   "Rombo na aura",
+   "Mediunidade contida",
+   "Mediunidade negada",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G35",
+  "title": "Fases da vida (referência, ciclos de 7 anos)",
+  "file": "G35.svg",
+  "kind": "leque",
+  "items": [
+   "Gestação",
+   "Parto",
+   "0 a 7",
+   "7 a 14",
+   "14 a 21",
+   "21 a 28",
+   "28 a 35",
+   "35 a 42",
+   "42 a 49",
+   "49 a 56",
+   "56 a 63",
+   "63 a 70",
+   "70 a 77",
+   "77 a 84",
+   "Acima de 84",
+   "Outras encarnações"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G36",
+  "title": "Pessoas (referência)",
+  "file": "G36.svg",
+  "kind": "leque",
+  "items": [
+   "Pai",
+   "Mãe",
+   "Irmão, irmã",
+   "Avô, avó",
+   "Tio, tia",
+   "Primo, prima",
+   "Vizinho, vizinha",
+   "Amigo",
+   "Amiga",
+   "Namorado, namorada",
+   "Noivo, noiva",
+   "Marido, esposa",
+   "Ex-parceiro",
+   "Filho, filha",
+   "Neto, neta",
+   "Patrão, patroa",
+   "Colega de trabalho",
+   "Pessoa desconhecida"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G38",
+  "title": "Órgãos e regiões (referência)",
+  "file": "G38.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G39",
+  "title": "Glândulas (referência)",
+  "file": "G39.svg",
+  "kind": "leque",
+  "items": [
+   "Suprarrenais",
+   "Hipófise",
+   "Pineal",
+   "Hipotálamo",
+   "Tireoide",
+   "Paratireoide",
+   "Pâncreas",
+   "Timo",
+   "Ovários",
+   "Testículos",
+   "Próstata",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G41",
+  "title": "Seletor de gráficos radiônicos: lista por categoria",
+  "file": "G41.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G42",
+  "title": "Cores (cromoterapia)",
+  "file": "G42.svg",
+  "kind": "leque",
+  "items": [
+   "Vermelho",
+   "Laranja",
+   "Amarelo",
+   "Verde",
+   "Azul",
+   "Índigo",
+   "Violeta",
+   "Branco",
+   "Rosa",
+   "Magenta",
+   "Turquesa",
+   "Dourado"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G43",
+  "title": "Frequências de cura (Solfeggio)",
+  "file": "G43.svg",
+  "kind": "leque",
+  "items": [
+   "174 Hz alívio da dor",
+   "285 Hz regeneração",
+   "396 Hz básico, medo",
+   "417 Hz sacral, mudança",
+   "528 Hz plexo, transformação",
+   "639 Hz cardíaco, relações",
+   "741 Hz laríngeo, expressão",
+   "852 Hz frontal, intuição",
+   "963 Hz coronário, conexão"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G44",
+  "title": "Etiquetas do Pêndulo Hebraico",
+  "file": "G44.svg",
+  "kind": "leque",
+  "items": [
+   "Limpeza (limpiar impurezas)",
+   "Proteção",
+   "Mem Hei Shin (cura)",
+   "Refuah (cura)",
+   "Shalom (paz)",
+   "Ahava (amor)",
+   "Chaim (vida)",
+   "Emet (verdade)",
+   "Parnassah (abundância)",
+   "Tlishut (desapego)",
+   "Lajatz (estresse)",
+   "Tav (selamento)",
+   "Keter, Luz, Amor (fechamento)",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G45",
+  "title": "Florais de Bach (38 em 7 grupos)",
+  "file": "G45.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G46",
+  "title": "Cristais por chakra",
+  "file": "G46.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G47",
+  "title": "Óleos essenciais por chakra",
+  "file": "G47.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G50",
+  "title": "Influência de energia (referência, Mannah)",
+  "file": "G50.svg",
+  "kind": "leque",
+  "items": [
+   "Cordões, ganchos",
+   "Capacetes, sondas",
+   "Chips, implantes",
+   "Portal negativo, fenda",
+   "Artefatos umbralinos",
+   "Artefatos extraterrestres",
+   "Iniciações negativas",
+   "Simbiose",
+   "Conexões negativas",
+   "Emaranhamento",
+   "Maldição",
+   "Inveja, olho gordo",
+   "Amarração",
+   "Fragmento de alma, clone",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G51",
+  "title": "Seres negativos (referência, Mannah)",
+  "file": "G51.svg",
+  "kind": "leque",
+  "items": [
+   "Miasmas, larvas astrais",
+   "Ovoides, parasitas",
+   "Obsessores",
+   "Seres amorfos",
+   "Magos negros, casulos",
+   "Draconianos, reptilianos",
+   "Hologramas",
+   "Arcontes",
+   "Insetoides",
+   "Demônios",
+   "Dementadores",
+   "Succubus, incubus",
+   "Elementais negativos",
+   "Vampiros energéticos",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G54",
+  "title": "Estado emocional e frequência (escala de Hawkins)",
+  "file": "G54.svg",
+  "kind": "leque",
+  "items": [
+   "Vergonha 20",
+   "Culpa 30",
+   "Apatia 50",
+   "Tristeza 75",
+   "Medo 100",
+   "Apego 125",
+   "Raiva 150",
+   "Orgulho 175",
+   "Coragem 200",
+   "Neutralidade 250",
+   "Disposição 310",
+   "Aceitação 350",
+   "Razão 400",
+   "Amor 500",
+   "Alegria 540",
+   "Paz 600",
+   "Iluminação 700"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C1-sinais",
+  "title": "Sinais e desequilíbrios do chakra Básico",
+  "file": "C1-sinais.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "C1-emocoes",
+  "title": "Emoções prováveis do chakra Básico",
+  "file": "C1-emocoes.svg",
+  "kind": "leque",
+  "items": [
+   "Medo",
+   "Pavor",
+   "Terror",
+   "Horror",
+   "Culpar",
+   "Irritação",
+   "Conflito",
+   "Insegurança criativa",
+   "Falta de apoio",
+   "Vacilação",
+   "Rejeição",
+   "Tristeza",
+   "Desânimo",
+   "Choro",
+   "Pesar",
+   "Outra (G9)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C1-corpo",
+  "title": "Corpo do chakra Básico",
+  "file": "C1-corpo.svg",
+  "kind": "leque",
+  "items": [
+   "Ossos",
+   "Pernas e pés",
+   "Base da coluna, ciático",
+   "Reto",
+   "Cólon",
+   "Sangue",
+   "Imunidade",
+   "Suprarrenais",
+   "Outro (G12)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C2-sinais",
+  "title": "Sinais e desequilíbrios do chakra Sacral",
+  "file": "C2-sinais.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "C2-emocoes",
+  "title": "Emoções prováveis do chakra Sacral",
+  "file": "C2-emocoes.svg",
+  "kind": "leque",
+  "items": [
+   "Vergonha",
+   "Humilhação",
+   "Culpa",
+   "Ciúme",
+   "Anseio",
+   "Luxúria",
+   "Sobrecarga",
+   "Orgulho",
+   "Choque",
+   "Indignidade",
+   "Sentir-se sem valor",
+   "Outra (G9)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C2-corpo",
+  "title": "Corpo do chakra Sacral",
+  "file": "C2-corpo.svg",
+  "kind": "leque",
+  "items": [
+   "Órgãos sexuais",
+   "Útero ou próstata",
+   "Bexiga",
+   "Rins",
+   "Intestino grosso",
+   "Lombar",
+   "Pelve e quadris",
+   "Apêndice",
+   "Outro (G12)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C3-sinais",
+  "title": "Sinais e desequilíbrios do chakra Plexo solar",
+  "file": "C3-sinais.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "C3-emocoes",
+  "title": "Emoções prováveis do chakra Plexo solar",
+  "file": "C3-emocoes.svg",
+  "kind": "leque",
+  "items": [
+   "Ansiedade",
+   "Nervosismo",
+   "Preocupação",
+   "Desespero",
+   "Repulsa",
+   "Fracasso",
+   "Impotência",
+   "Desesperança",
+   "Falta de controle",
+   "Baixa autoestima",
+   "Raiva",
+   "Amargura",
+   "Ódio",
+   "Ressentimento",
+   "Frustração",
+   "Indecisão",
+   "Outra (G9)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C3-corpo",
+  "title": "Corpo do chakra Plexo solar",
+  "file": "C3-corpo.svg",
+  "kind": "leque",
+  "items": [
+   "Estômago",
+   "Fígado",
+   "Vesícula",
+   "Pâncreas",
+   "Intestino delgado",
+   "Adrenais",
+   "Baço",
+   "Coluna média, diafragma",
+   "Outro (G12)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C4-sinais",
+  "title": "Sinais e desequilíbrios do chakra Cardíaco",
+  "file": "C4-sinais.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "C4-emocoes",
+  "title": "Emoções prováveis do chakra Cardíaco",
+  "file": "C4-emocoes.svg",
+  "kind": "leque",
+  "items": [
+   "Abandono",
+   "Traição",
+   "Desamparo",
+   "Perda",
+   "Amor não recebido",
+   "Esforço não reconhecido",
+   "Desgosto",
+   "Insegurança",
+   "Alegria excessiva",
+   "Vulnerabilidade",
+   "Luto",
+   "Tristeza",
+   "Pesar",
+   "Outra (G9)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C4-corpo",
+  "title": "Corpo do chakra Cardíaco",
+  "file": "C4-corpo.svg",
+  "kind": "leque",
+  "items": [
+   "Coração",
+   "Circulação",
+   "Pulmões",
+   "Timo",
+   "Mamas",
+   "Braços e mãos",
+   "Ombros e escápulas",
+   "Costelas",
+   "Outro (G12)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C5-sinais",
+  "title": "Sinais e desequilíbrios do chakra Laríngeo",
+  "file": "C5-sinais.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "C5-emocoes",
+  "title": "Emoções prováveis do chakra Laríngeo",
+  "file": "C5-emocoes.svg",
+  "kind": "leque",
+  "items": [
+   "Confusão",
+   "Atitude defensiva",
+   "Teimosia",
+   "Raiva engolida",
+   "Amargura",
+   "Ressentimento",
+   "Frustração",
+   "Indecisão",
+   "Humilhação",
+   "Vergonha",
+   "Outra (G9)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C5-corpo",
+  "title": "Corpo do chakra Laríngeo",
+  "file": "C5-corpo.svg",
+  "kind": "leque",
+  "items": [
+   "Garganta",
+   "Tireoide e paratireoides",
+   "Boca, dentes e gengivas",
+   "Pescoço e cervical",
+   "Ouvidos",
+   "Esôfago e traqueia",
+   "Mandíbula",
+   "Outro (G12)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C6-sinais",
+  "title": "Sinais e desequilíbrios do chakra Frontal",
+  "file": "C6-sinais.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "C6-emocoes",
+  "title": "Emoções prováveis do chakra Frontal",
+  "file": "C6-emocoes.svg",
+  "kind": "leque",
+  "items": [
+   "Desespero",
+   "Preocupação",
+   "Nervosismo",
+   "Confusão",
+   "Pavor",
+   "Horror",
+   "Terror",
+   "Indecisão",
+   "Ilusão (autoengano)",
+   "Outra (G9)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C6-corpo",
+  "title": "Corpo do chakra Frontal",
+  "file": "C6-corpo.svg",
+  "kind": "leque",
+  "items": [
+   "Olhos",
+   "Cérebro",
+   "Sistema nervoso",
+   "Hipófise",
+   "Pineal",
+   "Nariz e seios da face",
+   "Ouvidos",
+   "Outro (G12)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C7-sinais",
+  "title": "Sinais e desequilíbrios do chakra Coronário",
+  "file": "C7-sinais.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "C7-emocoes",
+  "title": "Emoções prováveis do chakra Coronário",
+  "file": "C7-emocoes.svg",
+  "kind": "leque",
+  "items": [
+   "Luto",
+   "Desânimo",
+   "Tristeza",
+   "Pesar",
+   "Indignidade",
+   "Sentir-se sem valor",
+   "Orgulho",
+   "Abandono",
+   "Perda",
+   "Apego",
+   "Outra (G9)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "C7-corpo",
+  "title": "Corpo do chakra Coronário",
+  "file": "C7-corpo.svg",
+  "kind": "leque",
+  "items": [
+   "Pele",
+   "Músculos",
+   "Esqueleto",
+   "Córtex cerebral",
+   "Sistema nervoso central",
+   "Sono e vigília",
+   "Outro (G12)"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G55",
+  "title": "Frases de crença por família (lista pendulável)",
+  "file": "G55.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G56",
+  "title": "Barômetro do comportamento (nível, lado, categoria)",
+  "file": "G56.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G57",
+  "title": "Desarmonia física desdobrada (lista pendulável)",
+  "file": "G57.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G58",
+  "title": "O que sustenta a interferência",
+  "file": "G58.svg",
+  "kind": "leque",
+  "items": [
+   "Emoção presa",
+   "Crença",
+   "Hábito ou vício",
+   "Vínculo com pessoa",
+   "Lugar",
+   "Objeto",
+   "Voto, pacto ou contrato",
+   "Trauma não integrado",
+   "Karma, outra vida",
+   "Nada: pode sair agora"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G59",
+  "title": "Votos, pactos, promessas e contratos (lista pendulável)",
+  "file": "G59.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G60",
+  "title": "Corpo sutil onde a causa está alojada",
+  "file": "G60.svg",
+  "kind": "leque",
+  "items": [
+   "Físico",
+   "Etérico",
+   "Astral (emocional)",
+   "Mental inferior",
+   "Mental superior (causal)",
+   "Búdico",
+   "Átmico",
+   "Borda da aura (rombo)",
+   "Um chakra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G61",
+  "title": "Tipo de evento desencadeante",
+  "file": "G61.svg",
+  "kind": "leque",
+  "items": [
+   "Perda ou morte",
+   "Separação ou abandono",
+   "Violência ou abuso",
+   "Acidente ou cirurgia",
+   "Doença (própria ou de alguém)",
+   "Mudança (casa, cidade, país)",
+   "Humilhação pública",
+   "Susto ou choque",
+   "Traição",
+   "Fracasso ou demissão",
+   "Nascimento (próprio, de filho)",
+   "Segredo descoberto",
+   "Decisão forçada",
+   "Conflito prolongado",
+   "Guerra, catástrofe, pandemia",
+   "Nenhum: lento e cumulativo"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G62",
+  "title": "Ganho secundário: o que mantém o problema",
+  "file": "G62.svg",
+  "kind": "leque",
+  "items": [
+   "Atenção e cuidado",
+   "Evitar responsabilidade",
+   "Evitar conflito",
+   "Identidade (quem sou sem isso)",
+   "Lealdade à família",
+   "Punição (culpa)",
+   "Medo de mudar",
+   "Hábito e rotina",
+   "Ambiente que mantém",
+   "Nenhum ganho"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G63",
+  "title": "Estado da aura (tamanho, proteção, integridade, conteúdo)",
+  "file": "G63.svg",
+  "kind": "anéis",
+  "items": [
+   "Encolhida",
+   "Média",
+   "Expandida",
+   "Desprotegida (aberta)",
+   "Parcial",
+   "Protegida (fechada)",
+   "Íntegra",
+   "Com fugas",
+   "Com furos",
+   "Fissurada",
+   "Rompida",
+   "Limpa",
+   "Impregnada",
+   "Com intrusos"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G64",
+  "title": "O que remover (lista pendulável)",
+  "file": "G64.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G65",
+  "title": "Técnica de limpeza de pessoa",
+  "file": "G65.svg",
+  "kind": "leque",
+  "items": [
+   "Giro anti-horário sobre o chakra",
+   "Comando de neutralização",
+   "Comando “em Luz”",
+   "Pêndulo Hebraico (etiqueta)",
+   "Gráfico Desimpregnador",
+   "Gráfico SCAP",
+   "Gráfico Triturador",
+   "Gráfico Luxor",
+   "Corte de cordão",
+   "Encaminhamento (seres)",
+   "Apometria, casa espírita",
+   "Defumação, banho de ervas",
+   "Cristal, selenita",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G66",
+  "title": "Fontes de ambiente desdobradas (lista pendulável)",
+  "file": "G66.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G67",
+  "title": "Selamento e proteção",
+  "file": "G67.svg",
+  "kind": "leque",
+  "items": [
+   "Giro horário com luz",
+   "Etiqueta de selo (Keter, Arcanjo)",
+   "Escudo Protetor (gráfico)",
+   "Antimagia",
+   "Nove Círculos",
+   "SCAP com cristal",
+   "Comando de proteção",
+   "Cristal pessoal",
+   "Banho de ervas",
+   "Oração, mantra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G68",
+  "title": "Verbo do comando",
+  "file": "G68.svg",
+  "kind": "leque",
+  "items": [
+   "Embaralhar (scramble)",
+   "Neutralizar",
+   "Transformar",
+   "Transmutar",
+   "Encaminhar (à luz)",
+   "Dissolver",
+   "Preencher",
+   "Selar"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G69",
+  "title": "Cômodos com réguas (mapa rápido do imóvel)",
+  "file": "G69.svg",
+  "kind": "réguas",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G70",
+  "title": "Baguá sobre a planta (oito áreas e centro)",
+  "file": "G70.svg",
+  "kind": "leque",
+  "items": [
+   "Prosperidade",
+   "Sucesso, reputação",
+   "Relacionamentos",
+   "Família",
+   "Saúde (centro)",
+   "Criatividade, filhos",
+   "Espiritualidade, sabedoria",
+   "Trabalho, carreira",
+   "Amigos, viagens"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G71",
+  "title": "Técnicas de limpeza e harmonização de ambiente (lista pendulável)",
+  "file": "G71.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G72",
+  "title": "Grade de localização (letras e números)",
+  "file": "G72.svg",
+  "kind": "grade",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G73",
+  "title": "Rosa de direções (16 rumos)",
+  "file": "G73.svg",
+  "kind": "rosa",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G74",
+  "title": "Distância (1 m a mais de 100 km)",
+  "file": "G74.svg",
+  "kind": "leque",
+  "items": [
+   "1 m",
+   "2 m",
+   "5 m",
+   "10 m",
+   "20 m",
+   "50 m",
+   "100 m",
+   "200 m",
+   "500 m",
+   "1 km",
+   "2 km",
+   "5 km",
+   "10 km",
+   "20 km",
+   "50 km",
+   "100 km",
+   "mais de 100 km"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G75",
+  "title": "Objeto perdido: situação, onde e altura",
+  "file": "G75.svg",
+  "kind": "anéis",
+  "items": [
+   "Dentro de casa",
+   "No carro",
+   "No trabalho",
+   "Com alguém",
+   "Na rua, perdido",
+   "Descartado, no lixo",
+   "Roubado",
+   "Em outra casa",
+   "Não existe mais",
+   "À vista",
+   "Dentro de algo",
+   "Embaixo de algo",
+   "Atrás de algo",
+   "Escondido",
+   "No chão",
+   "Abaixo da cintura",
+   "Altura dos olhos",
+   "Acima da cabeça"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G82",
+  "title": "Quem imprime a energia do cômodo",
+  "file": "G82.svg",
+  "kind": "leque",
+  "items": [
+   "A própria pessoa",
+   "Parceiro, parceira",
+   "Filho, filha",
+   "Pai",
+   "Mãe",
+   "Irmão, irmã",
+   "Outro morador",
+   "Visita frequente",
+   "Ex-morador",
+   "Vizinho",
+   "O lugar em si (telúrico, histórico)",
+   "Ninguém: neutro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G83",
+  "title": "Onde a pessoa dorme e passa o dia",
+  "file": "G83.svg",
+  "kind": "leque",
+  "items": [
+   "Quarto próprio",
+   "Quarto do casal",
+   "Quarto dos filhos",
+   "Quarto dos pais (casa dos pais)",
+   "Sala",
+   "Escritório, posto de trabalho",
+   "Casa de outra pessoa",
+   "Trabalho fora",
+   "Em trânsito, viagem",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G24",
+  "title": "Áreas da vida",
+  "file": "G24.svg",
+  "kind": "leque",
+  "items": [
+   "Saúde e corpo",
+   "Emocional",
+   "Relações afetivas",
+   "Família",
+   "Trabalho e vocação",
+   "Dinheiro",
+   "Casa e ambiente",
+   "Espiritualidade e missão"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G84",
+  "title": "Decisão (cinco respostas)",
+  "file": "G84.svg",
+  "kind": "leque",
+  "items": [
+   "Sim",
+   "Não",
+   "Ainda não (espere)",
+   "Refazer a pergunta",
+   "Não me cabe responder"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G85",
+  "title": "Momento",
+  "file": "G85.svg",
+  "kind": "leque",
+  "items": [
+   "Agora",
+   "Em dias",
+   "Em semanas",
+   "Em meses",
+   "Depois de resolver outra coisa",
+   "Não é o momento"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G86",
+  "title": "Alternativas (A, B, C, D)",
+  "file": "G86.svg",
+  "kind": "leque",
+  "items": [
+   "Opção A",
+   "Opção B",
+   "Opção C",
+   "Opção D",
+   "Nenhuma delas",
+   "Outra, ainda não vista"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G87",
+  "title": "Calendário radiestésico (dia, mês, semana, hora)",
+  "file": "G87.svg",
+  "kind": "relógio",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G88",
+  "title": "Causas de erro e obstáculos (Medeiros)",
+  "file": "G88.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G89",
+  "title": "Relação entre A e B",
+  "file": "G89.svg",
+  "kind": "leque",
+  "items": [
+   "Sintonia geral",
+   "Físico, atração",
+   "Emocional",
+   "Mental, comunicação",
+   "Energético, disposição",
+   "Espiritual, valores",
+   "Confiança",
+   "Apoio, amizade",
+   "Padrão repetido",
+   "Cordão desequilibrado",
+   "Área que pede atenção",
+   "Gráfico emissor"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G90",
+  "title": "O que a relação pede",
+  "file": "G90.svg",
+  "kind": "leque",
+  "items": [
+   "Comunicação",
+   "Tempo juntos",
+   "Limites",
+   "Intimidade",
+   "Dinheiro",
+   "Família de origem",
+   "Projeto comum",
+   "Cuidado próprio"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G91",
+  "title": "Tensão na família, na amizade ou na equipe",
+  "file": "G91.svg",
+  "kind": "leque",
+  "items": [
+   "Comunicação",
+   "Hierarquia",
+   "Ciúme, competição",
+   "Dinheiro",
+   "Valores",
+   "Sobrecarga",
+   "Falta de companheirismo",
+   "Desorganização",
+   "Doença",
+   "Apego",
+   "Pessoa tóxica",
+   "Falta de confiança",
+   "Medo da rejeição",
+   "Propósitos diferentes"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G92",
+  "title": "Empresa: onde está o peso",
+  "file": "G92.svg",
+  "kind": "leque",
+  "items": [
+   "Energia geral do negócio",
+   "Ponto, espaço físico",
+   "Clima da equipe",
+   "Liderança",
+   "Produto ou serviço",
+   "Nome e identidade",
+   "Clientes: fluxo e afinidade",
+   "Finanças: entrada, saída, bloqueio",
+   "Sintonia entre sócios",
+   "Comunicação externa",
+   "Área que pede atenção primeiro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G94",
+  "title": "Bloqueios da prosperidade (duas listas de referência)",
+  "file": "G94.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G95",
+  "title": "Trabalho e carreira: o que pesa",
+  "file": "G95.svg",
+  "kind": "leque",
+  "items": [
+   "Stress",
+   "Falta de propósito",
+   "Insatisfação",
+   "Falta de feedback",
+   "Desequilíbrio vida e trabalho",
+   "Relação com a chefia",
+   "Relação com colegas",
+   "Remuneração",
+   "Insegurança, medo de perder",
+   "Mudança desejada"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G96",
+  "title": "Dose: forma, vezes por dia, horário, duração",
+  "file": "G96.svg",
+  "kind": "anéis",
+  "items": [
+   "Gotas",
+   "Goles",
+   "Comprimidos",
+   "Colheres",
+   "Gramas",
+   "Mililitros",
+   "1",
+   "2",
+   "3",
+   "4",
+   "6",
+   "Uma vez só",
+   "Ao acordar",
+   "Manhã",
+   "Tarde",
+   "Noite",
+   "Ao deitar",
+   "Com as refeições",
+   "3 dias",
+   "7 dias",
+   "14 dias",
+   "21 dias",
+   "1 mês",
+   "Contínuo"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G97",
+  "title": "Alimentos: grupos, plantas e cores (listas de referência)",
+  "file": "G97.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G98",
+  "title": "Vitaminas e fontes alimentares (Medeiros)",
+  "file": "G98.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G104",
+  "title": "Ervas e alimentos por chakra (lista de referência)",
+  "file": "G104.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G99",
+  "title": "Água: roseta de Mager",
+  "file": "G99.svg",
+  "kind": "leque",
+  "items": [
+   "Branco medicinal",
+   "Violeta muito pura",
+   "Azul potável",
+   "Verde rica em sais",
+   "Amarelo saturada",
+   "Vermelho férrea",
+   "Cinza poluída",
+   "Preto estagnada"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G100",
+  "title": "Cores de roupa por intenção",
+  "file": "G100.svg",
+  "kind": "leque",
+  "items": [
+   "Branco paz, calma",
+   "Vermelho coragem",
+   "Amarelo intuição, dinheiro",
+   "Laranja sucesso",
+   "Verde ganho, calma",
+   "Azul harmonia",
+   "Violeta inspiração",
+   "Rosa simpatia",
+   "Preto afasta inveja",
+   "Marrom evitar"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G101",
+  "title": "Talento mais ativo",
+  "file": "G101.svg",
+  "kind": "leque",
+  "items": [
+   "Criar",
+   "Cuidar",
+   "Organizar",
+   "Ensinar",
+   "Comunicar",
+   "Construir",
+   "Analisar"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G103",
+  "title": "Atividades e vocações (Medeiros)",
+  "file": "G103.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G106",
+  "title": "Sociedade ou parceria: critérios",
+  "file": "G106.svg",
+  "kind": "leque",
+  "items": [
+   "Valores e ética",
+   "Visão do negócio",
+   "Complemen- taridade",
+   "Confiança",
+   "Comunicação",
+   "Comprometi- mento e tempo",
+   "Capacidade financeira",
+   "Apetite a risco",
+   "Rede de contatos",
+   "Regras de saída e conflito",
+   "Sintonia geral da sociedade",
+   "Outro critério"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G107",
+  "title": "Projeto ou oportunidade: critérios",
+  "file": "G107.svg",
+  "kind": "leque",
+  "items": [
+   "Viabilidade",
+   "Momento",
+   "Retorno financeiro",
+   "Risco",
+   "Alinhamento com o propósito",
+   "Demanda dos clientes",
+   "Capacidade da equipe",
+   "Recursos e prazo",
+   "Impacto na vida pessoal",
+   "Aprendizado",
+   "Favorabilidade geral",
+   "Outro critério"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G108",
+  "title": "Situação empresarial a decidir",
+  "file": "G108.svg",
+  "kind": "leque",
+  "items": [
+   "Sócio ou parceiro",
+   "Projetos ou produtos",
+   "Contratar, promover ou desligar",
+   "Expandir, filial, mudar de ponto",
+   "Investir, empréstimo, preço",
+   "Fechar, vender, encerrar",
+   "Cliente ou fornecedor",
+   "Conflito interno",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G109",
+  "title": "Leque em branco: oito opções numeradas",
+  "file": "G109.svg",
+  "kind": "leque",
+  "items": [
+   "Opção 1",
+   "Opção 2",
+   "Opção 3",
+   "Opção 4",
+   "Opção 5",
+   "Opção 6",
+   "Opção 7",
+   "Opção 8"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G110",
+  "title": "Leque em branco: doze itens numerados",
+  "file": "G110.svg",
+  "kind": "leque",
+  "items": [
+   "Item 1",
+   "Item 2",
+   "Item 3",
+   "Item 4",
+   "Item 5",
+   "Item 6",
+   "Item 7",
+   "Item 8",
+   "Item 9",
+   "Item 10",
+   "Item 11",
+   "Item 12"
+  ],
+  "note": ""
+ }
+]
