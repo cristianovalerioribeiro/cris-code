@@ -708,8 +708,8 @@ PROJETO = ["Viabilidade", "Momento", "Retorno\nfinanceiro", "Risco", "Alinhament
 SITUACAO = ["Sócio ou\nparceiro", "Projetos ou\nprodutos", "Contratar, promover\nou desligar", "Expandir, filial,\nmudar de ponto", "Investir, empréstimo,\npreço", "Fechar, vender,\nencerrar", "Cliente ou\nfornecedor", "Conflito\ninterno", "Outra"]
 # ---------- Manual de Radiestesia para Negócios: gráficos próprios (G111 em diante) ----------
 # Os gráficos G1 a G110 reaproveitados vêm do Manual de Radiestesia Terapêutica (../radiestesia/charts) sem alteração.
-REUSE = ["G1","G2","G3","G4","G9","G10","G24","G28","G59","G62","G66","G67","G69","G70","G71","G82","G83","G84","G85","G86","G87","G88",
-         "G89","G90","G91","G92","G94","G95","G101","G103","G106","G107","G108","G109","G110"]
+REUSE = ["G1","G2","G3","G4","G10","G24","G28","G59","G62","G66","G67","G69","G70","G71","G82","G83","G84","G85","G86","G87","G88",
+         "G89","G90","G91","G92","G94","G95","G101","G106","G107","G108","G109","G110"]
 TRAVA = ["Falta de\ninformação", "Medo de\nerrar", "Medo de perder\no que tem", "Medo do\njulgamento", "Conflito de\nvalores", "Pressão de\nterceiro",
          "Lealdade a\nalguém", "Apego ao\nmodelo antigo", "Cansaço e\nsobrecarga", "Dinheiro", "Não é\na hora", "Outra"]
 PROPOSTA = ["Preço e\npagamento", "Prazo", "Escopo e\nentregas", "Garantias e\npenalidades", "Saída e\nrescisão", "Exclusividade e\ndependência",
@@ -839,6 +839,37 @@ def focus_matrix(w=190, h=126):
     out.append(testemunho(x0 + W / 2, y0 + H + 16, w=40, h=12))
     return svg_wrap("".join(out), w, h)
 
+
+# ---------- Estratégia, carteira, negociação e relações-chave ----------
+ABORDAGEM = ["Mostrar: imagens\ne demonstração", "Contar: conversa\ne história", "Experimentar:\nteste, amostra, visita", "Números:\nplanilha e prova", "Referências\ne casos",
+             "Propósito\ne valores", "Garantias e\nsegurança", "Direto ao resultado\ne à decisão"]
+EXPECTATIVA = ["Segurança e\ngarantias", "Retorno e\nprazo claros", "Controle e\nparticipação", "Reconhecimento\ne visibilidade", "Relação e\nconfiança", "Inovação e\ndiferencial",
+               "Preço e\ncondições", "Simplicidade\ne rapidez", "Exclusividade", "Apoio e\nserviço", "Propósito\ne impacto", "Outro"]
+FUNIL = ["Prospecção:\nquem", "Qualificação:\ncabe?", "Apresentação", "Proposta", "Negociação", "Fechamento", "Entrega", "Pós-venda e\nrecompra"]
+SELETOR = ["Rodas\n1 a 10", "Matriz\nde foco", "Critérios do\nprojeto", "Carteira: caixa\n× prosperidade", "Sociedade", "Proposta e\ncontrato", "Abordagem e\nexpectativa",
+           "Funil de\nvendas", "SWOT", "Mapa de\natores", "Desbloqueio", "Espaço e\nterreno"]
+SWOT = ["Força a\nusar mais", "Força\ndesperdiçada", "Fraqueza a\ncorrigir", "Fraqueza a\naceitar", "Oportunidade\nagora", "Oportunidade\na datar", "Ameaça a\nproteger", "Ameaça a\nignorar"]
+RODA_LIDER = ["Visão", "Decidir", "Delegar", "Comunicar", "Vender e\nnegociar", "Finanças", "Pessoas", "Planejar", "Foco", "Resiliência", "Aprender", "Executar"]
+
+def quad_matrix(q, top, bottom, left, right, xlabel, ylabel, w=190, h=126):
+    """Matriz de quatro quadrantes: q = [(título, legenda, cor)] na ordem alto-esquerda, alto-direita, baixo-esquerda, baixo-direita."""
+    x0, y0, W, H = 34, 12, 148, 90
+    pos = [(x0, y0), (x0 + W / 2, y0), (x0, y0 + H / 2), (x0 + W / 2, y0 + H / 2)]
+    out = []
+    for (t, sub, c), (x, y) in zip(q, pos):
+        out.append(f'<rect x="{x}" y="{y}" width="{W/2}" height="{H/2}" fill="{c}" stroke="{LINE}" stroke-width="0.4"/>')
+        out.append(f'<text x="{x + W/4:.1f}" y="{y + 12:.1f}" font-size="4.4" fill="{INK}" font-weight="800" text-anchor="middle">{esc(t)}</text>')
+        out.append(_hlabel(x + W / 4, y + 21, sub, 2.9, color=QUIET, weight="500"))
+    out.append(f'<text x="{x0 + W/4:.1f}" y="{y0 - 3}" font-size="3.4" fill="{ACCENT}" font-weight="700" text-anchor="middle">{esc(left)}</text>')
+    out.append(f'<text x="{x0 + 3*W/4:.1f}" y="{y0 - 3}" font-size="3.4" fill="{ACCENT}" font-weight="700" text-anchor="middle">{esc(right)}</text>')
+    out.append(f'<text x="{x0 + W/2:.1f}" y="{y0 + H + 6}" font-size="3.0" fill="{QUIET}" text-anchor="middle">{esc(xlabel)}</text>')
+    out.append(f'<text font-size="3.4" fill="{ACCENT}" font-weight="700" text-anchor="middle" transform="translate({x0 - 4} {y0 + H/4:.1f}) rotate(-90)">{esc(top)}</text>')
+    out.append(f'<text font-size="3.4" fill="{ACCENT}" font-weight="700" text-anchor="middle" transform="translate({x0 - 4} {y0 + 3*H/4:.1f}) rotate(-90)">{esc(bottom)}</text>')
+    out.append(f'<text font-size="3.0" fill="{QUIET}" text-anchor="middle" transform="translate({x0 - 12} {y0 + H/2:.1f}) rotate(-90)">{esc(ylabel)}</text>')
+    out.append(pendulo_icon(x0 + W / 2, y0 + H / 2))
+    out.append(testemunho(x0 + W / 2, y0 + H + 16, w=40, h=12))
+    return svg_wrap("".join(out), w, h)
+
 def build():
     import json, shutil
     R = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "radiestesia", "charts")
@@ -869,6 +900,24 @@ def build():
     save("G127", "Sabotador ativo", fan(SABOTADORES, colors=PASTEL[:11]), "leque", SABOTADORES)
     save("G128", "O que está agarrado", fan(AGARRADO, colors=PASTEL[:12]), "leque", AGARRADO)
     save("G129", "Ação de desbloqueio", fan(ACAO_DESBLOQ, colors=PASTEL[:12]), "leque", ACAO_DESBLOQ)
+    save("G130", "Carteira de projetos: caixa rápido × prosperidade", quad_matrix([
+        ("MOTOR", "caixa rápido e prosperidade duradoura:\nprioridade 1, tempo protegido", "#e3f4e1"),
+        ("SEMENTE", "caixa lento, prosperidade duradoura:\nplanejar, datar e proteger horas", "#dcecfb"),
+        ("FÔLEGO", "caixa rápido, pouco duradouro:\nfazer para financiar as sementes", "#fff6cc"),
+        ("DRENO", "caixa lento e pouco duradouro:\nsoltar, ou reduzir ao mínimo", "#fde2e2")],
+        "ALTA", "BAIXA", "CAIXA RÁPIDO", "CAIXA LENTO", "tempo até o primeiro real: dias e semanas, ou meses e anos (G85)", "prosperidade de longo prazo (G124, nota 0 a 10)"), "matriz", ["Motor", "Semente", "Fôlego", "Dreno"])
+    save("G131", "Abordagem: o que a apresentação pede", fan(ABORDAGEM, colors=PASTEL[:8]), "leque", ABORDAGEM)
+    save("G132", "Expectativa da outra parte: o que ela precisa ouvir", fan(EXPECTATIVA, colors=PASTEL[:12]), "leque", EXPECTATIVA)
+    save("G133", "Funil de vendas: onde trava", fan(FUNIL, colors=PASTEL[:8]), "leque", FUNIL)
+    save("G134", "Seletor: qual ferramenta este projeto pede", fan(SELETOR, colors=PASTEL[:12]), "leque", SELETOR)
+    save("G135", "SWOT: onde está a chave", fan(SWOT, colors=["#e3f4e1", "#e3f4e1", "#fde2e2", "#fde2e2", "#dcecfb", "#dcecfb", "#fff6cc", "#fff6cc"]), "leque", SWOT)
+    save("G136", "Mapa de atores: poder × interesse", quad_matrix([
+        ("ENVOLVER DE PERTO", "pode decidir ou travar, e se importa:\nconversa direta, participação, retorno rápido", "#e3f4e1"),
+        ("MANTER SATISFEITO", "pode decidir ou travar, pouco se importa:\nsegurança, pouca demanda, sem surpresas", "#dcecfb"),
+        ("MANTER INFORMADO", "não decide, mas se importa:\ninformação regular; pode virar aliado", "#fff6cc"),
+        ("ACOMPANHAR DE LONGE", "não decide e pouco se importa:\nmonitorar; não gastar energia", "#fde2e2")],
+        "ALTO", "BAIXO", "INTERESSE ALTO", "INTERESSE BAIXO", "interesse do ator no projeto (G124, nota 0 a 10)", "poder de decidir ou travar (G124, nota 0 a 10)"), "matriz", ["Envolver de perto", "Manter satisfeito", "Manter informado", "Acompanhar de longe"])
+    save("G137", "Roda do líder (1 a 10)", wheel(RODA_LIDER, colors=PASTEL), "roda", RODA_LIDER)
     with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=1)
     print(f"{len(manifest)} gráficos em {OUT} ({len(REUSE)} reaproveitados, {len(manifest)-len(REUSE)} novos)")

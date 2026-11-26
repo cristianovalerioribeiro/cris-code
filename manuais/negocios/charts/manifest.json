@@ -38,14 +38,6 @@
   "note": ""
  },
  {
-  "id": "G9",
-  "title": "Sessenta emoções (Emotion Code)",
-  "file": "G9.svg",
-  "kind": "lista",
-  "items": [],
-  "note": ""
- },
- {
   "id": "G10",
   "title": "Famílias de crença",
   "file": "G10.svg",
@@ -404,14 +396,6 @@
    "Construir",
    "Analisar"
   ],
-  "note": ""
- },
- {
-  "id": "G103",
-  "title": "Atividades e vocações (Medeiros)",
-  "file": "G103.svg",
-  "kind": "lista",
-  "items": [],
   "note": ""
  },
  {
@@ -862,6 +846,146 @@
    "Aprender antes",
    "Descansar e voltar",
    "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G130",
+  "title": "Carteira de projetos: caixa rápido × prosperidade",
+  "file": "G130.svg",
+  "kind": "matriz",
+  "items": [
+   "Motor",
+   "Semente",
+   "Fôlego",
+   "Dreno"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G131",
+  "title": "Abordagem: o que a apresentação pede",
+  "file": "G131.svg",
+  "kind": "leque",
+  "items": [
+   "Mostrar: imagens e demonstração",
+   "Contar: conversa e história",
+   "Experimentar: teste, amostra, visita",
+   "Números: planilha e prova",
+   "Referências e casos",
+   "Propósito e valores",
+   "Garantias e segurança",
+   "Direto ao resultado e à decisão"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G132",
+  "title": "Expectativa da outra parte: o que ela precisa ouvir",
+  "file": "G132.svg",
+  "kind": "leque",
+  "items": [
+   "Segurança e garantias",
+   "Retorno e prazo claros",
+   "Controle e participação",
+   "Reconhecimento e visibilidade",
+   "Relação e confiança",
+   "Inovação e diferencial",
+   "Preço e condições",
+   "Simplicidade e rapidez",
+   "Exclusividade",
+   "Apoio e serviço",
+   "Propósito e impacto",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G133",
+  "title": "Funil de vendas: onde trava",
+  "file": "G133.svg",
+  "kind": "leque",
+  "items": [
+   "Prospecção: quem",
+   "Qualificação: cabe?",
+   "Apresentação",
+   "Proposta",
+   "Negociação",
+   "Fechamento",
+   "Entrega",
+   "Pós-venda e recompra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G134",
+  "title": "Seletor: qual ferramenta este projeto pede",
+  "file": "G134.svg",
+  "kind": "leque",
+  "items": [
+   "Rodas 1 a 10",
+   "Matriz de foco",
+   "Critérios do projeto",
+   "Carteira: caixa × prosperidade",
+   "Sociedade",
+   "Proposta e contrato",
+   "Abordagem e expectativa",
+   "Funil de vendas",
+   "SWOT",
+   "Mapa de atores",
+   "Desbloqueio",
+   "Espaço e terreno"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G135",
+  "title": "SWOT: onde está a chave",
+  "file": "G135.svg",
+  "kind": "leque",
+  "items": [
+   "Força a usar mais",
+   "Força desperdiçada",
+   "Fraqueza a corrigir",
+   "Fraqueza a aceitar",
+   "Oportunidade agora",
+   "Oportunidade a datar",
+   "Ameaça a proteger",
+   "Ameaça a ignorar"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G136",
+  "title": "Mapa de atores: poder × interesse",
+  "file": "G136.svg",
+  "kind": "matriz",
+  "items": [
+   "Envolver de perto",
+   "Manter satisfeito",
+   "Manter informado",
+   "Acompanhar de longe"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G137",
+  "title": "Roda do líder (1 a 10)",
+  "file": "G137.svg",
+  "kind": "roda",
+  "items": [
+   "Visão",
+   "Decidir",
+   "Delegar",
+   "Comunicar",
+   "Vender e negociar",
+   "Finanças",
+   "Pessoas",
+   "Planejar",
+   "Foco",
+   "Resiliência",
+   "Aprender",
+   "Executar"
   ],
   "note": ""
  }

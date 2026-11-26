@@ -61,7 +61,7 @@ INTERP = {
     ],
     "base": 'Medeiros (níveis de energia nos centros: carência −100 a −30, equilíbrio −25 a +25, excesso +30 a +100; compatibilidades −10 a +10; vibrações de locais −50 a +50); Raymon Grace (escala de −100 a +100 para energia não benéfica e benéfica); prancha A3 de referência com leque de −100 a +100.',
   },
-  'G9': {
+  'G127': {
     "serve": 'Nomear a emoção presa que trava a decisão ou pesa no trabalho de quem decide, quando o G111, o G95 ou o G94 apontam medo, insegurança, raiva ou perda. Seis linhas por par de órgãos e duas colunas que só servem para acelerar a bissecção.',
     "pergunta": ['A emoção presa está na coluna A?', 'Está numa linha ímpar?', 'Está na linha 1? 3? 5?', 'É [emoção]?'],
     "res": [
@@ -81,7 +81,7 @@ INTERP = {
     "pergunta": 'Em qual família está a crença que sustenta esta trava ou este bloqueio?',
     "res": [
       ('Não sou bom o bastante, não mereço', 'valor próprio; aparece no plexo solar e no cardíaco', 'dizer a crença como frase, com as próprias palavras; afirmação do contrário; critério de merecimento no preço e na proposta'),
-      ('Não estou seguro, o mundo é perigoso', 'segurança; básico', 'frase; afirmação de segurança; separar risco real (números) de medo (G9)'),
+      ('Não estou seguro, o mundo é perigoso', 'segurança; básico', 'frase; afirmação de segurança; separar risco real (números) de medo (G127)'),
       ('Não tenho controle, sou impotente', 'poder pessoal; plexo solar', 'frase; afirmação de poder; o que depende de mim nesta decisão'),
       ('Não posso confiar', 'confiança em si, nos outros, na vida; cardíaco', 'frase; afirmação de confiança; referências e período de teste, não controle'),
       ('Não pertenço, estou só', 'pertencimento; básico e cardíaco', 'frase; afinidade com a equipe e com a rede; G59 se houver lealdade a um morto'),
@@ -109,7 +109,7 @@ INTERP = {
     "serve": 'Dizer de onde veio a interferência, porque a origem decide se o tratamento é na pessoa, na relação, no lugar ou no objeto.',
     "pergunta": 'Esta interferência é própria, externa ou herdada?',
     "res": [
-      ('Própria', 'gerada pela própria pessoa: forma-pensamento, crença, emoção presa', 'a crença (G10) ou a emoção (G9) que a gera; G62'),
+      ('Própria', 'gerada pela própria pessoa: forma-pensamento, crença, emoção presa', 'a crença (G10) ou a emoção (G127) que a gera; G62'),
       ('Externa: pessoa', 'enviada ou absorvida de alguém, dentro ou fora da empresa', 'proteção e limites (G67); nomear o vínculo (G91), nunca acusar a pessoa'),
       ('Externa: lugar', 'trazida do imóvel, do ponto ou do terreno', 'Parte IX; de quem é a energia (G82); fontes (G66)'),
       ('Externa: objeto', 'de um objeto que a pessoa usa ou a empresa guarda (presente, herança, peça do negócio anterior)', 'Desimpregnador; “deve sair da empresa?”'),
@@ -290,7 +290,7 @@ INTERP = {
     "pergunta": ['Qual o percentual de sintonia entre [nome] e [sócio, parceiro, cliente] hoje?', 'Qual o percentual no nível [emocional, mental, confiança…]?', 'Há um padrão que se repete nas sociedades de [nome]?'],
     "res": [
       ('Sintonia geral', 'percentual no G2', 'comparar entre sessões; não há limiar publicado; abaixo de 50 abre o G106 critério a critério'),
-      ('Físico, emocional, mental, energético, espiritual, confiança, apoio', 'o nível mais baixo é o tema da conversa', 'emocional baixo: G9 pelo lado da pessoa; mental baixo: G90 comunicação; confiança baixa: G106 critério 4, referências e período de teste; valores: G106 critério 1'),
+      ('Físico, emocional, mental, energético, espiritual, confiança, apoio', 'o nível mais baixo é o tema da conversa', 'emocional baixo: G127 pelo lado da pessoa; mental baixo: G90 comunicação; confiança baixa: G106 critério 4, referências e período de teste; valores: G106 critério 1'),
       ('Padrão repetido', 'a relação repete sociedades e parcerias anteriores', 'G10 (crença); listar as três últimas parcerias e o que se repetiu'),
       ('Cordão desequilibrado', 'ligação que drena quem pede', 'limites e proteção (G67); corte de cordões só na pessoa atendida, pelo manual terapêutico'),
       ('Área que pede atenção', 'o que a relação pede', 'G90'),
@@ -317,9 +317,9 @@ INTERP = {
     "serve": 'Nomear o tipo de tensão entre quem pede e cada vínculo (sócio, equipe, cliente, família no negócio), como mapa de medição, nunca como emissor e nunca pessoa por pessoa sem pedido.',
     "pergunta": ['Qual o tipo de tensão entre [nome] e [vínculo]?', 'Qual o papel de [nome] nessa tensão?'],
     "res": [
-      ('Comunicação, hierarquia, ciúme e competição, dinheiro, valores, sobrecarga', 'tensões de trabalho e de grupo', 'comunicação: G90; hierarquia: papel da pessoa; ciúme e competição: G9; dinheiro: Parte X; valores: conversa e G106 critério 1; sobrecarga: limites e agenda'),
+      ('Comunicação, hierarquia, ciúme e competição, dinheiro, valores, sobrecarga', 'tensões de trabalho e de grupo', 'comunicação: G90; hierarquia: papel da pessoa; ciúme e competição: G127; dinheiro: Parte X; valores: conversa e G106 critério 1; sobrecarga: limites e agenda'),
       ('Falta de companheirismo, desorganização, doença, apego', 'tensões de família (Mapa de Atendimento)', 'cardíaco; G62 (apego); doença: encaminhar'),
-      ('Pessoa tóxica, falta de confiança, medo da rejeição, propósitos diferentes', 'tensões de amizade (Mapa de Atendimento)', 'limites e proteção (G67); medo da rejeição: G9; propósitos diferentes: G90 (projeto comum)'),
+      ('Pessoa tóxica, falta de confiança, medo da rejeição, propósitos diferentes', 'tensões de amizade (Mapa de Atendimento)', 'limites e proteção (G67); medo da rejeição: G127; propósitos diferentes: G90 (projeto comum)'),
     ],
     "base": 'Listas de causas do ambiente familiar e das amizades do Mapa de Atendimento Terapêutico (literais) e tensões de equipe dos cursos de radiestesia empresarial; a reunião num leque é convenção deste manual.',
   },
@@ -346,7 +346,7 @@ INTERP = {
     "pergunta": ['O bloqueio principal está na primeira lista?', 'É [item]?', 'Há um segundo bloqueio?'],
     "res": [
       ('Padrões mentais, comportamentais, crenças limitantes, autossabotagem, aversão ao dinheiro, falta de objetivo, vitimismo, não merecimento, baixa autoestima, procrastinação, egocentrismo, falta de generosidade, falta de autoconhecimento', 'mental', 'G10; afirmação do contrário; preço e proposta revistos com o critério de merecimento'),
-      ('Medo do futuro, apego ao passado, insegurança e dependência, vício emocional, raiva, não soltar, absorve conselhos invejosos', 'emocional', 'G9; nomear e soltar; separar medo de risco real'),
+      ('Medo do futuro, apego ao passado, insegurança e dependência, vício emocional, raiva, não soltar, absorve conselhos invejosos', 'emocional', 'G127; nomear e soltar; separar medo de risco real'),
       ('Dispositivo implantado, magia trevosa, obsessores, absorve as energias das pessoas', 'energética', 'G119 e G28; proteção (G67); limpeza pelo Manual de Radiestesia Terapêutica'),
       ('Padrões ancestrais, dívidas kármicas', 'transgeracional; sucessão familiar', 'G59; frase de lealdade transformada'),
       ('Ambientes tóxicos', 'ambiental', 'Parte IX; G66'),
@@ -360,10 +360,10 @@ INTERP = {
     "pergunta": ['O que mais pesa no trabalho de [nome] hoje?', 'Há um segundo peso?'],
     "res": [
       ('Stress, desequilíbrio vida e trabalho', 'sobrecarga', 'limites e agenda; atendimento pessoal pelo Manual de Radiestesia Terapêutica se a carga passar de 10'),
-      ('Falta de propósito, insatisfação', 'sentido', 'G101, G103, G24'),
+      ('Falta de propósito, insatisfação', 'sentido', 'G101, G123, G24'),
       ('Falta de feedback, relação com a chefia, relação com colegas', 'vínculos de trabalho', 'G91 pelo lado da pessoa; G90'),
       ('Remuneração', 'dinheiro', 'G94; Parte XIV'),
-      ('Insegurança, medo de perder', 'medo', 'G9 linha 5; básico'),
+      ('Insegurança, medo de perder', 'medo', 'G111 (medo); básico'),
       ('Mudança desejada', 'decisão', 'G84 e G85 com a regra das formulações convergentes'),
     ],
     "base": 'Setores profissionais do Mapa de Atendimento Terapêutico (stress, falta de propósito, insatisfação, falta de feedback, equilíbrio na vida; literais); os outros cinco são acréscimos deste manual.',
@@ -372,11 +372,11 @@ INTERP = {
     "serve": 'Dizer o talento mais ativo da pessoa e o que pede expressão, só na própria pessoa e com consentimento.',
     "pergunta": ['Qual o talento mais ativo de [nome] hoje?', 'Qual talento está pedindo expressão?'],
     "res": [
-      ('Criar, cuidar, organizar, ensinar, comunicar, construir, analisar', 'o modo de agir que a pessoa tem mais pronto', 'próximo passo pequeno; atividade no G103; bloqueio da expressão em G10 ou G62'),
+      ('Criar, cuidar, organizar, ensinar, comunicar, construir, analisar', 'o modo de agir que a pessoa tem mais pronto', 'próximo passo pequeno; atividade no G123; bloqueio da expressão em G10 ou G62'),
     ],
     "base": 'Construção deste manual (convenção deste manual), reaproveitando só a estrutura dos psicométricos clássicos, sem rótulos de qualidades morais; nunca para avaliar terceiros.',
   },
-  'G103': {
+  'G123': {
     "serve": 'Lista de atividades e vocações para a pergunta de sintonia com o momento.',
     "pergunta": 'Qual atividade está em sintonia com o momento de [nome]?',
     "res": [
@@ -431,7 +431,7 @@ INTERP = {
       ('Contratar, promover ou desligar', 'pessoas na equipe', 'só a função e o momento; nunca a pessoa por pêndulo; roteiro de equipe'),
       ('Expandir, abrir filial, mudar de ponto', 'crescimento e espaço', 'G107 para a decisão; G120 para o ponto; G116 para o terreno; Parte IX'),
       ('Investir, pedir empréstimo, precificar', 'dinheiro', 'G84, G85; G94 se houver bloqueio; contador e consultor decidem o número'),
-      ('Fechar, vender, encerrar sociedade', 'saída', 'G84 com formulações convergentes; G85; Parte XIII para a relação'),
+      ('Fechar, vender, encerrar sociedade', 'saída', 'G84 com formulações convergentes; G85; Parte IV para a relação'),
       ('Cliente ou fornecedor', 'relação comercial', 'G112 (pontos de atenção) e G106 lido como afinidade comercial; contrato'),
       ('Conflito interno', 'equipe ou sócios em tensão', 'G91 e G90; mediação'),
       ('Outra', 'não cabe', 'nomear; G84'),
@@ -460,7 +460,7 @@ INTERP = {
     "pergunta": ['O que trava esta decisão hoje?', 'Há uma segunda trava?'],
     "res": [
       ('Falta de informação', 'a decisão pede um dado que ninguém tem', 'listar o dado; quem o traz e quando; só então voltar ao G84'),
-      ('Medo de errar', 'medo de escolher mal', 'G9 linha 5; separar risco real (G107 critério 4) de medo; pré-mortem'),
+      ('Medo de errar', 'medo de escolher mal', 'G111 (medo); separar risco real (G107 critério 4) de medo; pré-mortem'),
       ('Medo de perder o que tem', 'aversão à perda', 'escrever o que de fato se perde no pior caso; plano de saída'),
       ('Medo do julgamento', 'o que vão dizer: sócios, família, mercado', 'G10 família 1 ou 7; quem precisa aprovar e quem só vai comentar'),
       ('Conflito de valores', 'a opção favorável fere algo que a pessoa não aceita', 'G106 critério 1; a decisão não é de pêndulo: é de valores, e já está tomada'),
@@ -593,7 +593,7 @@ INTERP = {
     "serve": 'Triagem: onde está a interferência que pesa no negócio ou na decisão. Em quem decide, numa relação, na equipe, no espaço, na memória do local ou do negócio, num contrato energético, no coletivo (inveja, olhares) ou em nada disso, e então a resposta está nos números.',
     "pergunta": ['Onde está a interferência que pesa no negócio hoje?', 'Há uma segunda?'],
     "res": [
-      ('Em mim (quem decide)', 'o peso é da própria pessoa', 'G94 bloqueios; G9, G10, G62; G28 origem'),
+      ('Em mim (quem decide)', 'o peso é da própria pessoa', 'G94 bloqueios; G127, G10, G62; G28 origem'),
       ('Numa relação', 'um vínculo pesa', 'G91 tipo de tensão; G89 níveis; nunca nomear a pessoa na devolutiva'),
       ('Na equipe', 'o conjunto pesa', 'G91 como conjunto; G92 setor 3; função e momento'),
       ('No espaço', 'o imóvel pesa', 'G69 cômodo a cômodo; G66 fontes; G3'),
@@ -625,7 +625,7 @@ INTERP = {
   },
 }
 
-# ---------- Parte XIII · Coaching empresarial com pêndulo (G121 a G129) ----------
+# ---------- Parte XII · Coaching empresarial com pêndulo (G121 a G129) ----------
 INTERP.update({
   "G121": {
     "serve": "Medir de 1 a 10 cada uma das oito áreas da vida de quem decide, depois que a pessoa preencheu a própria roda na ficha, sem o operador olhar. A diferença entre a nota dela e a medida é o tema; a área que, se subir, puxa as outras é o foco do trimestre.",
@@ -698,7 +698,7 @@ INTERP.update({
     "res": [
       ("Falta na formulação (itens 1 a 12)", "a meta ainda não está pronta", "reescrever a meta com o item que falta; só então medir o comprometimento (G124)"),
       ("Comprometimento abaixo de 7", "a meta é desejo, não decisão", "G124; “o que levaria a 7?”: reduzir ou datar"),
-      ("Medo, ganho, crença (itens 14 a 16)", "o que segura é interno", "G9, G62, G10; sabotador no G127"),
+      ("Medo, ganho, crença (itens 14 a 16)", "o que segura é interno", "G127, G62, G10; sabotador no G127"),
       ("Meta de outra pessoa", "não é dela", "devolver a meta a quem é; reformular a parte que é dela"),
       ("Falta recurso, habilidade ou apoio (18 a 20)", "o que segura é externo", "plano: contratar função, aprender, delegar, conversar; G123 para o momento"),
     ],
@@ -750,5 +750,137 @@ INTERP.update({
       ("Outra", "a pessoa nomeia", "o pêndulo confirma; passo pequeno e data"),
     ],
     "base": "Convenção deste manual: as ações de desbloqueio do coaching e da gestão (conversa difícil, decisão, delegação, corte, ajuda, escopo, prazo, ambiente), mais as da tradição radiestésica (limpar e proteger), em leque.",
+  },
+})
+
+for _k in ("G9", "G103"):
+    INTERP.pop(_k, None)
+
+# ---------- Parte XIII · Estratégia, carteira, negociação e relações-chave (G130 a G137) ----------
+INTERP.update({
+  "G130": {
+    "serve": "Classificar cada projeto numerado em quatro quadrantes, cruzando a velocidade do caixa (tempo até o primeiro real) com a prosperidade de longo prazo (nota de 0 a 10). Responde “o que gera dinheiro rápido, o que gera prosperidade, e em que dedicar o tempo” com uma carteira equilibrada: motores, sementes, fôlegos e drenos.",
+    "pergunta": ["Em que quadrante cai o projeto [n] hoje?", "Quando chega o primeiro real do projeto [n]? (G85)", "Quanto o projeto [n] constrói de prosperidade duradoura, de 0 a 10?", "Qual percentual do tempo de [nome] deve ir para o projeto [n] neste mês?"],
+    "leitura": "Projeto numerado; momento do primeiro real no G85 (agora ou em dias e semanas é rápido; meses ou mais é lento); nota de prosperidade duradoura no G124; o pêndulo no centro confirma o quadrante. Depois, o percentual de tempo de cada projeto no G2; a soma deve dar perto de 100.",
+    "res": [
+      ("Motor", "caixa rápido e prosperidade duradoura", "prioridade 1; tempo protegido na agenda; G107 para os critérios; G84 para decidir o que o motor precisa"),
+      ("Semente", "caixa lento, prosperidade duradoura", "planejar e datar (G85, G87); proteger horas fixas por semana; financiar com os fôlegos"),
+      ("Fôlego", "caixa rápido, pouco duradouro", "fazer o suficiente para financiar as sementes; não virar a empresa inteira; G133 para acelerar o funil"),
+      ("Dreno", "caixa lento e pouco duradouro", "soltar, ou reduzir ao mínimo; G62 se a pessoa não consegue soltar"),
+      ("Carteira só de fôlegos", "a empresa corre e não constrói", "escolher uma semente e dar a ela horas fixas; G130 de novo em 90 dias"),
+      ("Carteira só de sementes", "a empresa constrói e não come", "escolher um fôlego; funil (G133); preço entre opções (G109)"),
+      ("Tempo: soma dos percentuais acima de 110", "a agenda não cabe", "o quadrante dreno sai; o fôlego encolhe; G123 para a semana"),
+    ],
+    "base": "Convenção deste manual: matrizes de carteira da gestão (crescimento × participação, retorno × risco) adaptadas ao par caixa rápido × prosperidade duradoura; a alocação de tempo por percentual é prática do coaching executivo.",
+  },
+  "G131": {
+    "serve": "Dizer o que a apresentação de uma proposta, de um projeto ou de uma ideia pede para ser entendida por quem vai ouvir: mostrar, contar, fazer experimentar, números, referências, propósito, garantias, resultado direto. Mede a nossa apresentação, não a pessoa; com o cliente de coaching, e com o consentimento dele, pode ler o canal preferido da própria pessoa.",
+    "pergunta": ["O que a apresentação de [proposta] para [quem] pede primeiro?", "Qual o segundo elemento?", "Em coaching, com consentimento: qual o canal preferido de [nome] para receber informação?"],
+    "res": [
+      ("Mostrar: imagens e demonstração", "quem ouve precisa ver", "protótipo, fotos, gráfico de uma página, visita ao decorado ou ao ponto; canal visual"),
+      ("Contar: conversa e história", "quem ouve precisa ouvir e perguntar", "reunião sem slide; a história do cliente que já comprou; canal auditivo"),
+      ("Experimentar: teste, amostra, visita", "quem ouve precisa tocar e sentir", "período de teste, amostra, visita guiada; canal cinestésico"),
+      ("Números: planilha e prova", "quem ouve decide por dado", "planilha de uma página, prazo e retorno com premissas; contador na sala"),
+      ("Referências e casos", "quem ouve decide por quem já fez", "três referências que podem ser ligadas; casos com número"),
+      ("Propósito e valores", "quem ouve decide por sentido", "por que a empresa existe; G125 dos dois lados"),
+      ("Garantias e segurança", "quem ouve decide por proteção", "garantias, saída, seguro; G112 pontos 4 e 5"),
+      ("Direto ao resultado e à decisão", "quem ouve quer concluir", "uma página, três opções, pedido claro; não enrolar"),
+    ],
+    "base": "Convenção deste manual: canais de representação da programação neurolinguística (visual, auditivo, cinestésico, digital) e estilos de decisão do comportamento comercial, lidos como exigência da apresentação; a pergunta dos Servranx “como devo agir com X para obter Y?” é o precedente.",
+  },
+  "G132": {
+    "serve": "Mapear a expectativa da outra parte numa negociação, numa sociedade ou numa captação: o que o investidor, o cliente, o sócio ou o grupo precisa ouvir e receber para dizer sim e para continuar. Lê-se do nosso lado (o que a relação pede de nós); não lê a pessoa.",
+    "pergunta": ["O que [investidor, cliente, grupo] mais precisa ouvir para dizer sim?", "O que ele precisa receber para continuar na relação?", "O que, se faltar, o faria sair?"],
+    "res": [
+      ("Segurança e garantias", "medo de perder", "garantias, saída, seguro, histórico; G112"),
+      ("Retorno e prazo claros", "quer saber quando e quanto", "planilha com premissas; nunca prometer número por pêndulo; contador"),
+      ("Controle e participação", "quer ter voz", "assento, relatório, direito de veto em pontos definidos; acordo de sócios"),
+      ("Reconhecimento e visibilidade", "quer aparecer", "nome no projeto, convite, menção; custa pouco e segura muito"),
+      ("Relação e confiança", "decide por pessoa", "tempo de conversa; referências cruzadas; G106 critério 4"),
+      ("Inovação e diferencial", "quer o novo", "o que só a empresa tem; G92 setor 5"),
+      ("Preço e condições", "decide por valor", "opções de preço numeradas (G109); condições de pagamento"),
+      ("Simplicidade e rapidez", "quer resolver logo", "uma página; três opções; prazo curto de resposta"),
+      ("Exclusividade", "quer ser único", "cláusula com prazo; G112 ponto 6"),
+      ("Apoio e serviço", "quer ser cuidado depois", "pós-venda, canal direto, cadência de contato (G87)"),
+      ("Propósito e impacto", "decide por sentido", "G125; relatório de impacto; história"),
+      ("Outro", "o que a outra parte diz que quer", "perguntar a ela; o pêndulo confirma"),
+    ],
+    "base": "Convenção deste manual: interesses por trás das posições (negociação baseada em princípios) e necessidades de investidor e cliente da literatura comercial, em leque, lidos do lado de quem decide.",
+  },
+  "G133": {
+    "serve": "Dizer em que etapa do funil de vendas o negócio trava hoje, e qual etapa, se melhorar, gera dinheiro mais rápido. É o gráfico de “o que gera caixa rápido” quando a resposta está nas vendas, e o primeiro a abrir quando o G128 aponta venda que não fecha.",
+    "pergunta": ["Em que etapa do funil [empresa ou projeto] trava hoje?", "Qual etapa, se melhorar, traz caixa mais rápido?", "Qual o percentual de saúde da etapa [n]?"],
+    "res": [
+      ("Prospecção: quem", "não chega gente", "definir o cliente desejado (G114 bloco 1); afinidade por público numerado (G109); G92 setor 7"),
+      ("Qualificação: cabe?", "chega gente errada", "três perguntas de corte antes de apresentar; G132 para o que o cliente certo precisa"),
+      ("Apresentação", "a apresentação não convence", "G131: o que ela pede; uma página; referências"),
+      ("Proposta", "a proposta trava", "G112 pontos de atenção; preço entre opções (G109)"),
+      ("Negociação", "a conversa não anda", "G113 onde trava; abordagem (contato, momento, comportamento)"),
+      ("Fechamento", "não se pede o sim", "pedir a decisão com prazo; G85 para o momento; G84 do nosso lado"),
+      ("Entrega", "vende e não entrega", "processo escrito; equipe (G91); reduzir o escopo"),
+      ("Pós-venda e recompra", "vende uma vez só", "cadência de contato (G87); G132 apoio e serviço; é o caixa mais rápido que existe: quem já comprou"),
+    ],
+    "base": "Convenção deste manual: etapas usuais do funil comercial, em leque, com a saída de cada etapa ligada aos gráficos deste manual.",
+  },
+  "G134": {
+    "serve": "Seletor de ferramentas: diante de um projeto, de uma situação ou de uma sessão, diz qual ferramenta deste manual abrir primeiro. É o G108 das ferramentas de coaching e de estratégia: o pêndulo escolhe o instrumento, o manual dá o roteiro.",
+    "pergunta": ["Qual ferramenta este projeto pede primeiro?", "Qual a segunda?", "Há ferramenta que não cabe nesta sessão?"],
+    "res": [
+      ("Rodas 1 a 10", "o projeto ou a pessoa precisam de retrato", "G121, G122, G137"),
+      ("Matriz de foco", "há muitas frentes", "G123 com G124 e G85"),
+      ("Critérios do projeto", "há uma escolha entre projetos", "G107 com pesos; pré-mortem"),
+      ("Carteira: caixa × prosperidade", "a pergunta é dinheiro e tempo", "G130; percentuais de tempo no G2"),
+      ("Sociedade", "há um sócio, parceiro ou investidor", "G118, G106, G89 a G91"),
+      ("Proposta e contrato", "há um papel a assinar", "G112, G113"),
+      ("Abordagem e expectativa", "há alguém a convencer ou manter", "G131, G132, G136"),
+      ("Funil de vendas", "a pergunta é venda", "G133"),
+      ("SWOT", "a pergunta é estratégia", "G135"),
+      ("Mapa de atores", "há um grupo a mover", "G136"),
+      ("Desbloqueio", "algo está agarrado", "G128, G119, G129"),
+      ("Espaço e terreno", "a pergunta é lugar", "G120, G116, Parte IX"),
+    ],
+    "base": "Convenção deste manual, no molde do seletor de gráficos do Manual de Radiestesia Terapêutica.",
+  },
+  "G135": {
+    "serve": "SWOT com pêndulo: a pessoa escreve forças, fraquezas, oportunidades e ameaças (até três de cada, numeradas); o leque diz onde está a chave da estratégia hoje: uma força a usar mais, uma fraqueza a corrigir, uma oportunidade a pegar agora, uma ameaça a proteger, ou o que ignorar e aceitar.",
+    "pergunta": ["Onde está a chave da estratégia de [empresa] hoje?", "Qual item da lista [n]?", "Qual o percentual de peso desse item?"],
+    "res": [
+      ("Força a usar mais", "a empresa tem algo que não explora", "item no G109; projeto que a usa no G107; G130 motor"),
+      ("Força desperdiçada", "a força existe e drena", "soltar o que a sustenta sem retorno; G123"),
+      ("Fraqueza a corrigir", "a fraqueza trava o resto", "ação no G129; função a contratar; aprender"),
+      ("Fraqueza a aceitar", "corrigir custaria mais que vale", "contornar com parceria (G106) ou escopo menor"),
+      ("Oportunidade agora", "a janela está aberta", "G85 confirma; G107 para os critérios; G84"),
+      ("Oportunidade a datar", "a janela abre depois", "G87; preparar a semente (G130)"),
+      ("Ameaça a proteger", "há risco real", "plano de saída; G112 garantias; proteção do caixa"),
+      ("Ameaça a ignorar", "o medo é maior que o risco", "G111 medo × risco; voltar aos dados"),
+    ],
+    "base": "Convenção deste manual: a análise SWOT da estratégia clássica, lida por pêndulo como leque de prioridade sobre itens escritos pela pessoa.",
+  },
+  "G136": {
+    "serve": "Mapa de atores: para um projeto, uma captação ou uma mudança, cada pessoa ou grupo envolvido é numerado e cai num quadrante de poder (de decidir ou travar) por interesse. O quadrante diz a nossa estratégia de relação com cada um; não julga ninguém, e nunca é mostrado a quem está no mapa.",
+    "pergunta": ["Qual o poder de [ator] de decidir ou travar [projeto], de 0 a 10?", "Qual o interesse de [ator] em [projeto], de 0 a 10?", "Qual ator, se mudar de lado, muda o projeto?"],
+    "leitura": "Atores numerados no caderno; poder e interesse no G124; o pêndulo no centro confirma o quadrante. A leitura é da relação e da estratégia, do nosso lado.",
+    "res": [
+      ("Envolver de perto", "poder alto, interesse alto", "conversa direta e frequente; participação; G132 para o que precisa ouvir; G131 para a abordagem"),
+      ("Manter satisfeito", "poder alto, interesse baixo", "segurança e pouca demanda; nada de surpresa; informar antes de decidir"),
+      ("Manter informado", "poder baixo, interesse alto", "informação regular; pode virar aliado e multiplicador"),
+      ("Acompanhar de longe", "poder baixo, interesse baixo", "monitorar; não gastar energia nem gráfico"),
+      ("Ator que muda o projeto", "o ator-chave", "é o primeiro da lista de conversas; G113 se a relação travar"),
+      ("Mais de três no quadrante de envolver", "a agenda não comporta", "ordem pelo G109: quem primeiro?"),
+    ],
+    "base": "Convenção deste manual: a grade poder × interesse da gestão de projetos e de partes interessadas, lida por pêndulo, só como estratégia de relação.",
+  },
+  "G137": {
+    "serve": "Roda do líder: doze competências de quem conduz um negócio, de 1 a 10, para o empreendedor e para o profissional que lidera. A nota da pessoa antes, a medida depois, a diferença é o tema; a competência que, se subir, puxa as outras é o foco do desenvolvimento.",
+    "pergunta": ["Qual a nota de [nome] em [competência] hoje, de 1 a 10?", "Qual competência, se subir, puxa as outras?", "Qual competência a empresa mais cobra hoje?"],
+    "leitura": "Como nas outras rodas: pêndulo no centro, uma competência por vez, do centro para a borda; o anel é a nota.",
+    "res": [
+      ("Nota 1 a 3", "competência que trava o negócio", "delegar ou contratar função (G123); aprender antes (G129 item 10); mentor"),
+      ("4 a 6", "funciona com esforço", "uma prática pequena por semana; G126 para a meta de desenvolvimento"),
+      ("7 a 10", "força do líder", "usar mais (G135 força); ensinar à equipe"),
+      ("Diferença de 3 ou mais entre a nota da pessoa e a medida", "cegueira ou excesso de autocrítica", "tema da conversa; pedir devolutiva a duas pessoas de confiança"),
+      ("Competência que a empresa cobra e o líder não tem", "o cargo pede o que a pessoa não é", "contratar a função ou sócio complementar (G106 critério 3)"),
+    ],
+    "base": "Convenção deste manual: rodas de competências de liderança do coaching executivo, em roda pendulável.",
   },
 })

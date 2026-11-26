@@ -50,7 +50,7 @@ def part_decisao():
     H.append(p("Quando o G84 responde “refazer” duas vezes, quando a pessoa adia uma decisão já medida ou quando diz “não sei por quê”, a trava tem nome. O G111 separa falta de dado, medo, valores, pressão, lealdade, apego e cansaço, porque cada um se trata de um jeito: dado se busca, medo se nomeia, valor se respeita, pressão se devolve a quem pressiona, cansaço se adia com data. Insegurança e incerteza, as palavras mais ouvidas de um empresário indeciso, quase sempre caem nos setores 1 a 4."))
     H.append(steps([
         pergunta("O que trava esta decisão hoje?") + " no G111; " + pergunta("Há uma segunda trava?") + ".",
-        "Falta de informação: listar o dado, quem traz e quando; só então voltar ao G84. Medos: G9 pelo lado da pessoa; separar risco real (G107 critério 4) de medo; pré-mortem.",
+        "Falta de informação: listar o dado, quem traz e quando; só então voltar ao G84. Medos: G127 pelo lado da pessoa; separar risco real (G107 critério 4) de medo; pré-mortem.",
         "Conflito de valores: a decisão não é de pêndulo, e já está tomada. Pressão de terceiro: nomear quem; a decisão só vale quando for da pessoa.",
         "Lealdade e apego: G62 (ganho em manter) e G59 (lealdades e votos); G115 para o que o modelo antigo ainda entrega.",
         "Cansaço e “não é a hora”: adiar com data no G85; registrar; voltar na data.",
@@ -201,7 +201,7 @@ def part_projetos():
 def part_pessoas():
     H = []
     H.append(h1("eq", "Pessoas, equipe e liderança", "Parte VII · Pessoas", brk=False))
-    H.append(p("Esta é a Parte com mais vetos e menos gráficos, de propósito. A equipe entra como conjunto (clima no G92, tipo de tensão no G91); uma vaga entra como função e momento; uma pessoa só entra com pedido dela. O lado humano que este manual mede com liberdade é o de quem decide: o que pesa no trabalho (G95), o talento mais ativo (G101) e a atividade em sintonia com o momento (G103), para o empreendedor e para o profissional liberal que trabalha sozinho."))
+    H.append(p("Esta é a Parte com mais vetos e menos gráficos, de propósito. A equipe entra como conjunto (clima no G92, tipo de tensão no G91); uma vaga entra como função e momento; uma pessoa só entra com pedido dela. O lado humano que este manual mede com liberdade é o de quem decide: o que pesa no trabalho (G95), o talento mais ativo (G101) e a matriz de foco (G123), para o empreendedor e para o profissional liberal que trabalha sozinho."))
     H.append(box("alerta", "Contratar, promover, desligar", "O que se pendula é a função (“esta vaga é necessária?”, “qual função: vendedor ou assistente?”) e o momento (“é hora de contratar?”). Candidatos nunca são pendulados: a seleção é entrevista, referências e período de teste. Se o pêndulo escolher um candidato entre vários, isso não entra no manual: é o caso em que ele substituiria o RH e discriminaria sem critério verificável. Depois da contratação, com o consentimento da pessoa, mede-se a relação de trabalho (G91) e o clima (G92), nunca a pessoa."))
     H.append(h2("eq-equipe", "A equipe como conjunto"))
     H.append(steps([
@@ -214,25 +214,25 @@ def part_pessoas():
     H.append(h2("eq-profissional", "O profissional e o empreendedor: o que pesa no trabalho"))
     H.append(p("Para quem trabalha sozinho ou lidera, o G95 responde o que pesa hoje: sobrecarga, falta de propósito, vínculos, remuneração, insegurança ou a vontade de mudar. Mudança de carreira ou de negócio vai à Parte II; sobrecarga com carga acima de 10 vai ao atendimento pessoal."))
     H.append(chart("G95"))
-    H.append(h2("eq-talentos", "Talentos e atividades em sintonia"))
-    H.append(p("Os psicométricos clássicos rotulam “qualidades morais” e “inteligência” e são a raiz da seleção de pessoal por pêndulo. Este manual reaproveita só a estrutura, para a própria pessoa e com consentimento: talento mais ativo (G101) e atividade em sintonia com o momento (G103), para o empreendedor que precisa decidir o que delega e o que mantém."))
+    H.append(h2("eq-talentos", "Talentos e o que fica com o dono"))
+    H.append(p("Os psicométricos clássicos rotulam “qualidades morais” e “inteligência” e são a raiz da seleção de pessoal por pêndulo. Este manual reaproveita só a estrutura, para a própria pessoa e com consentimento: talento mais ativo (G101) e, a partir dele, a matriz de foco (G123) para o empreendedor que precisa decidir o que delega e o que mantém."))
     H.append(steps([
         pergunta("Qual o talento mais ativo de [nome] hoje?") + " no G101, e " + pergunta("Qual talento está pedindo expressão?") + ".",
-        pergunta("Qual atividade está em sintonia com o momento de [nome]?") + " no G103, por bissecção; com três candidatas, percentual de cada uma.",
+        "As atividades da semana, numeradas, na matriz de foco (G123): o que fica com o dono é o que usa o talento mais ativo.",
         "O que o dono faz melhor fica com ele; o resto vira função a contratar (" + go("eq-equipe", "acima") + "). Bloqueio da expressão do talento: G10 (crença) ou G62 (ganho).",
     ]))
-    H.append(chart("G101", beside=list_block("G103", cols=3, narrow=True)))
+    H.append(chart("G101"))
     H.append(end())
     return H
 
 def part_bloqueios():
     H = []
     H.append(h1("blo", "Interferências e bloqueios", "Parte VIII · Interferências", brk=False))
-    H.append(p("“Tem algo me travando?” é a segunda pergunta mais ouvida de um empresário, depois de “faço ou não faço?”. Esta Parte responde em ordem: onde está (G119: em quem decide, numa relação, na equipe, no espaço, na memória, num contrato energético, no coletivo, ou em lugar nenhum), de onde veio (G28), que ganho sustenta (G62), que voto ou lealdade prende (G59), que emoção e que crença estão por trás (G9, G10), e como proteger sem agir contra ninguém (G67). O bloqueio de prosperidade propriamente dito está na " + go("fin", "Parte X") + ". A tradição toda fala de inveja e “olho gordo”; este manual os trata como energia de fora, sem nome, respondida com limites e proteção, e adota o veto dos Servranx: nunca “devolver”."))
+    H.append(p("“Tem algo me travando?” é a segunda pergunta mais ouvida de um empresário, depois de “faço ou não faço?”. Esta Parte responde em ordem: onde está (G119: em quem decide, numa relação, na equipe, no espaço, na memória, num contrato energético, no coletivo, ou em lugar nenhum), de onde veio (G28), que ganho sustenta (G62), que voto ou lealdade prende (G59), que sabotador e que crença estão por trás (G127, G10), e como proteger sem agir contra ninguém (G67). O bloqueio de prosperidade propriamente dito está na " + go("fin", "Parte X") + ". A tradição toda fala de inveja e “olho gordo”; este manual os trata como energia de fora, sem nome, respondida com limites e proteção, e adota o veto dos Servranx: nunca “devolver”."))
     H.append(h2("blo-triagem", "Triagem: onde está a interferência"))
     H.append(steps([
         pergunta("Onde está a interferência que pesa no negócio hoje?") + " no G119; " + pergunta("Há uma segunda?") + ".",
-        "Em quem decide: bloqueios no G94 (" + go("fin", "Parte X") + "), emoção no G9, crença no G10, ganho no G62; origem no G28.",
+        "Em quem decide: bloqueios no G94 (" + go("fin", "Parte X") + "), sabotador no G127, crença no G10, ganho no G62; origem no G28.",
         "Numa relação ou na equipe: G91 e G89, sem nomear a pessoa na devolutiva. No espaço: G69 cômodo a cômodo, G66, G3 (" + go("esp", "Parte IX") + ").",
         "Memória do local ou do negócio: G82 (negócio anterior, ex-ocupante); caiação e consagração (G71); a história documentada do imóvel ou da empresa.",
         "Contrato energético: G59. Coletivo: G67 limites e proteção, nunca emissor contra alguém. Não é energético: contador, consultor e dados; G111 se a decisão travar mesmo assim.",
@@ -240,9 +240,8 @@ def part_bloqueios():
     ]))
     H.append(chart_group(["G119", "G28"]))
     H.append(h2("blo-dono", "O que trava em quem decide: ganho, emoção e crença"))
-    H.append(p("O ganho secundário não é culpa: é o motivo pelo qual a mudança não se sustenta, e em negócios costuma ser evitar uma conversa difícil, manter uma identidade (“o fundador”) ou uma lealdade (ao pai, ao sócio antigo). O G62 entra antes de toda decisão importante. A emoção presa (G9) e a família de crença (G10) são nomeadas, não tratadas: este manual registra, dá um passo pequeno e, se a emoção voltar em três sessões, encaminha ao atendimento pessoal pelo Manual de Radiestesia Terapêutica."))
+    H.append(p("O ganho secundário não é culpa: é o motivo pelo qual a mudança não se sustenta, e em negócios costuma ser evitar uma conversa difícil, manter uma identidade (“o fundador”) ou uma lealdade (ao pai, ao sócio antigo). O G62 entra antes de toda decisão importante. O sabotador (G127, Parte XII) e a família de crença (G10) são nomeados, não tratados: este manual registra, dá um passo pequeno e, se o padrão voltar em três sessões, encaminha ao atendimento pessoal pelo Manual de Radiestesia Terapêutica, onde a emoção presa é liberada."))
     H.append(chart_group(["G62", "G10"]))
-    H.append(chart("G9"))
     H.append(h2("blo-contratos", "Votos, promessas, pactos e contratos energéticos"))
     H.append(p("Voto de pobreza, voto de não ter sucesso, promessa a pai ou mãe de nunca vender a empresa, lealdade a um sócio morto, contrato de sofrimento: a lista do G59 é a mesma do manual terapêutico, lida aqui para a prosperidade e para a sucessão. A ação é dita em voz alta, em primeira pessoa, com a data de hoje; depois se retesta e se vai ao G62."))
     H.append(chart("G59"))
@@ -338,7 +337,7 @@ def part_financas():
         "Área no G24 (dinheiro ou trabalho) e grau no G2: " + pergunta("Qual o grau de equilíbrio da área financeira de [nome], de 0 a 100?") + ".",
         "Finanças da empresa no G92 setor 8, em três perguntas de percentual: " + pergunta("Qual o percentual de saúde da entrada de dinheiro? Da saída? Há bloqueio?") + ".",
         "Bloqueio na lista G94, por bissecção, na pessoa do responsável: " + pergunta("O bloqueio principal está na primeira lista?") + ", depois linha a linha; " + pergunta("Há um segundo bloqueio?") + ".",
-        "Cada item aponta onde tratar: crença (G10), emoção (G9), interferência (G119, G28), linhagem e sucessão (G59), ambiente (Parte IX), relação (G91), hábito (G24). Confirmar no G62 se há ganho em manter.",
+        "Cada item aponta onde tratar: crença (G10), emoção (G127), interferência (G119, G28), linhagem e sucessão (G59), ambiente (Parte IX), relação (G91), hábito (G24). Confirmar no G62 se há ganho em manter.",
         "Devolutiva com a linha do Mapa de Atendimento correspondente (não merecimento, procrastinação, não soltar, absorve conselhos invejosos), dita como tendência, com uma orientação prática pequena: preço, proposta, cobrança, agenda.",
         "Depois: emissor de prosperidade escolhido abaixo, com testemunho da pessoa ou da empresa, renovado a cada 14 dias; remedir o G92 setor 8 no trimestre.",
     ]))
@@ -377,7 +376,7 @@ def part_pessoa():
 
 def part_coaching():
     H = []
-    H.append(h1("coach", "Coaching empresarial com pêndulo: rodas, foco, metas e desbloqueio", "Parte XIII · Coaching", brk=False))
+    H.append(h1("coach", "Coaching empresarial com pêndulo: rodas, foco, metas e desbloqueio", "Parte XII · Coaching", brk=False))
     H.append(p("O coach empresarial trabalha com rodas de 0 a 10, matriz de prioridades, valores, metas bem formuladas, sabotadores e planos de ação. Esta Parte põe o pêndulo dentro dessas ferramentas: a pessoa dá a nota dela, o pêndulo mede o campo, e a diferença entre as duas é o que se conversa. Três leituras por item, sempre nesta ordem: a nota da pessoa, a medida, a diferença. O pêndulo não substitui a pergunta do coach; obriga a pessoa a escrever antes e devolve o que ela sente e ainda não disse. Fecha com o protocolo de desbloqueio para o que está agarrado: nomear, localizar o nó, medir a carga, escolher a ação, dar o passo pequeno, datar, remedir."))
     H.append(box("variacao", "A regra das três leituras", "<b>Nota da pessoa</b>: ela preenche a roda ou dá a nota antes, sem o operador olhar. <b>Medida</b>: o pêndulo lê a mesma área na roda pendulável ou na régua. <b>Diferença</b>: três pontos ou mais entre as duas é o tema da sessão; o pêndulo não decreta quem está certo. Nas rodas, a área que “se subir, puxa as outras” é o foco do trimestre; no máximo três itens ficam em foco ao mesmo tempo."))
     H.append(h2("coach-rodas", "Rodas de 1 a 10: a vida de quem decide, o negócio e o projeto"))
@@ -424,7 +423,7 @@ def part_coaching():
         "<b>Nomear.</b> " + pergunta("O que está agarrado em [empresa ou nome] hoje?") + " no G128; " + pergunta("Qual a carga disso, de 0 a 100?") + " no G2. Acima de 30, nada se decide antes de desagarrar. " + pergunta("Há uma segunda coisa agarrada?") + ".",
         "<b>Localizar o nó.</b> " + pergunta("Onde está o nó?") + " no G119 (em mim, numa relação, na equipe, no espaço, na memória, num contrato energético, no coletivo, em nenhum lugar: nos números). Negociação travada: G113; decisão adiada: G111.",
         "<b>O ganho em manter.</b> " + pergunta("Há um ganho em manter isto agarrado?") + " no G62. Quase sempre há, e quase sempre é evitar uma conversa.",
-        "<b>O que está por trás.</b> Crença no G10, emoção no G9, sabotador no G127, voto ou lealdade no G59. Nomear, não tratar: um passo pequeno nesta semana; se voltar em três sessões, atendimento pessoal.",
+        "<b>O que está por trás.</b> Crença no G10, emoção no G127, sabotador no G127, voto ou lealdade no G59. Nomear, não tratar: um passo pequeno nesta semana; se voltar em três sessões, atendimento pessoal.",
         "<b>A ação que desagarra.</b> " + pergunta("Qual ação desagarra [item] primeiro?") + " no G129: conversar, decidir, delegar, soltar, pedir ajuda, reduzir, datar, mudar o lugar, limpar e proteger, aprender, descansar. Se for limpar e proteger: G71 e G67 pela Parte IX.",
         "<b>O passo pequeno.</b> " + pergunta("Qual o primeiro passo pequeno dessa ação?") + ": algo que cabe em uma hora e nesta semana. A pessoa diz; o pêndulo confirma; escreve-se no caderno.",
         "<b>A data.</b> G85 para o momento, G87 se o dia importar; quem precisa saber.",
@@ -465,9 +464,102 @@ def part_coaching():
     H.append(end())
     return H
 
+def part_estrategia():
+    H = []
+    H.append(h1("estr", "Estratégia, carteira, negociação e relações-chave", "Parte XIII · Estratégia", brk=False))
+    H.append(p("Esta Parte põe o pêndulo dentro das ferramentas de planejamento empresarial e de negociação: a carteira de projetos (o que gera caixa rápido, o que gera prosperidade duradoura, onde dedicar o tempo), o funil de vendas, a análise SWOT, a preparação de uma apresentação (o que ela pede para ser entendida), o mapa de expectativas de quem vai decidir, o mapa de atores de um grupo, a relação com investidores e a roda do líder. Abre com um seletor: diante de um projeto ou de uma sessão, o pêndulo diz qual ferramenta usar primeiro. Em tudo, a regra é a mesma do manual inteiro: mede-se o nosso lado, a nossa apresentação, a nossa estratégia de relação; não se lê a pessoa do outro e não se emite sobre ela."))
+    H.append(box("variacao", "O que se mede e o que não se mede nesta Parte", "<b>Mede</b>: a carteira e o tempo; em que etapa o funil trava; onde está a chave da estratégia; o que a nossa apresentação pede; o que a outra parte precisa ouvir para dizer sim e para continuar; o poder e o interesse de cada ator no projeto, como estratégia de relação; as competências do líder. <b>Não mede</b>: o caráter, a intenção ou a vida de quem está do outro lado; o que ele vai decidir; o que o mercado vai fazer. Com o cliente de coaching, e só com o consentimento dele, a própria pessoa pode ser lida (canal preferido, roda do líder)."))
+    H.append(h2("estr-seletor", "Qual ferramenta este projeto pede"))
+    H.append(steps([
+        "Projeto, situação ou pergunta da sessão escrita em uma linha; testemunho; autoauditoria.",
+        pergunta("Qual ferramenta este projeto pede primeiro?") + " no G134; " + pergunta("Qual a segunda?") + ". Duas por sessão bastam.",
+        "Abrir o roteiro da ferramenta nesta Parte ou na " + go("coach", "Parte XII") + "; registrar qual foi usada e o que saiu dela.",
+    ]))
+    H.append(chart("G134"))
+    H.append(table(["Situação que o empresário traz", "Ferramenta", "Gráficos"], [
+        ["“Tenho vários projetos e não sei onde pôr o tempo”", "carteira caixa × prosperidade; matriz de foco", "G130, G124, G85, G2; G123"],
+        ["“Preciso de dinheiro rápido”", "funil de vendas; carteira (fôlegos); preço entre opções", "G133, G130, G109"],
+        ["“Quero construir algo que dure”", "carteira (sementes); roda do negócio; SWOT", "G130, G122, G135"],
+        ["“Vou apresentar para alguém ou para um grupo”", "abordagem; expectativas; mapa de atores", "G131, G132, G136"],
+        ["“Preciso convencer um investidor, um cliente, um sócio”", "expectativas; compatibilidade para o objetivo; sociedade; proposta", "G132, G118, G106, G112"],
+        ["“A venda não fecha, a proposta não anda”", "funil; onde trava; desbloqueio", "G133, G113, G128, G129"],
+        ["“Não sei o que a empresa tem de forte e de fraco”", "SWOT; roda do negócio; modelo de negócio", "G135, G122, G114"],
+        ["“Preciso crescer como líder”", "roda do líder; talento; sabotador", "G137, G101, G127"],
+        ["“Tenho uma dívida e preciso de prazo”", "abrir caminhos: o que se faz; expectativa do credor; proposta de prazo", "G132, G109, G84, G85, G67"],
+    ], cls="small"))
+    H.append(h2("estr-carteira", "Carteira de projetos: caixa rápido, prosperidade e tempo"))
+    H.append(p("“O que vai gerar dinheiro mais rápido? O que vai gerar mais prosperidade? Em que dedicar o tempo?” são três perguntas, e a carteira responde às três de uma vez. Cada projeto numerado recebe o momento do primeiro real (G85: agora, dias e semanas são rápido; meses e anos são lento) e uma nota de prosperidade duradoura (G124), e cai num dos quatro quadrantes do G130: motor, semente, fôlego ou dreno. Depois o pêndulo distribui o tempo: o percentual de cada projeto no mês, no G2, com a soma perto de 100. Uma carteira saudável tem um motor ou uma semente com horas protegidas e um ou dois fôlegos que pagam as contas; os drenos saem."))
+    H.append(steps([
+        "Projetos, produtos ou frentes numerados no caderno (até oito no G109, até doze no G110). Trio de permissão; autoauditoria: dinheiro é o tema que mais contamina.",
+        "Para cada projeto: " + pergunta("Quando chega o primeiro real do projeto [n]?") + " no G85 e " + pergunta("Quanto o projeto [n] constrói de prosperidade duradoura, de 0 a 10?") + " no G124.",
+        "Quadrante no G130 com o pêndulo no centro: " + pergunta("Em que quadrante cai o projeto [n] hoje?") + ". Registrar na ficha de carteira.",
+        pergunta("Qual projeto, se andar, puxa os outros?") + " e, para o caixa, " + pergunta("Qual cliente, produto ou canal traz mais dinheiro com menos esforço?") + " nos itens numerados do G109: é a leitura de Pareto, confirmada com os números.",
+        "Tempo: " + pergunta("Qual percentual do tempo de [nome] deve ir para o projeto [n] neste mês?") + " no G2, projeto por projeto. Soma acima de 110: o dreno sai e o fôlego encolhe; a matriz de foco (G123) distribui a semana.",
+        "Devolutiva: a carteira em uma página (motor, sementes, fôlegos, o que sai), as horas protegidas e a data de revisão em 90 dias; números com o contador antes de qualquer corte.",
+    ]))
+    H.append(chart("G130"))
+    H.append(h2("estr-swot", "SWOT com pêndulo: onde está a chave"))
+    H.append(p("A pessoa escreve até três forças, três fraquezas, três oportunidades e três ameaças, numeradas de 1 a 12. O leque G135 diz onde está a chave da estratégia hoje (uma força a usar mais, uma fraqueza a corrigir, uma oportunidade a pegar agora, uma ameaça a proteger) e também o que ignorar: a força que drena, a fraqueza que não vale corrigir, a oportunidade que fica para depois, a ameaça que é medo e não risco. O item exato sai do G110 com a lista numerada, e o peso no G2."))
+    H.append(chart("G135"))
+    H.append(h2("estr-funil", "Funil de vendas: onde trava e o que traz caixa mais rápido"))
+    H.append(steps([
+        "Testemunho da empresa ou do projeto; " + pergunta("Em que etapa do funil [empresa] trava hoje?") + " no G133; " + pergunta("Qual etapa, se melhorar, traz caixa mais rápido?") + ".",
+        "Percentual de saúde de cada etapa no G2, da prospecção ao pós-venda: a série é o painel comercial.",
+        "A etapa indicada abre a ferramenta: prospecção e qualificação, o cliente certo (G114, G132); apresentação, o que ela pede (G131); proposta e negociação, G112 e G113; fechamento, pedir o sim com prazo (G85); entrega, processo e equipe (G91); pós-venda, cadência de contato (G87).",
+        "O caixa mais rápido costuma estar na última etapa: quem já comprou. Antes de prospectar, " + pergunta("Qual cliente atual compraria de novo esta semana?") + " nos clientes numerados do G109.",
+    ]))
+    H.append(chart("G133"))
+    H.append(h2("estr-abordagem", "Antes de negociar: o que a apresentação pede e o que a outra parte precisa ouvir"))
+    H.append(box("alerta", "A pessoa do outro lado não é pendulada", "Perfil, caráter, intenção, canal preferido ou ponto fraco de um cliente, investidor ou sócio não se leem sem consentimento: é terceiro, e é o uso que mais expõe quem opera. O que se lê é o nosso lado: o que a nossa apresentação pede para ser entendida (G131), o que a relação pede de nós para a outra parte dizer sim e continuar (G132), e como abordar (contato, momento, comportamento, as três perguntas dos Servranx). Os canais visual, auditivo e cinestésico entram como propriedades da apresentação, não como rótulo da pessoa. Em coaching, com o consentimento do cliente, o canal preferido dele pode ser lido no mesmo G131."))
+    H.append(steps([
+        "Testemunho: a nossa proposta em uma linha e o nome de quem vai apresentar; quem vai ouvir entra só pelo papel (“o investidor do projeto X”, “o comitê da prefeitura”).",
+        pergunta("O que a apresentação de [proposta] para [quem] pede primeiro?") + " no G131, e o segundo elemento. Mostrar pede protótipo, fotos e visita; contar pede reunião sem slide e história; experimentar pede teste e amostra; números pedem planilha de uma página e o contador na sala.",
+        pergunta("O que [quem] mais precisa ouvir para dizer sim?") + ", " + pergunta("O que precisa receber para continuar?") + " e " + pergunta("O que, se faltar, o faria sair?") + " no G132. As três respostas viram a ordem da apresentação e o que vai por escrito.",
+        "Abordagem, nas opções numeradas do G109: " + pergunta("Qual a melhor maneira de contato?") + " (telefonar, visitar, escrever, por indicação), " + pergunta("Qual o melhor momento?") + " (G85, G87) e " + pergunta("Como me comportar?") + " (direto, ouvir primeiro, com intermediário).",
+        "Se a negociação já travou: G113. Se há um grupo: mapa de atores (abaixo).",
+        "Depois da reunião: registrar o que de fato pesou e comparar com a leitura. É a calibração desta Parte: em dez apresentações, a taxa de acerto do G131 e do G132 diz quanto peso lhes dar.",
+    ]))
+    H.append(chart_group(["G131", "G132"]))
+    H.append(h2("estr-atores", "Grupos, sócios e investidores: mapa de atores, conquistar e manter"))
+    H.append(p("Quando quem decide é um grupo (conselho, família empresária, comitê, condomínio, banco), cada ator é numerado e cai no mapa de poder por interesse (G136): envolver de perto, manter satisfeito, manter informado, acompanhar de longe. O mapa é a nossa estratégia de relação, nunca é mostrado a quem está nele, e o pêndulo mede poder e interesse como nota, não como juízo. Com investidores, a mesma lógica se estende no tempo: conquistar é responder à expectativa (G132) com uma apresentação que ela pede (G131); manter é previsibilidade, e não rédea: cadência de contato combinada (G87), relatório com o que ele precisa ouvir, sintonia da sociedade remedida a cada trimestre (G2, G106) e a pergunta que ninguém faz, “o que o faria sair?”, feita antes de ele sair."))
+    H.append(steps([
+        "Atores numerados no caderno pelo papel. Para cada um: " + pergunta("Qual o poder de [ator] de decidir ou travar [projeto], de 0 a 10?") + " e " + pergunta("Qual o interesse de [ator] em [projeto], de 0 a 10?") + " no G124; quadrante no G136.",
+        pergunta("Qual ator, se mudar de lado, muda o projeto?") + ": é a primeira conversa. Mais de três em “envolver de perto”: ordem no G109.",
+        "Investidor, antes: expectativa (G132), compatibilidade para o objetivo “captação para X” (G118), critérios de investidor no G106 com os pesos de capacidade financeira, apetite a risco e regras de saída.",
+        "Investidor, durante: abordagem (G131), termos no G112, o número com o contador e o advogado. Nunca prometer retorno por pêndulo.",
+        "Investidor, depois: cadência de contato no G87 (mensal costuma medir melhor do que trimestral no primeiro ano); relatório com o que ele precisa ouvir (G132); sintonia trimestral; “o que o faria sair?” a cada seis meses. Se a sintonia cair abaixo de 50, Parte IV, caso 2.",
+    ]))
+    H.append(chart("G136"))
+    H.append(h2("estr-caminhos", "Abrir caminhos, convencer e prosperar: o que se faz e o que não se faz"))
+    H.append(box("alerta", "O que não entra", "Gráficos emissores para convencer, amarrar, fazer alguém esquecer, ignorar ou mudar de ideia não entram neste manual, mesmo que a tradição os venda: são emissão sobre terceiro sem consentimento, vetada pelo Código de Ética da ABRAD e pela regra do terceiro, e os próprios Servranx avisam da lei do contragolpe. Também não entra “ficar invisível” para um credor: um credor que esquece não cancela a dívida, e o que resolve dívida é proposta previsível e prazo combinado, que esta Parte ensina a preparar."))
+    H.append(p("O que entra, e funciona pelas regras deste manual, é agir sobre o nosso lado em cinco frentes: tirar os nossos entraves (G113 onde trava, G111 o que trava, G128 e G129 o que está agarrado); preparar a apresentação e a expectativa (G131, G132); emissores de prosperidade com testemunho da própria empresa ou da própria proposta, nunca de quem está do outro lado: Desembaraçador em sentido anti-horário para “abrir caminhos”, Prosperador para a empresa, Turbilhão com Júpiter para contratos e vendas, com o tempo, a renovação a cada 14 dias e as regras da " + go("fin-emissores", "Parte X") + "; proteção e discrição para si (G67: Escudo, proteção pessoal, não anunciar o que ainda não fechou, foco); e o espaço da reunião harmonizado pela " + go("esp", "Parte IX") + ". Quando se pergunta “há algum entrave?”, a resposta vem do G113, do G119 e do G128, e a ação do G129; não existe gráfico que convença por nós."))
+    H.append(h3("Dívida e prazo: negociar, não desaparecer"))
+    H.append(steps([
+        pergunta("Qual a carga desta dívida em [nome] hoje, de 0 a 100?") + " no G2; acima de 30, a ansiedade decide por ela, e a proteção pessoal (G67) entra antes da conversa, para a pessoa, não para sumir.",
+        "O que está agarrado (G128: dívida ou caixa) e o ganho em adiar (G62): quase sempre, evitar a conversa com o credor.",
+        "A expectativa do credor no G132: o que ele precisa ouvir para aceitar prazo (previsibilidade, parte agora, garantia, data) e o que o faria recusar.",
+        "Opções de proposta numeradas no G109, todas viáveis pelo contador: valor de entrada, número de parcelas, data; " + pergunta("Qual proposta o credor tende a aceitar?") + " e percentual de cada uma no G2.",
+        "Abordagem (G131: números e garantias costumam pesar mais), momento no G85, data no G87; G84 para a proposta escolhida, com duas formulações.",
+        "Registro; carga remedida em 7 dias depois da conversa. A dívida não some; a carga sim.",
+    ]))
+    H.append(h2("estr-lider", "Roda do líder"))
+    H.append(p("Doze competências de quem conduz um negócio (visão, decidir, delegar, comunicar, vender e negociar, finanças, pessoas, planejar, foco, resiliência, aprender, executar), de 1 a 10, com a regra das três leituras da " + go("coach-rodas", "Parte XII") + ": a nota da pessoa, a medida, a diferença. A competência que, se subir, puxa as outras é o foco do desenvolvimento; a que a empresa cobra e o líder não tem costuma ser função a contratar ou sócio complementar, não meta pessoal."))
+    H.append(chart("G137"))
+    H.append(h2("estr-casos", "Casos resolvidos"))
+    B = []
+    B.append(h3("Caso 11 · Quatro projetos e uma agenda"))
+    B.append(p("Uma arquiteta empreendedora tem quatro frentes: consultoria por hora (1), um curso gravado (2), uma incorporação pequena com um sócio (3) e um produto de decoração (4). Primeiro real no G85: 1 agora; 2 em meses; 3 em anos; 4 em semanas. Prosperidade duradoura no G124: 1 nota 4; 2 nota 8; 3 nota 9; 4 nota 3. Quadrantes no G130: consultoria, fôlego; curso, semente; incorporação, semente; produto, dreno (rápido mas pouco, e a nota de 3 veio com carga de cansaço). Tempo no G2: 45, 25, 25, 15; soma 110. Devolutiva: o produto sai da lista com revisão em seis meses; a consultoria encolhe para 40 % e paga as duas sementes; o curso ganha manhãs fixas de terça e quinta; a incorporação, uma tarde por semana e a Parte IX. O que puxa os outros: o curso, porque alimenta a consultoria e a venda do produto. Revisão em 90 dias."))
+    B.append(h3("Caso 12 · O investidor que some depois de assinar"))
+    B.append(p("Uma empresa de tecnologia captou com um investidor que, seis meses depois, não responde às mensagens. G132 lido antes da captação tinha apontado “controle e participação” e “reconhecimento”; o contrato deu participação e nada de reconhecimento. Mapa de atores (G136): o investidor em “envolver de perto”, com poder 8 e interesse que caiu de 9 para 4. “O que o faria sair?”: “ser surpreendido”. Devolutiva: relatório mensal de uma página com o que ele precisa ouvir, menção pública ao investidor no lançamento seguinte, cadência de contato no G87 (quinzenal por três meses), e a pergunta de saída feita na primeira reunião. Sintonia remedida no trimestre: de 38 para 66."))
+    B.append(h3("Caso 13 · Dívida com fornecedor e o prazo que faltava"))
+    B.append(p("Um restaurante deve a um fornecedor e evita o telefone há dois meses. Carga no G2: 70. G62: evitar a conversa. G132 para o credor: “previsibilidade” e “parte agora”. Propostas numeradas com o contador: (1) 20 % agora e seis parcelas, (2) 10 % agora e dez parcelas, (3) só parcelas. G109: a 1, percentual 76. G131: números e garantias. Momento no G85: agora; data no G87: a quinta. G84 para a proposta 1: sim, grau 72. Proteção pessoal no G67 antes da ligação. O fornecedor aceitou com uma mudança de data. Carga em 7 dias: 20. Nenhum gráfico foi montado sobre o fornecedor."))
+    H.append(cols3("".join(B)))
+    H.append(end())
+    return H
+
 def part_registro():
     H = []
-    H.append(h1("reg", "Registro, revisão e calibração", "Parte XII · Registro", brk=False))
+    H.append(h1("reg", "Registro, revisão e calibração", "Parte XIV · Registro", brk=False))
     H.append(p("Nada neste manual vale sem o registro. A ficha de decisão empresarial, o diagnóstico 360, a matriz opções × critérios e o diário de decisões estão no arquivo de fichas à parte, para imprimir quantas vezes for preciso. O manual é fixo; a sessão fica no papel."))
     H.append(h2("reg-diario", "O diário de decisões"))
     H.append(ul([
@@ -498,7 +590,7 @@ def part_registro():
 
 def build():
     H = []
-    for f in (part_decisao, part_negocio, part_socios, part_propostas, part_projetos, part_pessoas, part_bloqueios, part_espacos, part_financas, part_pessoa, part_coaching, part_registro):
+    for f in (part_decisao, part_negocio, part_socios, part_propostas, part_projetos, part_pessoas, part_bloqueios, part_espacos, part_financas, part_pessoa, part_coaching, part_estrategia, part_registro):
         H.extend(f())
     H.append(content_rotas.teorias_cap())
     return "".join(H)

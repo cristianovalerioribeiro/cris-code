@@ -24,7 +24,8 @@ ANCHOR_LABELS = {
     "fin": "Parte X · Finanças", "fin-bloqueio": "Bloqueio de prosperidade", "fin-emissores": "Emissores",
     "pes": "Parte XI · A pessoa", "pes-roda": "Roda da Vida", "pes-remissao": "Quando encaminhar a pessoa",
     "reg": "Parte XII · Registro", "reg-diario": "Diário de decisões", "reg-revisao": "Revisão", "reg-fichas": "Fichas",
-    "coach": "Parte XIII · Coaching", "coach-rodas": "Rodas de 1 a 10", "coach-foco": "Foco e prioridade", "coach-metas": "Valores e metas", "coach-sabotadores": "Sabotadores", "coach-desbloqueio": "Protocolo de desbloqueio", "coach-casos": "Casos de coaching",
+    "estr": "Parte XIII · Estratégia", "estr-seletor": "Seletor de ferramentas", "estr-carteira": "Carteira de projetos e tempo", "estr-swot": "SWOT", "estr-funil": "Funil de vendas", "estr-abordagem": "Abordagem e expectativas", "estr-atores": "Mapa de atores e investidores", "estr-caminhos": "Abrir caminhos: o que se faz", "estr-lider": "Roda do líder",
+    "coach": "Parte XII · Coaching", "coach-rodas": "Rodas de 1 a 10", "coach-foco": "Foco e prioridade", "coach-metas": "Valores e metas", "coach-sabotadores": "Sabotadores", "coach-desbloqueio": "Protocolo de desbloqueio", "coach-casos": "Casos de coaching",
     "mapa": "Mapa do método", "glossario": "Glossário", "como-usar": "Como usar",
 }
 PAGE_W = 275.5  # largura útil da página A4 deitada, em mm (297 − 10 − 11,5)
@@ -55,8 +56,8 @@ def page_group(part):
 
 SHORT = {"p1": "Fundamentos para quem decide", "dec": "A decisão do dono", "neg": "A empresa como um todo", "soc": "Sócios, parceiros e investidores",
          "prop": "Propostas, contratos, clientes", "proj": "Projetos, produtos e preços", "eq": "Pessoas, equipe e liderança", "blo": "Interferências e bloqueios",
-         "esp": "Espaço, ponto, terreno e empreendimento", "fin": "Finanças e prosperidade", "pes": "O empreendedor como pessoa", "reg": "Registro e calibração", "coach": "Coaching: rodas, foco, metas e desbloqueio"}
-TAB_LABEL = {"g0": "I–III", "g4": "IV–VIII", "g5": "IX–XIII"}
+         "esp": "Espaço, ponto, terreno e empreendimento", "fin": "Finanças e prosperidade", "pes": "O empreendedor como pessoa", "reg": "Registro e calibração", "coach": "Coaching: rodas, foco, metas e desbloqueio", "estr": "Estratégia, carteira e relações-chave"}
+TAB_LABEL = {"g0": "I–III", "g4": "IV–VIII", "g5": "IX–XIV"}
 FALLBACK = {}
 TEXTFIRST = set()  # blocos cujo texto vai antes do desenho (o desenho fica na página seguinte)
 TAIL_REAL = {}  # id → cauda real na página anterior (sem descontar o título colado), para decidir o texto-antes
