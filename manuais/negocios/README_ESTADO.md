@@ -6,7 +6,7 @@ Leia este arquivo antes de qualquer alteração. Ele complementa `../radiestesia
 Manual completo e independente para quem responde por um negócio: dono, sócio, empreendedor, profissional liberal, incorporador. Treze Partes (fundamentos; decisão; a empresa como um todo; sócios, parceiros e investidores; propostas e contratos; projetos, produtos e preços; pessoas e equipe; interferências e bloqueios; espaço, ponto, terreno e empreendimento imobiliário; finanças e prosperidade; o empreendedor como pessoa; registro e calibração; coaching empresarial com pêndulo: rodas de 1 a 10, foco e prioridade, valores e metas, sabotadores e protocolo de desbloqueio), mapa do método com fluxo mestre empresarial e treze cartões de bifurcação (D1 a D13), glossário. Base de conteúdo: nota de pesquisa `../research_notes/Protocolos de radiestesia/14_radiestesia_negocios_mapeamento.md` (bibliografia, evidência, ética) e as Partes XII a XIV do manual terapêutico.
 
 ## Entregáveis
-- `Manual_de_Radiestesia_para_Negocios.pdf` — A4 deitado, frente e verso, PAGINAS páginas, 54 gráficos.
+- `Manual_de_Radiestesia_para_Negocios.pdf` — A4 deitado, frente e verso, 56 páginas, 54 gráficos.
 - `Fichas_de_Decisao_Empresarial.pdf` — 12 páginas: matriz opções × critérios, diagnóstico 360, sociedade, proposta, laudo complementar de terreno ou ponto, Roda da Vida, rodas de 1 a 10, plano de foco, plano de meta, desbloqueio, diário de decisões (`build_fichas.py`, `content_fichas.py`).
 - `Graficos_para_Impressao_Negocios.pdf` — só os gráficos, dois por folha, listas em paisagem (`build_print.py`).
 
@@ -35,4 +35,4 @@ Manual completo e independente para quem responde por um negócio: dono, sócio,
 - Sem posologia, sem previsão, sem bolsa. Os emissores de prosperidade são os de referência do mercado luso-brasileiro, não dos Servranx.
 
 ## Edição 1 (nov. 2026)
-- Primeira montagem com doze Partes: 47 páginas; com a Parte XIII de coaching: PAGINAS páginas, 0 órfãos e restos, sem link vazio nem página vazia; caudas acima de 45 mm só no sumário, no fim do mapa (abertura da Parte I) e no fim do livro.
+- Primeira montagem com doze Partes: 47 páginas; com a Parte XIII de coaching: 56 páginas, 0 órfãos e restos, sem link vazio nem página vazia; caudas acima de 45 mm só no sumário, no fim do mapa (abertura da Parte I) e no fim do livro.
