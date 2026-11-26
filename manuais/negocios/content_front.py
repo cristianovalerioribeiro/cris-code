@@ -67,7 +67,7 @@ def build():
     H.append(end())
 
     # ---------------- PARTE I ----------------
-    H.append(h1("p1", "Fundamentos para quem decide", "Parte I · Fundamentos"))
+    H.append(h1("p1", "Fundamentos para quem decide", "Parte I · Fundamentos", brk=False))
     H.append(p("Esta Parte é lida uma vez e consultada sempre. Traz o material e a convenção de respostas, a abertura de toda sessão, o testemunho da empresa e do lugar, a ética que protege o operador e o cliente, os dez controles de higiene de decisão e a leitura de cada tipo de gráfico. Nada do que vem depois funciona sem ela."))
     H.append(h2("p1-material", "Material e convenção de respostas"))
     H.append(p("Pêndulo (qualquer material; o mesmo sempre), os gráficos impressos à parte, bússola para orientar os gráficos ao norte quando o manual pedir, lápis, papel branco novo para testemunhos, caderno ou as fichas do arquivo à parte. Neste manual não se escreve: ele é a caixa de ferramentas; a sessão fica no caderno. A convenção de respostas (G1) é programada no início de cada sessão e conferida com três perguntas de resposta conhecida; se acertar menos de duas, não se decide nada importante naquele dia."))
@@ -129,7 +129,7 @@ def build():
     H.append(table(["Tipo", "Como ler", "Exemplos"], [
         ["Leque (semicírculo com setores)", "pêndulo no ponto azul do vértice, testemunho no retângulo; oscilação neutra; a pergunta; a oscilação se alinha a um setor. Confirmar com “é o setor N?”. Pedir “há um segundo?” quando o manual mandar", "G84, G92, G106, G107, G108, G111 a G117, G119, G120"],
         ["Escala (régua ou semicírculo numerado)", "começar no ponto de partida (50, 6.500 ou 0) e deslizar até a oscilação virar giro; repetir no sentido oposto; aceitar se as duas leituras ficarem a até 5 pontos (250 no Bovis)", "G2, G3, G4, G118"],
-        ["Lista pendulável", "bissecção por sim ou não: coluna, metade das linhas, linha, item. Nunca varrer item a item", "G9, G59, G66, G71, G88, G94, G103"],
+        ["Lista pendulável", "bissecção por sim ou não: coluna, metade das linhas, linha, item. Nunca varrer item a item", "G59, G66, G71, G88, G94, G126"],
         ["Relógio (anéis)", "um anel por vez, lido como escala; primeiro o mês, depois o dia; semana e hora só se fizerem diferença", "G87"],
         ["Réguas por cômodo", "alvo para o giro (horário ou anti-horário) e régua para o percentual, uma linha por cômodo", "G69"],
         ["Leque em branco", "opções escritas e numeradas no caderno; o leque indica o número; percentual de cada opção no G2 antes de aceitar", "G109 (oito), G110 (doze)"],

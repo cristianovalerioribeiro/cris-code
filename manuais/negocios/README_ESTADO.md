@@ -7,7 +7,7 @@ Manual completo e independente para quem responde por um negócio: dono, sócio,
 
 ## Entregáveis
 - `Manual_de_Radiestesia_para_Negocios.pdf` — A4 deitado, frente e verso, PAGINAS páginas, 60 gráficos.
-- `Fichas_de_Decisao_Empresarial.pdf` — FICHAS páginas: matriz opções × critérios, diagnóstico 360, sociedade, proposta, laudo complementar de terreno ou ponto, Roda da Vida, rodas de 1 a 10, plano de foco, plano de meta, desbloqueio, carteira de projetos e tempo, antes de negociar, diário de decisões (`build_fichas.py`, `content_fichas.py`).
+- `Fichas_de_Decisao_Empresarial.pdf` — 14 páginas: matriz opções × critérios, diagnóstico 360, sociedade, proposta, laudo complementar de terreno ou ponto, Roda da Vida, rodas de 1 a 10, plano de foco, plano de meta, desbloqueio, carteira de projetos e tempo, antes de negociar, diário de decisões (`build_fichas.py`, `content_fichas.py`).
 - `Graficos_para_Impressao_Negocios.pdf` — só os gráficos, dois por folha, listas em paisagem (`build_print.py`).
 
 ## Gráficos: numeração compartilhada
