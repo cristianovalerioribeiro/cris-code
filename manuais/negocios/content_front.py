@@ -8,7 +8,7 @@ def build():
     H.append('<section class="cover"><img class="cover-bg" src="figs/capa_land.svg" alt=""/>'
              '<div class="cover-text"><div class="cover-kicker">Apoio à decisão para quem responde por um negócio</div>'
              '<h1 class="cover-title">Manual de<br/>Radiestesia<br/>para Negócios</h1>'
-             '<div class="cover-sub">Decisão do dono, a empresa como um todo, sócios e parceiros, propostas e contratos, projetos e preços, equipe, interferências e bloqueios, ponto comercial, terrenos e empreendimentos imobiliários, finanças, o empreendedor como pessoa, registro e calibração</div>'
+             '<div class="cover-sub">Decisão do dono, a empresa como um todo, sócios e parceiros, propostas e contratos, projetos e preços, equipe, interferências e bloqueios, ponto comercial, terrenos e empreendimentos imobiliários, finanças, o empreendedor como pessoa, registro e calibração, coaching empresarial com rodas de 1 a 10, foco, metas e desbloqueio</div>'
              '<div class="cover-meta">Edição 1 · novembro de 2026 · ' + str(NG) + ' gráficos prontos para pendular, ' + str(NNEW) + ' deles próprios deste manual; os demais compartilhados com o Manual de Radiestesia Terapêutica, com a mesma numeração</div></div>'
              '<div class="cover-foot"><span>Apoio à decisão e diagnóstico qualitativo. Não substitui contador, advogado, engenheiro, consultor ou RH, não avalia pessoas e não promete resultado. “O pêndulo indica tendência; a decisão é sua.”</span></div></section>')
 
@@ -20,7 +20,7 @@ def build():
     H.append(ul([
         "<b>Trilha no início de cada Parte</b>: os gráficos daquela Parte na ordem de uso, cada um com a página.",
         "<b>Rota em cada gráfico</b>: a linha “Etapa · Vem de” diz em que ponto a leitura entra e de onde se chega a ela; a coluna “O que fazer · vá para” traz, resultado por resultado, o próximo gráfico com a página (▶).",
-        "<b>Mapa do método</b> (" + go("mapa", "a seguir") + "): o fluxo mestre de uma decisão empresarial e os dez cartões de bifurcação (“se der isto, vá para”). O " + go("glossario", "Glossário") + " define os termos.",
+        "<b>Mapa do método</b> (" + go("mapa", "a seguir") + "): o fluxo mestre de uma decisão empresarial e os treze cartões de bifurcação (“se der isto, vá para”). O " + go("glossario", "Glossário") + " define os termos.",
     ]))
     H.append(h3("Símbolos"))
     H.append(table(["Símbolo", "Significa"], [
@@ -45,7 +45,7 @@ def build():
 
     # ---------------- MAPA ----------------
     H.append(h1("mapa", "Mapa do método", brk=False))
-    H.append(p("O fluxo abaixo é o esqueleto de toda decisão empresarial neste manual: oito portas, três bifurcações (terceiro sem pedido?, algo trava?, tendência favorável?) e um retorno. Cada Parte do manual é o aprofundamento de uma porta: a Parte III diagnostica a empresa, a IV a sociedade, a V a proposta, a VI o projeto, a VIII os bloqueios, a IX o lugar; a Parte II é a decisão em si, e a XII o registro. Os dez cartões abaixo do fluxo são os pontos em que o resultado muda o caminho."))
+    H.append(p("O fluxo abaixo é o esqueleto de toda decisão empresarial neste manual: oito portas, três bifurcações (terceiro sem pedido?, algo trava?, tendência favorável?) e um retorno. Cada Parte do manual é o aprofundamento de uma porta: a Parte III diagnostica a empresa, a IV a sociedade, a V a proposta, a VI o projeto, a VIII os bloqueios, a IX o lugar; a Parte II é a decisão em si, a XIII o coaching e o desbloqueio, e a XII o registro. A Parte XIII é a camada de coaching: rodas, foco, metas e o protocolo de desbloqueio. Os treze cartões abaixo do fluxo são os pontos em que o resultado muda o caminho."))
     import content_rotas
     H.append(content_rotas.mapa_topo([
         ["Abertura", go("p1-abertura", "Permissão, autoauditoria, pergunta escrita"), "G1, G2"],
@@ -59,6 +59,7 @@ def build():
         ["Espaço, ponto, terreno e empreendimento", go("esp", "Parte IX"), "G66, G69, G70, G71, G82, G83, G116, G117, G120"],
         ["Finanças e prosperidade", go("fin", "Parte X"), "G94"],
         ["O empreendedor como pessoa", go("pes", "Parte XI"), "G24"],
+        ["Coaching empresarial: rodas, foco, metas, desbloqueio", go("coach", "Parte XIII"), "G121 a G129"],
         ["Registro, revisão e calibração", go("reg", "Parte XII"), "fichas"],
     ]))
     H.append(content_rotas.mapa_rotas())

@@ -375,6 +375,96 @@ def part_pessoa():
     H.append(end())
     return H
 
+def part_coaching():
+    H = []
+    H.append(h1("coach", "Coaching empresarial com pêndulo: rodas, foco, metas e desbloqueio", "Parte XIII · Coaching", brk=False))
+    H.append(p("O coach empresarial trabalha com rodas de 0 a 10, matriz de prioridades, valores, metas bem formuladas, sabotadores e planos de ação. Esta Parte põe o pêndulo dentro dessas ferramentas: a pessoa dá a nota dela, o pêndulo mede o campo, e a diferença entre as duas é o que se conversa. Três leituras por item, sempre nesta ordem: a nota da pessoa, a medida, a diferença. O pêndulo não substitui a pergunta do coach; obriga a pessoa a escrever antes e devolve o que ela sente e ainda não disse. Fecha com o protocolo de desbloqueio para o que está agarrado: nomear, localizar o nó, medir a carga, escolher a ação, dar o passo pequeno, datar, remedir."))
+    H.append(box("variacao", "A regra das três leituras", "<b>Nota da pessoa</b>: ela preenche a roda ou dá a nota antes, sem o operador olhar. <b>Medida</b>: o pêndulo lê a mesma área na roda pendulável ou na régua. <b>Diferença</b>: três pontos ou mais entre as duas é o tema da sessão; o pêndulo não decreta quem está certo. Nas rodas, a área que “se subir, puxa as outras” é o foco do trimestre; no máximo três itens ficam em foco ao mesmo tempo."))
+    H.append(h2("coach-rodas", "Rodas de 1 a 10: a vida de quem decide, o negócio e o projeto"))
+    H.append(steps([
+        "A pessoa preenche a Roda da Vida na ficha (0 a 10 por área) e, se for o caso, a roda do negócio ou do projeto, sem o operador olhar.",
+        "Testemunho e permissão; autoauditoria no G2. Pêndulo no centro da roda pendulável: uma área por vez, " + pergunta("Qual a nota da área [n] de [nome] hoje, de 1 a 10?") + ", deslizando do centro para a borda; o anel em que a oscilação vira giro é a nota. Quem preferir usa a régua G124.",
+        "Comparar as duas rodas: as diferenças de 3 ou mais são o tema. " + pergunta("Qual área, se subir, puxa as outras?") + " define o foco do trimestre.",
+        "Roda do negócio (G122) com o testemunho da empresa; roda do projeto com o projeto numerado: " + pergunta("Para o projeto [n], qual área está mais fraca?") + " vira critério no G107 e meta no G126.",
+        "Cruzar com o G92: a roda diz desempenho (nota), o G92 diz peso energético. Área com nota alta e peso alto é a que mais cansa; área com nota baixa e peso baixo é a que ninguém está olhando.",
+        "Devolutiva: uma área de foco, uma meta pequena por área crítica, revisão da roda a cada trimestre; a série de rodas é o histórico do coaching.",
+    ]))
+    H.append(chart("G121"))
+    H.append(chart("G122"))
+    H.append(chart("G124"))
+    H.append(h2("coach-foco", "Foco e prioridade: em que pôr energia"))
+    H.append(p("“No que devo focar mais?” é a pergunta de toda sessão de coaching, e o pêndulo responde em dois passos: a nota de energia e impacto de cada item (G124) e o momento (G85), cruzados na matriz de foco (G123). Entram na lista atividades, projetos, áreas da roda, clientes, qualquer coisa escrita e numerada. Saem quatro listas: foco agora (no máximo três), planejar e datar, delegar ou simplificar, soltar. Soltar é o quadrante que mais libera energia e o que a pessoa mais resiste a preencher."))
+    H.append(steps([
+        "Itens escritos e numerados no caderno (até oito no G109, até doze no G110).",
+        "Para cada item: " + pergunta("Qual a energia e o impacto de [item] para [nome ou empresa], de 0 a 10?") + " no G124, e " + pergunta("É agora?") + " no G85.",
+        "Quadrante no G123, com o pêndulo no centro confirmando: " + pergunta("Em que quadrante cai [item] hoje?") + ".",
+        pergunta("Qual item, se feito agora, puxa os outros?") + ": é o primeiro da semana. " + pergunta("O que sair da lista libera mais energia?") + ": é o que se solta com data de revisão.",
+        "Mais de três itens em “foco agora”: ordem pelo G109 (" + pergunta("Qual vem primeiro?") + "). Delegar é função a contratar ou tarefa a encolher, nunca pessoa por pêndulo.",
+        "Registro na ficha de foco; revisão em 30 dias: o que de fato foi feito e o que voltou para a lista.",
+    ]))
+    H.append(chart("G123"))
+    H.append(h2("coach-metas", "Valores e metas: do desejo à decisão"))
+    H.append(p("Uma meta contra o valor dominante da pessoa não se sustenta, por mais favorável que meça no G84. Por isso os valores (G125) vêm antes da meta, e a meta passa por duas listas (G126): o que falta na formulação e o que a segura depois de escrita. O roteiro segue a sequência clássica do coaching, meta, realidade, opções e vontade, com um gráfico em cada passo."))
+    H.append(steps([
+        "Valores: " + pergunta("Qual valor mais guia [nome] hoje?") + " no G125, e o segundo e o terceiro. Escrever os três no caderno; toda meta e sociedade é checada contra eles.",
+        "Meta escrita em uma frase, no positivo, com prazo. " + pergunta("O que falta nesta meta?") + " na primeira lista do G126, por bissecção; reescrever até a lista não acusar nada.",
+        "Realidade: a nota de hoje na roda (G121 ou G122) e a taxa de base (quantas metas desse tipo deram certo antes).",
+        "Opções: até quatro caminhos no G86, ou oito no G109; percentual de cada um no G2; pré-mortem do mais forte (" + go("proj-premortem", "Parte VI") + ").",
+        "Vontade: " + pergunta("Qual o comprometimento de [nome] com esta meta, de 0 a 10?") + " no G124. Abaixo de 7, " + pergunta("O que segura esta meta?") + " na segunda lista do G126: medo, ganho, crença, meta alheia, recurso, habilidade, apoio.",
+        "Primeiro passo pequeno, data no G85 e G87, quem precisa saber. Revisão em 30 e 90 dias; a meta que não andou volta ao G126 e ao protocolo de desbloqueio.",
+    ]))
+    H.append(chart("G125"))
+    H.append(chart("G126"))
+    H.append(h2("coach-sabotadores", "Sabotadores e padrões"))
+    H.append(p("O coaching de inteligência positiva nomeia dez padrões automáticos que assumem o comando sob pressão: o Juiz, presente em todos, e nove cúmplices (controlador, perfeccionista, agradador, hiper-realizador, vítima, evitador, inquieto, hiper-vigilante, hiper-racional). Este manual os usa como leque, só na própria pessoa e com consentimento, para dar nome ao padrão na hora em que a trava aparece; o tratamento é a conversa, a crença (G10) e o ganho (G62). Nunca se rotula um sócio, um funcionário ou um cliente com este gráfico."))
+    H.append(chart("G127"))
+    H.append(h2("coach-desbloqueio", "Protocolo de desbloqueio: o que está agarrado"))
+    H.append(p("Projeto parado, venda que não fecha, cobrança que não sai, decisão adiada há meses, conflito que se repete, vaga aberta, lançamento que não acontece, dívida, licença presa, hábito que a pessoa faz e desfaz. O protocolo tem oito passos e não pula nenhum: o nome do que está agarrado e a carga; onde está o nó; o ganho em manter; a crença, a emoção ou o sabotador por trás; a ação que desagarra; o passo pequeno; a data; a remedida. A tradição radiestésica entra em dois pontos, a limpeza e a proteção quando o nó é do espaço ou energético, e a medida da carga antes e depois; o resto é conversa e ação."))
+    H.append(steps([
+        "<b>Nomear.</b> " + pergunta("O que está agarrado em [empresa ou nome] hoje?") + " no G128; " + pergunta("Qual a carga disso, de 0 a 100?") + " no G2. Acima de 30, nada se decide antes de desagarrar. " + pergunta("Há uma segunda coisa agarrada?") + ".",
+        "<b>Localizar o nó.</b> " + pergunta("Onde está o nó?") + " no G119 (em mim, numa relação, na equipe, no espaço, na memória, num contrato energético, no coletivo, em nenhum lugar: nos números). Negociação travada: G113; decisão adiada: G111.",
+        "<b>O ganho em manter.</b> " + pergunta("Há um ganho em manter isto agarrado?") + " no G62. Quase sempre há, e quase sempre é evitar uma conversa.",
+        "<b>O que está por trás.</b> Crença no G10, emoção no G9, sabotador no G127, voto ou lealdade no G59. Nomear, não tratar: um passo pequeno nesta semana; se voltar em três sessões, atendimento pessoal.",
+        "<b>A ação que desagarra.</b> " + pergunta("Qual ação desagarra [item] primeiro?") + " no G129: conversar, decidir, delegar, soltar, pedir ajuda, reduzir, datar, mudar o lugar, limpar e proteger, aprender, descansar. Se for limpar e proteger: G71 e G67 pela Parte IX.",
+        "<b>O passo pequeno.</b> " + pergunta("Qual o primeiro passo pequeno dessa ação?") + ": algo que cabe em uma hora e nesta semana. A pessoa diz; o pêndulo confirma; escreve-se no caderno.",
+        "<b>A data.</b> G85 para o momento, G87 se o dia importar; quem precisa saber.",
+        "<b>Remedir.</b> Carga no G2 em 7 dias e em 30; abaixo de 10, desagarrado; se não caiu, a ação foi a errada: voltar ao G129 com a primeira ação riscada.",
+    ]))
+    H.append(chart("G128"))
+    H.append(chart("G129"))
+    H.append(h3("Formas de agir, por tipo de trava"))
+    H.append(table(["O que está agarrado", "Onde costuma estar o nó", "Ações que mais desagarram", "O que fica com outros"], [
+        ["Projeto parado, lançamento", "capacidade, escopo, momento", "reduzir o escopo; delegar função; datar e comunicar; decidir", "gestão de projeto"],
+        ["Venda que não fecha, cliente, fornecedor", "outra parte, abordagem, informação", "conversar (contato, momento, comportamento no G113); pedir referência; soltar", "comercial"],
+        ["Cobrança, dívida, caixa", "medo, merecimento, ganho", "conversar (cobrar); decidir; pedir ajuda ao contador; reduzir", "contador, advogado"],
+        ["Decisão adiada", "falta de dado, medo, valores, lealdade", "decidir (G84); conversar; datar", "quem tem o dado"],
+        ["Conflito com sócio ou equipe", "comunicação, papéis, limites", "conversar; pedir mediação; limites (G67)", "mediador, acordo de sócios"],
+        ["Contratação ou vaga", "função mal definida, momento", "delegar ou contratar função; reduzir; datar", "RH, entrevista, referências"],
+        ["Processo, licença, burocracia", "terceiro, prazo", "datar e comunicar; pedir ajuda; descansar e voltar", "despachante, advogado"],
+        ["Hábito ou rotina", "sabotador, ganho, energia", "descansar; aprender; passo pequeno; soltar", "coach, terapeuta"],
+        ["Espaço ou memória do local", "ambiente", "mudar o lugar; limpar e proteger", "Parte IX"],
+    ], cls="small"))
+    H.append(h2("coach-casos", "Casos resolvidos"))
+    B = []
+    B.append(h3("Caso 8 · A venda que não fecha há três meses"))
+    B.append(p("Uma consultoria tem uma proposta parada há três meses com um cliente grande. G128: “venda que não fecha”; carga no G2: 45. G119: “em mim”. G113: “ganho em não fechar”. G62: “evitar responsabilidade” (a entrega assusta). G127: “evitador” e “perfeccionista”. G129: “reduzir o escopo” primeiro, “conversar” segundo. Passo pequeno: reescrever a proposta em uma fase menor e ligar para o cliente na quinta (G87). Carga em 7 dias: 15; a venda fechou na fase pequena em três semanas. A devolutiva não falou em “energia da venda”: falou do medo da entrega, que a pessoa já sabia."))
+    B.append(h3("Caso 9 · O projeto que todo trimestre volta para a lista"))
+    B.append(p("O dono de uma indústria tem um projeto de novo produto que entra e sai do plano há dois anos. Roda do negócio (G122): inovação 3, processos 4, resultado 7. Matriz de foco para seis itens: o produto novo caiu em “planejar e datar” com energia 8; dois itens de rotina caíram em “soltar”. G128: “projeto parado”; carga 60. G119: “na equipe”; G91: “sobrecarga”. G126 para a meta do produto: faltava “primeiro passo definido” e segurava “falta recurso: equipe”. G129: “delegar ou contratar função”. Decisão da função (não da pessoa) no G107 adaptado e no G84: “sim”, grau 74; momento: em semanas. O projeto ganhou um responsável e uma data; os dois itens soltos liberaram as horas. Remedida em 30 dias: carga 20; roda: inovação 5."))
+    B.append(h3("Caso 10 · A sucessão que ninguém decide"))
+    B.append(p("Pai e filha numa empresa familiar: a passagem de comando está “agarrada” há anos. Quem pede é a filha. G128: “decisão adiada”; carga 70. G119: “contrato energético”; G59: “promessa a pai ou mãe” (não mudar o que o pai construiu). G62: “lealdade à família”. G125: valor dominante dela, “realização”; o que ela acha que a empresa pede, “segurança”. G111: “lealdade a alguém” e “medo do julgamento”. G129: “conversar: dizer o não dito”. Passo pequeno: uma conversa só sobre o que ela quer manter da obra do pai, antes de qualquer conversa sobre mudar. Data no G85: em dias. O pai só seria pendulado se pedisse; não pediu, e não precisou: a carga caiu a 25 em 30 dias depois de duas conversas, e a decisão de sucessão foi ao G84 com os dois na sala, pela Parte IV."))
+    H.append(cols3("".join(B)))
+    H.append(h3("Sessão de coaching com pêndulo, em 60 minutos"))
+    H.append(table(["Minutos", "Passo", "Gráficos"], [
+        ["0 a 5", "abertura: permissão, autoauditoria, a pergunta da sessão escrita", "G1, G2"],
+        ["5 a 15", "a roda que a pessoa trouxe preenchida; a medida; as diferenças", "G121 ou G122, G124"],
+        ["15 a 25", "foco: itens numerados, energia, momento, quadrantes", "G124, G85, G123"],
+        ["25 a 40", "a meta do foco: valores, o que falta, comprometimento; ou o desbloqueio do que está agarrado", "G125, G126, G128, G119, G62, G129"],
+        ["40 a 50", "decisão e data do primeiro passo", "G84, G85, G87"],
+        ["50 a 60", "devolutiva como tendência; registro na ficha; o que a pessoa leva escrito; data da próxima roda", "diário de decisões"],
+    ], cls="small"))
+    H.append(end())
+    return H
+
 def part_registro():
     H = []
     H.append(h1("reg", "Registro, revisão e calibração", "Parte XII · Registro", brk=False))
@@ -408,7 +498,7 @@ def part_registro():
 
 def build():
     H = []
-    for f in (part_decisao, part_negocio, part_socios, part_propostas, part_projetos, part_pessoas, part_bloqueios, part_espacos, part_financas, part_pessoa, part_registro):
+    for f in (part_decisao, part_negocio, part_socios, part_propostas, part_projetos, part_pessoas, part_bloqueios, part_espacos, part_financas, part_pessoa, part_coaching, part_registro):
         H.extend(f())
     H.append(content_rotas.teorias_cap())
     return "".join(H)

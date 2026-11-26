@@ -757,6 +757,88 @@ def compat_chart(w=190, h=96):
     out.append(pendulo_icon(w / 2, y + 27))
     return svg_wrap("".join(out), w, h)
 
+
+# ---------- Coaching: rodas de 0 a 10, matriz de foco, régua ----------
+RODA_VIDA = ["Saúde e\ncorpo", "Emocional", "Relações\nafetivas", "Família", "Trabalho e\nvocação", "Dinheiro", "Casa e\nambiente", "Espiritualidade\ne missão"]
+RODA_NEG = ["Propósito\ne visão", "Produto ou\nserviço", "Clientes e\nmercado", "Vendas", "Marketing e\ncomunicação", "Finanças", "Pessoas e\nequipe", "Processos e\noperação",
+            "Liderança e\ngestão", "Inovação", "Estrutura e\nespaço", "Resultado"]
+VALORES = ["Liberdade e\nautonomia", "Segurança e\nestabilidade", "Reconhecimento", "Família e\nvínculos", "Prosperidade", "Realização e\nconquista",
+           "Aprendizado e\ncrescimento", "Serviço e\ncontribuição", "Influência e\npoder", "Criatividade", "Saúde e\nbem-estar", "Fé e\nespiritualidade"]
+META_ITENS = ["Específica: diz exatamente o quê", "Mensurável: tem número ou evidência", "Alcançável com o que se tem", "Relevante: liga-se ao propósito", "Prazo escrito",
+              "Sob meu controle, não só de terceiros", "Alinhada aos meus valores", "Custo aceitável para as outras áreas", "Primeiro passo definido", "Motivo real nomeado: por que agora",
+              "Formulada no positivo", "Quem precisa apoiar está envolvido",
+              "Comprometimento abaixo de 7", "Medo do sucesso ou da exposição", "Ganho em não alcançar", "Crença de não merecer", "Meta de outra pessoa, não minha",
+              "Falta recurso: tempo, dinheiro, equipe", "Falta habilidade: aprender ou delegar", "Falta apoio de sócio ou família"]
+META_GRUPOS = [("O QUE FALTA NA META", 12, "#dcecfb"), ("O QUE SEGURA A META", 8, "#fde2e2")]
+SABOTADORES = ["Juiz\n(crítico)", "Controlador", "Perfeccionista", "Agradador", "Hiper-\nrealizador", "Vítima", "Evitador", "Inquieto", "Hiper-\nvigilante", "Hiper-\nracional", "Outro"]
+AGARRADO = ["Projeto\nparado", "Venda que\nnão fecha", "Cobrança ou\nrecebimento", "Decisão\nadiada", "Conflito com\nsócio ou equipe", "Contratação\nou vaga",
+            "Lançamento\nou abertura", "Dívida ou\ncaixa", "Processo, licença,\nburocracia", "Hábito ou\nrotina", "Cliente ou\nfornecedor", "Outro"]
+ACAO_DESBLOQ = ["Conversar:\ndizer o não dito", "Decidir\n(G84)", "Delegar ou\ncontratar função", "Soltar, cortar,\nencerrar", "Pedir ajuda\nou referência",
+                "Reduzir o\nescopo", "Datar e\ncomunicar", "Mudar o lugar\nou o espaço", "Limpar e\nproteger", "Aprender\nantes", "Descansar e\nvoltar", "Outra"]
+
+def _hlabel(x, y, text, size, anchor="middle", color=INK, weight="600"):
+    lines = text.split("\n"); n = len(lines)
+    out = [f'<text font-size="{size}" fill="{color}" font-weight="{weight}" text-anchor="{anchor}">']
+    for i, ln in enumerate(lines):
+        dy = y + (i - (n - 1) / 2) * (size * 1.15) + size * 0.35
+        out.append(f'<tspan x="{x:.2f}" y="{dy:.2f}">{esc(ln)}</tspan>')
+    out.append("</text>"); return "".join(out)
+
+def wheel(sectors, levels=10, R=62, r0=10, w=190, h=184, colors=None, title=None):
+    """Roda pendulável: setores em círculo completo, dez anéis de 1 a 10 (1 no centro, 10 na borda). O pêndulo parte do centro
+    e desliza pelo setor até a oscilação virar giro; o anel marca a nota."""
+    cx, cy = w / 2, 90
+    n = len(sectors); step = 360.0 / n; out = []
+    for i, s in enumerate(sectors):
+        a0 = 90 - i * step; a1 = a0 - step
+        fill = (colors or PASTEL)[i % 12]
+        for k in range(levels):
+            rr0 = r0 + (R - r0) * k / levels; rr1 = r0 + (R - r0) * (k + 1) / levels
+            op = 0.30 + 0.70 * (k + 1) / levels
+            out.append(f'<path d="{wedge(cx, cy, rr0, rr1, a0, a1)}" fill="{fill}" fill-opacity="{op:.2f}" stroke="{LINE}" stroke-width="0.18"/>')
+        out.append(f'<path d="{wedge(cx, cy, r0, R, a0, a1)}" fill="none" stroke="{LINE}" stroke-width="0.5"/>')
+        mid = (a0 + a1) / 2
+        tx, ty = polar(cx, cy, R + 4.5, mid)
+        c = math.cos(math.radians(mid))
+        anchor = "middle" if abs(c) < 0.25 else ("start" if c > 0 else "end")
+        if abs(c) < 0.25: ty += (-2.5 if math.sin(math.radians(mid)) > 0 else 2.5)
+        out.append(_hlabel(tx, ty, s, 3.3, anchor=anchor))
+        nx, ny = polar(cx, cy, R + 4.5 + (0 if abs(c) < 0.25 else 0), mid)
+    for k in range(1, levels + 1):
+        rr = r0 + (R - r0) * (k - 0.5) / levels
+        for ang in (90 - step / 2, 270 - step / 2):
+            x, y = polar(cx, cy, rr, ang)
+            out.append(f'<text x="{x:.2f}" y="{y + 1.0:.2f}" font-size="2.8" fill="{INK}" font-weight="700" text-anchor="middle">{k}</text>')
+    out.append(f'<circle cx="{cx}" cy="{cy}" r="{R}" fill="none" stroke="{LINE}" stroke-width="0.7"/>')
+    out.append(f'<circle cx="{cx}" cy="{cy}" r="{r0}" fill="white" stroke="{LINE}" stroke-width="0.5"/>')
+    out.append(pendulo_icon(cx, cy))
+    out.append(f'<text x="{cx}" y="{cy + R + 13:.1f}" font-size="3.0" fill="{QUIET}" text-anchor="middle">1 no centro, 10 na borda. Pêndulo no ponto azul; desliza pelo setor até a oscilação virar giro; o anel é a nota. Uma área por vez.</text>')
+    out.append(testemunho(w - 30, h - 12, w=40, h=13))
+    if title: out.append(f'<text x="8" y="8" font-size="3.4" fill="{ACCENT}" font-weight="700">{esc(title)}</text>')
+    return svg_wrap("".join(out), w, h)
+
+def focus_matrix(w=190, h=126):
+    """Matriz de foco: energia e impacto (alto, baixo) × momento (agora, depois) = foco, planejar e datar, delegar ou simplificar, soltar."""
+    x0, y0, W, H = 34, 12, 148, 90
+    q = [(x0, y0, "FOCO AGORA", "alto impacto, é agora:\na energia vai aqui; três itens no máximo", "#e3f4e1"),
+         (x0 + W / 2, y0, "PLANEJAR E DATAR", "alto impacto, ainda não:\nmomento no G85, data no G87", "#dcecfb"),
+         (x0, y0 + H / 2, "DELEGAR OU SIMPLIFICAR", "baixo impacto, é agora:\nfunção a contratar ou tarefa a encolher", "#fff6cc"),
+         (x0 + W / 2, y0 + H / 2, "SOLTAR", "baixo impacto, depois:\nsair da lista, com data de revisão", "#fde2e2")]
+    out = []
+    for x, y, t, sub, c in q:
+        out.append(f'<rect x="{x}" y="{y}" width="{W/2}" height="{H/2}" fill="{c}" stroke="{LINE}" stroke-width="0.4"/>')
+        out.append(f'<text x="{x + W/4:.1f}" y="{y + 12:.1f}" font-size="4.6" fill="{INK}" font-weight="800" text-anchor="middle">{esc(t)}</text>')
+        out.append(_hlabel(x + W / 4, y + 20, sub, 2.9, color=QUIET, weight="500"))
+    out.append(f'<text x="{x0 + W/4:.1f}" y="{y0 - 3}" font-size="3.4" fill="{ACCENT}" font-weight="700" text-anchor="middle">AGORA</text>')
+    out.append(f'<text x="{x0 + 3*W/4:.1f}" y="{y0 - 3}" font-size="3.4" fill="{ACCENT}" font-weight="700" text-anchor="middle">DEPOIS</text>')
+    out.append(f'<text x="{x0 + W/2:.1f}" y="{y0 + H + 6}" font-size="3.0" fill="{QUIET}" text-anchor="middle">momento (G85): é agora ou é depois?</text>')
+    out.append(f'<text font-size="3.4" fill="{ACCENT}" font-weight="700" text-anchor="middle" transform="translate({x0 - 4} {y0 + H/4:.1f}) rotate(-90)">ALTO</text>')
+    out.append(f'<text font-size="3.4" fill="{ACCENT}" font-weight="700" text-anchor="middle" transform="translate({x0 - 4} {y0 + 3*H/4:.1f}) rotate(-90)">BAIXO</text>')
+    out.append(f'<text font-size="3.0" fill="{QUIET}" text-anchor="middle" transform="translate({x0 - 12} {y0 + H/2:.1f}) rotate(-90)">energia e impacto (G124, nota 0 a 10)</text>')
+    out.append(pendulo_icon(x0 + W / 2, y0 + H / 2))
+    out.append(testemunho(x0 + W / 2, y0 + H + 16, w=40, h=12))
+    return svg_wrap("".join(out), w, h)
+
 def build():
     import json, shutil
     R = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "radiestesia", "charts")
@@ -778,6 +860,15 @@ def build():
     save("G118", "Compatibilidade para um objetivo (0 a 100)", compat_chart(), "escala")
     save("G119", "Interferência no negócio: onde está", fan(INTERF_NEG, colors=PASTEL[:8]), "leque", INTERF_NEG)
     save("G120", "Ponto comercial: critérios", fan(PONTO, colors=PASTEL[:12]), "leque", PONTO)
+    save("G121", "Roda da Vida pendulável (1 a 10)", wheel(RODA_VIDA, colors=PASTEL), "roda", RODA_VIDA)
+    save("G122", "Roda do negócio ou do projeto (1 a 10)", wheel(RODA_NEG, colors=PASTEL), "roda", RODA_NEG)
+    save("G123", "Matriz de foco: energia e impacto × momento", focus_matrix(), "matriz", ["Foco agora", "Planejar e datar", "Delegar ou simplificar", "Soltar"])
+    save("G124", "Régua de 0 a 10 (nota, energia, comprometimento)", ruler(0, 10, 1, 0.5, marks=[(3, "até 3: fraco", "#c62828"), (7, "7 ou mais: forte", "#2e7d32")], zones=[(0, 3, "#fbe3e3"), (3, 7, "#fff6cc"), (7, 10, "#e3f4e1")], label="Pêndulo no 0 deslizando até a parada; duas varreduras a até 0,5. Nota de roda, energia de um item, comprometimento com uma meta."), "escala")
+    save("G125", "Valores que guiam", fan(VALORES, colors=PASTEL[:12]), "leque", VALORES)
+    save("G126", "Meta: o que falta e o que segura (lista pendulável)", list_chart(META_ITENS, groups=META_GRUPOS, cols=2), "lista", META_ITENS)
+    save("G127", "Sabotador ativo", fan(SABOTADORES, colors=PASTEL[:11]), "leque", SABOTADORES)
+    save("G128", "O que está agarrado", fan(AGARRADO, colors=PASTEL[:12]), "leque", AGARRADO)
+    save("G129", "Ação de desbloqueio", fan(ACAO_DESBLOQ, colors=PASTEL[:12]), "leque", ACAO_DESBLOQ)
     with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=1)
     print(f"{len(manifest)} gráficos em {OUT} ({len(REUSE)} reaproveitados, {len(manifest)-len(REUSE)} novos)")

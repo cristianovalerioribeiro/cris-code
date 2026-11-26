@@ -693,5 +693,176 @@
    "Outro"
   ],
   "note": ""
+ },
+ {
+  "id": "G121",
+  "title": "Roda da Vida pendulável (1 a 10)",
+  "file": "G121.svg",
+  "kind": "roda",
+  "items": [
+   "Saúde e corpo",
+   "Emocional",
+   "Relações afetivas",
+   "Família",
+   "Trabalho e vocação",
+   "Dinheiro",
+   "Casa e ambiente",
+   "Espiritualidade e missão"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G122",
+  "title": "Roda do negócio ou do projeto (1 a 10)",
+  "file": "G122.svg",
+  "kind": "roda",
+  "items": [
+   "Propósito e visão",
+   "Produto ou serviço",
+   "Clientes e mercado",
+   "Vendas",
+   "Marketing e comunicação",
+   "Finanças",
+   "Pessoas e equipe",
+   "Processos e operação",
+   "Liderança e gestão",
+   "Inovação",
+   "Estrutura e espaço",
+   "Resultado"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G123",
+  "title": "Matriz de foco: energia e impacto × momento",
+  "file": "G123.svg",
+  "kind": "matriz",
+  "items": [
+   "Foco agora",
+   "Planejar e datar",
+   "Delegar ou simplificar",
+   "Soltar"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G124",
+  "title": "Régua de 0 a 10 (nota, energia, comprometimento)",
+  "file": "G124.svg",
+  "kind": "escala",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G125",
+  "title": "Valores que guiam",
+  "file": "G125.svg",
+  "kind": "leque",
+  "items": [
+   "Liberdade e autonomia",
+   "Segurança e estabilidade",
+   "Reconhecimento",
+   "Família e vínculos",
+   "Prosperidade",
+   "Realização e conquista",
+   "Aprendizado e crescimento",
+   "Serviço e contribuição",
+   "Influência e poder",
+   "Criatividade",
+   "Saúde e bem-estar",
+   "Fé e espiritualidade"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G126",
+  "title": "Meta: o que falta e o que segura (lista pendulável)",
+  "file": "G126.svg",
+  "kind": "lista",
+  "items": [
+   "Específica: diz exatamente o quê",
+   "Mensurável: tem número ou evidência",
+   "Alcançável com o que se tem",
+   "Relevante: liga-se ao propósito",
+   "Prazo escrito",
+   "Sob meu controle, não só de terceiros",
+   "Alinhada aos meus valores",
+   "Custo aceitável para as outras áreas",
+   "Primeiro passo definido",
+   "Motivo real nomeado: por que agora",
+   "Formulada no positivo",
+   "Quem precisa apoiar está envolvido",
+   "Comprometimento abaixo de 7",
+   "Medo do sucesso ou da exposição",
+   "Ganho em não alcançar",
+   "Crença de não merecer",
+   "Meta de outra pessoa, não minha",
+   "Falta recurso: tempo, dinheiro, equipe",
+   "Falta habilidade: aprender ou delegar",
+   "Falta apoio de sócio ou família"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G127",
+  "title": "Sabotador ativo",
+  "file": "G127.svg",
+  "kind": "leque",
+  "items": [
+   "Juiz (crítico)",
+   "Controlador",
+   "Perfeccionista",
+   "Agradador",
+   "Hiper- realizador",
+   "Vítima",
+   "Evitador",
+   "Inquieto",
+   "Hiper- vigilante",
+   "Hiper- racional",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G128",
+  "title": "O que está agarrado",
+  "file": "G128.svg",
+  "kind": "leque",
+  "items": [
+   "Projeto parado",
+   "Venda que não fecha",
+   "Cobrança ou recebimento",
+   "Decisão adiada",
+   "Conflito com sócio ou equipe",
+   "Contratação ou vaga",
+   "Lançamento ou abertura",
+   "Dívida ou caixa",
+   "Processo, licença, burocracia",
+   "Hábito ou rotina",
+   "Cliente ou fornecedor",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G129",
+  "title": "Ação de desbloqueio",
+  "file": "G129.svg",
+  "kind": "leque",
+  "items": [
+   "Conversar: dizer o não dito",
+   "Decidir (G84)",
+   "Delegar ou contratar função",
+   "Soltar, cortar, encerrar",
+   "Pedir ajuda ou referência",
+   "Reduzir o escopo",
+   "Datar e comunicar",
+   "Mudar o lugar ou o espaço",
+   "Limpar e proteger",
+   "Aprender antes",
+   "Descansar e voltar",
+   "Outra"
+  ],
+  "note": ""
  }
 ]
