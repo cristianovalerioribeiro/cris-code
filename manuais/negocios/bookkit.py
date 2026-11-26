@@ -25,7 +25,7 @@ ANCHOR_LABELS = {
     "pes": "Parte XI · A pessoa", "pes-roda": "Roda da Vida", "pes-remissao": "Quando encaminhar a pessoa",
     "reg": "Parte XII · Registro", "reg-diario": "Diário de decisões", "reg-revisao": "Revisão", "reg-fichas": "Fichas",
     "estr": "Parte XIII · Estratégia", "estr-seletor": "Seletor de ferramentas", "estr-carteira": "Carteira de projetos e tempo", "estr-swot": "SWOT", "estr-funil": "Funil de vendas", "estr-abordagem": "Abordagem e expectativas", "estr-atores": "Mapa de atores e investidores", "estr-caminhos": "Abrir caminhos: o que se faz", "estr-lider": "Roda do líder",
-    "coach": "Parte XII · Coaching", "coach-rodas": "Rodas de 1 a 10", "coach-foco": "Foco e prioridade", "coach-metas": "Valores e metas", "coach-sabotadores": "Sabotadores", "coach-desbloqueio": "Protocolo de desbloqueio", "coach-casos": "Casos de coaching",
+    "coach": "Parte XII · Coaching", "coach-rodas": "Rodas de 1 a 10", "coach-foco": "Foco e prioridade", "coach-metas": "Valores e metas", "coach-sabotadores": "Sabotadores", "coach-desbloqueio": "Protocolo de desbloqueio", "coach-28": "Desafio de 28 dias", "coach-casos": "Casos de coaching",
     "mapa": "Mapa do método", "glossario": "Glossário", "como-usar": "Como usar",
 }
 PAGE_W = 275.5  # largura útil da página A4 deitada, em mm (297 − 10 − 11,5)
