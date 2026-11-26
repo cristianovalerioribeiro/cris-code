@@ -746,13 +746,15 @@ def compat_chart(w=190, h=96):
         hgt = 9 if v % 10 == 0 else (5 if v % 10 == 5 else 2.5)
         out.append(f'<line x1="{X(v):.1f}" y1="{y}" x2="{X(v):.1f}" y2="{y-hgt}" stroke="{LINE}" stroke-width="{0.7 if v % 10 == 0 else 0.3}"/>')
         if v % 10 == 0: out.append(f'<text x="{X(v):.1f}" y="{y+6}" font-size="4.0" fill="{INK}" font-weight="700" text-anchor="middle">{v}</text>')
-    for v, lab, c in ((40, "abaixo de 40: não seguir", "#c62828"), (70, "70 ou mais: seguir", "#2e7d32")):
+    for v, c in ((40, "#c62828"), (70, "#2e7d32")):
         out.append(f'<line x1="{X(v):.1f}" y1="{y-13}" x2="{X(v):.1f}" y2="{y+1}" stroke="{c}" stroke-width="1"/>')
-        out.append(f'<text x="{X(v):.1f}" y="{y-14.5}" font-size="3.0" fill="{c}" font-weight="700" text-anchor="middle">{esc(lab)}</text>')
-    out.append(f'<text x="{(X(40)+X(70))/2:.1f}" y="{y-14.5}" font-size="3.0" fill="#8a6d00" font-weight="700" text-anchor="middle">40 a 69: por projeto, com prazo</text>')
-    out.append(f'<text x="{x0}" y="{y+13}" font-size="3" fill="{QUIET}">Percentual de compatibilidade entre T1 e T2 para o objetivo escrito, hoje. Pergunta uma vez; registra; compara entre sessões.</text>')
-    out.append(f'<text x="{x0}" y="{y+18}" font-size="3" fill="{QUIET}">Pêndulo no ponto azul e deslizando pela régua; parada no valor. Convenção deste manual, a partir do gráfico de pesquisa de compatibilidade de referência.</text>')
-    out.append(pendulo_icon(w / 2, y + 26))
+    for z0, z1, lab, c in ((0, 40, "0 a 39: não seguir", "#c62828"), (40, 70, "40 a 69: por projeto, com prazo", "#8a6d00"), (70, 100, "70 ou mais: seguir", "#2e7d32")):
+        out.append(f'<text x="{(X(z0)+X(z1))/2:.1f}" y="{y-14.5}" font-size="3.0" fill="{c}" font-weight="700" text-anchor="middle">{esc(lab)}</text>')
+    for k, t in enumerate(("Percentual de compatibilidade entre T1 e T2 para o objetivo escrito, hoje. Pergunta uma vez; registra; compara entre sessões.",
+                           "Pêndulo no ponto azul, deslizando pela régua até a parada; duas varreduras a até 5 pontos.",
+                           "Convenção deste manual, a partir do gráfico de pesquisa de compatibilidade de referência.")):
+        out.append(f'<text x="{w/2:.1f}" y="{y+12+k*4.2:.1f}" font-size="2.8" fill="{QUIET}" text-anchor="middle">{esc(t)}</text>')
+    out.append(pendulo_icon(w / 2, y + 27))
     return svg_wrap("".join(out), w, h)
 
 def build():

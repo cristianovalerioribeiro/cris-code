@@ -73,14 +73,16 @@ def build():
     H.append(chart_group(["G3", "G4"]))
     H.append(h2("p1-abertura", "Abertura: permissão, autoauditoria e pergunta escrita"))
     H.append(steps([
-        "Enquadrar em uma frase o que está em jogo: decisão, empresa, sociedade, proposta, projeto, equipe, lugar ou o próprio dono. A situação no G108 (" + go("G108", "Porta de entrada") + ") abre a Parte certa.",
+        "Enquadrar em uma frase o que está em jogo: decisão, empresa, sociedade, proposta, projeto, equipe, lugar ou o próprio dono. A situação no G108 (" + dest("G108", label="porta de entrada") + ") abre a Parte certa.",
         "Trio de permissão para " + pergunta("esta leitura sobre [assunto] de [nome ou empresa]") + ": posso? devo? estou pronto? Em negócios a terceira inclui “tenho pedido de quem responde por isto?”. Qualquer não encerra o assunto nesta sessão.",
         "Autoauditoria no G2: " + pergunta("Quanto o meu desejo influencia esta leitura, de 0 a 100?") + ". Acima de 30, parar; recomeçar mais tarde ou passar o testemunho a outro operador. Decisões de dinheiro são as que mais contaminam.",
         "Pergunta escrita no caderno com sujeito, verbo e tempo (“aceitar a proposta X neste mês é favorável para a empresa Y?”). Opções numeradas. Critérios e pesos declarados antes de olhar as opções, quando a decisão for de critérios.",
         "Taxa de base, quando houver: quantas decisões desse tipo deram certo antes, na empresa ou no mercado. É dito em voz alta antes do pêndulo.",
         "Convenção (G1) conferida; só então o primeiro gráfico da Parte em que a decisão está.",
     ]))
+    H.append(chart("G108"))
     H.append(h2("p1-testemunho", "Testemunho da empresa, do lugar e da pessoa"))
+    H.append(p("O testemunho representa o que se mede. Testemunhos e gráficos são desimpregnados antes do uso e entre usos (Desimpregnador, ou giro anti-horário até parar), e o testemunho de uma sessão não se reaproveita em outra."))
     H.append(table(["O que se mede", "Testemunho", "Observação"], [
         ["Quem decide", "nome completo, a lápis, em papel branco novo", "é a única pessoa pendulada como pessoa, e só com pedido dela"],
         ["A empresa", "razão social e endereço, mais o nome de quem decide", "os Servranx admitem a empresa como sujeito de medição; o testemunho a representa como conjunto"],
@@ -89,7 +91,6 @@ def build():
         ["Um imóvel, ponto ou terreno", "endereço completo, planta orientada com o norte, foto da fachada ou matrícula", "a planta é o testemunho da planta quadriculada (Parte IX)"],
         ["Uma opção entre várias", "lista numerada e datada no caderno", "o mesmo leque serve a muitas listas, por isso a data"],
     ], cls="small"))
-    H.append(p("Testemunhos e gráficos são desimpregnados antes do uso e entre usos (Desimpregnador, ou giro anti-horário até parar). O testemunho de uma sessão não se reaproveita em outra."))
     H.append(h2("p1-etica", "Ética: o que se mede, o que não se mede, e como se diz"))
     H.append(box("alerta", "O que não se faz", "Avaliar candidatos, funcionários, sócios ou clientes por foto, nome ou pêndulo: caráter, honestidade, competência, “qualidades morais”. É discriminação sem critério verificável, mede um terceiro sem consentimento e expõe quem opera. Os cursos que ensinam isso descendem do psicométrico de Bélizal e da frase dos Servranx sobre “escolher empregados, vendedores, associados”; este manual veta. Também não se faz: prever faturamento, bolsa ou resultado de licitação; decidir por pêndulo valor de contrato, multa ou preço final; emitir gráfico sobre terceiro sem consentimento; prometer resultado."))
     H.append(ul([

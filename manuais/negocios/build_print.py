@@ -5,23 +5,30 @@ HERE = os.path.dirname(os.path.abspath(__file__)); os.chdir(HERE); sys.path.inse
 import gen_charts
 from interp import INTERP
 
-# ---- 1) listas regeneradas em 3 colunas (paisagem) ----
+# ---- 1) charts_land: todos os gráficos (os reaproveitados copiados, os novos gerados) e as listas regeneradas em paisagem pelo motor do manual terapêutico ----
 LAND = os.path.join(HERE, "charts_land"); os.makedirs(LAND, exist_ok=True)
-_orig_list = gen_charts.list_chart
-import math
-def _list_land(items, groups=None, cols=2, w=190, row_h=7.2, font=3.3, header_colors=None, max_h=226):
-    # paisagem: escolhe o número de colunas que dá a maior letra, preenchendo a folha deitada
-    n = len(items) + (len(groups) if groups else 0); maxlen = max(len(t) for t in items)
-    best = None
-    for c in (2, 3, 4):
-        rows = math.ceil(n / c) + 1; rh = min(13.0, 162 / rows); cw = 267 / c
-        f = min(6.0, rh * 0.5, (cw - 19) / (maxlen * 0.52))
-        if best is None or f > best[0] + 0.05: best = (f, c)
-    return _orig_list(items, groups=groups, cols=best[1], w=277, max_h=172, max_row=13.0, max_font=6.0)
-gen_charts.list_chart = _list_land
+import math, shutil, importlib.util
 gen_charts.OUT = LAND
 gen_charts.build()
-gen_charts.list_chart = _orig_list
+gen_charts.OUT = os.path.join(HERE, "charts")
+def _land_lists():
+    spec = importlib.util.spec_from_file_location("rgen", os.path.join(os.path.dirname(HERE), "radiestesia", "gen_charts.py"))
+    rg = importlib.util.module_from_spec(spec); spec.loader.exec_module(rg)
+    _orig = rg.list_chart
+    def _list_land(items, groups=None, cols=2, w=190, row_h=7.2, font=3.3, header_colors=None, max_h=226, **kw):
+        n = len(items) + (len(groups) if groups else 0); maxlen = max(len(t) for t in items)
+        best = None
+        for c in (2, 3, 4):
+            rows = math.ceil(n / c) + 1; rh = min(13.0, 162 / rows); cw = 267 / c
+            f = min(6.0, rh * 0.5, (cw - 19) / (maxlen * 0.52))
+            if best is None or f > best[0] + 0.05: best = (f, c)
+        return _orig(items, groups=groups, cols=best[1], w=277, max_h=172, max_row=13.0, max_font=6.0)
+    rg.list_chart = _list_land
+    tmp = os.path.join(HERE, "pages", "land_tmp"); os.makedirs(tmp, exist_ok=True); rg.OUT = tmp; rg.build()
+    for f in os.listdir(tmp):
+        if f.endswith(".svg") and os.path.exists(os.path.join(HERE, "charts", f)): shutil.copy(os.path.join(tmp, f), os.path.join(LAND, f))
+    shutil.rmtree(tmp, ignore_errors=True)
+_land_lists()
 
 man = json.load(open("charts/manifest.json"))
 by_id = {m["id"]: m for m in man}
