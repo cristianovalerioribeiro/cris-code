@@ -1,0 +1,697 @@
+[
+ {
+  "id": "G1",
+  "title": "Convenção de respostas",
+  "file": "G1.svg",
+  "kind": "leque",
+  "items": [
+   "Não posso ou não devo responder",
+   "Não",
+   "Neutro, nenhuma das anteriores",
+   "Sim",
+   "Pronto para a pergunta"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G2",
+  "title": "Biômetro de percentual (0 a 100)",
+  "file": "G2.svg",
+  "kind": "escala",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G3",
+  "title": "Biômetro de Bovis (0 a 10.000)",
+  "file": "G3.svg",
+  "kind": "escala",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G4",
+  "title": "Escala bipolar (−100 a +100)",
+  "file": "G4.svg",
+  "kind": "escala",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G9",
+  "title": "Sessenta emoções (Emotion Code)",
+  "file": "G9.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G10",
+  "title": "Famílias de crença",
+  "file": "G10.svg",
+  "kind": "leque",
+  "items": [
+   "Não sou bom o bastante, não mereço",
+   "Não estou seguro, o mundo é perigoso",
+   "Não tenho controle, sou impotente",
+   "Não posso confiar",
+   "Não pertenço, estou só",
+   "Não posso me expressar",
+   "Preciso ser perfeito ou agradar",
+   "É minha culpa, devo pagar",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G24",
+  "title": "Áreas da vida",
+  "file": "G24.svg",
+  "kind": "leque",
+  "items": [
+   "Saúde e corpo",
+   "Emocional",
+   "Relações afetivas",
+   "Família",
+   "Trabalho e vocação",
+   "Dinheiro",
+   "Casa e ambiente",
+   "Espiritualidade e missão"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G28",
+  "title": "Origem da interferência",
+  "file": "G28.svg",
+  "kind": "leque",
+  "items": [
+   "Própria",
+   "Externa: pessoa",
+   "Externa: lugar",
+   "Externa: objeto",
+   "Herdada"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G59",
+  "title": "Votos, pactos, promessas e contratos (lista pendulável)",
+  "file": "G59.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G62",
+  "title": "Ganho secundário: o que mantém o problema",
+  "file": "G62.svg",
+  "kind": "leque",
+  "items": [
+   "Atenção e cuidado",
+   "Evitar responsabilidade",
+   "Evitar conflito",
+   "Identidade (quem sou sem isso)",
+   "Lealdade à família",
+   "Punição (culpa)",
+   "Medo de mudar",
+   "Hábito e rotina",
+   "Ambiente que mantém",
+   "Nenhum ganho"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G66",
+  "title": "Fontes de ambiente desdobradas (lista pendulável)",
+  "file": "G66.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G67",
+  "title": "Selamento e proteção",
+  "file": "G67.svg",
+  "kind": "leque",
+  "items": [
+   "Giro horário com luz",
+   "Etiqueta de selo (Keter, Arcanjo)",
+   "Escudo Protetor (gráfico)",
+   "Antimagia",
+   "Nove Círculos",
+   "SCAP com cristal",
+   "Comando de proteção",
+   "Cristal pessoal",
+   "Banho de ervas",
+   "Oração, mantra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G69",
+  "title": "Cômodos com réguas (mapa rápido do imóvel)",
+  "file": "G69.svg",
+  "kind": "réguas",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G70",
+  "title": "Baguá sobre a planta (oito áreas e centro)",
+  "file": "G70.svg",
+  "kind": "leque",
+  "items": [
+   "Prosperidade",
+   "Sucesso, reputação",
+   "Relacionamentos",
+   "Família",
+   "Saúde (centro)",
+   "Criatividade, filhos",
+   "Espiritualidade, sabedoria",
+   "Trabalho, carreira",
+   "Amigos, viagens"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G71",
+  "title": "Técnicas de limpeza e harmonização de ambiente (lista pendulável)",
+  "file": "G71.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G82",
+  "title": "Quem imprime a energia do cômodo",
+  "file": "G82.svg",
+  "kind": "leque",
+  "items": [
+   "A própria pessoa",
+   "Parceiro, parceira",
+   "Filho, filha",
+   "Pai",
+   "Mãe",
+   "Irmão, irmã",
+   "Outro morador",
+   "Visita frequente",
+   "Ex-morador",
+   "Vizinho",
+   "O lugar em si (telúrico, histórico)",
+   "Ninguém: neutro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G83",
+  "title": "Onde a pessoa dorme e passa o dia",
+  "file": "G83.svg",
+  "kind": "leque",
+  "items": [
+   "Quarto próprio",
+   "Quarto do casal",
+   "Quarto dos filhos",
+   "Quarto dos pais (casa dos pais)",
+   "Sala",
+   "Escritório, posto de trabalho",
+   "Casa de outra pessoa",
+   "Trabalho fora",
+   "Em trânsito, viagem",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G84",
+  "title": "Decisão (cinco respostas)",
+  "file": "G84.svg",
+  "kind": "leque",
+  "items": [
+   "Sim",
+   "Não",
+   "Ainda não (espere)",
+   "Refazer a pergunta",
+   "Não me cabe responder"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G85",
+  "title": "Momento",
+  "file": "G85.svg",
+  "kind": "leque",
+  "items": [
+   "Agora",
+   "Em dias",
+   "Em semanas",
+   "Em meses",
+   "Depois de resolver outra coisa",
+   "Não é o momento"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G86",
+  "title": "Alternativas (A, B, C, D)",
+  "file": "G86.svg",
+  "kind": "leque",
+  "items": [
+   "Opção A",
+   "Opção B",
+   "Opção C",
+   "Opção D",
+   "Nenhuma delas",
+   "Outra, ainda não vista"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G87",
+  "title": "Calendário radiestésico (dia, mês, semana, hora)",
+  "file": "G87.svg",
+  "kind": "relógio",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G88",
+  "title": "Causas de erro e obstáculos (Medeiros)",
+  "file": "G88.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G89",
+  "title": "Relação entre A e B",
+  "file": "G89.svg",
+  "kind": "leque",
+  "items": [
+   "Sintonia geral",
+   "Físico, atração",
+   "Emocional",
+   "Mental, comunicação",
+   "Energético, disposição",
+   "Espiritual, valores",
+   "Confiança",
+   "Apoio, amizade",
+   "Padrão repetido",
+   "Cordão desequilibrado",
+   "Área que pede atenção",
+   "Gráfico emissor"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G90",
+  "title": "O que a relação pede",
+  "file": "G90.svg",
+  "kind": "leque",
+  "items": [
+   "Comunicação",
+   "Tempo juntos",
+   "Limites",
+   "Intimidade",
+   "Dinheiro",
+   "Família de origem",
+   "Projeto comum",
+   "Cuidado próprio"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G91",
+  "title": "Tensão na família, na amizade ou na equipe",
+  "file": "G91.svg",
+  "kind": "leque",
+  "items": [
+   "Comunicação",
+   "Hierarquia",
+   "Ciúme, competição",
+   "Dinheiro",
+   "Valores",
+   "Sobrecarga",
+   "Falta de companheirismo",
+   "Desorganização",
+   "Doença",
+   "Apego",
+   "Pessoa tóxica",
+   "Falta de confiança",
+   "Medo da rejeição",
+   "Propósitos diferentes"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G92",
+  "title": "Empresa: onde está o peso",
+  "file": "G92.svg",
+  "kind": "leque",
+  "items": [
+   "Energia geral do negócio",
+   "Ponto, espaço físico",
+   "Clima da equipe",
+   "Liderança",
+   "Produto ou serviço",
+   "Nome e identidade",
+   "Clientes: fluxo e afinidade",
+   "Finanças: entrada, saída, bloqueio",
+   "Sintonia entre sócios",
+   "Comunicação externa",
+   "Área que pede atenção primeiro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G94",
+  "title": "Bloqueios da prosperidade (duas listas de referência)",
+  "file": "G94.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G95",
+  "title": "Trabalho e carreira: o que pesa",
+  "file": "G95.svg",
+  "kind": "leque",
+  "items": [
+   "Stress",
+   "Falta de propósito",
+   "Insatisfação",
+   "Falta de feedback",
+   "Desequilíbrio vida e trabalho",
+   "Relação com a chefia",
+   "Relação com colegas",
+   "Remuneração",
+   "Insegurança, medo de perder",
+   "Mudança desejada"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G101",
+  "title": "Talento mais ativo",
+  "file": "G101.svg",
+  "kind": "leque",
+  "items": [
+   "Criar",
+   "Cuidar",
+   "Organizar",
+   "Ensinar",
+   "Comunicar",
+   "Construir",
+   "Analisar"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G103",
+  "title": "Atividades e vocações (Medeiros)",
+  "file": "G103.svg",
+  "kind": "lista",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G106",
+  "title": "Sociedade ou parceria: critérios",
+  "file": "G106.svg",
+  "kind": "leque",
+  "items": [
+   "Valores e ética",
+   "Visão do negócio",
+   "Complemen- taridade",
+   "Confiança",
+   "Comunicação",
+   "Comprometi- mento e tempo",
+   "Capacidade financeira",
+   "Apetite a risco",
+   "Rede de contatos",
+   "Regras de saída e conflito",
+   "Sintonia geral da sociedade",
+   "Outro critério"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G107",
+  "title": "Projeto ou oportunidade: critérios",
+  "file": "G107.svg",
+  "kind": "leque",
+  "items": [
+   "Viabilidade",
+   "Momento",
+   "Retorno financeiro",
+   "Risco",
+   "Alinhamento com o propósito",
+   "Demanda dos clientes",
+   "Capacidade da equipe",
+   "Recursos e prazo",
+   "Impacto na vida pessoal",
+   "Aprendizado",
+   "Favorabilidade geral",
+   "Outro critério"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G108",
+  "title": "Situação empresarial a decidir",
+  "file": "G108.svg",
+  "kind": "leque",
+  "items": [
+   "Sócio ou parceiro",
+   "Projetos ou produtos",
+   "Contratar, promover ou desligar",
+   "Expandir, filial, mudar de ponto",
+   "Investir, empréstimo, preço",
+   "Fechar, vender, encerrar",
+   "Cliente ou fornecedor",
+   "Conflito interno",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G109",
+  "title": "Leque em branco: oito opções numeradas",
+  "file": "G109.svg",
+  "kind": "leque",
+  "items": [
+   "Opção 1",
+   "Opção 2",
+   "Opção 3",
+   "Opção 4",
+   "Opção 5",
+   "Opção 6",
+   "Opção 7",
+   "Opção 8"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G110",
+  "title": "Leque em branco: doze itens numerados",
+  "file": "G110.svg",
+  "kind": "leque",
+  "items": [
+   "Item 1",
+   "Item 2",
+   "Item 3",
+   "Item 4",
+   "Item 5",
+   "Item 6",
+   "Item 7",
+   "Item 8",
+   "Item 9",
+   "Item 10",
+   "Item 11",
+   "Item 12"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G111",
+  "title": "Trava da decisão",
+  "file": "G111.svg",
+  "kind": "leque",
+  "items": [
+   "Falta de informação",
+   "Medo de errar",
+   "Medo de perder o que tem",
+   "Medo do julgamento",
+   "Conflito de valores",
+   "Pressão de terceiro",
+   "Lealdade a alguém",
+   "Apego ao modelo antigo",
+   "Cansaço e sobrecarga",
+   "Dinheiro",
+   "Não é a hora",
+   "Outra"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G112",
+  "title": "Proposta ou contrato: pontos de atenção",
+  "file": "G112.svg",
+  "kind": "leque",
+  "items": [
+   "Preço e pagamento",
+   "Prazo",
+   "Escopo e entregas",
+   "Garantias e penalidades",
+   "Saída e rescisão",
+   "Exclusividade e dependência",
+   "Responsabilidades e riscos",
+   "Reputação e histórico",
+   "Alinhamento de valores",
+   "Informação que falta",
+   "Momento",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G113",
+  "title": "Onde trava a negociação",
+  "file": "G113.svg",
+  "kind": "leque",
+  "items": [
+   "Fator nosso: preço, prazo, dúvida",
+   "Fator da outra parte",
+   "Contexto e mercado",
+   "Terceiro envolvido",
+   "Ambiente ou memória do local",
+   "Pessoa que drena",
+   "Ganho em não fechar",
+   "Falta informação"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G114",
+  "title": "Modelo de negócio: bloco frágil",
+  "file": "G114.svg",
+  "kind": "leque",
+  "items": [
+   "Segmentos de clientes",
+   "Proposta de valor",
+   "Canais",
+   "Relacionamento com clientes",
+   "Receitas",
+   "Recursos- chave",
+   "Atividades- chave",
+   "Parcerias",
+   "Custos"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G115",
+  "title": "Fase do negócio",
+  "file": "G115.svg",
+  "kind": "leque",
+  "items": [
+   "Ideia",
+   "Validação",
+   "Lançamento",
+   "Crescimento",
+   "Platô",
+   "Reinvenção",
+   "Sucessão",
+   "Encerramento"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G116",
+  "title": "Terreno para empreender: critérios",
+  "file": "G116.svg",
+  "kind": "leque",
+  "items": [
+   "Energia geral (Bovis)",
+   "Água subterrânea",
+   "Falhas e redes",
+   "Histórico e memória",
+   "Vizinhança e entorno",
+   "Acesso e fluxo",
+   "Afinidade com o público",
+   "Afinidade com o empreendedor",
+   "Momento",
+   "Risco",
+   "Impacto na vida do dono",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G117",
+  "title": "Empreendimento: onde está o peso",
+  "file": "G117.svg",
+  "kind": "leque",
+  "items": [
+   "Terreno",
+   "Projeto",
+   "Aprovações",
+   "Financiamento e caixa",
+   "Obra e fornecedores",
+   "Equipe",
+   "Vendas e comercialização",
+   "Clientes e pós-venda",
+   "Parceiros e sócios",
+   "Jurídico e contratos",
+   "Comunicação",
+   "Outro"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G118",
+  "title": "Compatibilidade para um objetivo (0 a 100)",
+  "file": "G118.svg",
+  "kind": "escala",
+  "items": [],
+  "note": ""
+ },
+ {
+  "id": "G119",
+  "title": "Interferência no negócio: onde está",
+  "file": "G119.svg",
+  "kind": "leque",
+  "items": [
+   "Em mim (quem decide)",
+   "Numa relação",
+   "Na equipe",
+   "No espaço",
+   "Memória do local ou do negócio",
+   "Contrato energético",
+   "Coletivo: inveja, olhares",
+   "Não é energético: voltar aos números"
+  ],
+  "note": ""
+ },
+ {
+  "id": "G120",
+  "title": "Ponto comercial: critérios",
+  "file": "G120.svg",
+  "kind": "leque",
+  "items": [
+   "Energia do imóvel (Bovis)",
+   "Fluxo de pessoas",
+   "Visibilidade",
+   "Acesso e estacionamento",
+   "Vizinhança e concorrência",
+   "Memória do ponto",
+   "Afinidade com o público",
+   "Afinidade com o dono",
+   "Custo e contrato",
+   "Momento",
+   "Risco",
+   "Outro"
+  ],
+  "note": ""
+ }
+]

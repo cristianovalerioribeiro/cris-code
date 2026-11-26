@@ -1,6 +1,6 @@
 # Manuais (apostilas) gerados com o motor de diagramação
 
-Pasta `radiestesia/`: o Manual de Radiestesia Terapêutica (edição 16, 105 páginas) com tudo o que o produz. O mesmo motor serve para um manual novo.
+Pasta `radiestesia/`: o Manual de Radiestesia Terapêutica (edição 16, 105 páginas) com tudo o que o produz. Pasta `negocios/`: o Manual de Radiestesia para Negócios (edição 1), feito com o mesmo motor; reaproveita 35 gráficos do manual terapêutico (copiados de `radiestesia/charts/` por `gen_charts.py`, sem alteração e com a mesma numeração) e acrescenta os gráficos G111 a G120. O mesmo motor serve para um manual novo.
 
 ## Como começar um manual novo numa conversa nova
 1. Abra a conversa com este repositório (ramo `manuais`) e peça: "leia `manuais/README.md` e `manuais/radiestesia/README_ESTADO.md`; vamos fazer um manual novo sobre …".
